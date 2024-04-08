@@ -3,11 +3,11 @@ import shutil
 import random
 
 # Define the directory where your .wav files are
-directory = 'EmoDB'
+directory = 'CremaD'
 
 # Define the directories for your train and test sets
-train_dir = 'EmoDB/train'
-test_dir = 'EmoDB/test'
+train_dir = 'CremaD/train'
+test_dir = 'CremaD/test'
 
 # Create the train and test directories if they don't exist
 os.makedirs(train_dir, exist_ok=True)
