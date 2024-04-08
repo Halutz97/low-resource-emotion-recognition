@@ -39,9 +39,9 @@ Now you should wait until everything is copied on
 
 Now that we have the data we can clone the git repo on there\
 I used the https clone method with a personal token\
-run `git clone https://github.com/Halutz97/low-resource-emotion-recognition.git` \
+run `git clone https://github.com/Halutz97/low-resource-emotion-recognition.git`\
 
-#### Note that it is maybe easier to just copy files one by one manually!
+Note that it is maybe easier to just copy files one by one manually!
 
 Now we should have the venv, the data and the code setup to run training
 
