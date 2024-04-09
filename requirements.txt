@@ -2,3 +2,4 @@ transformers
 pydub
 numpy
 torch
+soundfile
