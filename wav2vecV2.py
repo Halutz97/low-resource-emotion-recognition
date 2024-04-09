@@ -70,7 +70,7 @@ def compare_emotion(interp, audio_file, mode):
     elif mode==1:
 
         # Extract the last capital letter from the filename.
-        last_capital_letter = audio_file.split('/')[-1][13]
+        last_capital_letter = audio_file.split('/')[-1][9]
 
         # Look up the expected emotion in the dictionary.
         expected_emotion = letter_to_emotion_CremaD[last_capital_letter]
@@ -105,6 +105,7 @@ if mode==0:
     directory = 'EmoDB/test'
 elif mode==1:
     directory = 'CremaD/test/sub'
+    # directory = "C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAVsubset"
 
 
 files_investigated = 0
@@ -116,8 +117,9 @@ predicted_emotions = []
 for file in os.listdir(directory):
     if file.endswith('.wav'):
         files_investigated += 1
-        audio_file = os.path.join(directory, file)
-        interp = predict_emotion(audio_file)
+        audio_file = file
+        audio_file_path = os.path.join(directory, file)
+        interp = predict_emotion(audio_file_path)
         print(interp)
         is_correct, expected_emotion, predicted_emotion = compare_emotion(interp, audio_file, mode)
         expected_emotions.append(expected_emotion)
