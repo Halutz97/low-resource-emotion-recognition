@@ -2,5 +2,7 @@ transformers
 pydub
 numpy
 torch
+librosa
 soundfile
 moviepy
+datasets
