@@ -30,7 +30,8 @@ else:
     audio = np.pad(audio, (offset, padding - offset), 'constant')
 
 # Step 4: Feature Extraction
-# Many audio models work not with raw audio waveforms but with features extracted from the audio, such as Mel-Frequency Cepstral Coefficients (MFCCs), spectrograms, or Mel-spectrograms.
+# Many audio models work not with raw audio waveforms but with features extracted from the audio, such as Mel-Frequency
+#  Cepstral Coefficients (MFCCs), spectrograms, or Mel-spectrograms.
 
 mfccs = librosa.feature.mfcc(audio, sr=sr, n_mfcc=13)
 
@@ -51,7 +52,8 @@ plt.tight_layout()
 plt.show()
 
 # Step 5: Data Augmentation (Optional)
-# Data augmentation can improve model robustness by artificially increasing the diversity of your training set. Common audio augmentations include adding noise, changing pitch, and varying speed.
+# Data augmentation can improve model robustness by artificially increasing the diversity of your training set.
+#  Common audio augmentations include adding noise, changing pitch, and varying speed.
 
 
 # Adding white noise
@@ -59,10 +61,12 @@ noise_amp = 0.05*np.random.uniform()*np.amax(audio)
 audio = audio + noise_amp*np.random.normal(size=audio.shape[0])
 
 # Step 6: Batch Preparation
-# Prepare your data in batches, especially if you're working with large datasets. This often involves creating a custom data loader if you're using a deep learning framework like PyTorch or TensorFlow.
+# Prepare your data in batches, especially if you're working with large datasets. 
+# This often involves creating a custom data loader if you're using a deep learning framework like PyTorch or TensorFlow.
 
 # Step 7: Check Model-Specific Preprocessing
-# Before proceeding, it's crucial to check the documentation of the specific Hugging Face model you're planning to fine-tune. Each model may require specific preprocessing steps or input formats. Hugging Face provides utility functions and classes to help with this preprocessing.
+# Before proceeding, it's crucial to check the documentation of the specific Hugging Face model you're planning to fine-tune. 
+# Each model may require specific preprocessing steps or input formats. Hugging Face provides utility functions and classes to help with this preprocessing.
 
 # Final Notes
 # The steps outlined above provide a general approach to preparing audio data for model fine-tuning. 
