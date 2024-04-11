@@ -9,9 +9,11 @@ import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 
 # Assuming you have a DataFrame with columns "filename" and "emotion"
-data = pd.read_csv("C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_preprocess_test\pre_process_test.csv")
+# data = pd.read_csv("C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/pre_process_test.csv")
+data = pd.read_csv("C:/Users/DANIEL/Desktop/thesis/low-resource-emotion-recognition/MELD_preprocess_test/pre_process_test.csv")
 
-directory = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_preprocess_test\MELD_preprocess_test_data"
+# directory = "C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/MELD_preprocess_test_data"
+directory = "C:/Users/DANIEL/Desktop/thesis/low-resource-emotion-recognition/MELD_preprocess_test/MELD_preprocess_test_data"
 
 files = []
 
@@ -93,6 +95,11 @@ print(labels.shape)
 features_tensor = torch.tensor(features).float()
 labels_tensor = torch.tensor(labels).long()  # Use .long() for integer labels, .float() for one-hot
 
+# Choose train indices and validation indices
+train_indices = np.random.choice(len(features), int(0.8 * len(features)), replace=False)
+val_indices = np.array([i for i in range(len(features)) if i not in train_indices])
+
+
 # Create dataset and dataloader for both training and validation sets
 train_dataset = TensorDataset(features_tensor[train_indices], labels_tensor[train_indices])
 val_dataset = TensorDataset(features_tensor[val_indices], labels_tensor[val_indices])
@@ -115,14 +122,22 @@ class EmotionClassifier(nn.Module):
         x = self.dropout(x)
         x = self.layer2(x)
         return x
+    
 
 # Initialize the model, loss function, and optimizer
 model = EmotionClassifier(num_features=features.shape[1], num_classes=len(np.unique(labels)))
 criterion = nn.CrossEntropyLoss()  # Use CrossEntropyLoss for multi-class classification
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
+# # Freeze early layers, fine-tune the rest
+# for name, param in model.named_parameters():
+#     if name in ['layer2.weight', 'layer2.bias']:
+#         param.requires_grad = True
+#     else:
+#         param.requires_grad = False
+
 # Training loop
-num_epochs = 10
+num_epochs = 2
 for epoch in range(num_epochs):
     model.train()
     for inputs, targets in train_loader:
