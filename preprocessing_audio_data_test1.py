@@ -22,7 +22,7 @@ data['filename'] = files
 # Number of entries in dataframe:
 # print(len(data))
 
-print(data.head())
+# print(data.head())
 
 # print(data.Emotion)
 
@@ -31,6 +31,15 @@ features = []
 labels = []
 
 label_encoder = LabelEncoder()
+
+raw_labels = data['Emotion'].values
+labels = label_encoder.fit_transform(raw_labels)
+
+# Show the label-encoding pairs:
+print(label_encoder.classes_)
+print("[0,         1,       2,       3,         4,         5]")
+
+print(labels)
 
 for index, row in data.iterrows():
 
@@ -53,7 +62,7 @@ for index, row in data.iterrows():
     features.append(mfccs_processed)
     
     # Encode label
-    labels.append(label_encoder.transform([row['Emotion']]))
+    # labels.append(label_encoder.transform([row['Emotion']]))
 
 # Convert to arrays
 features = np.array(features)
