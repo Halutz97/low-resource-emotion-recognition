@@ -6,3 +6,4 @@ librosa
 soundfile
 moviepy
 datasets
+scikit-learn

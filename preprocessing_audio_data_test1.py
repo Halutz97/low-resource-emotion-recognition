@@ -2,6 +2,7 @@ import librosa
 import numpy as np
 import pandas as pd
 import os
+from sklearn.preprocessing import LabelEncoder
 
 # Assuming you have a DataFrame with columns "filename" and "emotion"
 data = pd.read_csv("C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_preprocess_test\pre_process_test.csv")
@@ -29,31 +30,39 @@ print(data.head())
 features = []
 labels = []
 
+label_encoder = LabelEncoder()
+
 for index, row in data.iterrows():
-    print(str(row))
-    print()
-    print(row['Emotion'])
 
     # Load audio file
-#     file_to_load = data.loc[index, 'filename']
-#     audio, sr = librosa.load(row['filename'], sr=16000)
-    
-#     # Extract features (e.g., MFCCs)
-#     mfccs = librosa.feature.mfcc(y=audio, sr=sr, n_mfcc=13)
-    
-#     # Mean across time
-#     mfccs_processed = np.mean(mfccs.T, axis=0)
-    
-#     features.append(mfccs_processed)
-    
-#     # Encode label
-#     labels.append(label_encoder.transform([row['emotion']]))
+    file_to_load = row['filename']
+    file_to_load_path = os.path.join(directory, file_to_load)
+    # print()
+    # print(index)
+    # print(file_to_load)
+    # print()
 
-# # Convert to arrays
-# features = np.array(features)
-# labels = np.array(labels).flatten()
+    audio, sr = librosa.load(file_to_load_path, sr=16000)
+    
+    # Extract features (e.g., MFCCs)
+    mfccs = librosa.feature.mfcc(y=audio, sr=sr, n_mfcc=13)
+    
+    # Mean across time
+    mfccs_processed = np.mean(mfccs.T, axis=0)
+    
+    features.append(mfccs_processed)
+    
+    # Encode label
+    labels.append(label_encoder.transform([row['Emotion']]))
 
-# # Now, `features` and `labels` can be used for training your model
-# # Optionally, save them to disk
+# Convert to arrays
+features = np.array(features)
+labels = np.array(labels).flatten()
+
+# Now, `features` and `labels` can be used for training your model
+# Optionally, save them to disk
 # np.save('features.npy', features)
 # np.save('labels.npy', labels)
+
+print(features.shape)
+print(labels.shape)
