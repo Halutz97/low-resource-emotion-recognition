@@ -137,7 +137,7 @@ optimizer = optim.Adam(model.parameters(), lr=0.001)
 #         param.requires_grad = False
 
 # Training loop
-num_epochs = 2
+num_epochs = 10
 for epoch in range(num_epochs):
     model.train()
     for inputs, targets in train_loader:

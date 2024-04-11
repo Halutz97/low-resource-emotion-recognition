@@ -2,5 +2,5 @@
 *.zip
 *.csv
 *.mp4
-
+*.pth
 EMO-AffectNetModel
