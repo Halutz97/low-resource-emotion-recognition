@@ -1,0 +1,9 @@
+transformers
+pydub
+numpy
+torch
+librosa
+soundfile
+moviepy
+datasets
+scikit-learn
