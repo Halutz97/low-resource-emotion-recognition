@@ -34,7 +34,7 @@ Any other package can also be installed the same way while the venv is active
 Now that we have the environment we will transfer our data onto the server as well\
 For this open a new terminal on your own local environment and run the following command\
 You need to replace the first one with the path in your own computer and also change the student id in the second part\
-`scp -r /Users/arime/Desktop/thesis/data s163956@transfer.gbar.dtu.dk:~/Desktop/emotion_recognition`\
+`scp -r /Users/arime/Desktop/thesis/data sXXXXXX@transfer.gbar.dtu.dk:~/Desktop/emotion_recognition`\
 Now you should wait until everything is copied on
 
 Now that we have the data we can clone the git repo on there\
