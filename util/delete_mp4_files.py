@@ -31,5 +31,5 @@ def delete_mp4_files(folder_path):
         print(f"Total of {files_deleted} MP4 files deleted.")
 
 # Example usage
-folder = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_fine_tune_v1_test_data"
+folder = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_fine_tune_v1_train_data"
 delete_mp4_files(folder)
