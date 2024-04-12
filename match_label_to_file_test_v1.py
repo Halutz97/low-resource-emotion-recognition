@@ -39,7 +39,7 @@ for index, row in data.iterrows():
 
 print(data['Expected filename'])
 
-files = [  ]
+files = []
 
 # Get a list of all files in the directory
 for file in os.listdir(directory):
