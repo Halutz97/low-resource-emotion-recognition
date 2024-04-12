@@ -39,7 +39,7 @@ for index, row in data.iterrows():
 
 print(data['Expected filename'])
 
-files = []
+files = [  ]
 
 # Get a list of all files in the directory
 for file in os.listdir(directory):
@@ -96,6 +96,10 @@ print(labels)
 
 # Test manually if encoding is correct
 my_encoding_dict = {'neutral': 0, 'joy': 1, 'sadness': 2, 'anger': 3, 'disgust': 4, 'fear': 5}
+
+# iterate through dataframe and check if encoding is correct
+for index, row in data.iterrows():
+    
 
 # max_length = 16000 * 10  # 10 seconds
 
