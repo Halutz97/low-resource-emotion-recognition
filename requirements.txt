@@ -2,6 +2,8 @@ transformers
 pydub
 numpy
 torch
+torchaudio
+torchvision
 librosa
 soundfile
 moviepy
