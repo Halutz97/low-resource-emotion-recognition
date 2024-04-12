@@ -23,7 +23,8 @@ def suppress_stdout_stderr():
             sys.stdout, sys.stderr = old_stdout, old_stderr
 
 if __name__ == "__main__":
-    video_directory = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_preprocess_test\MELD_preprocess_test_data"
+    # video_directory = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_preprocess_test\MELD_preprocess_test_data"
+    video_directory = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_fine_tune_v1_test_data"
 
     files_processed = 0
     num_files_to_process = 40
