@@ -109,8 +109,12 @@ val_indices = np.array([i for i in range(len(features)) if i not in train_indice
 
 
 # Create dataset and dataloader for both training and validation sets
-train_dataset = TensorDataset(features_tensor[train_indices], labels_tensor[train_indices])
-val_dataset = TensorDataset(features_tensor[val_indices], labels_tensor[val_indices])
+# train_dataset = TensorDataset(features_tensor[train_indices], labels_tensor[train_indices])
+# val_dataset = TensorDataset(features_tensor[val_indices], labels_tensor[val_indices])
+
+# Create dictionaries for both training and validation sets
+train_dataset = [{'input_values': features_tensor[i], 'labels': labels_tensor[i]} for i in train_indices]
+val_dataset = [{'input_values': features_tensor[i], 'labels': labels_tensor[i]} for i in val_indices]
 
 # train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
 # val_loader = DataLoader(val_dataset, batch_size=64, shuffle=False)
@@ -137,7 +141,6 @@ trainer = Trainer(
 
 # Train the model
 trainer.train()
-
 
 
 # Save the model
