@@ -89,17 +89,26 @@ raw_labels = data['Emotion'].values
 labels = label_encoder.fit_transform(raw_labels)
 
 # # Show the label-encoding pairs:
+# print(raw_labels)
 print(label_encoder.classes_)
 print("[0,         1,       2,       3,         4,         5]")
 
 print(labels)
 
 # Test manually if encoding is correct
-my_encoding_dict = {'neutral': 0, 'joy': 1, 'sadness': 2, 'anger': 3, 'disgust': 4, 'fear': 5}
+my_encoding_dict = {'anger': 0, 'disgust': 1, 'joy': 2, 'neutral': 3, 'sadness': 4, 'surprise': 5}
 
 # iterate through dataframe and check if encoding is correct
+num_missmatches = 0
 for index, row in data.iterrows():
-    
+    if my_encoding_dict[row['Emotion']] != labels[index]:
+            print(row['Emotion'])
+            print(labels[index])
+            print(my_encoding_dict[row['Emotion']])
+            print()
+            num_missmatches += 1
+
+print("Number of missmatches: " + str(num_missmatches))
 
 # max_length = 16000 * 10  # 10 seconds
 
