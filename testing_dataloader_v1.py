@@ -14,7 +14,7 @@ def collate_fn(batch):
     return waveforms_padded, torch.tensor(sample_rates)
 
 def main():
-    audio_dataset = AudioDataset("C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/MELD_preprocess_test_data")
+    audio_dataset = AudioDataset("C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_fine_tune_v1_train_data")
     data_loader = DataLoader(audio_dataset, batch_size=4, collate_fn=collate_fn)
     print()
     print(f"Number of batches per epoch: {len(data_loader)}")
@@ -33,6 +33,9 @@ def main():
         if i >= 1:
             break
     
+
+    print(data_loader.dataset)
+
     # Training loop here
 
 if __name__ == "__main__":

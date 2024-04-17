@@ -1,6 +1,6 @@
 import os
 
-directory = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_fine_tune_v1_test_data"
+directory = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\dev\dev_audio"
 
 max_utt_id = 0
 

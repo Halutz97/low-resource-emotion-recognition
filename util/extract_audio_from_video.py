@@ -24,10 +24,11 @@ def suppress_stdout_stderr():
 
 if __name__ == "__main__":
     # video_directory = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_preprocess_test\MELD_preprocess_test_data"
-    video_directory = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_fine_tune_v1_test_data"
+    video_directory = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\dev\dev_splits_complete"
+    destination_directory = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\dev\dev_audio"
 
     files_processed = 0
-    num_files_to_process = 40
+    num_files_to_process = 200
     # Only process 100 files at a time.
     # Only files that have not already been processed will be processed, 
     # so it is fine to just run the script multiple times.
@@ -37,7 +38,8 @@ if __name__ == "__main__":
             break
         if file.endswith('.mp4'):
             video_file_path = os.path.join(video_directory, file)
-            if os.path.isfile(video_file_path.replace('.mp4', '.wav')):
+            audio_file_path = os.path.join(destination_directory, file.replace('.mp4', '.wav'))
+            if os.path.isfile(audio_file_path):
                 continue
             else:
                 with suppress_stdout_stderr():
@@ -46,7 +48,7 @@ if __name__ == "__main__":
                     # Extract the audio
                     audio = video.audio
                     # Write the audio to a file (in WAV format)
-                    audio.write_audiofile(video_file_path.replace('.mp4', '.wav'), verbose=False)
+                    audio.write_audiofile(audio_file_path, verbose=False)
                     audio.close()
                     video.close()
                 files_processed += 1

@@ -9,3 +9,4 @@ soundfile
 moviepy
 datasets
 scikit-learn
+pandas
