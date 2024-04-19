@@ -22,13 +22,13 @@ def suppress_stdout_stderr():
         finally:
             sys.stdout, sys.stderr = old_stdout, old_stderr
 
-if __name__ == "__main__":
+def main():
     # video_directory = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_preprocess_test\MELD_preprocess_test_data"
-    video_directory = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\dev\dev_splits_complete"
-    destination_directory = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\dev\dev_audio"
+    video_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_splits"
+    destination_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_audio"
 
     files_processed = 0
-    num_files_to_process = 200
+    num_files_to_process = 1200
     # Only process 100 files at a time.
     # Only files that have not already been processed will be processed, 
     # so it is fine to just run the script multiple times.
@@ -52,7 +52,10 @@ if __name__ == "__main__":
                     audio.close()
                     video.close()
                 files_processed += 1
-                if (files_processed % 5 == 0):
+                if (files_processed % 25 == 0):
                     print(str(files_processed) + "/" + str(num_files_to_process) + " files processed.") # Optional status update
 
     print("Processed " + str(files_processed) + " files.")
+
+if __name__ == "__main__":
+    main()
