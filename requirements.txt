@@ -2,8 +2,11 @@ transformers
 pydub
 numpy
 torch
+torchaudio
+torchvision
 librosa
 soundfile
 moviepy
 datasets
 scikit-learn
+pandas

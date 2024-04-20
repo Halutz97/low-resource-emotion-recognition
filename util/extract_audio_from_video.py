@@ -22,11 +22,13 @@ def suppress_stdout_stderr():
         finally:
             sys.stdout, sys.stderr = old_stdout, old_stderr
 
-if __name__ == "__main__":
-    video_directory = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_preprocess_test\MELD_preprocess_test_data"
+def main():
+    # video_directory = "C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_preprocess_test\MELD_preprocess_test_data"
+    video_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_splits"
+    destination_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_audio"
 
     files_processed = 0
-    num_files_to_process = 40
+    num_files_to_process = 1200
     # Only process 100 files at a time.
     # Only files that have not already been processed will be processed, 
     # so it is fine to just run the script multiple times.
@@ -36,7 +38,8 @@ if __name__ == "__main__":
             break
         if file.endswith('.mp4'):
             video_file_path = os.path.join(video_directory, file)
-            if os.path.isfile(video_file_path.replace('.mp4', '.wav')):
+            audio_file_path = os.path.join(destination_directory, file.replace('.mp4', '.wav'))
+            if os.path.isfile(audio_file_path):
                 continue
             else:
                 with suppress_stdout_stderr():
@@ -45,11 +48,14 @@ if __name__ == "__main__":
                     # Extract the audio
                     audio = video.audio
                     # Write the audio to a file (in WAV format)
-                    audio.write_audiofile(video_file_path.replace('.mp4', '.wav'), verbose=False)
+                    audio.write_audiofile(audio_file_path, verbose=False)
                     audio.close()
                     video.close()
                 files_processed += 1
-                if (files_processed % 5 == 0):
+                if (files_processed % 25 == 0):
                     print(str(files_processed) + "/" + str(num_files_to_process) + " files processed.") # Optional status update
 
     print("Processed " + str(files_processed) + " files.")
+
+if __name__ == "__main__":
+    main()
