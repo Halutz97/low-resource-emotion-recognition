@@ -74,7 +74,7 @@ def check_original_format(directory,filetype=".wav"):
     files_checked = 0
     num_correct_format = 0
     if filetype == ".wav":
-        pattern = re.compile(r'dia\d{1:4}_utt\d{1:2}\.wav$')
+        pattern = re.compile(r'dia\d{1,4}_utt\d{1,2}\.wav$')
     elif filetype == ".mp4":
         pattern = re.compile(r'dia\d{1,4}_utt\d{1,2}\.mp4$')
 
@@ -84,7 +84,7 @@ def check_original_format(directory,filetype=".wav"):
              if pattern.match(filename):
                 num_correct_format += 1
         files_checked += 1
-    print("Number of files in correct format: " + str(num_correct_format) + " out of " + str(files_checked))
+    print("Number of files in original format: " + str(num_correct_format) + " out of " + str(files_checked))
 
 def restore_to_original_format(directory):
     num_restored = 0
@@ -121,7 +121,7 @@ def cleanup_files(directory):
     print(f"Removed {num_removed_files} files")
 
 def main():
-    directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_splits"
+    directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_audio"
     # correct_filename_format_MELD(directory)
     
     # count how many files start with "._"
@@ -135,9 +135,9 @@ def main():
     # print(count)
 
     # cleanup_files(directory)
-    # rename_numbering(directory)
-    # check_correct_format(directory)
-    check_original_format(directory, ".mp4")
+    rename_numbering(directory)
+    check_correct_format(directory)
+    # check_original_format(directory, ".wav")
     # restore_to_original_format(directory)
 
 if __name__ == "__main__":
