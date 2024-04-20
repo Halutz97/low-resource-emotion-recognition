@@ -26,7 +26,9 @@ def create_silent_wav(input_file, output_file):
         out_wave.setframerate(framerate)
         out_wave.writeframes(silent_data)
 
-def check_audio_files(directory, copy_directory, threshold=0.01, delete_files=False, copy_files=True):
+def check_silent_audio_files(directory, copy_directory, threshold=0.01, delete_files=False, copy_files=True):
+    if not os.path.exists(copy_directory):
+        os.makedirs(copy_directory)
     files = os.listdir(directory)
     silent_files_list = []
     num_silent_files = 0
@@ -61,18 +63,71 @@ def check_audio_files(directory, copy_directory, threshold=0.01, delete_files=Fa
     if delete_files:
         print("Deleted " + str(files_deleted) + " files.")
 
+def check_short_audio_files(directory, copy_directory, cut_lower=0.55, cut_upper=0.65, lower_limit=True, copy_files=True, delete_files=False):
+    if not os.path.exists(copy_directory):
+        os.makedirs(copy_directory)
+    files = os.listdir(directory)
+    num_files_checked = 0
+    num_files_deleted = 0
+    for file in files:
+        path = os.path.join(directory, file)
+        try:
+            audio, sr = librosa.load(path, sr=None)
+            duration = librosa.get_duration(y=audio, sr=sr)
+            if (duration < cut_upper) and (lower_limit==False or (duration >= cut_lower)):
+                if copy_files:
+                    shutil.copy(path, copy_directory)
+                if delete_files:
+                    os.remove(path)
+                    num_files_deleted += 1
+        except Exception as e:
+            print(f"Error processing {file}: {e}")
+        num_files_checked += 1
+    print("Checked " + str(num_files_checked) + " files.")
+    if delete_files:
+        print("Deleted " + str(num_files_deleted) + " files.")
+
+def check_long_audio_files(directory, copy_directory, cut_lower=10, cut_upper=12, upper_limit=True, copy_files=True, delete_files=False):
+    if not os.path.exists(copy_directory):
+        os.makedirs(copy_directory)
+    files = os.listdir(directory)
+    num_files_checked = 0
+    num_files_deleted = 0
+    for file in files:
+        path = os.path.join(directory, file)
+        try:
+            audio, sr = librosa.load(path, sr=None)
+            duration = librosa.get_duration(y=audio, sr=sr)
+            if (duration > cut_lower) and (upper_limit==False or (duration <= cut_upper)):
+                if copy_files:
+                    shutil.copy(path, copy_directory)
+                if delete_files:
+                    os.remove(path)
+                    num_files_deleted += 1
+        except Exception as e:
+            print(f"Error processing {file}: {e}")
+        num_files_checked += 1
+    print("Checked " + str(num_files_checked) + " files.")
+    if delete_files:
+        print("Deleted " + str(num_files_deleted) + " files.")
+
 def main():
     # Use the function
     # silent_files = check_audio_files('path_to_your_audio_files')
     directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_audio"
     copy_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\silent"
+    copy_short_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\short"
+    copy_long_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\long"
+
     # directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\dev\dev_audio"
     
     # file_to_mute = os.path.join(directory, "dia0000_utt01.wav")
     # muted_file = os.path.join(directory, "dia0000_utt01_silent.wav")
     # create_silent_wav(file_to_mute, os.path.join(directory, muted_file))
 
-    check_audio_files(directory, copy_directory, threshold=0.02, delete_files=False, copy_files=True)
+    # check_silent_audio_files(copy_short_directory, copy_directory, threshold=0.05, delete_files=True, copy_files=True)
+    # check_short_audio_files(directory, copy_short_directory, cut_off=0.65, copy_files=True, delete_files=False)
+    check_long_audio_files(directory, copy_long_directory, cut_lower=8, cut_upper=9, upper_limit=True, copy_files=True, delete_files=False)
 
 if __name__ == "__main__":
     main()

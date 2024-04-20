@@ -6,7 +6,7 @@ def rename_numbering(directory):
     num_wrong_format = 0
     num_renamed = 0
     for filename in os.listdir(directory):
-        if filename.endswith('.wav') & filename.startswith('dia'):
+        if filename.endswith('.wav') and filename.startswith('dia'):
             # old_filename = filename
             dia_index = filename.find("dia")
             _utt_index = filename.find("_utt")
@@ -63,7 +63,7 @@ def check_correct_format(directory):
     num_correct_format = 0
     pattern = re.compile(r'dia\d{4}_utt\d{2}\.wav$')
     for filename in os.listdir(directory):
-        if filename.endswith('.wav') & filename.startswith('dia'):
+        if filename.endswith('.wav') and filename.startswith('dia'):
             # Use Reg ex to check if the filename is in the correct format: "dia1234_utt12.wav"
              if pattern.match(filename):
                 num_correct_format += 1
@@ -79,7 +79,7 @@ def check_original_format(directory,filetype=".wav"):
         pattern = re.compile(r'dia\d{1,4}_utt\d{1,2}\.mp4$')
 
     for filename in os.listdir(directory):
-        if (filename.endswith('.wav') | filename.endswith('.mp4')) & filename.startswith('dia'):
+        if (filename.endswith('.wav') or filename.endswith('.mp4')) and filename.startswith('dia'):
             # Use Reg ex to check if the filename is in the correct format: "dia1234_utt12.wav"
              if pattern.match(filename):
                 num_correct_format += 1
@@ -89,7 +89,7 @@ def check_original_format(directory,filetype=".wav"):
 def restore_to_original_format(directory):
     num_restored = 0
     for filename in os.listdir(directory):
-        if filename.endswith('.wav') & filename.startswith('dia'):
+        if filename.endswith('.wav') and filename.startswith('dia'):
             # old_filename = filename
             dia_index = filename.find("dia")
             _utt_index = filename.find("_utt")
@@ -135,7 +135,7 @@ def main():
     # print(count)
 
     # cleanup_files(directory)
-    rename_numbering(directory)
+    # rename_numbering(directory)
     check_correct_format(directory)
     # check_original_format(directory, ".wav")
     # restore_to_original_format(directory)
