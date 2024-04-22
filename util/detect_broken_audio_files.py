@@ -125,9 +125,9 @@ def main():
     # muted_file = os.path.join(directory, "dia0000_utt01_silent.wav")
     # create_silent_wav(file_to_mute, os.path.join(directory, muted_file))
 
-    # check_silent_audio_files(copy_short_directory, copy_directory, threshold=0.05, delete_files=True, copy_files=True)
-    # check_short_audio_files(directory, copy_short_directory, cut_off=0.65, copy_files=True, delete_files=False)
-    check_long_audio_files(directory, copy_long_directory, cut_lower=8, cut_upper=9, upper_limit=True, copy_files=True, delete_files=False)
+    check_silent_audio_files(directory, copy_directory, threshold=0.04, delete_files=False, copy_files=True)
+    # check_short_audio_files(directory, copy_short_directory, cut_lower=0.60, cut_upper=0.70, lower_limit=False, copy_files=True, delete_files=True)
+    # check_long_audio_files(directory, copy_long_directory, cut_lower=9, cut_upper=10, upper_limit=False, copy_files=True, delete_files=True)
 
 if __name__ == "__main__":
     main()
