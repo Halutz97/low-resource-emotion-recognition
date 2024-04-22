@@ -6,7 +6,7 @@ def rename_numbering(directory):
     num_wrong_format = 0
     num_renamed = 0
     for filename in os.listdir(directory):
-        if filename.endswith('.wav') & filename.startswith('dia'):
+        if filename.endswith('.wav') and filename.startswith('dia'):
             # old_filename = filename
             dia_index = filename.find("dia")
             _utt_index = filename.find("_utt")
@@ -63,7 +63,7 @@ def check_correct_format(directory):
     num_correct_format = 0
     pattern = re.compile(r'dia\d{4}_utt\d{2}\.wav$')
     for filename in os.listdir(directory):
-        if filename.endswith('.wav') & filename.startswith('dia'):
+        if filename.endswith('.wav') and filename.startswith('dia'):
             # Use Reg ex to check if the filename is in the correct format: "dia1234_utt12.wav"
              if pattern.match(filename):
                 num_correct_format += 1
@@ -74,22 +74,22 @@ def check_original_format(directory,filetype=".wav"):
     files_checked = 0
     num_correct_format = 0
     if filetype == ".wav":
-        pattern = re.compile(r'dia\d{1:4}_utt\d{1:2}\.wav$')
+        pattern = re.compile(r'dia\d{1,4}_utt\d{1,2}\.wav$')
     elif filetype == ".mp4":
         pattern = re.compile(r'dia\d{1,4}_utt\d{1,2}\.mp4$')
 
     for filename in os.listdir(directory):
-        if (filename.endswith('.wav') | filename.endswith('.mp4')) & filename.startswith('dia'):
+        if (filename.endswith('.wav') or filename.endswith('.mp4')) and filename.startswith('dia'):
             # Use Reg ex to check if the filename is in the correct format: "dia1234_utt12.wav"
              if pattern.match(filename):
                 num_correct_format += 1
         files_checked += 1
-    print("Number of files in correct format: " + str(num_correct_format) + " out of " + str(files_checked))
+    print("Number of files in original format: " + str(num_correct_format) + " out of " + str(files_checked))
 
 def restore_to_original_format(directory):
     num_restored = 0
     for filename in os.listdir(directory):
-        if filename.endswith('.wav') & filename.startswith('dia'):
+        if filename.endswith('.wav') and filename.startswith('dia'):
             # old_filename = filename
             dia_index = filename.find("dia")
             _utt_index = filename.find("_utt")
@@ -121,7 +121,7 @@ def cleanup_files(directory):
     print(f"Removed {num_removed_files} files")
 
 def main():
-    directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_splits"
+    directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_audio"
     # correct_filename_format_MELD(directory)
     
     # count how many files start with "._"
@@ -136,8 +136,8 @@ def main():
 
     # cleanup_files(directory)
     # rename_numbering(directory)
-    # check_correct_format(directory)
-    check_original_format(directory, ".mp4")
+    check_correct_format(directory)
+    # check_original_format(directory, ".wav")
     # restore_to_original_format(directory)
 
 if __name__ == "__main__":
