@@ -3,4 +3,5 @@
 *.csv
 *.mp4
 *.pth
+*.png
 EMO-AffectNetModel
