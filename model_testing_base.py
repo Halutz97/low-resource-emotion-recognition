@@ -5,7 +5,7 @@ import os
 import sklearn.metrics
 from sklearn.preprocessing import LabelEncoder
 import torch
-from transformers import Wav2Vec2ForSequenceClassification
+from transformers import Wav2Vec2ForSequenceClassification, Wav2Vec2Model
 from torch.utils.data import DataLoader, TensorDataset
 
 # Assuming you have a DataFrame with columns "filename" and "emotion"
@@ -88,12 +88,9 @@ dataset = TensorDataset(features_tensor, labels_tensor)
 dataloader = DataLoader(dataset, batch_size=16)  # Adjust batch size as needed
 
 # Initialize the model
-model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=7)
+model = Wav2Vec2Model.from_pretrained("facebook/wav2vec2-large-xlsr-53")
 print("model loaded")
 
-# Load the saved weights
-model.load_state_dict(torch.load('emotion_recognition_model.pth', map_location=torch.device('cpu')))
-print("model weights loaded")
 
 
 
@@ -101,42 +98,43 @@ model.eval()  # Set the model to evaluation mode
 outputs = []
 with torch.no_grad():  # Disable gradient calculations
     for features, labels in dataloader:
-        inputs = {'input_values': features, 'labels': labels}
+        inputs = {'input_values': features}
         output = model(**inputs)  # Get model outputs for a batch
         outputs.append(output)
 
 # Print one of the logits as an example
-print(outputs[0].logits)
+print(outputs[0].last_hidden_state)
+print(outputs[0].last_hidden_state[0].size())
 
 
-# The outputs are logits, convert them to probabilities using softmax
-probabilities = [torch.nn.functional.softmax(output.logits, dim=-1) for output in outputs]
+# # The outputs are logits, convert them to probabilities using softmax
+# probabilities = [torch.nn.functional.softmax(output.logits, dim=-1) for output in outputs]
 
-# Print one of the probabilities as an example
-print(probabilities[0])
+# # Print one of the probabilities as an example
+# print(probabilities[0])
 
-# Get the predicted class
-predicted_classes = [torch.argmax(prob, dim=-1) for prob in probabilities]
-# Convert predicted_classes to a numpy array
-predicted_classes = torch.cat(predicted_classes).numpy()
+# # Get the predicted class
+# predicted_classes = [torch.argmax(prob, dim=-1) for prob in probabilities]
+# # Convert predicted_classes to a numpy array
+# predicted_classes = torch.cat(predicted_classes).numpy()
 
-# Calculate accuracy
-accuracy = (predicted_classes == labels_tensor.numpy()).mean()
-print("Accuracy:", accuracy)
+# # Calculate accuracy
+# accuracy = (predicted_classes == labels_tensor.numpy()).mean()
+# print("Accuracy:", accuracy)
 
-# Get the label names from the label encoder
-label_names = label_encoder.classes_
+# # Get the label names from the label encoder
+# label_names = label_encoder.classes_
 
 
-# Generate confusion matrix
-confusion_matrix = sklearn.metrics.confusion_matrix(labels_tensor.numpy(), predicted_classes)
+# # Generate confusion matrix
+# confusion_matrix = sklearn.metrics.confusion_matrix(labels_tensor.numpy(), predicted_classes)
 
-# Create a DataFrame for the confusion matrix
-confusion_matrix_df = pd.DataFrame(confusion_matrix, index=label_names, columns=label_names)
+# # Create a DataFrame for the confusion matrix
+# confusion_matrix_df = pd.DataFrame(confusion_matrix, index=label_names, columns=label_names)
 
-# Add a row and column for the total counts
-confusion_matrix_df['Total'] = confusion_matrix_df.sum(axis=1)
-confusion_matrix_df.loc['Total'] = confusion_matrix_df.sum()
+# # Add a row and column for the total counts
+# confusion_matrix_df['Total'] = confusion_matrix_df.sum(axis=1)
+# confusion_matrix_df.loc['Total'] = confusion_matrix_df.sum()
 
-print("Confusion Matrix:")
-print(confusion_matrix_df)
+# print("Confusion Matrix:")
+# print(confusion_matrix_df)
