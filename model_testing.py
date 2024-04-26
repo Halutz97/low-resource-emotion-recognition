@@ -10,10 +10,10 @@ from torch.utils.data import DataLoader, TensorDataset
 
 # Assuming you have a DataFrame with columns "filename" and "emotion"
 # data = pd.read_csv("C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/pre_process_test.csv")
-data = pd.read_csv("C:/Users/DANIEL/Desktop/thesis/low-resource-emotion-recognition/MELD_preprocess_test/pre_process_test.csv")
+data = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\custom_test\custom_labels_corrected.csv")
 
 # directory = "C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/MELD_preprocess_test_data"
-directory = "C:/Users/DANIEL/Desktop/thesis/low-resource-emotion-recognition/MELD_preprocess_test/MELD_preprocess_test_data"
+directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\custom_test\custom_test_data"
 
 files = []
 
@@ -91,7 +91,7 @@ dataloader = DataLoader(dataset, batch_size=16)  # Adjust batch size as needed
 model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=7)
 
 # Load the saved weights
-model.load_state_dict(torch.load('emotion_recognition_model.pth', map_location=torch.device('cpu')))
+model.load_state_dict(torch.load(r"C:\Users\arime\Downloads\emotion_recognition_model.pth", map_location=torch.device('cpu')))
 
 model.eval()  # Set the model to evaluation mode
 outputs = []

@@ -114,10 +114,17 @@ def check_long_audio_files(directory, copy_directory, cut_lower=10, cut_upper=12
 def main():
     # Use the function
     # silent_files = check_audio_files('path_to_your_audio_files')
-    directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\dev\dev_audio"
-    copy_silent_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\dev\silent"
-    copy_short_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\dev\short"
-    copy_long_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\dev\long"
+    root_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\test"
+
+    # directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\test\test_audio"
+    # copy_silent_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\dev\silent"
+    # copy_short_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\dev\short"
+    # copy_long_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\dev\long"
+
+    directory = os.path.join(root_directory, "test_audio")
+    copy_silent_directory = os.path.join(root_directory, "silent")
+    copy_short_directory = os.path.join(root_directory, "short")
+    copy_long_directory = os.path.join(root_directory, "long")
 
     # directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\dev\dev_audio"
     
