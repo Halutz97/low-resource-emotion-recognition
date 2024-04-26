@@ -76,9 +76,14 @@ print("Files without labels:")
 print(files_without_labels)
 print()
 
-# remove files that do not have labels from 'files'
+# remove files that do not have labels from 'files' and delete them from the directory
+deleted_files = 0
 for file in files_without_labels:
+    # delete audio file drom directory
+    os.remove(os.path.join(directory, file))
+    deleted_files += 1
     files.remove(file)
+print("Deleted files: " + str(deleted_files))
 
 # print(files)
 # print()
