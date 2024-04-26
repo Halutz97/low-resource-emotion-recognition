@@ -1,3 +1,5 @@
+# Multitasking speech emotion recognition and speech recognition
+
 import librosa
 import zipfile
 import numpy as np
@@ -5,7 +7,7 @@ import pandas as pd
 import os
 from sklearn.preprocessing import LabelEncoder
 import torch
-from transformers import Wav2Vec2Processor, Wav2Vec2ForSequenceClassification, TrainingArguments, Trainer
+from transformers import Wav2Vec2ForSequenceClassification, TrainingArguments, Trainer
 import evaluate
 from datasets import Dataset
 
@@ -81,18 +83,17 @@ print(labels)
 
 max_length = 16000 * 9  # 9 seconds
 
-# Load the processor
-processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-large-xlsr-53")
-
 for index, row in data.iterrows():
 
     # Load audio file
     file_to_load = row['filename']
     file_to_load_path = os.path.join(directory, file_to_load)
+    # print()
+    # print(index)
+    # print(file_to_load)
+    # print()
 
-    # Load and preprocess the audio
     audio, sr = librosa.load(file_to_load_path, sr=16000)
-    audio = librosa.util.normalize(audio)
 
     if len(audio) > max_length:
         audio = audio[:max_length]
@@ -101,51 +102,52 @@ for index, row in data.iterrows():
         offset = padding // 2
         audio = np.pad(audio, (offset, padding - offset), 'constant')
 
-    # Process the audio
-    inputs = processor(audio, sampling_rate=sr, return_tensors="pt")
 
-
-    features.append(inputs.input_values[0])
+    features.append(audio)
 
     # Encode label
     # labels.append(label_encoder.transform([row['Emotion']]))
 
+# Convert to arrays
+features = np.array(features)
+labels = np.array(labels).flatten()
 
 
-# Convert labels to tensors
+# Now, `features` and `labels` can be used for training your model
+# Optionally, save them to disk
+# np.save('features.npy', features)
+# np.save('labels.npy', labels)
+
+print(features.shape)
+print(labels.shape)
+
+# Convert features to a float tensor and transpose the last two dimensions
+features_tensor = torch.tensor(features).float()
 labels_tensor = torch.tensor(labels).long()  # Use .long() for integer labels, .float() for one-hot
 
-# Print the dimensions of the labels tensor
-print(f"Labels tensor dimensions: {labels_tensor.shape}")
-
 # Choose train indices and validation indices
-indices = torch.randperm(len(features))
-train_indices = indices[:int(0.8 * len(features))]
-val_indices = indices[int(0.8 * len(features)):]
-
-# Print the number of training and validation samples
-print(f"Number of training samples: {len(train_indices)}")
-print(f"Number of validation samples: {len(val_indices)}")
+train_indices = np.random.choice(len(features), int(0.8 * len(features)), replace=False)
+val_indices = np.array([i for i in range(len(features)) if i not in train_indices])
 
 
 # Convert the TensorDatasets to Datasets
 train_dataset = Dataset.from_dict({
-    'input_values': [features[i] for i in train_indices],
+    'input_values': features_tensor[train_indices],
     'labels': labels_tensor[train_indices]
 })
 val_dataset = Dataset.from_dict({
-    'input_values': [features[i] for i in val_indices],
+    'input_values': features_tensor[val_indices],
     'labels': labels_tensor[val_indices]
 })
 
-# Print the dimensions of the first feature in the training and validation dataset
-print(f"First training sample dimensions: {train_dataset['input_values'][0].shape}")
-print(f"First validation sample dimensions: {val_dataset['input_values'][0].shape}")
-
+# train_loader = DataLoader(train_dataset, batch_size=1, shuffle=True)
+# val_loader = DataLoader(val_dataset, batch_size=1, shuffle=False)
 
 # Load a pre-trained model for pretrained
 model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=7)
 
+# Define training arguments
+# training_args = TrainingArguments(output_dir="test_trainer", evaluation_strategy="epoch")
 
 # Initialize the trainer
 metric = evaluate.load("accuracy")
@@ -154,21 +156,17 @@ metric = evaluate.load("accuracy")
 
 training_args = TrainingArguments(
     output_dir='./results',          # Output directory
-    learning_rate=1e-4,              # Learning rate
-    num_train_epochs=3,              # Number of training epochs
+    num_train_epochs=20,             # Number of training epochs
     per_device_train_batch_size=4,   # Batch size for training
     per_device_eval_batch_size=8,    # Batch size for evaluation
-    gradient_accumulation_steps=2,   # Number of updates steps to accumulate before performing a backward/update pass
     warmup_steps=500,                # Number of warmup steps for learning rate scheduler
     weight_decay=0.01,               # Strength of weight decay
     logging_dir='./logs',            # Directory for storing logs
     logging_steps=10,
     save_strategy='steps',               # Saving model checkpoint strategy
     save_steps=500,                      # Save checkpoint every 500 steps
-    save_total_limit=3,
-    fp16=True                        # Enable mixed precision training
+    save_total_limit=3
 )
-
 
 trainer = Trainer(
     model=model,
