@@ -146,6 +146,14 @@ print(f"First validation sample dimensions: {len(val_dataset['input_values'][0])
 # Load a pre-trained model for pretrained
 model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=7)
 
+# Freeze all the parameters of the model
+for param in model.parameters():
+    param.requires_grad = False
+
+# Unfreeze the classifier parameters
+for param in model.classifier.parameters():
+    param.requires_grad = True
+
 
 # Initialize the trainer
 metric = evaluate.load("accuracy")
