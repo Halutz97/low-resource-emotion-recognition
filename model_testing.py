@@ -10,10 +10,10 @@ from torch.utils.data import DataLoader, TensorDataset
 
 # Assuming you have a DataFrame with columns "filename" and "emotion"
 # data = pd.read_csv("C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/pre_process_test.csv")
-data = pd.read_csv("C:/Users/DANIEL/Desktop/thesis/low-resource-emotion-recognition/MELD_preprocess_test/test_labels.csv")
+data = pd.read_csv("C:/Users/DANIEL/Desktop/thesis/low-resource-emotion-recognition/MELD_preprocess_test/pre_process_test.csv")
 
 # directory = "C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/MELD_preprocess_test_data"
-directory = "C:/Users/DANIEL/Desktop/thesis/low-resource-emotion-recognition/MELD_preprocess_test/MELD_fine_tune_v1_test_data"
+directory = "C:/Users/DANIEL/Desktop/thesis/low-resource-emotion-recognition/MELD_preprocess_test/MELD_preprocess_test_data"
 
 files = []
 
@@ -36,7 +36,7 @@ raw_labels = data['Emotion'].values
 labels = label_encoder.fit_transform(raw_labels)
 
 
-max_length = 16000 * 10  # 10 seconds
+max_length = 16000 * 9  # 10 seconds
 
 for index, row in data.iterrows():
 
@@ -88,10 +88,10 @@ dataset = TensorDataset(features_tensor, labels_tensor)
 dataloader = DataLoader(dataset, batch_size=16)  # Adjust batch size as needed
 
 # Initialize the model
-model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=6)
+model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=7)
 
 # Load the saved weights
-model.load_state_dict(torch.load('emotion_recognition_model.pth'))
+model.load_state_dict(torch.load('emotion_recognition_model.pth', map_location=torch.device('cpu')))
 
 model.eval()  # Set the model to evaluation mode
 outputs = []
@@ -101,9 +101,15 @@ with torch.no_grad():  # Disable gradient calculations
         output = model(**inputs)  # Get model outputs for a batch
         outputs.append(output)
 
+# Print one of the logits as an example
+print(outputs[0].logits)
+
 
 # The outputs are logits, convert them to probabilities using softmax
 probabilities = [torch.nn.functional.softmax(output.logits, dim=-1) for output in outputs]
+
+# Print one of the probabilities as an example
+print(probabilities[0])
 
 # Get the predicted class
 predicted_classes = [torch.argmax(prob, dim=-1) for prob in probabilities]
