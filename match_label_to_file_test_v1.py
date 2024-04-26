@@ -11,10 +11,10 @@ from torch.utils.data import DataLoader, TensorDataset
 # Assuming you have a DataFrame with columns "filename" and "emotion"
 # data = pd.read_csv("C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/pre_process_test.csv")
 # data = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_fine_tune_v1_train_data\train_labels.csv")
-data = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_sent_emo.csv")
+data = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\Testing_1\train_sent_emo.csv")
 
 # Audio files directory
-directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_audio"
+directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\Testing_1\data"
 
 # iterate through dataframe:
 for index, row in data.iterrows():
@@ -146,8 +146,9 @@ print("[0,         1,       2,     3,      4,        5,       6]")
 print(labels)
 
 # Test manually if encoding is correct
-my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
+# my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
 # my_encoding_dict = {'anger': 0, 'fear': 1, 'joy': 2, 'neutral': 3, 'sadness': 4, 'surprise': 5}
+my_encoding_dict = {'neutral': 0, 'surprise': 1}
 
 # iterate through dataframe and check if encoding is correct
 
@@ -190,14 +191,14 @@ for index, row in data.iterrows():
 print("Number of missmatches: " + str(num_missmatches))
 print()
 # Export dataframe to csv
-data.to_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_labels_corrected.csv", index=False)
-df_check = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_labels_corrected.csv")
-print()
-print("df_check:")
+data.to_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\Testing_1\train_labels_corrected.csv", index=False)
+# df_check = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_labels_corrected.csv")
+# print()
+# print("df_check:")
 
-print(df_check.head())
+# print(df_check.head())
 
-print()
+# print()
 
 # Drop columns Sr No., Utterance, Speaker, Sentiment, Dialogue_ID, Utterance_ID, Season, Episode, StartTime, EndTime, Expected filename, Match
 # data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename', 'Match'], axis=1)
