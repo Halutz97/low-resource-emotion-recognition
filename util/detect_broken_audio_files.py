@@ -174,8 +174,6 @@ def process_files(directory, toggle_silent=True, toggle_short=True, toggle_long=
     copy_silent_directory = os.path.join(root_directory, "silent")
     copy_short_directory = os.path.join(root_directory, "short")
     copy_long_directory = os.path.join(root_directory, "long")
-
-    # directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\dev\dev_audio"
     
     # file_to_mute = os.path.join(directory, "dia0000_utt01.wav")
     # muted_file = os.path.join(directory, "dia0000_utt01_silent.wav")

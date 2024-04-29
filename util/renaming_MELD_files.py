@@ -1,11 +1,36 @@
 import os
 import re
 
+def check_correct_format_single(filename):
+    # files_checked = 0
+    # num_correct_format = 0
+    pattern = re.compile(r'dia\d{4}_utt\d{2}\.wav$')
+    # for filename in os.listdir(directory):
+    if filename.endswith('.wav') and filename.startswith('dia'):
+        # Use Reg ex to check if the filename is in the correct format: "dia1234_utt12.wav"
+        if pattern.match(filename):
+            return True
+    return False
+
+def check_correct_format(directory):
+    files_checked = 0
+    num_correct_format = 0
+    pattern = re.compile(r'dia\d{4}_utt\d{2}\.wav$')
+    for filename in os.listdir(directory):
+        if check_correct_format_single(filename):
+            num_correct_format += 1
+        files_checked += 1
+    print("Number of files in correct format: " + str(num_correct_format) + " out of " + str(files_checked))
+
 def rename_numbering(directory):
     max_utt_id = 0
     num_wrong_format = 0
     num_renamed = 0
+    num_already_correct = 0
     for filename in os.listdir(directory):
+        if check_correct_format_single(filename):
+            num_already_correct += 1
+            continue
         if filename.endswith('.wav') and filename.startswith('dia'):
             # old_filename = filename
             dia_index = filename.find("dia")
@@ -56,19 +81,11 @@ def rename_numbering(directory):
 
     # print("MAX UTT_ID = " + str(max_utt_id))
     print("Number of files with wrong format: " + str(num_wrong_format))
+    print()
+    print("Number of files already in correct format: " + str(num_already_correct))
+    print()
     print("Renamed " + str(num_renamed) + " files.")
-
-def check_correct_format(directory):
-    files_checked = 0
-    num_correct_format = 0
-    pattern = re.compile(r'dia\d{4}_utt\d{2}\.wav$')
-    for filename in os.listdir(directory):
-        if filename.endswith('.wav') and filename.startswith('dia'):
-            # Use Reg ex to check if the filename is in the correct format: "dia1234_utt12.wav"
-             if pattern.match(filename):
-                num_correct_format += 1
-        files_checked += 1
-    print("Number of files in correct format: " + str(num_correct_format) + " out of " + str(files_checked))
+    print()
 
 def check_original_format(directory,filetype=".wav"):
     files_checked = 0
