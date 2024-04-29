@@ -53,7 +53,7 @@ def extract_files(video_directory, destination_directory, num_files_to_process):
     print("Processed " + str(files_processed) + " files.")
 
 if __name__ == "__main__":
-    video_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_splits"
+    video_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\training"
     destination_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_audio"
     num_files_to_process = 10
     extract_files(video_directory, destination_directory, num_files_to_process)

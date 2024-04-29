@@ -154,7 +154,8 @@ print("[0,         1,       2,     3,      4,        5,       6]")
 print(labels)
 
 # Test manually if encoding is correct
-my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
+# my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
+my_encoding_dict = {'anger': 0, 'disgust': 1, 'joy': 2, 'neutral': 3, 'sadness': 4, 'surprise': 5}
 # my_encoding_dict = {'disgust': 0, 'fear': 1, 'joy': 2, 'neutral': 3, 'sadness': 4, 'surprise': 5}
 # my_encoding_dict = {'anger': 0, 'fear': 1, 'joy': 2, 'neutral': 3, 'sadness': 4, 'surprise': 5}
 # my_encoding_dict = {'neutral': 0, 'surprise': 1}
