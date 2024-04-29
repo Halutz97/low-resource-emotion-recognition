@@ -54,7 +54,7 @@ def rename_numbering(directory):
         else:
             num_wrong_format += 1
 
-    print("MAX UTT_ID = " + str(max_utt_id))
+    # print("MAX UTT_ID = " + str(max_utt_id))
     print("Number of files with wrong format: " + str(num_wrong_format))
     print("Renamed " + str(num_renamed) + " files.")
 
@@ -120,8 +120,8 @@ def cleanup_files(directory):
             num_removed_files += 1
     print(f"Removed {num_removed_files} files")
 
-def main():
-    directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_audio"
+def rename_audio_files(directory, toggle_cleanup=False, toggle_rename=True, toggle_check_format=True):
+    # directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\training_set_for_testing\MELD_preprocess_test\MELD_preprocess_test_data"
     # correct_filename_format_MELD(directory)
     
     # count how many files start with "._"
@@ -134,11 +134,16 @@ def main():
     # print("Files starting with ... :")
     # print(count)
 
-    # cleanup_files(directory)
-    # rename_numbering(directory)
-    check_correct_format(directory)
+    if toggle_cleanup:
+        cleanup_files(directory)
+    if toggle_rename:
+        rename_numbering(directory)
+    if toggle_check_format:
+        check_correct_format(directory)
+
     # check_original_format(directory, ".wav")
     # restore_to_original_format(directory)
 
 if __name__ == "__main__":
-    main()
+    directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\training_set_for_testing\MELD_preprocess_test\MELD_preprocess_test_data"
+    rename_audio_files(directory, toggle_cleanup=False, toggle_rename=True, toggle_check_format=True)

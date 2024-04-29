@@ -11,10 +11,13 @@ from torch.utils.data import DataLoader, TensorDataset
 # Assuming you have a DataFrame with columns "filename" and "emotion"
 # data = pd.read_csv("C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/pre_process_test.csv")
 # data = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_fine_tune_v1_train_data\train_labels.csv")
-data = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\custom_test\custom_labels_corrected.csv")
+data = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\training_set_for_testing\MELD_preprocess_test\pre_process_test.csv")
 
 # Audio files directory
-directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\custom_test\custom_test_data"
+directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\training_set_for_testing\MELD_preprocess_test\MELD_preprocess_test_data"
+
+# Export corrected csv file:
+export_file_path = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\training_set_for_testing\MELD_preprocess_test\pre_process_test_corrected.csv"
 
 # iterate through dataframe:
 for index, row in data.iterrows():
@@ -197,7 +200,7 @@ for index, row in data.iterrows():
 print("Number of missmatches: " + str(num_missmatches))
 print()
 # Export dataframe to csv
-data.to_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_subset_labels_corrected.csv", index=False)
+data.to_csv(export_file_path, index=False)
 # df_check = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_labels_corrected.csv")
 # print()
 # print("df_check:")
