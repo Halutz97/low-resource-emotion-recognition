@@ -241,18 +241,19 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
 
     # Drop columns Sr No., Utterance, Speaker, Sentiment, Dialogue_ID, Utterance_ID, Season, Episode, StartTime, EndTime, Expected filename, Match
     # data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename', 'Match'], axis=1)
-    data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename'], axis=1)
+    # data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename'], axis=1)
 
     # data.reset_index(drop=True, inplace=True)
 
-    column_names = data.columns.tolist()
-    print("Column names:")
-    print(column_names)
-    print()
-
     # Change order of columns
     # data = data[['filename', 'Label']]
+    
     data = data[['filename', 'Emotion', 'Label']]
+
+    # column_names = data.columns.tolist()
+    # print("Column names:")
+    # print(column_names)
+    # print()
 
     data.to_csv(corrected_labels_file, index=False)
 
