@@ -5,8 +5,9 @@ import os
 import sklearn.metrics
 from sklearn.preprocessing import LabelEncoder
 import torch
-from transformers import Wav2Vec2ForSequenceClassification
+from transformers import Wav2Vec2ForSequenceClassification, Wav2Vec2Processor
 from torch.utils.data import DataLoader, TensorDataset
+from datasets import Dataset
 
 # Assuming you have a DataFrame with columns "filename" and "emotion"
 # data = pd.read_csv("C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/pre_process_test.csv")
@@ -30,13 +31,18 @@ data['filename'] = files
 features = []
 labels = []
 
-label_encoder = LabelEncoder()
+my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
 
-raw_labels = data['Emotion'].values
-labels = label_encoder.fit_transform(raw_labels)
+labels = data['Emotion'].map(my_encoding_dict).values
+
+# Print the classes in the order they were encountered
+print(my_encoding_dict)
 
 
-max_length = 16000 * 9  # 10 seconds
+max_length = 16000 * 10  # 10 seconds
+
+# Load the processor
+processor = Wav2Vec2Processor.from_pretrained("jonatasgrosman/wav2vec2-large-xlsr-53-english")
 
 for index, row in data.iterrows():
 
@@ -49,6 +55,7 @@ for index, row in data.iterrows():
     # print()
 
     audio, sr = librosa.load(file_to_load_path, sr=16000)
+    audio = librosa.util.normalize(audio)
 
     if len(audio) > max_length:
         audio = audio[:max_length]
@@ -57,48 +64,57 @@ for index, row in data.iterrows():
         offset = padding // 2
         audio = np.pad(audio, (offset, padding - offset), 'constant')
 
-    # Append raw audio data
-    features.append(audio)
+    # Process the audio
+    inputs = processor(audio, sampling_rate=sr, return_tensors="pt")
 
-    # Encode label
-    # labels.append(label_encoder.transform([row['Emotion']]))
-
-# Convert to arrays
-features = np.array(features)
-labels = np.array(labels).flatten()
+    print(type(inputs.input_values[0]))
+    features.append(inputs.input_values[0])
 
 
-# Now, `features` and `labels` can be used for training your model
-# Optionally, save them to disk
-# np.save('features.npy', features)
-# np.save('labels.npy', labels)
 
-print(features.shape)
-print(labels.shape)
-
-# Convert features and labels into PyTorch tensors
-features_tensor = torch.tensor(features).float()
+# Convert labels to tensors
+features_tensor = torch.stack(features)
 labels_tensor = torch.tensor(labels).long()  # Use .long() for integer labels, .float() for one-hot
 
-# Reshape features_tensor to 2D (batch_size, sequence_length)
-features_tensor = features_tensor.view(features_tensor.shape[0], -1)
+# Print the dimensions of the labels tensor
+print(f"Labels tensor dimensions: {labels_tensor.shape}")
 
+# Convert the TensorDatasets to Datasets
+dataset = Dataset.from_dict({
+    'input_values': features_tensor,
+    'labels': labels_tensor
+})
 
-dataset = TensorDataset(features_tensor, labels_tensor)
-dataloader = DataLoader(dataset, batch_size=16)  # Adjust batch size as needed
+# Specify the batch size
+batch_size = 10
+
+# Create the DataLoader
+dataloader = DataLoader(dataset, batch_size=batch_size)
 
 # Initialize the model
 model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=7)
+print("model loaded")
 
 # Load the saved weights
-model.load_state_dict(torch.load(r"C:\Users\arime\Downloads\emotion_recognition_model.pth", map_location=torch.device('cpu')))
+model.load_state_dict(torch.load('emotion_recognition_model.pth', map_location=torch.device('cpu')))
+print("model weights loaded")
+
+
 
 model.eval()  # Set the model to evaluation mode
 outputs = []
 with torch.no_grad():  # Disable gradient calculations
-    for features, labels in dataloader:
-        inputs = {'input_values': features, 'labels': labels}
-        output = model(**inputs)  # Get model outputs for a batch
+    for batch in dataloader:
+        # Get the input values and labels from the batch
+        input_values = torch.stack(batch['input_values']).float()
+        labels = batch['labels']
+
+        
+        print(f"Input values size: {input_values.size()}")  # Add this line
+        input_values = input_values.transpose(0, 1)
+
+        # Forward pass: compute the model outputs
+        output = model(input_values, labels=labels)
         outputs.append(output)
 
 # Print one of the logits as an example
@@ -121,14 +137,27 @@ accuracy = (predicted_classes == labels_tensor.numpy()).mean()
 print("Accuracy:", accuracy)
 
 # Get the label names from the label encoder
-label_names = label_encoder.classes_
+label_names = list(my_encoding_dict.keys())
+
+print(f"Predicted classes size:", predicted_classes.shape)
+print(f"Labels tensor size:", labels_tensor.numpy().size)
 
 
 # Generate confusion matrix
 confusion_matrix = sklearn.metrics.confusion_matrix(labels_tensor.numpy(), predicted_classes)
 
+# Create a confusion matrix of shape (7, 7) filled with zeros
+confusion_matrix_full = np.zeros((7, 7), dtype=int)
+
+# Get the unique labels in the test data
+unique_labels = np.unique(labels_tensor.numpy())
+
+# Fill the confusion matrix with the values from the actual confusion matrix
+for i, label in enumerate(unique_labels):
+    confusion_matrix_full[label, unique_labels] = confusion_matrix[i]
+
 # Create a DataFrame for the confusion matrix
-confusion_matrix_df = pd.DataFrame(confusion_matrix, index=label_names, columns=label_names)
+confusion_matrix_df = pd.DataFrame(confusion_matrix_full, index=label_names, columns=label_names)
 
 # Add a row and column for the total counts
 confusion_matrix_df['Total'] = confusion_matrix_df.sum(axis=1)
