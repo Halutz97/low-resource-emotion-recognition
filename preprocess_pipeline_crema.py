@@ -34,7 +34,7 @@ def handle_CREMA_D(directory):
 
     # Creating a csv file with the extracted labels
     labels = pd.DataFrame(list(zip(index, filename, speaker, line, emotions, intensity)), columns = ["Index", "filename", "Speaker", "Line", "Emotion", "Intensity"])
-    labels.to_csv(os.path.join(directory, "labels.csv"), index=False)
+    labels.to_csv(os.path.join(os.path.dirname(directory), "labels.csv"), index=False)
 
     return
 
@@ -81,6 +81,7 @@ def main():
         case "CREMA-D":
             old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
             audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio"
+            labels_path = os.path.join(os.path.dirname(audio_directory), "labels.csv")
 
             # Create the destination directory if it doesn't exist
             if not os.path.exists(audio_directory):
@@ -92,8 +93,8 @@ def main():
                     destination_path = os.path.join(audio_directory, filename)
                     shutil.copy2(source_path, destination_path)
 
-
-            labels_path = os.path.join(os.path.dirname(audio_directory), "labels.csv")
+            if not os.path.exists(labels_path):
+                handle_CREMA_D(audio_directory)
 
             toggle_controls = [False, False, True, True]
             corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
@@ -135,7 +136,7 @@ def main():
     
     if extract_corrected_labels:
         print("Extracting corrected labels...")
-        match_labels.match_emotion_labels(labels_path,  corrected_labels_path, audio_directory)
+        match_labels.match_emotion_labels(labels_path,  corrected_labels_path, audio_directory, dataset)
         print("Done.")
 
 if __name__ == "__main__":
