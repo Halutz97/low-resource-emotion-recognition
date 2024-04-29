@@ -8,13 +8,13 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 
-def match_emotion_labels(labels, corrected_labels, directory):
+def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset="MELD"):
     # Assuming you have a DataFrame with columns "filename" and "emotion"
     # data = pd.read_csv("C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/pre_process_test.csv")
     # data = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_fine_tune_v1_train_data\train_labels.csv")
     
     # data = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\training_set_for_testing\MELD_preprocess_test\pre_process_test.csv")
-    data = pd.read_csv(labels)
+    data = pd.read_csv(labels_file)
 
     # Audio files directory
     # directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\training_set_for_testing\MELD_preprocess_test\MELD_preprocess_test_data"
@@ -23,26 +23,27 @@ def match_emotion_labels(labels, corrected_labels, directory):
     # export_file_path = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\training_set_for_testing\MELD_preprocess_test\pre_process_test_corrected.csv"
 
     # iterate through dataframe:
-    for index, row in data.iterrows():
-        dialogue_id = str(row['Dialogue_ID'])
-        utterance_id = str(row['Utterance_ID'])
-        if int(dialogue_id) >= 1000:
-                dialogue_id = dialogue_id
-        elif int(dialogue_id) >= 100:
-            dialogue_id = "0" + dialogue_id
-        elif int(dialogue_id) >= 10:
-            dialogue_id = "00" + dialogue_id
-        else:
-            dialogue_id = "000" + dialogue_id
+    if dataset == "MELD":
+        for index, row in data.iterrows():
+            dialogue_id = str(row['Dialogue_ID'])
+            utterance_id = str(row['Utterance_ID'])
+            if int(dialogue_id) >= 1000:
+                    dialogue_id = dialogue_id
+            elif int(dialogue_id) >= 100:
+                dialogue_id = "0" + dialogue_id
+            elif int(dialogue_id) >= 10:
+                dialogue_id = "00" + dialogue_id
+            else:
+                dialogue_id = "000" + dialogue_id
 
-        if int(utterance_id) >= 10:
-            utterance_id = utterance_id
-        else:
-            utterance_id = "0" + utterance_id
+            if int(utterance_id) >= 10:
+                utterance_id = utterance_id
+            else:
+                utterance_id = "0" + utterance_id
 
-        row['Expected filename'] = "dia" + dialogue_id + "_utt" + utterance_id + ".wav"
-        # print(row['Expected filename'])
-        data.at[index, 'Expected filename'] = row['Expected filename']
+            row['Expected filename'] = "dia" + dialogue_id + "_utt" + utterance_id + ".wav"
+            # print(row['Expected filename'])
+            data.at[index, 'Expected filename'] = row['Expected filename']
 
 
     # print(data['Expected filename'])
@@ -60,12 +61,12 @@ def match_emotion_labels(labels, corrected_labels, directory):
     # Print number of files in directory
     print()
     print("Number of audio files in directory: " + str(len(files)))
-    # print()
+    print()
 
     # Print lenght of dataframe
-    print()
-    print("Number of entries in dataframe: " + str(len(data)))
     # print()
+    print("Number of entries in dataframe: " + str(len(data)))
+    print()
 
 
 
@@ -80,10 +81,10 @@ def match_emotion_labels(labels, corrected_labels, directory):
         # if row['Expected filename'] not in files:
             # files_without_labels.append(row['Expected filename'])
 
-    print()
+    # print()
     print("Files without labels:")
     print(files_without_labels)
-    # print()
+    print()
 
     # remove files that do not have labels from 'files' and delete them from the directory
     deleted_files = 0
@@ -92,8 +93,9 @@ def match_emotion_labels(labels, corrected_labels, directory):
         os.remove(os.path.join(directory, file))
         deleted_files += 1
         files.remove(file)
-    print()
+    # print()
     print("Deleted files: " + str(deleted_files))
+    print()
 
     # print(files)
     # print()
@@ -106,19 +108,21 @@ def match_emotion_labels(labels, corrected_labels, directory):
 
 
     # lenght of data BEFORE
-    print()
+    # print()
     print("Length of data BEFORE:")
     print(len(data))
-    # print()
+    print()
 
     # remove dataframe rows if file is not in 'files'
+    print("Removing rows from dataframe if file is not in 'files'...")
+    print()
     data = data[data['Expected filename'].isin(files)]
 
     # lenght of data AFTER
-    print()
+    # print()
     print("Length of data AFTER:")
     print(len(data))
-    # print()
+    print()
 
     files.sort()
 
@@ -134,8 +138,9 @@ def match_emotion_labels(labels, corrected_labels, directory):
             print()
             num_missmatches += 1
 
-    print()
+    # print()
     print("Number of missmatches: " + str(num_missmatches))
+    print()
 
     # Export dataframe to csv
     # data.to_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_fine_tune_v1_train_data\export_csv.csv", index=False)
@@ -151,21 +156,29 @@ def match_emotion_labels(labels, corrected_labels, directory):
     features = []
     labels = []
 
-    label_encoder = LabelEncoder()
+    if dataset == "MELD":
+        my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
+    
+    labels = data['Emotion'].map(my_encoding_dict).values
 
-    raw_labels = data['Emotion'].values
-    labels = label_encoder.fit_transform(raw_labels)
+    # label_encoder = LabelEncoder()
+
+    # raw_labels = data['Emotion'].values
+    # labels = label_encoder.fit_transform(raw_labels)
 
     # # Show the label-encoding pairs:
     # print(raw_labels)
-    print(label_encoder.classes_)
-    print("[0,         1,       2,     3,      4,        5,       6]")
+    # print(label_encoder.classes_)
+    # print("[0,         1,       2,     3,      4,        5,       6]")
 
     print(labels)
+    print()
+    print(my_encoding_dict)
+    print()
 
     # Test manually if encoding is correct
     # my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
-    my_encoding_dict = {'anger': 0, 'disgust': 1, 'joy': 2, 'neutral': 3, 'sadness': 4, 'surprise': 5}
+    # my_encoding_dict = {'anger': 0, 'disgust': 1, 'joy': 2, 'neutral': 3, 'sadness': 4, 'surprise': 5}
     # my_encoding_dict = {'disgust': 0, 'fear': 1, 'joy': 2, 'neutral': 3, 'sadness': 4, 'surprise': 5}
     # my_encoding_dict = {'anger': 0, 'fear': 1, 'joy': 2, 'neutral': 3, 'sadness': 4, 'surprise': 5}
     # my_encoding_dict = {'neutral': 0, 'surprise': 1}
@@ -173,7 +186,7 @@ def match_emotion_labels(labels, corrected_labels, directory):
     # iterate through dataframe and check if encoding is correct
 
     # length of dataframe
-    print("Length of dataframe:")
+    print("Length of dataframe (csv):")
     print(len(data))
     print()
 
@@ -210,8 +223,14 @@ def match_emotion_labels(labels, corrected_labels, directory):
 
     print("Number of missmatches: " + str(num_missmatches))
     print()
+
+    # Add labels to dataframe
+    data['Label'] = labels
+
+    # ========================================================
     # Export dataframe to csv
-    data.to_csv(corrected_labels, index=False)
+    # data.to_csv(corrected_labels_file, index=False)
+    # ========================================================
     # df_check = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_labels_corrected.csv")
     # print()
     # print("df_check:")
@@ -222,9 +241,20 @@ def match_emotion_labels(labels, corrected_labels, directory):
 
     # Drop columns Sr No., Utterance, Speaker, Sentiment, Dialogue_ID, Utterance_ID, Season, Episode, StartTime, EndTime, Expected filename, Match
     # data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename', 'Match'], axis=1)
-    # data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime'], axis=1)
+    data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename'], axis=1)
 
-    # column_names = data.columns.tolist()
+    # data.reset_index(drop=True, inplace=True)
+
+    column_names = data.columns.tolist()
+    print("Column names:")
+    print(column_names)
+    print()
+
+    # Change order of columns
+    # data = data[['filename', 'Label']]
+    data = data[['filename', 'Emotion', 'Label']]
+
+    data.to_csv(corrected_labels_file, index=False)
 
     # delete columns Sr No., Utterance, Speaker, Sentiment, Dialogue_ID, Utterance_ID, Season, Episode, StartTime, EndTime, Expected filename, Match
     # del data[columns=['Sr No.', 'Utterance']]
@@ -252,3 +282,9 @@ def match_emotion_labels(labels, corrected_labels, directory):
 
     # print column names of dataframe
     # print(data.columns)
+
+if __name__ == "__main__":
+    labels_file = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\Automation_testing\dev_sent_emo.csv"
+    corrected_labels_file = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\Automation_testing\dev_sent_emo_corrected2.csv"
+    directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\Automation_testing\videos_audio"
+    match_emotion_labels(labels_file, corrected_labels_file, directory)
