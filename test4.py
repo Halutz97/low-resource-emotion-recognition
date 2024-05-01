@@ -9,6 +9,8 @@ import torch
 from transformers import Wav2Vec2Processor, Wav2Vec2ForSequenceClassification, TrainingArguments, Trainer
 import evaluate
 from datasets import Dataset
+from google.colab import drive, files
+drive.mount('/content/drive')
 
 # Set environment variables
 os.environ["WANDB_PROJECT"] = "emotion-recognition-IEMOCAP"
@@ -39,17 +41,30 @@ def compute_metrics(eval_pred):
     predictions = np.argmax(logits, axis=-1)
     return metric.compute(predictions=predictions, references=labels)
 
+# !pip install accelerate -U
 
-# Assuming you have a DataFrame with columns "filename" and "emotion"
-# data = pd.read_csv("C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/pre_process_test.csv")
-# data = pd.read_csv("C:/Users/DANIEL/Desktop/thesis/low-resource-emotion-recognition/MELD_preprocess_test/pre_process_test.csv")
-data = pd.read_csv('/labels_corrected.csv')
+zip_path = '/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run1/IEMOCAP_full_release.zip'
+extract_to = '/content/extracted_data'
 
-# directory = "C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/MELD_preprocess_test_data"
-zip_path = '/train_audio-002.zip'
-extract_to = '/data'
-# os.makedirs(extract_to, exist_ok=True)
-# directory = '/content/drive/My Drive/Thesis_Data/MELD/Run3/data/train_audio.zip'
+
+if os.path.exists(extract_to):
+    if not os.listdir(extract_to):
+        # If the directory is empty, extract the files
+        # os.makedirs(extract_to, exist_ok=True)
+        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+            zip_ref.extractall(extract_to)
+        print("Files extracted successfully!")
+    else:
+        print("Directory is not empty. Extraction skipped to avoid overwriting.")
+else:
+    print("Directory does not exist. Creating...")
+    os.makedirs(extract_to, exist_ok=True)
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        zip_ref.extractall(extract_to)
+    print("Files extracted successfully!")
+
+
+
 
 if not os.listdir(extract_to):
     # If the directory is empty, extract the files
@@ -61,9 +76,12 @@ else:
     print("Directory is not empty. Extraction skipped to avoid overwriting.")
 
 
+data = pd.read_csv('/content/extracted_data/labels_corrected.csv')
+
+
 files = []
 
-directory = os.path.join(extract_to, "train_audio")
+directory = os.path.join(extract_to, "audio")
 
 # Get a list of all files in the directory
 for file in os.listdir(directory):
@@ -76,7 +94,7 @@ data['filename'] = files
 features = []
 labels = []
 
-my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
+my_encoding_dict = {'ang': 0, 'dis': 1, 'fea': 2, 'hap': 3, 'neu': 4, 'sad': 5, 'sur': 6, 'fru': 7, 'exc': 8, 'oth': 9}
 
 labels = data['Emotion'].map(my_encoding_dict).values
 
@@ -87,7 +105,7 @@ print(my_encoding_dict)
 max_length = 16000 * 9  # 9 seconds
 
 # Load the processor
-processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-large-xlsr-53")
+processor = Wav2Vec2Processor.from_pretrained("jonatasgrosman/wav2vec2-large-xlsr-53-english")
 
 for index, row in data.iterrows():
 
@@ -209,5 +227,5 @@ wandb.agent(sweep_id, function=trainer, count=10)
 # Save the model
 torch.save(model.state_dict(), 'emotion_recognition_model.pth')
 
-save_path = '/content/drive/My Drive/Thesis_Data/MELD/Run2/model/emotion_recognition_model.pth'
+save_path = '/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run1/model/emotion_recognition_model.pth'
 torch.save(model.state_dict(), save_path)
