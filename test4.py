@@ -1,4 +1,5 @@
 import librosa
+import wandb
 import zipfile
 import numpy as np
 import pandas as pd
@@ -8,6 +9,13 @@ import torch
 from transformers import Wav2Vec2Processor, Wav2Vec2ForSequenceClassification, TrainingArguments, Trainer
 import evaluate
 from datasets import Dataset
+
+# Set environment variables
+os.environ["WANDB_PROJECT"] = "emotion-recognition-IEMOCAP"
+os.environ["WANDB_LOG_MODEL"] = "checkpoint"
+
+# Initialize wandb
+wandb.init()
 
 class CustomDataset(torch.utils.data.Dataset):
     def __init__(self, features, labels):
@@ -68,16 +76,13 @@ data['filename'] = files
 features = []
 labels = []
 
-label_encoder = LabelEncoder()
+my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
 
-raw_labels = data['Emotion'].values
-labels = label_encoder.fit_transform(raw_labels)
+labels = data['Emotion'].map(my_encoding_dict).values
 
-# Show the label-encoding pairs:
-print(label_encoder.classes_)
-print("[0,         1,       2,       3,         4,         5,       6,    7,   8,   9]")
+# Print the classes in the order they were encountered
+print(my_encoding_dict)
 
-print(labels)
 
 max_length = 16000 * 9  # 9 seconds
 
@@ -146,6 +151,9 @@ print(f"First validation sample dimensions: {len(val_dataset['input_values'][0])
 # Load a pre-trained model for pretrained
 model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=10)
 
+# Log model parameters and gradients
+wandb.watch(model)
+
 
 # Initialize the trainer
 metric = evaluate.load("accuracy")
@@ -154,9 +162,7 @@ metric = evaluate.load("accuracy")
 
 training_args = TrainingArguments(
     output_dir='./results',          # Output directory
-    learning_rate=1e-4,              # Learning rate
     num_train_epochs=3,              # Number of training epochs
-    per_device_train_batch_size=4,   # Batch size for training
     per_device_eval_batch_size=8,    # Batch size for evaluation
     gradient_accumulation_steps=2,   # Number of updates steps to accumulate before performing a backward/update pass
     warmup_steps=500,                # Number of warmup steps for learning rate scheduler
@@ -166,7 +172,8 @@ training_args = TrainingArguments(
     save_strategy='steps',               # Saving model checkpoint strategy
     save_steps=500,                      # Save checkpoint every 500 steps
     save_total_limit=3,
-    fp16=True                        # Enable mixed precision training
+    fp16=True,                        # Enable mixed precision training
+    report_to="wandb"                # Report the results to Weights & Biases
 )
 
 
@@ -178,10 +185,26 @@ trainer = Trainer(
     compute_metrics=compute_metrics,
 )
 
-# Train the model
-trainer.train()
+sweep_config = {
+    'method': 'bayes',  # grid, random
+    'metric': {
+      'name': 'accuracy',
+      'goal': 'maximize'   
+    },
+    'parameters': {
+        'learning_rate': {
+            'min': 1e-6,
+            'max': 1e-3
+        },
+        'batch_size': {
+            'values': [16, 32, 64]
+        },
+    }
+}
 
+sweep_id = wandb.sweep(sweep=sweep_config, project="my-first-sweep")
 
+wandb.agent(sweep_id, function=trainer, count=10)
 
 # Save the model
 torch.save(model.state_dict(), 'emotion_recognition_model.pth')

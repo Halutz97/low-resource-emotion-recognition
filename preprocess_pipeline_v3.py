@@ -172,7 +172,7 @@ def main():
             if not os.path.exists(labels_path):
                 handle_IEMOCAP(labels_path, source_directories)
 
-            toggle_controls = [False, False, True, True]
+            toggle_controls = [False, False, False, True]
             corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
 
 
