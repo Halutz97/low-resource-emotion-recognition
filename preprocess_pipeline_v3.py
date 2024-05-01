@@ -1,0 +1,218 @@
+from util import extract_audio_from_video
+from util import detect_broken_audio_files
+from util import renaming_MELD_files
+from util import match_labels
+import os
+import shutil
+import librosa
+import numpy as np
+import pandas as pd
+import sklearn.metrics
+from sklearn.preprocessing import LabelEncoder
+import torch
+
+
+def handle_MELD(directory):
+    renaming_MELD_files.rename_audio_files(directory)
+
+def handle_CREMA_D(directory):
+    # Extracting the labels from the file names
+    index = []
+    filename = []
+    speaker = []
+    line = []
+    emotions = []
+    intensity = []
+
+    for i, file in enumerate(os.listdir(directory)):
+        index.append(i)
+        filename.append(file)
+        speaker.append(file.split("_")[0])
+        line.append(file.split("_")[1])
+        emotions.append(file.split("_")[2])
+        intensity.append(file.split("_")[3][:2])
+
+    # Creating a csv file with the extracted labels
+    labels = pd.DataFrame(list(zip(index, filename, speaker, line, emotions, intensity)), columns = ["Index", "filename", "Speaker", "Line", "Emotion", "Intensity"])
+    labels.to_csv(os.path.join(os.path.dirname(directory), "labels.csv"), index=False)
+
+    return
+
+
+def handle_IEMOCAP(labels_path, source_directories):
+    # Initialize an empty DataFrame
+    first_lines = []
+
+    # Iterate over each source directory
+    for source_directory in source_directories:
+        # Walk through subdirectories
+        for dirpath, dirnames, filenames in os.walk(os.path.join(source_directory, "dialog/EmoEvaluation")):
+            # We search for only files in the "EmoEvaluation" directory
+            if dirpath.endswith("EmoEvaluation"):
+                # Iterate over each file
+                for filename in filenames:
+                    # If the file is a .txt file and doesn't start with a "."
+                    if filename.endswith(".txt") and not filename.startswith("."):
+                        # Define file path
+                        file_path = os.path.join(dirpath, filename)
+                        # Open the file in read mode
+                        with open(file_path, 'r') as file:
+                            # Initialize a flag to indicate whether we're at the start of a paragraph
+                            start_of_paragraph = True
+                            # Read the file line by line
+                            lines=file.readlines()
+                            print("lines: ",len(lines))
+                            for line in lines:
+                                print(start_of_paragraph)
+                                # If the line is not empty and we're at the start of a paragraph
+                                if line.strip() and start_of_paragraph:
+                                    # Process the line and add it to the list
+                                    first_lines.append(line.split('\t'))
+                                    # Update the flag to indicate that we're no longer at the start of a paragraph
+                                    start_of_paragraph = False
+                                # If the line is empty, update the flag to indicate that we're at the start of a paragraph
+                                elif not line.strip():
+                                    start_of_paragraph = True
+    
+    # Remove the first two elements (0,1,2,3 and %) from the list
+    first_lines = first_lines[2:]
+
+    # Convert the list to a DataFrame
+    df = pd.DataFrame(first_lines)
+
+    # Save the DataFrame to a .csv file
+    df.to_csv(labels_path, index=False)
+
+
+
+def default_case():
+    print("No dataset match found.")
+
+dataset_switch = {
+    "MELD": handle_MELD,
+    "CREMA-D": handle_CREMA_D,
+    "IEMOCAP": handle_IEMOCAP
+}
+
+def switch_case(dataset, *args, **kwargs):
+    if dataset in dataset_switch:
+        dataset_switch[dataset](*args, **kwargs)
+    else:
+        default_case()
+
+def main():
+    toggle_controls = [True, True, True, True]
+    dataset = "IEMOCAP"
+    audio_directory = ""
+    corrected_labels_path = ""
+    labels_path = ""
+    video_directory = ""
+
+
+    match dataset:
+        case "MELD":
+
+            video_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\Automation_testing\videos"
+            labels_path = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\Automation_testing\dev_sent_emo.csv"
+
+            toggle_controls = [True, True, True, True]
+
+            audio_directory = os.path.join(os.path.dirname(video_directory), os.path.basename(video_directory) + "_audio")
+            corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
+
+        case "CREMA-D":
+            old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
+            audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio"
+            labels_path = os.path.join(os.path.dirname(audio_directory), "labels.csv")
+
+            # Create the destination directory if it doesn't exist
+            if not os.path.exists(audio_directory):
+                os.makedirs(audio_directory, exist_ok=True)
+
+                # Copy all files from the source to the destination directory
+                for filename in os.listdir(old_audio_directory):
+                    source_path = os.path.join(old_audio_directory, filename)
+                    destination_path = os.path.join(audio_directory, filename)
+                    shutil.copy2(source_path, destination_path)
+
+            if not os.path.exists(labels_path):
+                handle_CREMA_D(audio_directory)
+
+            toggle_controls = [False, False, True, True]
+            corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
+
+
+        case "IEMOCAP":
+            # old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
+            source_directories = [os.path.join(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release", f"Session{i}") for i in range(1, 7)]
+            audio_directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio"
+            labels_path = os.path.join(os.path.dirname(audio_directory), "labels.csv")
+
+            # Create the destination directory if it doesn't exist
+            if not os.path.exists(audio_directory):
+                os.makedirs(audio_directory, exist_ok=True)
+
+                # Iterate over each source directory
+                for source_directory in source_directories:
+                    # Walk through subdirectories
+                    for dirpath, dirnames, filenames in os.walk(os.path.join(source_directory, "sentences/wav")):
+                        print("dirpath: ", dirpath)
+                        # If we're in the directory containing .wav files
+                        if not dirpath.endswith("wav"):
+                            print("dirpath: ", dirpath)
+                            # Iterate over each file
+                            for filename in filenames:
+                                # If the file is a .wav file and doesn't start with a "."
+                                if filename.endswith(".wav") and not filename.startswith("."):
+                                    # Define source file path
+                                    source_file_path = os.path.join(dirpath, filename)
+                                    # Define destination file path
+                                    destination_file_path = os.path.join(audio_directory, filename)
+                                    # Copy the file
+                                    shutil.copy2(source_file_path, destination_file_path)
+
+            if not os.path.exists(labels_path):
+                handle_IEMOCAP(labels_path, source_directories)
+
+            toggle_controls = [False, False, False, False]
+            corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
+
+
+
+
+    extract_audio_files_from_video = toggle_controls[0]
+    rename_files = toggle_controls[1]
+    detect_broken_files = toggle_controls[2]
+    extract_corrected_labels = toggle_controls[3]
+    
+
+
+
+    if extract_audio_files_from_video:
+        print("Extracting audio files from video files...")
+        if not os.path.exists(audio_directory):
+            os.makedirs(audio_directory)
+        if not os.listdir(audio_directory):
+            extract_audio_from_video.extract_files(video_directory, audio_directory, num_files_to_process=50)
+        else:
+            print("Audio file folder not empty.")
+
+        print("Done.")
+
+    if rename_files:
+        print("Renaming files...")
+        switch_case(dataset, audio_directory)
+        print("Done.")
+    
+    if detect_broken_files:
+        print("Detecting broken audio files...")
+        detect_broken_audio_files.process_files(audio_directory)
+        print("Done.")
+    
+    if extract_corrected_labels:
+        print("Extracting corrected labels...")
+        match_labels.match_emotion_labels(labels_path,  corrected_labels_path, audio_directory, dataset)
+        print("Done.")
+
+if __name__ == "__main__":
+    main()
