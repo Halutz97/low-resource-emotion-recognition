@@ -177,31 +177,35 @@ wandb.watch(model)
 metric = evaluate.load("accuracy")
 
 # Prepare the trainer
+def train_model():
+  training_args = TrainingArguments(
+      output_dir='./results',          # Output directory
+      learning_rate=wandb.config.learning_rate,
+      per_device_train_batch_size=wandb.config.batch_size,
+      num_train_epochs=3,              # Number of training epochs
+      per_device_eval_batch_size=8,    # Batch size for evaluation
+      gradient_accumulation_steps=2,   # Number of updates steps to accumulate before performing a backward/update pass
+      warmup_steps=500,                # Number of warmup steps for learning rate scheduler
+      weight_decay=0.01,               # Strength of weight decay
+      logging_dir='./logs',            # Directory for storing logs
+      logging_steps=10,
+      save_strategy='steps',               # Saving model checkpoint strategy
+      save_steps=500,                      # Save checkpoint every 500 steps
+      save_total_limit=3,
+      fp16=True,                        # Enable mixed precision training
+      report_to="wandb"                # Report the results to Weights & Biases
+  )
 
-training_args = TrainingArguments(
-    output_dir='./results',          # Output directory
-    num_train_epochs=3,              # Number of training epochs
-    per_device_eval_batch_size=8,    # Batch size for evaluation
-    gradient_accumulation_steps=2,   # Number of updates steps to accumulate before performing a backward/update pass
-    warmup_steps=500,                # Number of warmup steps for learning rate scheduler
-    weight_decay=0.01,               # Strength of weight decay
-    logging_dir='./logs',            # Directory for storing logs
-    logging_steps=10,
-    save_strategy='steps',               # Saving model checkpoint strategy
-    save_steps=500,                      # Save checkpoint every 500 steps
-    save_total_limit=3,
-    fp16=True,                        # Enable mixed precision training
-    report_to="wandb"                # Report the results to Weights & Biases
-)
 
+  trainer = Trainer(
+      model=model,
+      args=training_args,
+      train_dataset=train_dataset,
+      eval_dataset=val_dataset,
+      compute_metrics=compute_metrics,
+  )
 
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=train_dataset,
-    eval_dataset=val_dataset,
-    compute_metrics=compute_metrics,
-)
+  trainer.train()
 
 sweep_config = {
     'method': 'bayes',  # grid, random
@@ -220,9 +224,9 @@ sweep_config = {
     }
 }
 
-sweep_id = wandb.sweep(sweep=sweep_config, project="my-first-sweep")
+sweep_id = wandb.sweep(sweep=sweep_config, project="emotion-recognition-IEMOCAP")
 
-wandb.agent(sweep_id, function=trainer, count=10)
+wandb.agent(sweep_id, function=train_model, count=10)
 
 # Save the model
 torch.save(model.state_dict(), 'emotion_recognition_model.pth')
