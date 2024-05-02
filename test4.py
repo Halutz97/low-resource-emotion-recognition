@@ -1,4 +1,5 @@
 import librosa
+import wandb
 import zipfile
 import numpy as np
 import pandas as pd
@@ -8,6 +9,15 @@ import torch
 from transformers import Wav2Vec2Processor, Wav2Vec2ForSequenceClassification, TrainingArguments, Trainer
 import evaluate
 from datasets import Dataset
+from google.colab import drive, files
+drive.mount('/content/drive')
+
+# Set environment variables
+os.environ["WANDB_PROJECT"] = "emotion-recognition-IEMOCAP"
+os.environ["WANDB_LOG_MODEL"] = "checkpoint"
+
+# Initialize wandb
+wandb.init()
 
 class CustomDataset(torch.utils.data.Dataset):
     def __init__(self, features, labels):
@@ -31,17 +41,30 @@ def compute_metrics(eval_pred):
     predictions = np.argmax(logits, axis=-1)
     return metric.compute(predictions=predictions, references=labels)
 
+# !pip install accelerate -U
 
-# Assuming you have a DataFrame with columns "filename" and "emotion"
-# data = pd.read_csv("C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/pre_process_test.csv")
-# data = pd.read_csv("C:/Users/DANIEL/Desktop/thesis/low-resource-emotion-recognition/MELD_preprocess_test/pre_process_test.csv")
-data = pd.read_csv('/labels_corrected.csv')
+zip_path = '/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run1/IEMOCAP_full_release.zip'
+extract_to = '/content/extracted_data'
 
-# directory = "C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/MELD_preprocess_test_data"
-zip_path = '/train_audio-002.zip'
-extract_to = '/data'
-# os.makedirs(extract_to, exist_ok=True)
-# directory = '/content/drive/My Drive/Thesis_Data/MELD/Run3/data/train_audio.zip'
+
+if os.path.exists(extract_to):
+    if not os.listdir(extract_to):
+        # If the directory is empty, extract the files
+        # os.makedirs(extract_to, exist_ok=True)
+        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+            zip_ref.extractall(extract_to)
+        print("Files extracted successfully!")
+    else:
+        print("Directory is not empty. Extraction skipped to avoid overwriting.")
+else:
+    print("Directory does not exist. Creating...")
+    os.makedirs(extract_to, exist_ok=True)
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        zip_ref.extractall(extract_to)
+    print("Files extracted successfully!")
+
+
+
 
 if not os.listdir(extract_to):
     # If the directory is empty, extract the files
@@ -53,9 +76,12 @@ else:
     print("Directory is not empty. Extraction skipped to avoid overwriting.")
 
 
+data = pd.read_csv('/content/extracted_data/labels_corrected.csv')
+
+
 files = []
 
-directory = os.path.join(extract_to, "train_audio")
+directory = os.path.join(extract_to, "audio")
 
 # Get a list of all files in the directory
 for file in os.listdir(directory):
@@ -68,21 +94,18 @@ data['filename'] = files
 features = []
 labels = []
 
-label_encoder = LabelEncoder()
+my_encoding_dict = {'ang': 0, 'dis': 1, 'fea': 2, 'hap': 3, 'neu': 4, 'sad': 5, 'sur': 6, 'fru': 7, 'exc': 8, 'oth': 9}
 
-raw_labels = data['Emotion'].values
-labels = label_encoder.fit_transform(raw_labels)
+labels = data['Emotion'].map(my_encoding_dict).values
 
-# Show the label-encoding pairs:
-print(label_encoder.classes_)
-print("[0,         1,       2,       3,         4,         5,       6,    7,   8,   9]")
+# Print the classes in the order they were encountered
+print(my_encoding_dict)
 
-print(labels)
 
 max_length = 16000 * 9  # 9 seconds
 
 # Load the processor
-processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-large-xlsr-53")
+processor = Wav2Vec2Processor.from_pretrained("jonatasgrosman/wav2vec2-large-xlsr-53-english")
 
 for index, row in data.iterrows():
 
@@ -146,45 +169,67 @@ print(f"First validation sample dimensions: {len(val_dataset['input_values'][0])
 # Load a pre-trained model for pretrained
 model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=10)
 
+# Log model parameters and gradients
+wandb.watch(model)
+
 
 # Initialize the trainer
 metric = evaluate.load("accuracy")
 
 # Prepare the trainer
-
-training_args = TrainingArguments(
-    output_dir='./results',          # Output directory
-    learning_rate=1e-4,              # Learning rate
-    num_train_epochs=3,              # Number of training epochs
-    per_device_train_batch_size=4,   # Batch size for training
-    per_device_eval_batch_size=8,    # Batch size for evaluation
-    gradient_accumulation_steps=2,   # Number of updates steps to accumulate before performing a backward/update pass
-    warmup_steps=500,                # Number of warmup steps for learning rate scheduler
-    weight_decay=0.01,               # Strength of weight decay
-    logging_dir='./logs',            # Directory for storing logs
-    logging_steps=10,
-    save_strategy='steps',               # Saving model checkpoint strategy
-    save_steps=500,                      # Save checkpoint every 500 steps
-    save_total_limit=3,
-    fp16=True                        # Enable mixed precision training
-)
-
-
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=train_dataset,
-    eval_dataset=val_dataset,
-    compute_metrics=compute_metrics,
-)
-
-# Train the model
-trainer.train()
+def train_model():
+  training_args = TrainingArguments(
+      output_dir='./results',          # Output directory
+      learning_rate=wandb.config.learning_rate,
+      per_device_train_batch_size=wandb.config.batch_size,
+      num_train_epochs=3,              # Number of training epochs
+      per_device_eval_batch_size=8,    # Batch size for evaluation
+      gradient_accumulation_steps=2,   # Number of updates steps to accumulate before performing a backward/update pass
+      warmup_steps=500,                # Number of warmup steps for learning rate scheduler
+      weight_decay=0.01,               # Strength of weight decay
+      logging_dir='./logs',            # Directory for storing logs
+      logging_steps=10,
+      save_strategy='steps',               # Saving model checkpoint strategy
+      save_steps=500,                      # Save checkpoint every 500 steps
+      save_total_limit=3,
+      fp16=True,                        # Enable mixed precision training
+      report_to="wandb"                # Report the results to Weights & Biases
+  )
 
 
+  trainer = Trainer(
+      model=model,
+      args=training_args,
+      train_dataset=train_dataset,
+      eval_dataset=val_dataset,
+      compute_metrics=compute_metrics,
+  )
+
+  trainer.train()
+
+sweep_config = {
+    'method': 'bayes',  # grid, random
+    'metric': {
+      'name': 'accuracy',
+      'goal': 'maximize'   
+    },
+    'parameters': {
+        'learning_rate': {
+            'min': 1e-6,
+            'max': 1e-3
+        },
+        'batch_size': {
+            'values': [16, 32, 64]
+        },
+    }
+}
+
+sweep_id = wandb.sweep(sweep=sweep_config, project="emotion-recognition-IEMOCAP")
+
+wandb.agent(sweep_id, function=train_model, count=10)
 
 # Save the model
 torch.save(model.state_dict(), 'emotion_recognition_model.pth')
 
-save_path = '/content/drive/My Drive/Thesis_Data/MELD/Run2/model/emotion_recognition_model.pth'
+save_path = '/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run1/model/emotion_recognition_model.pth'
 torch.save(model.state_dict(), save_path)

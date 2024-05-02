@@ -61,11 +61,9 @@ def handle_IEMOCAP(labels_path, source_directories):
                             start_of_paragraph = True
                             # Read the file line by line
                             lines=file.readlines()
-                            print("lines: ",len(lines))
                             for line in lines:
-                                print(start_of_paragraph)
                                 # If the line is not empty and we're at the start of a paragraph
-                                if line.strip() and start_of_paragraph:
+                                if line.strip() and start_of_paragraph and not line.startswith('%'):
                                     # Process the line and add it to the list
                                     first_lines.append(line.split('\t'))
                                     # Update the flag to indicate that we're no longer at the start of a paragraph
@@ -74,11 +72,11 @@ def handle_IEMOCAP(labels_path, source_directories):
                                 elif not line.strip():
                                     start_of_paragraph = True
     
-    # Remove the first two elements (0,1,2,3 and %) from the list
-    first_lines = first_lines[2:]
+    # Define the column names
+    column_names = ["Time", "filename", "Emotion", "Attributes"]
 
     # Convert the list to a DataFrame
-    df = pd.DataFrame(first_lines)
+    df = pd.DataFrame(first_lines, columns=column_names)
 
     # Save the DataFrame to a .csv file
     df.to_csv(labels_path, index=False)
@@ -174,7 +172,7 @@ def main():
             if not os.path.exists(labels_path):
                 handle_IEMOCAP(labels_path, source_directories)
 
-            toggle_controls = [False, False, False, False]
+            toggle_controls = [False, False, False, True]
             corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
 
 
