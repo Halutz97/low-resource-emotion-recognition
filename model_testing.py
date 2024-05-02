@@ -95,7 +95,7 @@ batch_size = 10
 dataloader = DataLoader(dataset, batch_size=batch_size)
 
 # Initialize the model
-model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=7)
+model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=10)
 print("model loaded")
 
 # Load the saved weights
@@ -150,7 +150,7 @@ print(f"Labels tensor size:", labels_tensor.numpy().size)
 confusion_matrix = sklearn.metrics.confusion_matrix(labels_tensor.numpy(), predicted_classes)
 
 # Create a confusion matrix of shape (7, 7) filled with zeros
-confusion_matrix_full = np.zeros((7, 7), dtype=int)
+confusion_matrix_full = np.zeros((10, 10), dtype=int)
 
 # Get the unique labels in the test data
 unique_labels = np.unique(labels_tensor.numpy())
