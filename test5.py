@@ -1,4 +1,6 @@
 import librosa
+#!pip install wandb
+#!pip install evaluate
 import wandb
 import zipfile
 import numpy as np
@@ -15,9 +17,8 @@ drive.mount('/content/drive')
 # Set environment variables
 os.environ["WANDB_PROJECT"] = "emotion-recognition-IEMOCAP"
 os.environ["WANDB_LOG_MODEL"] = "checkpoint"
+os.environ['WANDB_API_KEY'] = '00e7b3e4cf2d54995e43ef45df8a0ec3767a3e91'
 
-# Initialize wandb
-wandb.init()
 
 class CustomDataset(torch.utils.data.Dataset):
     def __init__(self, features, labels):
@@ -41,7 +42,8 @@ def compute_metrics(eval_pred):
     predictions = np.argmax(logits, axis=-1)
     return metric.compute(predictions=predictions, references=labels)
 
-# !pip install accelerate -U
+#!pip install accelerate -U
+#!pip install transformers[torch] -U
 
 zip_path = '/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run1/IEMOCAP_full_release.zip'
 extract_to = '/content/extracted_data'
@@ -102,7 +104,7 @@ labels = data['Emotion'].map(my_encoding_dict).values
 print(my_encoding_dict)
 
 
-max_length = 16000 * 9  # 9 seconds
+max_length = 16000 * 10  # 9 seconds
 
 # Load the processor
 processor = Wav2Vec2Processor.from_pretrained("jonatasgrosman/wav2vec2-large-xlsr-53-english")
@@ -166,32 +168,44 @@ print(f"First training sample dimensions: {len(train_dataset['input_values'][0])
 print(f"First validation sample dimensions: {len(val_dataset['input_values'][0])}")
 
 
-# Load a pre-trained model for pretrained
-model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=10)
-
-# Log model parameters and gradients
-wandb.watch(model)
-
-
 # Initialize the trainer
 metric = evaluate.load("accuracy")
 
 # Prepare the trainer
 def train_model():
+  run = wandb.init(project="emotion-recognition-IEMOCAP", reinit=True, config={
+        "learning_rate": 1e-4,  # Default learning rate
+        "batch_size": 32        # Default batch size
+    })
+
+  # Load a pre-trained model for pretrained
+  model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=10)
+
+  # Log model parameters and gradients
+  wandb.watch(model, log='all', log_freq=100)  # Configure as needed
+
+  learning_rate=wandb.config.learning_rate
+  batch_size=wandb.config.batch_size
+
   training_args = TrainingArguments(
       output_dir='./results',          # Output directory
-      learning_rate=wandb.config.learning_rate,
-      per_device_train_batch_size=wandb.config.batch_size,
+      learning_rate=learning_rate,
+      per_device_train_batch_size=batch_size,
       num_train_epochs=3,              # Number of training epochs
       per_device_eval_batch_size=4,    # Batch size for evaluation
       gradient_accumulation_steps=2,   # Number of updates steps to accumulate before performing a backward/update pass
       warmup_steps=500,                # Number of warmup steps for learning rate scheduler
+      save_total_limit=1,                    # Only keep the best model
       weight_decay=0.01,               # Strength of weight decay
       logging_dir='./logs',            # Directory for storing logs
       logging_steps=10,
+      evaluation_strategy="steps",            # Evaluate every `eval_steps`
+      eval_steps=500,                         # Evaluation and save interval
       save_strategy='steps',               # Saving model checkpoint strategy
       save_steps=500,                      # Save checkpoint every 500 steps
-      save_total_limit=3,
+      load_best_model_at_end=True,           # Load the best model at the end of training
+      metric_for_best_model="accuracy",      # Use accuracy to evaluate the best model
+      greater_is_better=True,                # Higher accuracy is better
       fp16=True,                        # Enable mixed precision training
       report_to="wandb"                # Report the results to Weights & Biases
   )
@@ -206,6 +220,11 @@ def train_model():
   )
 
   trainer.train()
+
+  model_path = f'/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run2/model'
+  trainer.save_model(model_path)
+
+  run.finish()
 
 sweep_config = {
     'method': 'bayes',  # grid, random
@@ -226,10 +245,4 @@ sweep_config = {
 
 sweep_id = wandb.sweep(sweep=sweep_config, project="emotion-recognition-IEMOCAP")
 
-wandb.agent(sweep_id, function=train_model, count=10, asyncio=False)
-
-# Save the model
-torch.save(model.state_dict(), 'emotion_recognition_model.pth')
-
-save_path = '/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run1/model/emotion_recognition_model.pth'
-torch.save(model.state_dict(), save_path)
+wandb.agent(sweep_id, function=train_model, count=10)

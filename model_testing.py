@@ -34,7 +34,8 @@ features = []
 labels = []
 
 #my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
-my_encoding_dict = {'ang': 0, 'dis': 1, 'fea': 2, 'hap': 3, 'neu': 4, 'sad': 5, 'sur': 6, 'fru': 7, 'exc': 8, 'oth': 9}
+#my_encoding_dict = {'ang': 0, 'dis': 1, 'fea': 2, 'hap': 3, 'neu': 4, 'sad': 5, 'sur': 6, 'fru': 7, 'exc': 8, 'oth': 9}
+my_encoding_dict = {'ang': 0, 'cal': 1, 'dis': 2, 'fea': 3, 'hap': 4, 'neu': 5, 'sad': 6, 'sur': 7}
 
 labels = data['Emotion'].map(my_encoding_dict).values
 
@@ -95,12 +96,13 @@ batch_size = 10
 dataloader = DataLoader(dataset, batch_size=batch_size)
 
 # Initialize the model
-model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=10)
+model = Wav2Vec2ForSequenceClassification.from_pretrained("ehcalabres/wav2vec2-lg-xlsr-en-speech-emotion-recognition"#, num_labels=10
+                                                          )
 print("model loaded")
 
 # Load the saved weights
-model.load_state_dict(torch.load('emotion_recognition_model.pth', map_location=torch.device('cpu')))
-print("model weights loaded")
+#model.load_state_dict(torch.load('emotion_recognition_model.pth', map_location=torch.device('cpu')))
+#print("model weights loaded")
 
 
 
@@ -145,19 +147,18 @@ label_names = list(my_encoding_dict.keys())
 print(f"Predicted classes size:", predicted_classes.shape)
 print(f"Labels tensor size:", labels_tensor.numpy().size)
 
+# Print the predicted classes and the actual labels
+for i, label in enumerate(labels_tensor.numpy()):
+    print("Predicted:", label_names[predicted_classes[i]], "Actual:", label_names[label])
 
 # Generate confusion matrix
 confusion_matrix = sklearn.metrics.confusion_matrix(labels_tensor.numpy(), predicted_classes)
 
-# Create a confusion matrix of shape (7, 7) filled with zeros
-confusion_matrix_full = np.zeros((10, 10), dtype=int)
-
-# Get the unique labels in the test data
-unique_labels = np.unique(labels_tensor.numpy())
+confusion_matrix_full = np.zeros((len(label_names), len(label_names)), dtype=int)
 
 # Fill the confusion matrix with the values from the actual confusion matrix
-for i, label in enumerate(unique_labels):
-    confusion_matrix_full[label, unique_labels] = confusion_matrix[i]
+for i, label in enumerate(labels_tensor.numpy()):
+    confusion_matrix_full[label, predicted_classes[i]] +=1
 
 # Create a DataFrame for the confusion matrix
 confusion_matrix_df = pd.DataFrame(confusion_matrix_full, index=label_names, columns=label_names)
@@ -168,3 +169,27 @@ confusion_matrix_df.loc['Total'] = confusion_matrix_df.sum()
 
 print("Confusion Matrix:")
 print(confusion_matrix_df)
+
+
+# Generate confusion matrix
+# confusion_matrix = sklearn.metrics.confusion_matrix(labels_tensor.numpy(), predicted_classes)
+
+# # Create a confusion matrix of shape (7, 7) filled with zeros
+# confusion_matrix_full = np.zeros((8, 8), dtype=int)
+
+# # Get the unique labels in the test data
+# unique_labels = np.unique(labels_tensor.numpy())
+
+# # Fill the confusion matrix with the values from the actual confusion matrix
+# for i, label in enumerate(unique_labels):
+#     confusion_matrix_full[label, unique_labels] = confusion_matrix[i, :len(unique_labels)]
+
+# # Create a DataFrame for the confusion matrix
+# confusion_matrix_df = pd.DataFrame(confusion_matrix_full, index=label_names, columns=label_names)
+
+# # Add a row and column for the total counts
+# confusion_matrix_df['Total'] = confusion_matrix_df.sum(axis=1)
+# confusion_matrix_df.loc['Total'] = confusion_matrix_df.sum()
+
+# print("Confusion Matrix:")
+# print(confusion_matrix_df)

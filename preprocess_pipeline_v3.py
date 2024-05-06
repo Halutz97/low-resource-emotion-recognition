@@ -107,73 +107,71 @@ def main():
     video_directory = ""
 
 
-    match dataset:
-        case "MELD":
+    if dataset == "MELD":
+        video_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\Automation_testing\videos"
+        labels_path = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\Automation_testing\dev_sent_emo.csv"
 
-            video_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\Automation_testing\videos"
-            labels_path = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\Automation_testing\dev_sent_emo.csv"
+        toggle_controls = [True, True, True, True]
 
-            toggle_controls = [True, True, True, True]
+        audio_directory = os.path.join(os.path.dirname(video_directory), os.path.basename(video_directory) + "_audio")
+        corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
 
-            audio_directory = os.path.join(os.path.dirname(video_directory), os.path.basename(video_directory) + "_audio")
-            corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
+    elif dataset == "CREMA-D":
+        old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
+        audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio"
+        labels_path = os.path.join(os.path.dirname(audio_directory), "labels.csv")
 
-        case "CREMA-D":
-            old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
-            audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio"
-            labels_path = os.path.join(os.path.dirname(audio_directory), "labels.csv")
+        # Create the destination directory if it doesn't exist
+        if not os.path.exists(audio_directory):
+            os.makedirs(audio_directory, exist_ok=True)
 
-            # Create the destination directory if it doesn't exist
-            if not os.path.exists(audio_directory):
-                os.makedirs(audio_directory, exist_ok=True)
+            # Copy all files from the source to the destination directory
+            for filename in os.listdir(old_audio_directory):
+                source_path = os.path.join(old_audio_directory, filename)
+                destination_path = os.path.join(audio_directory, filename)
+                shutil.copy2(source_path, destination_path)
 
-                # Copy all files from the source to the destination directory
-                for filename in os.listdir(old_audio_directory):
-                    source_path = os.path.join(old_audio_directory, filename)
-                    destination_path = os.path.join(audio_directory, filename)
-                    shutil.copy2(source_path, destination_path)
+        if not os.path.exists(labels_path):
+            handle_CREMA_D(audio_directory)
 
-            if not os.path.exists(labels_path):
-                handle_CREMA_D(audio_directory)
-
-            toggle_controls = [False, False, True, True]
-            corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
+        toggle_controls = [False, False, True, True]
+        corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
 
 
-        case "IEMOCAP":
-            # old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
-            source_directories = [os.path.join(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release", f"Session{i}") for i in range(1, 7)]
-            audio_directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio"
-            labels_path = os.path.join(os.path.dirname(audio_directory), "labels.csv")
+    elif dataset == "IEMOCAP":
+        # old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
+        source_directories = [os.path.join(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release", f"Session{i}") for i in range(1, 7)]
+        audio_directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio"
+        labels_path = os.path.join(os.path.dirname(audio_directory), "labels.csv")
 
-            # Create the destination directory if it doesn't exist
-            if not os.path.exists(audio_directory):
-                os.makedirs(audio_directory, exist_ok=True)
+        # Create the destination directory if it doesn't exist
+        if not os.path.exists(audio_directory):
+            os.makedirs(audio_directory, exist_ok=True)
 
-                # Iterate over each source directory
-                for source_directory in source_directories:
-                    # Walk through subdirectories
-                    for dirpath, dirnames, filenames in os.walk(os.path.join(source_directory, "sentences/wav")):
+            # Iterate over each source directory
+            for source_directory in source_directories:
+                # Walk through subdirectories
+                for dirpath, dirnames, filenames in os.walk(os.path.join(source_directory, "sentences/wav")):
+                    print("dirpath: ", dirpath)
+                    # If we're in the directory containing .wav files
+                    if not dirpath.endswith("wav"):
                         print("dirpath: ", dirpath)
-                        # If we're in the directory containing .wav files
-                        if not dirpath.endswith("wav"):
-                            print("dirpath: ", dirpath)
-                            # Iterate over each file
-                            for filename in filenames:
-                                # If the file is a .wav file and doesn't start with a "."
-                                if filename.endswith(".wav") and not filename.startswith("."):
-                                    # Define source file path
-                                    source_file_path = os.path.join(dirpath, filename)
-                                    # Define destination file path
-                                    destination_file_path = os.path.join(audio_directory, filename)
-                                    # Copy the file
-                                    shutil.copy2(source_file_path, destination_file_path)
+                        # Iterate over each file
+                        for filename in filenames:
+                            # If the file is a .wav file and doesn't start with a "."
+                            if filename.endswith(".wav") and not filename.startswith("."):
+                                # Define source file path
+                                source_file_path = os.path.join(dirpath, filename)
+                                # Define destination file path
+                                destination_file_path = os.path.join(audio_directory, filename)
+                                # Copy the file
+                                shutil.copy2(source_file_path, destination_file_path)
 
-            if not os.path.exists(labels_path):
-                handle_IEMOCAP(labels_path, source_directories)
+        if not os.path.exists(labels_path):
+            handle_IEMOCAP(labels_path, source_directories)
 
-            toggle_controls = [False, False, False, True]
-            corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
+        toggle_controls = [False, False, False, True]
+        corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
 
 
 
