@@ -6,8 +6,11 @@ import zipfile
 import numpy as np
 import pandas as pd
 import os
+import time
 from sklearn.preprocessing import LabelEncoder
 import torch
+#!pip install accelerate -U
+#!pip install transformers[torch] -U
 from transformers import Wav2Vec2Processor, Wav2Vec2ForSequenceClassification, TrainingArguments, Trainer
 import evaluate
 from datasets import Dataset
@@ -42,11 +45,18 @@ def compute_metrics(eval_pred):
     predictions = np.argmax(logits, axis=-1)
     return metric.compute(predictions=predictions, references=labels)
 
-#!pip install accelerate -U
-#!pip install transformers[torch] -U
+def wait_for_file(filename, timeout=60):
+    """Wait for a file to exist."""
+    start_time = time.time()
+    while not os.path.exists(filename) or not os.path.getsize(filename) > 0:
+        time.sleep(1)
+        if time.time() - start_time > timeout:
+            raise FileNotFoundError(f"File {filename} not found after {timeout} seconds")
+
 
 zip_path = '/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run1/IEMOCAP_full_release.zip'
 extract_to = '/content/extracted_data'
+directory = os.path.join(extract_to, "audio")
 
 
 if os.path.exists(extract_to):
@@ -65,25 +75,19 @@ else:
         zip_ref.extractall(extract_to)
     print("Files extracted successfully!")
 
+print(f"There are {len(os.listdir(directory))} elements in the folder.")
 
 
-
-if not os.listdir(extract_to):
-    # If the directory is empty, extract the files
-    os.makedirs(extract_to, exist_ok=True)
-    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-        zip_ref.extractall(extract_to)
-    print("Files extracted successfully!")
-else:
-    print("Directory is not empty. Extraction skipped to avoid overwriting.")
+# Wait until it has confirmed that the csv is there
+csv_file = '/content/extracted_data/labels_corrected.csv'
+wait_for_file(csv_file)
 
 
-data = pd.read_csv('/content/extracted_data/labels_corrected.csv')
+data = pd.read_csv(csv_file)
 
 
 files = []
 
-directory = os.path.join(extract_to, "audio")
 
 # Get a list of all files in the directory
 for file in os.listdir(directory):
@@ -167,7 +171,6 @@ val_dataset = Dataset.from_dict({
 print(f"First training sample dimensions: {len(train_dataset['input_values'][0])}")
 print(f"First validation sample dimensions: {len(val_dataset['input_values'][0])}")
 
-
 # Initialize the trainer
 metric = evaluate.load("accuracy")
 
@@ -175,7 +178,7 @@ metric = evaluate.load("accuracy")
 def train_model():
   run = wandb.init(project="emotion-recognition-IEMOCAP", reinit=True, config={
         "learning_rate": 1e-4,  # Default learning rate
-        "batch_size": 32        # Default batch size
+        "batch_size": 4        # Default batch size
     })
 
   # Load a pre-trained model for pretrained
@@ -193,7 +196,7 @@ def train_model():
       per_device_train_batch_size=batch_size,
       num_train_epochs=3,              # Number of training epochs
       per_device_eval_batch_size=4,    # Batch size for evaluation
-      gradient_accumulation_steps=2,   # Number of updates steps to accumulate before performing a backward/update pass
+      gradient_accumulation_steps=4,   # Number of updates steps to accumulate before performing a backward/update pass
       warmup_steps=500,                # Number of warmup steps for learning rate scheduler
       save_total_limit=1,                    # Only keep the best model
       weight_decay=0.01,               # Strength of weight decay
@@ -221,8 +224,9 @@ def train_model():
 
   trainer.train()
 
-  model_path = f'/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run2/model'
-  trainer.save_model(model_path)
+  model_path = f'/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run2/model/emotion_recognition_model_{run.id}.pth'
+  os.makedirs(os.path.dirname(model_path), exist_ok=True)
+  torch.save(model.state_dict(), model_path)
 
   run.finish()
 
@@ -238,7 +242,7 @@ sweep_config = {
             'max': 1e-3
         },
         'batch_size': {
-            'values': [16, 32, 64]
+            'values': [2, 4, 6]
         },
     }
 }
