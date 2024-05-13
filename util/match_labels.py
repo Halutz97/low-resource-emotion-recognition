@@ -128,6 +128,34 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         print("Number of missmatches: " + str(num_missmatches))
         print()
 
+
+    if dataset == "IEMOCAP":
+        # Drop all rows with oth, xxx, dis, and fea of the csv file
+        data = data[data['Emotion'] != 'oth']
+        data = data[data['Emotion'] != 'xxx']
+        data = data[data['Emotion'] != 'dis']
+        data = data[data['Emotion'] != 'fea']
+
+        print("Number of entries in dataframe after removing some emotions: " + str(len(data)))
+
+        # Eliminate all wav files from directory that do not appear on data
+        num_deleted_files = 0
+        for file in files:
+            if file[:-4] not in data['filename'].values:
+                print("File not in data: " + file)
+                num_deleted_files += 1
+                os.remove(os.path.join(directory, file))
+
+        print("Number of deleted files: " + str(num_deleted_files))
+        print("Number of files in directory after deletion: " + str(len(os.listdir(directory))))
+
+        # Eliminate all rows from data that do not have a corresponding wav file
+        data = data[(data['filename']+'.wav').isin(files)]
+        print("Number of entries in dataframe after removing files not in directory: " + str(len(data)))
+
+
+
+
     # Export dataframe to csv
     # data.to_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_fine_tune_v1_train_data\export_csv.csv", index=False)
 
@@ -146,6 +174,8 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
     elif dataset == "CREMA-D":
         my_encoding_dict = {'ANG': 0, 'DIS': 1, 'FEA': 2, 'HAP': 3, 'NEU': 4, 'SAD': 5}
+    elif dataset == "IEMOCAP":
+        my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
     
     
     labels = data['Emotion'].map(my_encoding_dict).values
@@ -204,6 +234,8 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename'], axis=1)
     elif dataset == "CREMA-D":
         data = data.drop(['Index', 'Speaker', 'Line', 'Intensity'], axis=1)
+    elif dataset == "IEMOCAP":
+        data = data.drop(['Time', 'Attributes'], axis=1)
 
     # data.reset_index(drop=True, inplace=True)
 

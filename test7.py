@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 import os
 import time
-from transformers import Wav2Vec2Processor, Wav2Vec2ForSequenceClassification, TrainingArguments, Trainer, AutoConfig
+from transformers import Wav2Vec2Processor, Wav2Vec2ForSequenceClassification, TrainingArguments, Trainer, AutoConfig, AdamW
 from transformers.modeling_outputs import SequenceClassifierOutput
 import evaluate
 import torch
@@ -59,7 +59,7 @@ class CustomWav2Vec2ForSequenceClassification(Wav2Vec2ForSequenceClassification)
     def __init__(self, config, num_linear_layers=1):
         super().__init__(config)
         self.num_labels = config.num_labels
-        self.class_weights = class_weights
+        self.class_weights = weights_torch
 
         # Redefine the classifier to have multiple linear layers
         layers = [nn.Linear(config.hidden_size, config.hidden_size) for _ in range(num_linear_layers - 1)]
@@ -110,10 +110,14 @@ class CustomTrainer(Trainer):
         # Ensure class_weights are on the right device:
         self.class_weights = class_weights.to(self.model.device) if class_weights is not None else None
 
+    def setup_optimizers(self):
+        if self.optimizer is None:
+          self.optimizer = AdamW(self.model.parameters(), lr=self.args.learning_rate)
+
     def compute_loss(self, model, inputs, return_outputs=False):
         labels = inputs.get("labels")
         outputs = model(**inputs)
-        print(f"Logits shape: {logits.shape}, Labels shape: {labels.shape}")  # Debugging line
+        # print(f"Logits shape: {outputs.logits.shape}, Labels shape: {labels.shape}")  # Debugging line
         # Assume class weights are handled within the model
         loss = outputs.loss
         return (loss, outputs) if return_outputs else loss
@@ -130,6 +134,9 @@ class CustomTrainer(Trainer):
         """
         Main training entry point.
         """
+        # Ensure optimizer is setup
+        self.setup_optimizers()
+
         train_dataloader = self.get_train_dataloader()
 
         for epoch in range(int(self.args.num_train_epochs)):
@@ -141,8 +148,9 @@ class CustomTrainer(Trainer):
                 loss, outputs = self.compute_loss(self.model, inputs, return_outputs=True)
                 self.model.zero_grad()
                 loss.backward()
+                if self.optimizer is None:
+                    raise ValueError("Optimizer not initialized")
                 self.optimizer.step()
-
                 if step % self.args.logging_steps == 0:
                     print(f"Step {step}: Loss {loss.item()}")
 
@@ -181,12 +189,12 @@ def wait_for_file(filename, timeout=60):
             raise FileNotFoundError(f"File {filename} not found after {timeout} seconds")
 
 # Define the paths to use
-zip_path = '/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run1/IEMOCAP_full_release.zip'
+zip_path = '/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run4/IEMOCAP_full_release2.zip'
 extract_to = '/content/extracted_data'
 directory = os.path.join(extract_to, "audio")
 
 # Define basic parameters of the model and dataset
-my_encoding_dict = {'ang': 0, 'dis': 1, 'fea': 2, 'hap': 3, 'neu': 4, 'sad': 5, 'sur': 6, 'fru': 7, 'exc': 8, 'oth': 9}
+my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 max_length = 16000 * 10  # 9 seconds
 
@@ -224,7 +232,7 @@ labels_np = np.array(labels)
 class_counts = np.bincount(labels)
 class_weights = 1. / class_counts  # Inverse of class counts
 class_weights = class_weights / class_weights.sum() * len(np.unique(labels))  # Normalize to keep the same scale
-
+weights_torch = torch.tensor(class_weights, dtype=torch.float).to(device)
 
 # Load the processor and dataset
 processor = Wav2Vec2Processor.from_pretrained("jonatasgrosman/wav2vec2-large-xlsr-53-english")
@@ -251,10 +259,9 @@ def train_model():
     })
 
     # Load a pre-trained model for pretrained
-    config = AutoConfig.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=10)
+    config = AutoConfig.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=7)
     model = CustomWav2Vec2ForSequenceClassification(config, num_linear_layers=run.config.num_linear_layers)
     model.to(device)
-    class_weights = torch.tensor(class_weights, dtype=torch.float).to(device)
 
     # Freeze all parameters in the base wav2vec2 model
     for param in model.wav2vec2.parameters():
@@ -304,7 +311,7 @@ def train_model():
         train_dataset=train_loader,
         eval_dataset=val_loader,
         compute_metrics=compute_metrics,
-        class_weights=class_weights  # Pass your computed class weights here
+        class_weights=weights_torch  # Pass your computed class weights here
     )
 
     try:
@@ -314,7 +321,7 @@ def train_model():
       # Optionally, re-raise the exception if you want to stop the process
       raise e
 
-    model_path = f'/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run2/model/emotion_recognition_model_{run.id}.pth'
+    model_path = f'/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run4/model/emotion_recognition_model_{run.id}.pth'
     os.makedirs(os.path.dirname(model_path), exist_ok=True)
     torch.save(model.state_dict(), model_path)
 
