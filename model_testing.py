@@ -34,8 +34,9 @@ features = []
 labels = []
 
 #my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
-my_encoding_dict = {'ang': 0, 'dis': 1, 'fea': 2, 'hap': 3, 'neu': 4, 'sad': 5, 'sur': 6, 'fru': 7, 'exc': 8, 'oth': 9}
+#my_encoding_dict = {'ang': 0, 'dis': 1, 'fea': 2, 'hap': 3, 'neu': 4, 'sad': 5, 'sur': 6, 'fru': 7, 'exc': 8, 'oth': 9}
 #my_encoding_dict = {'ang': 0, 'cal': 1, 'dis': 2, 'fea': 3, 'hap': 4, 'neu': 5, 'sad': 6, 'sur': 7}
+my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
 
 labels = data['Emotion'].map(my_encoding_dict).values
 
@@ -97,12 +98,12 @@ dataloader = DataLoader(dataset, batch_size=batch_size)
 
 # Initialize the model
 model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-large-xlsr-53",
-                                                           num_labels=10
+                                                           num_labels=7
                                                           )
 print("model loaded")
 
 # Load the saved weights
-model.load_state_dict(torch.load('emotion_recognition_model.pth', map_location=torch.device('cpu')))
+model.load_state_dict(torch.load('model/emotion_recognition_model_3cgvkj90.pth', map_location=torch.device('cpu')))
 print("model weights loaded")
 
 
