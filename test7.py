@@ -189,9 +189,9 @@ def wait_for_file(filename, timeout=60):
             raise FileNotFoundError(f"File {filename} not found after {timeout} seconds")
 
 # Define the paths to use
-zip_path = '/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run4/IEMOCAP_full_release2.zip'
+zip_path = '/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run5/IEMOCAP_full_release3.zip'
 extract_to = '/content/extracted_data'
-directory = os.path.join(extract_to, "audio")
+directory = os.path.join(extract_to, "audio_training")
 
 # Define basic parameters of the model and dataset
 my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
@@ -220,7 +220,7 @@ print(f"There are {len(os.listdir(directory))} elements in the folder.")
 
 
 # Wait until it has confirmed that the csv is there
-csv_file = '/content/extracted_data/labels_corrected.csv'
+csv_file = '/content/extracted_data/labels_training.csv'
 wait_for_file(csv_file)
 
 # Obtain the data and its labels
@@ -321,7 +321,7 @@ def train_model():
       # Optionally, re-raise the exception if you want to stop the process
       raise e
 
-    model_path = f'/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run4/model/emotion_recognition_model_{run.id}.pth'
+    model_path = f'/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run5/model/emotion_recognition_model_{run.id}.pth'
     os.makedirs(os.path.dirname(model_path), exist_ok=True)
     torch.save(model.state_dict(), model_path)
 

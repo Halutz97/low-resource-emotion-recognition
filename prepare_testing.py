@@ -36,6 +36,7 @@ print('Done')
 # Creating a csv file with the data of the transferred wav files from the source csv file
 source_csv = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_corrected.csv'
 dest_csv = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_testing.csv'
+train_csv = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_training.csv'
 
 # Open the source CSV file
 with open(source_csv, 'r') as source:
@@ -132,17 +133,25 @@ for file in files:
 
 
 # Open the source CSV file
-with open(dest_csv, 'r') as file:
-    reader = csv.reader(file)
-    rows = list(reader)
+with open(source_csv, 'r') as source:
+    reader = csv.reader(source)
 
-filtered_rows = [row for row in rows if (row[0] + '.wav') not in selected_files]
+    # Open the destination CSV file
+    with open(train_csv, 'w', newline='') as destination:
+        writer = csv.writer(destination)
 
-with open(source_csv, 'w', newline='') as file:
-    writer = csv.writer(file)
-    writer.writerows(filtered_rows)
+        # Write the header (assuming the first row is the header)
+        header = next(reader)
+        writer.writerow(header)
 
-print('Extracted files removed from the source CSV file')
+        # For each row in the source CSV file
+        for row in reader:
+            # If the filename (assuming it's in the first column) is in the list of transferred files
+            if (row[0]+".wav") not in selected_files:
+                # Write the row to the destination CSV file
+                writer.writerow(row)
+
+print('CSV for training created')
 
 
 
