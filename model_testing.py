@@ -103,7 +103,7 @@ model = Wav2Vec2ForSequenceClassification.from_pretrained("facebook/wav2vec2-lar
 print("model loaded")
 
 # Load the saved weights
-model.load_state_dict(torch.load('model/emotion_recognition_model_3cgvkj90.pth', map_location=torch.device('cpu')))
+model.load_state_dict(torch.load('model/emotion_recognition_model.pth', map_location=torch.device('cpu')))
 print("model weights loaded")
 
 
