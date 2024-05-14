@@ -335,10 +335,11 @@ sweep_config = {
     },
     'parameters': {
         'learning_rate': {'min': 1e-5, 'max': 1e-4},
+        'batch_size': {'values': [4 , 8]},
         'num_linear_layers': {'values': [1, 2, 3]}  # Sweep over 1, 2, or 3 linear layers
     }
 }
 
 sweep_id = wandb.sweep(sweep=sweep_config, project="emotion-recognition-IEMOCAP")
 
-wandb.agent(sweep_id, function=train_model, count=6)
+wandb.agent(sweep_id, function=train_model, count=8)

@@ -144,12 +144,12 @@ config = Wav2Vec2Config.from_pretrained(
 )
 
 # Initialize the model
-model = CustomWav2Vec2ForSequenceClassification(config, num_linear_layers=3)
+model = CustomWav2Vec2ForSequenceClassification(config, num_linear_layers=1)
 print("model loaded")
 
 
 # Load the saved weights
-model.load_state_dict(torch.load('model/emotion_recognition_model_zv0d7y0b.pth', map_location=torch.device('cpu')))
+model.load_state_dict(torch.load('model/emotion_recognition_model_y5664t4t.pth', map_location=torch.device('cpu')))
 print("model weights loaded")
 
 # # Dummy data for demonstration; replace with actual evaluation data
