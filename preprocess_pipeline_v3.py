@@ -139,6 +139,8 @@ def main():
 
 
     elif dataset == "IEMOCAP":
+        attributes = True
+
         # old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
         source_directories = [os.path.join(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release", f"Session{i}") for i in range(1, 7)]
         audio_directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio"
@@ -171,8 +173,10 @@ def main():
             handle_IEMOCAP(labels_path, source_directories)
 
         toggle_controls = [False, False, False, True]
-        corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
-
+        if attributes == False:
+            corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
+        else:
+            corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_attributes_corrected.csv")
 
 
 
@@ -207,7 +211,7 @@ def main():
     
     if extract_corrected_labels:
         print("Extracting corrected labels...")
-        match_labels.match_emotion_labels(labels_path,  corrected_labels_path, audio_directory, dataset)
+        match_labels.match_emotion_labels(labels_path,  corrected_labels_path, audio_directory, dataset, attributes)
         print("Done.")
 
 if __name__ == "__main__":
