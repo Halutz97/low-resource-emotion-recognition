@@ -136,26 +136,62 @@ class CustomTrainer(Trainer):
         """
         # Ensure optimizer is setup
         self.setup_optimizers()
+        epoch_train_losses = []
+        epoch_val_losses = []
 
         train_dataloader = self.get_train_dataloader()
 
         for epoch in range(int(self.args.num_train_epochs)):
             self.model.train()
-            for step, inputs in enumerate(train_dataloader):
-                # Ensure all inputs are on the same device.
-                inputs = self._prepare_inputs(inputs)
+            total_train_loss = 0
+            epoch_train_loss_file = f'/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run5/training_loss_epoch_{epoch}.txt'
+            epoch_val_loss_file = f'/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run5/validation_loss_epoch_{epoch}.txt'
 
-                loss, outputs = self.compute_loss(self.model, inputs, return_outputs=True)
-                self.model.zero_grad()
-                loss.backward()
-                if self.optimizer is None:
-                    raise ValueError("Optimizer not initialized")
-                self.optimizer.step()
-                if step % self.args.logging_steps == 0:
-                    print(f"Step {step}: Loss {loss.item()}")
+            with open(epoch_train_loss_file, 'w') as train_loss_file:
+                for step, inputs in enumerate(train_dataloader):
+                    # Ensure all inputs are on the same device.
+                    inputs = self._prepare_inputs(inputs)
+
+                    loss, outputs = self.compute_loss(self.model, inputs, return_outputs=True)
+                    self.model.zero_grad()
+                    loss.backward()
+                    if self.optimizer is None:
+                        raise ValueError("Optimizer not initialized")
+                    self.optimizer.step()
+
+                    total_train_loss += loss.item()
+                    if step % self.args.logging_steps == 0:
+                        print(f"Step {step}: Loss {loss.item()}")
+                        wandb.log({"train_loss": loss.item(), "step": step + epoch * len(train_dataloader)})
+                        train_loss_file.write(f"Epoch: {epoch}, Step: {step}, Loss: {loss.item()}\n")
+
+            avg_train_loss = total_train_loss / len(train_dataloader)
+            epoch_train_losses.append(avg_train_loss)
+            val_loss = self.evaluate()
+            epoch_val_losses.append(val_loss)
+            wandb.log({"epoch": epoch, "avg_train_loss": avg_train_loss, "val_loss": val_loss})
+            
+            with open(epoch_val_loss_file, 'w') as val_loss_file:
+                val_loss_file.write(f"Epoch: {epoch}, Avg Validation Loss: {val_loss}\n")
 
         torch.cuda.empty_cache()
         print("Cleared GPU cache after all training epochs.")
+
+    def evaluate(self):
+        self.model.eval()
+        eval_dataloader = self.get_eval_dataloader()
+        total_loss = 0
+        count = 0
+
+        with torch.no_grad():
+            for batch in eval_dataloader:
+                inputs = self._prepare_inputs(batch)
+                loss = self.compute_loss(self.model, inputs)
+                total_loss += loss.item()
+                count += 1
+
+        avg_loss = total_loss / count if count != 0 else 0
+        return avg_loss
 
 
 def collate_fn(batch):
@@ -328,18 +364,18 @@ def train_model():
     run.finish()
 
 sweep_config = {
-    'method': 'bayes',
+    'method': 'grid',
     'metric': {
       'name': 'accuracy',
       'goal': 'maximize'
     },
     'parameters': {
-        'learning_rate': {'min': 1e-5, 'max': 1e-4},
-        'batch_size': {'values': [4 , 8]},
-        'num_linear_layers': {'values': [1, 2, 3]}  # Sweep over 1, 2, or 3 linear layers
+        'learning_rate': {'values': [1e-3, 1e-4, 1e-5]},
+        'batch_size': {'values': [8 , 16]},
+        'num_linear_layers': {'values': [1, 3]}  # Sweep over 1, 2, or 3 linear layers
     }
 }
 
 sweep_id = wandb.sweep(sweep=sweep_config, project="emotion-recognition-IEMOCAP")
 
-wandb.agent(sweep_id, function=train_model, count=8)
+wandb.agent(sweep_id, function=train_model, count=2)
