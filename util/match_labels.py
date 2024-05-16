@@ -136,6 +136,12 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         data = data[data['Emotion'] != 'dis']
         data = data[data['Emotion'] != 'fea']
 
+        data = data[data['Emotion'] != 'sur']
+        data = data[data['Emotion'] != 'sad']
+        data = data[data['Emotion'] != 'neu']
+        data = data[data['Emotion'] != 'fru']
+        data = data[data['Emotion'] != 'exc']
+
         print("Number of entries in dataframe after removing some emotions: " + str(len(data)))
 
         # Eliminate all wav files from directory that do not appear on data
@@ -175,7 +181,8 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
     elif dataset == "CREMA-D":
         my_encoding_dict = {'ANG': 0, 'DIS': 1, 'FEA': 2, 'HAP': 3, 'NEU': 4, 'SAD': 5}
     elif dataset == "IEMOCAP":
-        my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
+        # my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
+        my_encoding_dict = {'ang': 0, 'hap': 1}
     
     
     labels = data['Emotion'].map(my_encoding_dict).values
