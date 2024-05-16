@@ -74,7 +74,8 @@ features = []
 labels = []
 
 
-my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
+#my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
+my_encoding_dict = {'ang': 0, 'hap': 1}
 
 labels = data['Emotion'].map(my_encoding_dict).values
 
@@ -139,7 +140,7 @@ dataloader = DataLoader(dataset, batch_size=batch_size)
 config = Wav2Vec2Config.from_pretrained(
     "facebook/wav2vec2-large-xlsr-53",
     hidden_size=1024,  # Ensure this matches the trained model
-    num_labels=7,
+    num_labels=2,      # Ensure this matches the trained model
     hidden_dropout_prob=0.1
 )
 
@@ -149,7 +150,7 @@ print("model loaded")
 
 
 # Load the saved weights
-model.load_state_dict(torch.load('model/emotion_recognition_model_y5664t4t.pth', map_location=torch.device('cpu')))
+model.load_state_dict(torch.load('model/emotion_recognition_model_y6n1q2p1.pth', map_location=torch.device('cpu')))
 print("model weights loaded")
 
 # # Dummy data for demonstration; replace with actual evaluation data

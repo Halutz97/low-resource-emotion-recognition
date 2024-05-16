@@ -337,6 +337,7 @@ def train_model():
         load_best_model_at_end=True,           # Load the best model at the end of training
         metric_for_best_model="accuracy",      # Use accuracy to evaluate the best model
         greater_is_better=True,                # Higher accuracy is better
+        max_grad_norm=1.0,                # Gradient clipping value
         fp16=True,                        # Enable mixed precision training
         report_to="wandb"                # Report the results to Weights & Biases
     )
