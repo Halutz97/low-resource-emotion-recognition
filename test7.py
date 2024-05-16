@@ -279,10 +279,6 @@ train_size = int(0.8 * len(dataset))
 val_size = len(dataset) - train_size
 train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
 
-# Prepare DataLoader
-train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True, collate_fn=collate_fn)
-val_loader = DataLoader(val_dataset, batch_size=4, collate_fn=collate_fn)
-
 # Initialize the trainer
 metric = evaluate.load("accuracy")
 
@@ -293,6 +289,13 @@ def train_model():
         "batch_size": 4,        # Adjusted to match DataLoader
         "num_linear_layers": 1  # Default number of linear layers
     })
+
+    batch_size = wandb.config.batch_size  # Ensure this is used consistently
+    learning_rate = wandb.config.learning_rate
+
+    # Load your dataset here and create the DataLoader with the consistent batch size
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
 
     # Load a pre-trained model for pretrained
     config = AutoConfig.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=7)
@@ -313,9 +316,7 @@ def train_model():
 
     # Log model parameters and gradients
     wandb.watch(model, log='all', log_freq=100)  # Configure as needed
-
-    learning_rate=wandb.config.learning_rate
-    batch_size=wandb.config.batch_size
+    
 
     training_args = TrainingArguments(
         output_dir='./results',          # Output directory
