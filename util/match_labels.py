@@ -8,7 +8,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 
-def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset="MELD"):
+def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset="MELD", attributes=False):
     # Assuming you have a DataFrame with columns "filename" and "emotion"
     
     data = pd.read_csv(labels_file)
@@ -129,12 +129,18 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         print()
 
 
-    if dataset == "IEMOCAP":
+    if dataset == "IEMOCAP" and attributes == False:
         # Drop all rows with oth, xxx, dis, and fea of the csv file
         data = data[data['Emotion'] != 'oth']
         data = data[data['Emotion'] != 'xxx']
         data = data[data['Emotion'] != 'dis']
         data = data[data['Emotion'] != 'fea']
+
+        data = data[data['Emotion'] != 'sur']
+        data = data[data['Emotion'] != 'neu']
+        data = data[data['Emotion'] != 'fru']
+        data = data[data['Emotion'] != 'exc']
+        data = data[data['Emotion'] != 'sad']
 
         print("Number of entries in dataframe after removing some emotions: " + str(len(data)))
 
@@ -152,7 +158,7 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         # Eliminate all rows from data that do not have a corresponding wav file
         data = data[(data['filename']+'.wav').isin(files)]
         print("Number of entries in dataframe after removing files not in directory: " + str(len(data)))
-
+    
 
 
 
@@ -167,82 +173,92 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
     # print(data.Emotion)
 
     # Placeholder for features and labels
-    features = []
-    labels = []
+    if attributes == False:
+        features = []
+        labels = []
 
-    if dataset == "MELD":
-        my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
-    elif dataset == "CREMA-D":
-        my_encoding_dict = {'ANG': 0, 'DIS': 1, 'FEA': 2, 'HAP': 3, 'NEU': 4, 'SAD': 5}
-    elif dataset == "IEMOCAP":
-        my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
-    
-    
-    labels = data['Emotion'].map(my_encoding_dict).values
+        if dataset == "MELD":
+            my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
+        elif dataset == "CREMA-D":
+            my_encoding_dict = {'ANG': 0, 'DIS': 1, 'FEA': 2, 'HAP': 3, 'NEU': 4, 'SAD': 5}
+        elif dataset == "IEMOCAP":
+            # my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
+            my_encoding_dict = {'ang': 0, 'hap': 1}
+        
+        
+        labels = data['Emotion'].map(my_encoding_dict).values
 
-    print(labels)
-    print()
-    print(my_encoding_dict)
-    print()
+        print(labels)
+        print()
+        print(my_encoding_dict)
+        print()
 
-    # iterate through dataframe and check if encoding is correct
+        # iterate through dataframe and check if encoding is correct
 
-    # length of dataframe
-    print("Length of dataframe (csv):")
-    print(len(data))
-    print()
+        # length of dataframe
+        print("Length of dataframe (csv):")
+        print(len(data))
+        print()
 
-    # length of labels
-    print("Length of labels:")
-    print(len(labels))
-    print()
+        # length of labels
+        print("Length of labels:")
+        print(len(labels))
+        print()
 
-    # reset index of dataframe
-    data.reset_index(drop=True, inplace=True)
+        # reset index of dataframe
+        data.reset_index(drop=True, inplace=True)
 
-    num_missmatches = 0
-    for index, row in data.iterrows():
-        if my_encoding_dict[row['Emotion']] != labels[index]:
-                print("Label missmatch:")
-                print(row['Emotion'])
-                print("Encoding: " + str(labels[index]))
-                print("Intended encoding: " + str(my_encoding_dict[row['Emotion']]))
-                print()
-                num_missmatches += 1
+        num_missmatches = 0
+        for index, row in data.iterrows():
+            if my_encoding_dict[row['Emotion']] != labels[index]:
+                    print("Label missmatch:")
+                    print(row['Emotion'])
+                    print("Encoding: " + str(labels[index]))
+                    print("Intended encoding: " + str(my_encoding_dict[row['Emotion']]))
+                    print()
+                    num_missmatches += 1
 
-    print("Number of missmatches (label vs encoding): " + str(num_missmatches))
-    print()
+        print("Number of missmatches (label vs encoding): " + str(num_missmatches))
+        print()
 
-    # Add labels to dataframe
-    data['Label'] = labels
+        # Add labels to dataframe
+        data['Label'] = labels
 
-    # ========================================================
-    # Export dataframe to csv
-    # data.to_csv(corrected_labels_file, index=False)
-    # ========================================================
-    # df_check = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_labels_corrected.csv")
-    # print()
-    # print("df_check:")
+        # ========================================================
+        # Export dataframe to csv
+        # data.to_csv(corrected_labels_file, index=False)
+        # ========================================================
+        # df_check = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_labels_corrected.csv")
+        # print()
+        # print("df_check:")
 
-    # print(df_check.head())
+        # print(df_check.head())
 
-    # print()
+        # print()
 
-    # Drop columns Sr No., Utterance, Speaker, Sentiment, Dialogue_ID, Utterance_ID, Season, Episode, StartTime, EndTime, Expected filename, Match
-    # data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename', 'Match'], axis=1)
-    if dataset == "MELD":
-        data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename'], axis=1)
-    elif dataset == "CREMA-D":
-        data = data.drop(['Index', 'Speaker', 'Line', 'Intensity'], axis=1)
-    elif dataset == "IEMOCAP":
-        data = data.drop(['Time', 'Attributes'], axis=1)
+        # Drop columns Sr No., Utterance, Speaker, Sentiment, Dialogue_ID, Utterance_ID, Season, Episode, StartTime, EndTime, Expected filename, Match
+        # data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename', 'Match'], axis=1)
+        if dataset == "MELD":
+            data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename'], axis=1)
+        elif dataset == "CREMA-D":
+            data = data.drop(['Index', 'Speaker', 'Line', 'Intensity'], axis=1)
+        elif dataset == "IEMOCAP":
+            data = data.drop(['Time', 'Attributes'], axis=1)
 
-    # data.reset_index(drop=True, inplace=True)
+        # data.reset_index(drop=True, inplace=True)
 
-    # Change order of columns and drop unnecessary columns
-    data = data[['filename', 'Emotion', 'Label']]
+        # Change order of columns and drop unnecessary columns
+        data = data[['filename', 'Emotion', 'Label']]
+
+    elif attributes == True:
+        data = data[(data['filename']+'.wav').isin(files)]
+        print("Number of entries in dataframe after removing files not in directory: " + str(len(data)))
+        
+        data = data.drop(['Time', 'Emotion'], axis=1)
+        data = data[['filename', 'Attributes']]
 
     data.to_csv(corrected_labels_file, index=False)
+
 
 if __name__ == "__main__":
     labels_file = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\Automation_testing\dev_sent_emo.csv"
