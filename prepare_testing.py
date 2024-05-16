@@ -5,7 +5,7 @@ import random
 import shutil
 import csv
 
-attributes = True
+attributes = False
 print('Attributes:', attributes)
 
 # Set the source and destination directories
@@ -16,7 +16,7 @@ train_dir_att = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_trai
 dest_dir_att = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing_att'
 
 # Set the number of files to cut
-num_files = 1000
+num_files = 200
 
 if attributes == False:
 
