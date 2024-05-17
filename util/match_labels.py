@@ -8,7 +8,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 
-def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset="MELD"):
+def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset="MELD", attributes=False):
     # Assuming you have a DataFrame with columns "filename" and "emotion"
     
     data = pd.read_csv(labels_file)
@@ -129,7 +129,7 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         print()
 
 
-    if dataset == "IEMOCAP":
+    if dataset == "IEMOCAP" and attributes == False:
         # Drop all rows with oth, xxx, dis, and fea of the csv file
         data = data[data['Emotion'] != 'oth']
         data = data[data['Emotion'] != 'xxx']
@@ -138,7 +138,6 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
 
         data = data[data['Emotion'] != 'sur']
         data = data[data['Emotion'] != 'sad']
-        data = data[data['Emotion'] != 'neu']
         data = data[data['Emotion'] != 'fru']
         data = data[data['Emotion'] != 'exc']
 
@@ -182,7 +181,7 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         my_encoding_dict = {'ANG': 0, 'DIS': 1, 'FEA': 2, 'HAP': 3, 'NEU': 4, 'SAD': 5}
     elif dataset == "IEMOCAP":
         # my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
-        my_encoding_dict = {'ang': 0, 'hap': 1}
+        my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2}
     
     
     labels = data['Emotion'].map(my_encoding_dict).values
