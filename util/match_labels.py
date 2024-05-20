@@ -128,19 +128,40 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         print("Number of missmatches: " + str(num_missmatches))
         print()
 
-
-    if dataset == "IEMOCAP" and attributes == False:
+    elif dataset == "CREMA-D":
         # Drop all rows with oth, xxx, dis, and fea of the csv file
+        data = data[data['Emotion'] != 'DIS']
+        data = data[data['Emotion'] != 'FEA']
+
+
+        print("Number of entries in dataframe after removing some emotions: " + str(len(data)))
+
+        # Eliminate all wav files from directory that do not appear on data
+        num_deleted_files = 0
+        for file in files:
+            if file not in data['filename'].values:
+                print("File not in data: " + file)
+                num_deleted_files += 1
+                os.remove(os.path.join(directory, file))
+
+        print("Number of deleted files: " + str(num_deleted_files))
+        print("Number of files in directory after deletion: " + str(len(os.listdir(directory))))
+
+        # Eliminate all rows from data that do not have a corresponding wav file
+        data = data[(data['filename']).isin(files)]
+        print("Number of entries in dataframe after removing files not in directory: " + str(len(data)))
+
+    elif dataset == "IEMOCAP" and attributes == False:
+              # Drop all rows with oth, xxx, dis, and fea of the csv file
         data = data[data['Emotion'] != 'oth']
         data = data[data['Emotion'] != 'xxx']
         data = data[data['Emotion'] != 'dis']
         data = data[data['Emotion'] != 'fea']
 
         data = data[data['Emotion'] != 'sur']
-        data = data[data['Emotion'] != 'sad']
         data = data[data['Emotion'] != 'fru']
         data = data[data['Emotion'] != 'exc']
-        data = data[data['Emotion'] != 'sad']
+
 
         print("Number of entries in dataframe after removing some emotions: " + str(len(data)))
 
@@ -180,14 +201,16 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
     if dataset == "MELD":
         my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
     elif dataset == "CREMA-D":
-        my_encoding_dict = {'ANG': 0, 'DIS': 1, 'FEA': 2, 'HAP': 3, 'NEU': 4, 'SAD': 5}
+        # my_encoding_dict = {'ANG': 0, 'DIS': 1, 'FEA': 2, 'HAP': 3, 'NEU': 4, 'SAD': 5}
+        my_encoding_dict = {'ANG': 0, 'NEU': 1, 'HAP': 2, 'SAD': 3}
     elif dataset == "IEMOCAP":
         # my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
-        my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2}
+        my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3}
     
     
     labels = data['Emotion'].map(my_encoding_dict).values
 
+    if attributes == False:
         print(labels)
         print()
         print(my_encoding_dict)
