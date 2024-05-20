@@ -1,17 +1,16 @@
 import numpy as np
 import pandas as pd
 import os
-import torch
 import sklearn.metrics
 from speechbrain.inference.interfaces import foreign_class
 
-data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_testing.csv")
+# data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_testing.csv")
+data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_testing.csv")
 
 # directory = "C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/MELD_preprocess_test_data"
 # directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\custom_test\custom_test_data"
 # directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing"
-directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing"
-# directory = r"C:\Users\DANIEL\Desktop\thesis\low-resource-emotion-recognition"
+directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_testing"
 
 files = []
 
@@ -20,10 +19,11 @@ for file in os.listdir(directory):
     if file.endswith('.wav'):
         files.append(file)
 
-my_encoding_dict = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3}
+my_encoding_dict_model = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3}
+my_encoding_dict_dataset = {'NEU': 0, 'ANG': 1, 'HAP': 2, 'SAD': 3}
 label_names = ['neu', 'ang', 'hap', 'sad']
 true_labels = data['Emotion']
-label_keys = true_labels.map(my_encoding_dict).values
+label_keys = true_labels.map(my_encoding_dict_dataset).values
 
 predicted_classes=[]
 classifier = foreign_class(source="speechbrain/emotion-recognition-wav2vec2-IEMOCAP", pymodule_file="custom_interface.py", classname="CustomEncoderWav2vec2Classifier")
@@ -39,7 +39,7 @@ for i, file in enumerate(files):
 # print("text lab:", text_lab)
 # print("type of text lab:", type(text_lab))
 
-predicted_keys = [my_encoding_dict[keys] for keys in predicted_classes]
+predicted_keys = [my_encoding_dict_model[keys] for keys in predicted_classes]
 
 # Print the predicted classes and the actual labels
 for i, prediction in enumerate(predicted_classes):
@@ -47,22 +47,22 @@ for i, prediction in enumerate(predicted_classes):
 
 
 # Calculate accuracy
-accuracy = (predicted_classes == true_labels).mean()
+accuracy = (predicted_keys == label_keys).mean()
 print("Accuracy:", accuracy)
 
 # Calculate F1 Scores
-f1_micro = sklearn.metrics.f1_score(true_labels, predicted_classes, average='micro')
+f1_micro = sklearn.metrics.f1_score(label_keys, predicted_keys, average='micro')
 print("F1 Score (Micro):", f1_micro)
 
-f1_macro = sklearn.metrics.f1_score(true_labels, predicted_classes, average='macro')
+f1_macro = sklearn.metrics.f1_score(label_keys, predicted_keys, average='macro')
 print("F1 Score (Macro):", f1_macro)
 
-f1_weighted = sklearn.metrics.f1_score(true_labels, predicted_classes, average='weighted')
+f1_weighted = sklearn.metrics.f1_score(label_keys, predicted_keys, average='weighted')
 print("F1 Score (Weighted):", f1_weighted)
 
 
 # Generate confusion matrix
-confusion_matrix = sklearn.metrics.confusion_matrix(true_labels, predicted_classes)
+confusion_matrix = sklearn.metrics.confusion_matrix(label_keys, predicted_keys)
 
 confusion_matrix_full = np.zeros((len(label_names), len(label_names)), dtype=int)
 
