@@ -4,4 +4,5 @@
 *.mp4
 *.pth
 *.png
+*.pyc
 EMO-AffectNetModel
