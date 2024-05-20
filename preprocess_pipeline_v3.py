@@ -100,7 +100,8 @@ def switch_case(dataset, *args, **kwargs):
 
 def main():
     toggle_controls = [True, True, True, True]
-    dataset = "IEMOCAP"
+    dataset = "CREMA-D"
+    attributes = False
     audio_directory = ""
     corrected_labels_path = ""
     labels_path = ""
@@ -139,7 +140,6 @@ def main():
 
 
     elif dataset == "IEMOCAP":
-        attributes = False
 
         # old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
         source_directories = [os.path.join(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release", f"Session{i}") for i in range(1, 7)]
