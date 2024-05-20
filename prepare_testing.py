@@ -9,11 +9,11 @@ attributes = False
 print('Attributes:', attributes)
 
 # Set the source and destination directories
-source_dir = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio'
-dest_dir = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing'
-train_dir = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_training'
-train_dir_att = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_training_att'
-dest_dir_att = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing_att'
+source_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\audio"
+dest_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\audio_testing"
+train_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\audio_training"
+train_dir_att = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\audio_training_att"
+dest_dir_att = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\audio_testing_att"
 
 # Set the number of files to cut
 num_files = 200
@@ -41,9 +41,9 @@ if attributes == False:
     print('Done')
 
     # Creating a csv file with the data of the transferred wav files from the source csv file
-    source_csv = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_corrected.csv'
-    dest_csv = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_testing.csv'
-    train_csv = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_training.csv'
+    source_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\labels_corrected.csv"
+    dest_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\labels_testing.csv"
+    train_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\labels_training.csv"
 
     # Open the source CSV file
     with open(source_csv, 'r') as source:
