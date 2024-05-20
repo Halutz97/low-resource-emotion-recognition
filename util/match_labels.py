@@ -137,7 +137,7 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         data = data[data['Emotion'] != 'fea']
 
         data = data[data['Emotion'] != 'sur']
-        data = data[data['Emotion'] != 'neu']
+        data = data[data['Emotion'] != 'sad']
         data = data[data['Emotion'] != 'fru']
         data = data[data['Emotion'] != 'exc']
         data = data[data['Emotion'] != 'sad']
@@ -177,16 +177,16 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         features = []
         labels = []
 
-        if dataset == "MELD":
-            my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
-        elif dataset == "CREMA-D":
-            my_encoding_dict = {'ANG': 0, 'DIS': 1, 'FEA': 2, 'HAP': 3, 'NEU': 4, 'SAD': 5}
-        elif dataset == "IEMOCAP":
-            # my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
-            my_encoding_dict = {'ang': 0, 'hap': 1}
-        
-        
-        labels = data['Emotion'].map(my_encoding_dict).values
+    if dataset == "MELD":
+        my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
+    elif dataset == "CREMA-D":
+        my_encoding_dict = {'ANG': 0, 'DIS': 1, 'FEA': 2, 'HAP': 3, 'NEU': 4, 'SAD': 5}
+    elif dataset == "IEMOCAP":
+        # my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
+        my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2}
+    
+    
+    labels = data['Emotion'].map(my_encoding_dict).values
 
         print(labels)
         print()

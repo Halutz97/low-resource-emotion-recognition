@@ -10,7 +10,8 @@ import os
 import time
 from transformers import Wav2Vec2Processor, Wav2Vec2ForSequenceClassification, TrainingArguments, Trainer, AutoConfig, AdamW
 from transformers.modeling_outputs import SequenceClassifierOutput
-import evaluate
+# import evaluate
+from sklearn. metrics import f1_score
 import torch
 import torch.nn as nn
 import torchaudio
@@ -28,31 +29,37 @@ os.environ['WANDB_API_KEY'] = '00e7b3e4cf2d54995e43ef45df8a0ec3767a3e91'
 
 
 class AudioDataset(Dataset):
-    def __init__(self, annotations, audio_dir, processor, max_length=160000):
+    def __init__(self, annotations, audio_dir, max_length=160000):
         self.annotations = annotations
         self.audio_dir = audio_dir
-        self.processor = processor
         self.max_length = max_length
 
     def __len__(self):
         return len(self.annotations)
 
     def __getitem__(self, index):
-
         audio_filename = self.annotations.iloc[index]['filename']
         emotion_label = self.annotations.iloc[index]['Label']
 
         audio_file_path = os.path.join(self.audio_dir, audio_filename+'.wav')
         audio, sr = torchaudio.load(audio_file_path)
+        if sr != 16000:
+            resampler = torchaudio.transforms.Resample(sr,16000)
+            audio = resampler(audio)
+            print("Problem with resampling")
+
         audio = audio.squeeze(0)
         if audio.shape[0] > self.max_length:
             audio = audio[:self.max_length]
         else:
             padding = self.max_length - audio.shape[0]
             audio = torch.nn.functional.pad(audio, (0, padding), "constant", 0)
-        inputs = self.processor(audio, sampling_rate=sr, return_tensors="pt")
+
+        # Convert to expected input format
+        input_values = audio.unsqueeze(0) # Add batch dimension
+
         label = torch.tensor(emotion_label, dtype=torch.long)
-        return {'input_values': inputs.input_values.squeeze(0), 'labels': label}
+        return {'input_values': input_values.squeeze(0), 'labels': label}
 
 
 class CustomWav2Vec2ForSequenceClassification(Wav2Vec2ForSequenceClassification):
@@ -91,7 +98,7 @@ class CustomWav2Vec2ForSequenceClassification(Wav2Vec2ForSequenceClassification)
         if labels is not None:
             loss_fct = nn.CrossEntropyLoss(weight=self.class_weights) if self.class_weights is not None else nn.CrossEntropyLoss()
             loss = loss_fct(logits, labels)  # No need to view since logits and labels should match
-        
+
 
         if not return_dict:
             output = (logits,) + outputs[2:]
@@ -144,8 +151,8 @@ class CustomTrainer(Trainer):
         for epoch in range(int(self.args.num_train_epochs)):
             self.model.train()
             total_train_loss = 0
-            epoch_train_loss_file = f'/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run5/training_loss_epoch_{epoch}.txt'
-            epoch_val_loss_file = f'/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run5/validation_loss_epoch_{epoch}.txt'
+            epoch_train_loss_file = f'/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run6/training_loss_epoch_{epoch}.txt'
+            epoch_val_loss_file = f'/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run6/validation_loss_epoch_{epoch}.txt'
 
             with open(epoch_train_loss_file, 'w') as train_loss_file:
                 for step, inputs in enumerate(train_dataloader):
@@ -170,7 +177,7 @@ class CustomTrainer(Trainer):
             val_loss = self.evaluate()
             epoch_val_losses.append(val_loss)
             wandb.log({"epoch": epoch, "avg_train_loss": avg_train_loss, "val_loss": val_loss})
-            
+
             with open(epoch_val_loss_file, 'w') as val_loss_file:
                 val_loss_file.write(f"Epoch: {epoch}, Avg Validation Loss: {val_loss}\n")
 
@@ -213,7 +220,9 @@ def collate_fn(batch):
 def compute_metrics(eval_pred):
     logits, labels = eval_pred
     predictions = np.argmax(logits, axis=-1)
-    return metric.compute(predictions=predictions, references=labels)
+    f1 = f1_score(labels, predictions, average='weighted')
+    # return metric.compute(predictions=predictions, references=labels)
+    return {"f1":f1}
 
 
 def wait_for_file(filename, timeout=60):
@@ -225,12 +234,13 @@ def wait_for_file(filename, timeout=60):
             raise FileNotFoundError(f"File {filename} not found after {timeout} seconds")
 
 # Define the paths to use
-zip_path = '/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run5/IEMOCAP_full_release3.zip'
+zip_path = '/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run6/IEMOCAP_full_release_E3.zip'
 extract_to = '/content/extracted_data'
 directory = os.path.join(extract_to, "audio_training")
 
 # Define basic parameters of the model and dataset
-my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
+# my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
+my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2}
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 max_length = 16000 * 10  # 9 seconds
 
@@ -271,21 +281,22 @@ class_weights = class_weights / class_weights.sum() * len(np.unique(labels))  # 
 weights_torch = torch.tensor(class_weights, dtype=torch.float).to(device)
 
 # Load the processor and dataset
-processor = Wav2Vec2Processor.from_pretrained("jonatasgrosman/wav2vec2-large-xlsr-53-english")
-dataset = AudioDataset(data, directory, processor, max_length=max_length)
+# processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-large-xlsr-53")
+dataset = AudioDataset(data, directory, max_length=max_length)
 
 # Split the dataset
 train_size = int(0.8 * len(dataset))
 val_size = len(dataset) - train_size
 train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
 
+
 # Initialize the trainer
-metric = evaluate.load("accuracy")
+# metric = evaluate.load("accuracy")
 
 # Prepare the trainer
 def train_model():
     run = wandb.init(project="emotion-recognition-IEMOCAP", reinit=True, config={
-        "learning_rate": 1e-4,  # Default learning rate
+        "learning_rate": 1e-5,  # Default learning rate
         "batch_size": 4,        # Adjusted to match DataLoader
         "num_linear_layers": 1  # Default number of linear layers
     })
@@ -298,25 +309,24 @@ def train_model():
     val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
 
     # Load a pre-trained model for pretrained
-    config = AutoConfig.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=7)
+    config = AutoConfig.from_pretrained("facebook/wav2vec2-large-xlsr-53", num_labels=3)
     model = CustomWav2Vec2ForSequenceClassification(config, num_linear_layers=run.config.num_linear_layers)
     model.to(device)
 
-    # Freeze all parameters in the base wav2vec2 model
-    for param in model.wav2vec2.parameters():
-      param.requires_grad = False
+    # # Freeze all parameters in the base wav2vec2 model
+    # for param in model.wav2vec2.parameters():
+    #   param.requires_grad = False
 
-    # Unfreeze the classifier parameters in your custom classifier
-    for param in model.classifier.parameters():
-      param.requires_grad = True
+    # # Unfreeze the classifier parameters in your custom classifier
+    # for param in model.classifier.parameters():
+    #   param.requires_grad = True
 
-    # Check which parameters are frozen and which are not
-    for name, param in model.named_parameters():
-      print(f"{name} is {'trainable' if param.requires_grad else 'frozen'}")
+    # # Check which parameters are frozen and which are not
+    # for name, param in model.named_parameters():
+    #   print(f"{name} is {'trainable' if param.requires_grad else 'frozen'}")
 
     # Log model parameters and gradients
     wandb.watch(model, log='all', log_freq=100)  # Configure as needed
-    
 
     training_args = TrainingArguments(
         output_dir='./results',          # Output directory
@@ -335,8 +345,8 @@ def train_model():
         save_strategy='steps',               # Saving model checkpoint strategy
         save_steps=500,                      # Save checkpoint every 500 steps
         load_best_model_at_end=True,           # Load the best model at the end of training
-        metric_for_best_model="accuracy",      # Use accuracy to evaluate the best model
-        greater_is_better=True,                # Higher accuracy is better
+        metric_for_best_model="f1",      # Use accuracy to evaluate the best model
+        greater_is_better=True,           # Higher accuracy is better
         max_grad_norm=1.0,                # Gradient clipping value
         fp16=True,                        # Enable mixed precision training
         report_to="wandb"                # Report the results to Weights & Biases
@@ -359,7 +369,7 @@ def train_model():
       # Optionally, re-raise the exception if you want to stop the process
       raise e
 
-    model_path = f'/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run5/model/emotion_recognition_model_{run.id}.pth'
+    model_path = f'/content/drive/My Drive/Thesis_Data/IEMOCAP_runs/Run6/model/emotion_recognition_model_{run.id}.pth'
     os.makedirs(os.path.dirname(model_path), exist_ok=True)
     torch.save(model.state_dict(), model_path)
 
@@ -368,16 +378,16 @@ def train_model():
 sweep_config = {
     'method': 'grid',
     'metric': {
-      'name': 'accuracy',
+      'name': 'f1',
       'goal': 'maximize'
     },
     'parameters': {
-        'learning_rate': {'values': [1e-3, 1e-4, 1e-5]},
-        'batch_size': {'values': [8 , 16]},
-        'num_linear_layers': {'values': [1, 3]}  # Sweep over 1, 2, or 3 linear layers
+        'learning_rate': {'values': [1e-6]},
+        'batch_size': {'values': [4, 8]},
+        #'num_linear_layers': {'values': [1]}  # Sweep over 1, 2, or 3 linear layers
     }
 }
 
 sweep_id = wandb.sweep(sweep=sweep_config, project="emotion-recognition-IEMOCAP")
 
-wandb.agent(sweep_id, function=train_model, count=2)
+wandb.agent(sweep_id, function=train_model, count=1)
