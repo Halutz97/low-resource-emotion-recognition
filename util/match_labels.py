@@ -128,10 +128,11 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         print("Number of missmatches: " + str(num_missmatches))
         print()
 
-    elif dataset == "CREMA-D":
+    elif dataset == "EMO-DB":
         # Drop all rows with oth, xxx, dis, and fea of the csv file
-        data = data[data['Emotion'] != 'DIS']
-        data = data[data['Emotion'] != 'FEA']
+        data = data[data['Emotion'] != 'L']
+        data = data[data['Emotion'] != 'E']
+        data = data[data['Emotion'] != 'A']
 
 
         print("Number of entries in dataframe after removing some emotions: " + str(len(data)))
@@ -149,6 +150,77 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
 
         # Eliminate all rows from data that do not have a corresponding wav file
         data = data[(data['filename']).isin(files)]
+        print("Number of entries in dataframe after removing files not in directory: " + str(len(data)))
+
+    elif dataset == "ShEMO":
+        # Drop all rows with oth, xxx, dis, and fea of the csv file
+        data = data[data['Emotion'] != 'W']
+        data = data[data['Emotion'] != 'F']
+
+
+        print("Number of entries in dataframe after removing some emotions: " + str(len(data)))
+
+        # Eliminate all wav files from directory that do not appear on data
+        num_deleted_files = 0
+        for file in files:
+            if file not in data['filename'].values:
+                print("File not in data: " + file)
+                num_deleted_files += 1
+                os.remove(os.path.join(directory, file))
+
+        print("Number of deleted files: " + str(num_deleted_files))
+        print("Number of files in directory after deletion: " + str(len(os.listdir(directory))))
+
+        # Eliminate all rows from data that do not have a corresponding wav file
+        data = data[(data['filename']).isin(files)]
+        print("Number of entries in dataframe after removing files not in directory: " + str(len(data)))
+
+    elif dataset == "CREMA-D":
+        # Drop all rows with oth, xxx, dis, and fea of the csv file
+        data = data[data['Emotion'] != 'DIS']
+        data = data[data['Emotion'] != 'FEA']
+
+
+
+
+        print("Number of entries in dataframe after removing some emotions: " + str(len(data)))
+
+        # Eliminate all wav files from directory that do not appear on data
+        num_deleted_files = 0
+        for file in files:
+            if file not in data['filename'].values:
+                print("File not in data: " + file)
+                num_deleted_files += 1
+                os.remove(os.path.join(directory, file))
+
+        print("Number of deleted files: " + str(num_deleted_files))
+        print("Number of files in directory after deletion: " + str(len(os.listdir(directory))))
+
+        # Eliminate all rows from data that do not have a corresponding wav file
+        data = data[(data['filename']).isin(files)]
+        print("Number of entries in dataframe after removing files not in directory: " + str(len(data)))
+
+    elif dataset == "CREMA-D-voted":
+        # Drop all rows with oth, xxx, dis, and fea of the csv file
+        data = data[data['Emotion'] != 'D']
+        data = data[data['Emotion'] != 'F']
+
+
+        print("Number of entries in dataframe after removing some emotions: " + str(len(data)))
+
+        # Eliminate all wav files from directory that do not appear on data
+        num_deleted_files = 0
+        for file in files:
+            if file not in (data['filename'].values+'.wav'):
+                print("File not in data: " + file)
+                num_deleted_files += 1
+                os.remove(os.path.join(directory, file))
+
+        print("Number of deleted files: " + str(num_deleted_files))
+        print("Number of files in directory after deletion: " + str(len(os.listdir(directory))))
+
+        # Eliminate all rows from data that do not have a corresponding wav file
+        data = data[(data['filename']+'.wav').isin(files)]
         print("Number of entries in dataframe after removing files not in directory: " + str(len(data)))
 
     elif dataset == "IEMOCAP" and attributes == False:
@@ -203,6 +275,12 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
     elif dataset == "CREMA-D":
         # my_encoding_dict = {'ANG': 0, 'DIS': 1, 'FEA': 2, 'HAP': 3, 'NEU': 4, 'SAD': 5}
         my_encoding_dict = {'ANG': 0, 'NEU': 1, 'HAP': 2, 'SAD': 3}
+    elif dataset == "CREMA-D-voted":
+        my_encoding_dict = {'A': 0, 'N': 1, 'H': 2, 'S': 3}
+    elif dataset == "EMO-DB":
+        my_encoding_dict = {'W': 0, 'N': 1, 'F': 2, 'T': 3}
+    elif dataset == "ShEMO":
+        my_encoding_dict = {'A': 0, 'N': 1, 'H': 2, 'S': 3}
     elif dataset == "IEMOCAP":
         # my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
         my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3}
@@ -265,6 +343,12 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
             data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename'], axis=1)
         elif dataset == "CREMA-D":
             data = data.drop(['Index', 'Speaker', 'Line', 'Intensity'], axis=1)
+        elif dataset == "CREMA-D-voted":
+            data = data.drop(['Level'], axis=1)
+        elif dataset == "EMO-DB":
+            data = data.drop(['Speaker', 'Line', 'Version'], axis=1)
+        elif dataset == "ShEMO":
+            data = data.drop(['Speaker', 'Gender', 'Number'], axis=1)
         elif dataset == "IEMOCAP":
             data = data.drop(['Time', 'Attributes'], axis=1)
 

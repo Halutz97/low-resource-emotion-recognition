@@ -4,13 +4,34 @@ import os
 import sklearn.metrics
 from speechbrain.inference.interfaces import foreign_class
 
-# data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_testing.csv")
-data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_testing.csv")
+dataset = "IEMOCAP"
+
+if dataset == "IEMOCAP":
+    # data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_testing.csv")
+    # directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing"
+    data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_corrected.csv")
+    directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio"
+    my_encoding_dict_dataset = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3}
+
+elif dataset == "CREMA-D":
+    data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_testing.csv")
+    directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_testing"
+    my_encoding_dict_dataset = {'NEU': 0, 'ANG': 1, 'HAP': 2, 'SAD': 3}
+
+elif dataset == "CREMA-D-voted":
+    data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_v_testing.csv")
+    directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_v_testing"
+    my_encoding_dict_dataset = {'N': 0, 'A': 1, 'H': 2, 'S': 3}
+
+elif dataset == "EmoDB":
+    data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\EmoDB\labels_testing.csv")
+    directory = r"C:\Users\DANIEL\Desktop\thesis\EmoDB\audio_testing"
+    my_encoding_dict_dataset = {'W': 0, 'N': 1, 'F': 2, 'T': 3}
+
 
 # directory = "C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/MELD_preprocess_test_data"
 # directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\custom_test\custom_test_data"
-# directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing"
-directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_testing"
+
 
 files = []
 
@@ -20,7 +41,6 @@ for file in os.listdir(directory):
         files.append(file)
 
 my_encoding_dict_model = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3}
-my_encoding_dict_dataset = {'NEU': 0, 'ANG': 1, 'HAP': 2, 'SAD': 3}
 label_names = ['neu', 'ang', 'hap', 'sad']
 true_labels = data['Emotion']
 label_keys = true_labels.map(my_encoding_dict_dataset).values
