@@ -164,7 +164,7 @@ def switch_case(dataset, *args, **kwargs):
 
 def main():
     toggle_controls = [True, True, True, True]
-    dataset = "IEMOCAP"
+    dataset = "ShEMO"
     attributes = False
     audio_directory = ""
     corrected_labels_path = ""
@@ -199,7 +199,7 @@ def main():
         if not os.path.exists(labels_path):
             handle_CREMA_D(audio_directory)
 
-        toggle_controls = [False, False, True, True]
+        toggle_controls = [False, False, False, True]
         corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
 
     elif dataset == "CREMA-D-voted":
@@ -221,7 +221,7 @@ def main():
         if not os.path.exists(labels_path):
             handle_CREMA_D_v(audio_directory,source_labels)
 
-        toggle_controls = [False, False, True, True]
+        toggle_controls = [False, False, False, True]
         corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
 
 

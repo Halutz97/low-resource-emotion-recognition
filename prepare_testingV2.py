@@ -5,10 +5,10 @@ import pandas as pd
 attributes = False
 print('Attributes:', attributes)
 
-# Set the number of files to cut
+# Set the dataset and the number of files to cut
+dataset = "ShEMO"
 num_files_per_class = 10000
 
-dataset = "IEMOCAP"
 
 # Set the source and destination directories
 if dataset == "IEMOCAP":
@@ -26,6 +26,10 @@ elif dataset == "CREMA-D-voted":
 elif dataset == "EMO-DB":
     source_dir = r'C:\Users\DANIEL\Desktop\thesis\EmoDB\audio'
     dest_dir = r'C:\Users\DANIEL\Desktop\thesis\EmoDB\audio_testing'
+
+elif dataset == "ShEMO":
+    source_dir = r'C:\Users\DANIEL\Desktop\thesis\ShEMO\audio'
+    dest_dir = r'C:\Users\DANIEL\Desktop\thesis\ShEMO\audio_testing'
 
 
 train_dir_att = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_training_att'
@@ -47,9 +51,13 @@ if attributes == False:
         source_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\voted_labels_corrected.csv'
         dest_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_v_testing.csv'
 
-    elif dataset == "CREMA-D-voted":
+    elif dataset == "EMO-DB":
         source_csv = r'C:\Users\DANIEL\Desktop\thesis\EmoDB\labels_corrected.csv'
         dest_csv = r'C:\Users\DANIEL\Desktop\thesis\EmoDB\labels_testing.csv'
+
+    elif dataset == "ShEMO":
+        source_csv = r'C:\Users\DANIEL\Desktop\thesis\ShEMO\labels_corrected.csv'
+        dest_csv = r'C:\Users\DANIEL\Desktop\thesis\ShEMO\labels_testing.csv'
 
 
     # Get the list of files in the source directory
@@ -105,7 +113,7 @@ if attributes == False:
         if file != (filename + '.wav'):
             print(i)
             print("File:", file + " - " + "Filename:", filename + '.wav')
-            print('The files are not in the correct order')
+            print("Warning: The order of the rows on the CSV file does not match the order of the files in the destination directory")
             exception = True
             break
 
