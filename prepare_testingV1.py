@@ -11,7 +11,7 @@ print('Attributes:', attributes)
 # Set the number of files to cut
 num_files = 300
 
-dataset = "CREMA-D"
+dataset = "CREMA-D-voted"
 
 # Set the source and destination directories
 if dataset == "IEMOCAP":
@@ -20,9 +20,15 @@ if dataset == "IEMOCAP":
     train_dir = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_training'
 
 elif dataset == "CREMA-D":
-    source_dir = r'C:\Users\DANIEL\Desktop\thesis\\CREMA-D\audio'
+    source_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio'
     dest_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_testing'
     train_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_training'
+
+elif dataset == "CREMA-D-voted":
+    source_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio'
+    dest_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_v_testing'
+    train_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_v_training'
+
 
 train_dir_att = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_training_att'
 dest_dir_att = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing_att'
@@ -61,6 +67,11 @@ if attributes == False:
         dest_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_testing.csv'
         train_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_training.csv'
 
+    elif dataset == "CREMA-D-voted":
+        source_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\voted_labels_corrected.csv'
+        dest_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_v_testing.csv'
+        train_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_v_training.csv'
+
     # Open the source CSV file
     with open(source_csv, 'r') as source:
         reader = csv.reader(source)
@@ -74,7 +85,7 @@ if attributes == False:
             writer.writerow(header)
 
             # For each row in the source CSV file
-            if dataset == "IEMOCAP":
+            if dataset == "IEMOCAP" or dataset == "CREMA-D-voted":
                 for row in reader:
                     # If the filename (assuming it's in the first column) is in the list of transferred files
                     if (row[0]+".wav") in selected_files:
@@ -175,7 +186,7 @@ if attributes == False:
             writer.writerow(header)
 
             # For each row in the source CSV file
-            if dataset == "IEMOCAP":
+            if dataset == "IEMOCAP" or dataset == "CREMA-D-voted":
                 for row in reader:
                     # If the filename (assuming it's in the first column) is in the list of transferred files
                     if (row[0]+".wav") not in selected_files:

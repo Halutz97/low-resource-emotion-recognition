@@ -2,15 +2,43 @@ import numpy as np
 import pandas as pd
 import os
 import sklearn.metrics
+import seaborn as sns
+import matplotlib.pyplot as plt
 from speechbrain.inference.interfaces import foreign_class
 
-# data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_testing.csv")
-data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_testing.csv")
+dataset = "ShEMO"
+
+if dataset == "IEMOCAP":
+    # data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_testing.csv")
+    # directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing"
+    data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_testing.csv")
+    directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing"
+    my_encoding_dict_dataset = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3}
+
+elif dataset == "CREMA-D":
+    data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_testing.csv")
+    directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_testing"
+    my_encoding_dict_dataset = {'NEU': 0, 'ANG': 1, 'HAP': 2, 'SAD': 3}
+
+elif dataset == "CREMA-D-voted":
+    data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_v_testing.csv")
+    directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_v_testing"
+    my_encoding_dict_dataset = {'N': 0, 'A': 1, 'H': 2, 'S': 3}
+
+elif dataset == "EMO-DB":
+    data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\EmoDB\labels_testing.csv")
+    directory = r"C:\Users\DANIEL\Desktop\thesis\EmoDB\audio_testing"
+    my_encoding_dict_dataset = {'W': 0, 'N': 1, 'F': 2, 'T': 3}
+
+elif dataset == "ShEMO":
+    data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\ShEMO\labels_testing.csv")
+    directory = r"C:\Users\DANIEL\Desktop\thesis\ShEMO\audio_testing"
+    my_encoding_dict_dataset = {'N': 0, 'A': 1, 'H': 2, 'S': 3}
+
 
 # directory = "C:/MyDocs/DTU/MSc/Thesis/Data/MELD/MELD_preprocess_test/MELD_preprocess_test_data"
 # directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\custom_test\custom_test_data"
-# directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing"
-directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_testing"
+
 
 files = []
 
@@ -20,7 +48,6 @@ for file in os.listdir(directory):
         files.append(file)
 
 my_encoding_dict_model = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3}
-my_encoding_dict_dataset = {'NEU': 0, 'ANG': 1, 'HAP': 2, 'SAD': 3}
 label_names = ['neu', 'ang', 'hap', 'sad']
 true_labels = data['Emotion']
 label_keys = true_labels.map(my_encoding_dict_dataset).values
@@ -79,3 +106,13 @@ confusion_matrix_df.loc['Total'] = confusion_matrix_df.sum()
 
 print("Confusion Matrix:")
 print(confusion_matrix_df)
+
+# Calculate the maximum value for the heatmap color scale
+max_value = confusion_matrix_df.iloc[:-1,:].values.max()
+
+plt.figure(figsize=(5, 4))
+sns.heatmap(confusion_matrix_df.iloc[:-1, :-1], annot=True, fmt='d', cmap='Blues', xticklabels=label_names, yticklabels=label_names, vmin=0, vmax=max_value)
+plt.title('Confusion Matrix')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.show()
