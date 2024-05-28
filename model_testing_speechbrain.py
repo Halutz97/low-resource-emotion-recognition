@@ -6,7 +6,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from speechbrain.inference.interfaces import foreign_class
 
-dataset = "ShEMO"
+dataset = "EMO-DB"
 
 if dataset == "IEMOCAP":
     # data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_testing.csv")
@@ -60,11 +60,11 @@ for i, file in enumerate(files):
     out_prob, score, index, text_lab = classifier.classify_file(os.path.join(directory,file))
     predicted_classes.append(text_lab[0])
 
-# print("out prob:", out_prob)
-# print("score:", score)
-# print("index:", index)
-# print("text lab:", text_lab)
-# print("type of text lab:", type(text_lab))
+print("out prob:", out_prob)
+print("score:", score)
+print("index:", index)
+print("text lab:", text_lab)
+print("type of text lab:", type(text_lab))
 
 predicted_keys = [my_encoding_dict_model[keys] for keys in predicted_classes]
 
