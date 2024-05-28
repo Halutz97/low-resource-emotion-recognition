@@ -37,6 +37,8 @@ def handle_CREMA_D(directory):
 def handle_CREMA_D_v(directory, source_labels):
     # Specify the columns you want to read
     cols = ["FileName", "VoiceVote", "VoiceLevel"]
+    # Uncomment the version you need (Voice / Face)
+    # cols = ["FileName", "FaceVote", "FaceLevel"]
 
     # Read the specified columns from the source CSV file
     labels = pd.read_csv(source_labels, usecols=cols)
@@ -47,12 +49,20 @@ def handle_CREMA_D_v(directory, source_labels):
         "VoiceVote": "Emotion",
         "VoiceLevel": "Level"
     })
+    # Uncomment the version you need (Voice / Face)
+    # labels = labels.rename(columns={
+    #     "FileName": "filename",
+    #     "FaceVote": "Emotion",
+    #     "FaceLevel": "Level"
+    # })
 
      # Filter rows where 'Emotion' has more than one letter
     labels = labels[labels['Emotion'].str.len() == 1]
 
     # Creating a csv file with the extracted labels
-    labels.to_csv(os.path.join(os.path.dirname(directory), "voted_labels.csv"), index=False)
+    labels.to_csv(os.path.join(os.path.dirname(directory), "voted_voice_labels.csv"), index=False)
+    # Uncomment the version you need (Voice / Face)
+    # labels.to_csv(os.path.join(os.path.dirname(directory), "voted_face_labels.csv"), index=False)
 
     return
 
