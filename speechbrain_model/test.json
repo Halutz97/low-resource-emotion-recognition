@@ -1,0 +1,4970 @@
+{
+  "Ses04M_script02_1_F015": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script02_1/Ses04M_script02_1_F015.wav",
+    "length": 4.67,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses01M_impro05_M009": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro05/Ses01M_impro05_M009.wav",
+    "length": 2.7799375,
+    "val": "1.5000",
+    "aro": "3.0000"
+  },
+  "Ses03M_script02_1_M014": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_M014.wav",
+    "length": 7.8826875,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro03_F044": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_F044.wav",
+    "length": 2.75,
+    "val": "5.0000",
+    "aro": "3.5000"
+  },
+  "Ses02F_script02_2_F037": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_2/Ses02F_script02_2_F037.wav",
+    "length": 3.2599375,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses02M_impro05_F005": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro05/Ses02M_impro05_F005.wav",
+    "length": 8.1055,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses02M_impro03_F021": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro03/Ses02M_impro03_F021.wav",
+    "length": 4.3325,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses03M_script03_1_F009": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_1/Ses03M_script03_1_F009.wav",
+    "length": 3.7599375,
+    "val": "3.5000",
+    "aro": "3.5000"
+  },
+  "Ses01M_script02_1_F013": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_1/Ses01M_script02_1_F013.wav",
+    "length": 2.1899375,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses04M_script02_1_M011": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script02_1/Ses04M_script02_1_M011.wav",
+    "length": 5.4,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses03M_script02_1_M022": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_M022.wav",
+    "length": 1.781,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_impro04_M017": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro04/Ses03F_impro04_M017.wav",
+    "length": 3.7045625,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses02F_impro01_F006": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro01/Ses02F_impro01_F006.wav",
+    "length": 4.9995,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script01_1_M036": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_M036.wav",
+    "length": 3.79,
+    "val": "3.0000",
+    "aro": "3.3333"
+  },
+  "Ses03M_impro01_F004": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro01/Ses03M_impro01_F004.wav",
+    "length": 5.72025,
+    "val": "2.5000",
+    "aro": "4.0000"
+  },
+  "Ses04F_script02_1_M016": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_1/Ses04F_script02_1_M016.wav",
+    "length": 1.2,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses02F_impro02_F008": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro02/Ses02F_impro02_F008.wav",
+    "length": 11.2005,
+    "val": "2.0000",
+    "aro": "2.0000"
+  },
+  "Ses01M_script01_1_F023": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_F023.wav",
+    "length": 7.7361875,
+    "val": "1.6667",
+    "aro": "3.6667"
+  },
+  "Ses02F_impro03_M021": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro03/Ses02F_impro03_M021.wav",
+    "length": 6.0185,
+    "val": "4.0000",
+    "aro": "3.2500"
+  },
+  "Ses01F_script01_3_M015": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_3/Ses01F_script01_3_M015.wav",
+    "length": 2.9599375,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses04F_impro06_M005": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro06/Ses04F_impro06_M005.wav",
+    "length": 4.0199375,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses02F_script02_2_M018": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_2/Ses02F_script02_2_M018.wav",
+    "length": 1.8199375,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses02M_impro08_F000": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro08/Ses02M_impro08_F000.wav",
+    "length": 5.661375,
+    "val": "4.0000",
+    "aro": "3.6667"
+  },
+  "Ses02M_impro06_F000": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro06/Ses02M_impro06_F000.wav",
+    "length": 2.937125,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses01F_script01_3_M026": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_3/Ses01F_script01_3_M026.wav",
+    "length": 3.211625,
+    "val": "2.0000",
+    "aro": "1.6667"
+  },
+  "Ses03M_impro08a_F029": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_F029.wav",
+    "length": 7.5521875,
+    "val": "2.5000",
+    "aro": "4.0000"
+  },
+  "Ses01F_script01_3_F006": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_3/Ses01F_script01_3_F006.wav",
+    "length": 4.8830625,
+    "val": "3.0000",
+    "aro": "2.3333"
+  },
+  "Ses01M_script02_1_M045": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_1/Ses01M_script02_1_M045.wav",
+    "length": 7.6899375,
+    "val": "3.5000",
+    "aro": "3.5000"
+  },
+  "Ses03F_script01_3_M016": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_M016.wav",
+    "length": 5.2665,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses01M_script03_2_M009": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script03_2/Ses01M_script03_2_M009.wav",
+    "length": 3.1105625,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script02_2_F004": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_F004.wav",
+    "length": 3.17525,
+    "val": "2.3333",
+    "aro": "3.3333"
+  },
+  "Ses04F_impro02_M017": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro02/Ses04F_impro02_M017.wav",
+    "length": 3.2199375,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses03F_script02_1_F002": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_1/Ses03F_script02_1_F002.wav",
+    "length": 4.878625,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses01F_script01_3_M024": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_3/Ses01F_script01_3_M024.wav",
+    "length": 3.6899375,
+    "val": "2.3333",
+    "aro": "3.0000"
+  },
+  "Ses03M_script01_3_M039": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_3/Ses03M_script01_3_M039.wav",
+    "length": 6.346,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro08_M027": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro08/Ses04F_impro08_M027.wav",
+    "length": 6.2885,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses04M_script03_2_F009": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_2/Ses04M_script03_2_F009.wav",
+    "length": 1.0299375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script02_1_F015": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script02_1/Ses01F_script02_1_F015.wav",
+    "length": 2.3245,
+    "val": "2.5000",
+    "aro": "1.5000"
+  },
+  "Ses03F_impro04_M020": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro04/Ses03F_impro04_M020.wav",
+    "length": 1.560875,
+    "val": "5.0000",
+    "aro": "4.0000"
+  },
+  "Ses03F_script02_1_M024": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_1/Ses03F_script02_1_M024.wav",
+    "length": 19.21725,
+    "val": "3.0000",
+    "aro": "4.0000"
+  },
+  "Ses03F_impro02_F011": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro02/Ses03F_impro02_F011.wav",
+    "length": 4.4025,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses03M_script02_1_M019": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_M019.wav",
+    "length": 1.500625,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses01M_impro07_F020": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro07/Ses01M_impro07_F020.wav",
+    "length": 4.1,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses04F_script01_3_M000": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script01_3/Ses04F_script01_3_M000.wav",
+    "length": 2.8521875,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script02_1_M015": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_1/Ses03F_script02_1_M015.wav",
+    "length": 9.97025,
+    "val": "4.5000",
+    "aro": "4.5000"
+  },
+  "Ses03F_script02_2_F001": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_F001.wav",
+    "length": 3.0783125,
+    "val": "2.6667",
+    "aro": "2.6667"
+  },
+  "Ses03F_script03_1_F026": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_1/Ses03F_script03_1_F026.wav",
+    "length": 5.8199375,
+    "val": "4.0000",
+    "aro": "4.5000"
+  },
+  "Ses04F_impro02_M004": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro02/Ses04F_impro02_M004.wav",
+    "length": 8.652875,
+    "val": "1.5000",
+    "aro": "2.0000"
+  },
+  "Ses04F_impro07_M063": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro07/Ses04F_impro07_M063.wav",
+    "length": 1.23,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses04M_impro02_F024": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro02/Ses04M_impro02_F024.wav",
+    "length": 10.68,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script01_1_F013": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_F013.wav",
+    "length": 7.9399375,
+    "val": "2.3333",
+    "aro": "4.3333"
+  },
+  "Ses03M_impro03_F016": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro03/Ses03M_impro03_F016.wav",
+    "length": 9.4816875,
+    "val": "2.5000",
+    "aro": "4.0000"
+  },
+  "Ses03M_impro08b_M017": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro08b/Ses03M_impro08b_M017.wav",
+    "length": 5.87,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03M_impro04_M031": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_M031.wav",
+    "length": 1.66,
+    "val": "2.0000",
+    "aro": "1.5000"
+  },
+  "Ses04M_script03_1_F001": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_1/Ses04M_script03_1_F001.wav",
+    "length": 2.9599375,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses01F_impro07_M009": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro07/Ses01F_impro07_M009.wav",
+    "length": 6.3075,
+    "val": "3.5000",
+    "aro": "4.0000"
+  },
+  "Ses03M_script01_1_F030": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_1/Ses03M_script01_1_F030.wav",
+    "length": 5.3366875,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses01F_script03_1_F031": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script03_1/Ses01F_script03_1_F031.wav",
+    "length": 4.0799375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script01_3_F020": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_F020.wav",
+    "length": 2.6129375,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses02M_script01_2_M005": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_2/Ses02M_script01_2_M005.wav",
+    "length": 1.8199375,
+    "val": "3.0000",
+    "aro": "2.6667"
+  },
+  "Ses02F_script01_3_F006": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_3/Ses02F_script01_3_F006.wav",
+    "length": 4.34,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses03F_script02_1_F011": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_1/Ses03F_script02_1_F011.wav",
+    "length": 2.751375,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses02F_script03_1_F021": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_1/Ses02F_script03_1_F021.wav",
+    "length": 7.62,
+    "val": "4.0000",
+    "aro": "2.6667"
+  },
+  "Ses05F_impro02_F019": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro02/Ses05F_impro02_F019.wav",
+    "length": 3.7871875,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses02M_impro04_M008": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro04/Ses02M_impro04_M008.wav",
+    "length": 5.3981875,
+    "val": "2.3333",
+    "aro": "2.3333"
+  },
+  "Ses04M_script03_2_M048": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_2/Ses04M_script03_2_M048.wav",
+    "length": 1.213875,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses03F_impro02_M007": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro02/Ses03F_impro02_M007.wav",
+    "length": 3.2125,
+    "val": "1.5000",
+    "aro": "4.0000"
+  },
+  "Ses04M_script03_1_M033": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_1/Ses04M_script03_1_M033.wav",
+    "length": 4.81,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses03F_impro06_M009": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro06/Ses03F_impro06_M009.wav",
+    "length": 3.3408125,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses03F_script01_1_F027": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_F027.wav",
+    "length": 5.6381875,
+    "val": "2.3333",
+    "aro": "2.3333"
+  },
+  "Ses02F_script02_1_M040": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_1/Ses02F_script02_1_M040.wav",
+    "length": 9.9599375,
+    "val": "3.5000",
+    "aro": "3.5000"
+  },
+  "Ses01M_script03_2_M011": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script03_2/Ses01M_script03_2_M011.wav",
+    "length": 7.025625,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03M_script03_1_F021": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_1/Ses03M_script03_1_F021.wav",
+    "length": 4.5,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses01M_script02_2_F003": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_2/Ses01M_script02_2_F003.wav",
+    "length": 2.4799375,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_script02_2_F021": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_F021.wav",
+    "length": 10.4565625,
+    "val": "3.6667",
+    "aro": "3.3333"
+  },
+  "Ses05F_impro03_F023": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F023.wav",
+    "length": 1.68,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses02F_impro08_F004": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro08/Ses02F_impro08_F004.wav",
+    "length": 7.2851875,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses03F_impro02_F039": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro02/Ses03F_impro02_F039.wav",
+    "length": 3.5149375,
+    "val": "1.5000",
+    "aro": "2.0000"
+  },
+  "Ses04F_impro07_M003": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro07/Ses04F_impro07_M003.wav",
+    "length": 1.25,
+    "val": "5.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro07_F012": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro07/Ses04F_impro07_F012.wav",
+    "length": 3.9499375,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses04F_impro01_F015": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro01/Ses04F_impro01_F015.wav",
+    "length": 4.25,
+    "val": "1.5000",
+    "aro": "4.5000"
+  },
+  "Ses02F_script01_1_M026": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_1/Ses02F_script01_1_M026.wav",
+    "length": 2.3499375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses02M_impro04_M021": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro04/Ses02M_impro04_M021.wav",
+    "length": 2.2694375,
+    "val": "2.0000",
+    "aro": "2.0000"
+  },
+  "Ses03M_script03_1_F007": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_1/Ses03M_script03_1_F007.wav",
+    "length": 4.05,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro07_F015": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro07/Ses04F_impro07_F015.wav",
+    "length": 2.5,
+    "val": "4.5000",
+    "aro": "3.5000"
+  },
+  "Ses04M_impro05_F031": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_F031.wav",
+    "length": 4.4499375,
+    "val": "3.5000",
+    "aro": "2.0000"
+  },
+  "Ses01M_script03_2_M042": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script03_2/Ses01M_script03_2_M042.wav",
+    "length": 1.72,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses03M_script03_2_M046": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_2/Ses03M_script03_2_M046.wav",
+    "length": 1.76375,
+    "val": "1.0000",
+    "aro": "3.0000"
+  },
+  "Ses01M_impro01_F012": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_F012.wav",
+    "length": 1.925,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script02_1_M021": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_1/Ses02F_script02_1_M021.wav",
+    "length": 6.7599375,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses03M_script01_1_M008": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_1/Ses03M_script01_1_M008.wav",
+    "length": 5.27325,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses03F_impro03_F017": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro03/Ses03F_impro03_F017.wav",
+    "length": 1.8865625,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses01M_script02_2_F039": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_2/Ses01M_script02_2_F039.wav",
+    "length": 4.7825,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses04M_impro02_M006": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro02/Ses04M_impro02_M006.wav",
+    "length": 4.97,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses01M_impro01_M028": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_M028.wav",
+    "length": 2.4,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses03M_impro08a_M012": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_M012.wav",
+    "length": 8.3803125,
+    "val": "3.0000",
+    "aro": "4.0000"
+  },
+  "Ses02F_impro01_M017": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro01/Ses02F_impro01_M017.wav",
+    "length": 5.096875,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses02F_script02_1_F012": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_1/Ses02F_script02_1_F012.wav",
+    "length": 2.67,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses02M_impro02_M013": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro02/Ses02M_impro02_M013.wav",
+    "length": 8.6159375,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro08a_M002": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_M002.wav",
+    "length": 7.8479375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script01_3_F000": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_3/Ses02F_script01_3_F000.wav",
+    "length": 2.91,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script03_2_F005": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script03_2/Ses01F_script03_2_F005.wav",
+    "length": 2.0324375,
+    "val": "3.5000",
+    "aro": "2.0000"
+  },
+  "Ses03M_impro02_F032": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro02/Ses03M_impro02_F032.wav",
+    "length": 3.760625,
+    "val": "1.5000",
+    "aro": "2.5000"
+  },
+  "Ses02M_script02_2_F000": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script02_2/Ses02M_script02_2_F000.wav",
+    "length": 1.75,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses03M_impro07_F021": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro07/Ses03M_impro07_F021.wav",
+    "length": 7.3899375,
+    "val": "3.5000",
+    "aro": "3.5000"
+  },
+  "Ses04M_impro02_F022": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro02/Ses04M_impro02_F022.wav",
+    "length": 3.56,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses01F_script03_2_M017": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script03_2/Ses01F_script03_2_M017.wav",
+    "length": 3.1899375,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses03F_impro02_M020": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro02/Ses03F_impro02_M020.wav",
+    "length": 4.1099375,
+    "val": "1.5000",
+    "aro": "2.0000"
+  },
+  "Ses03M_impro05b_F001": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05b/Ses03M_impro05b_F001.wav",
+    "length": 4.6775,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro02_M000": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro02/Ses04F_impro02_M000.wav",
+    "length": 4.28625,
+    "val": "2.5000",
+    "aro": "1.5000"
+  },
+  "Ses01F_script01_3_F030": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_3/Ses01F_script01_3_F030.wav",
+    "length": 2.6,
+    "val": "1.6667",
+    "aro": "2.3333"
+  },
+  "Ses03M_script01_1_M018": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_1/Ses03M_script01_1_M018.wav",
+    "length": 2.0389375,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses03M_script01_2_M012": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_2/Ses03M_script01_2_M012.wav",
+    "length": 5.102,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses04M_script03_1_F009": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_1/Ses04M_script03_1_F009.wav",
+    "length": 3.0,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses01F_impro04_M020": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_M020.wav",
+    "length": 1.92,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses04M_impro07_F029": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro07/Ses04M_impro07_F029.wav",
+    "length": 3.0,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses03M_script01_3_F025": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_3/Ses03M_script01_3_F025.wav",
+    "length": 6.14975,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_script01_3_M032": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_3/Ses03M_script01_3_M032.wav",
+    "length": 10.1075,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses04F_impro07_F042": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro07/Ses04F_impro07_F042.wav",
+    "length": 1.49,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses03M_script02_1_F000": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_F000.wav",
+    "length": 2.3086875,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro05a_F014": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05a/Ses03M_impro05a_F014.wav",
+    "length": 1.2175,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses04M_script01_3_M030": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_3/Ses04M_script01_3_M030.wav",
+    "length": 11.8799375,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses03M_impro07_M006": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro07/Ses03M_impro07_M006.wav",
+    "length": 2.8174375,
+    "val": "5.0000",
+    "aro": "4.5000"
+  },
+  "Ses04M_impro04_M003": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro04/Ses04M_impro04_M003.wav",
+    "length": 6.34,
+    "val": "2.3333",
+    "aro": "3.3333"
+  },
+  "Ses01M_impro07_M008": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro07/Ses01M_impro07_M008.wav",
+    "length": 4.8199375,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses01M_script02_2_F030": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_2/Ses01M_script02_2_F030.wav",
+    "length": 3.5825,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses02M_script01_1_F036": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_1/Ses02M_script01_1_F036.wav",
+    "length": 2.86,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses01M_script01_1_M041": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_M041.wav",
+    "length": 2.6499375,
+    "val": "2.6667",
+    "aro": "3.0000"
+  },
+  "Ses03F_impro07_F025": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro07/Ses03F_impro07_F025.wav",
+    "length": 2.4028125,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses02M_impro07_M019": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro07/Ses02M_impro07_M019.wav",
+    "length": 2.17,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses04F_impro07_F038": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro07/Ses04F_impro07_F038.wav",
+    "length": 2.7099375,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses01M_impro03_F008": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro03/Ses01M_impro03_F008.wav",
+    "length": 7.2,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses05F_impro05_M037": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro05/Ses05F_impro05_M037.wav",
+    "length": 2.3499375,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses04M_script02_1_M017": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script02_1/Ses04M_script02_1_M017.wav",
+    "length": 2.2680625,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses04F_script03_1_M006": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script03_1/Ses04F_script03_1_M006.wav",
+    "length": 3.368625,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses01M_script03_2_M029": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script03_2/Ses01M_script03_2_M029.wav",
+    "length": 9.2275,
+    "val": "1.0000",
+    "aro": "4.5000"
+  },
+  "Ses01F_script02_2_M044": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_M044.wav",
+    "length": 3.1759375,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses01M_script02_2_M019": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_2/Ses01M_script02_2_M019.wav",
+    "length": 8.4325,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script02_1_M004": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_1/Ses02F_script02_1_M004.wav",
+    "length": 5.25,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses01M_impro05_M019": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro05/Ses01M_impro05_M019.wav",
+    "length": 3.8899375,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses04F_script03_1_F016": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script03_1/Ses04F_script03_1_F016.wav",
+    "length": 2.31575,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses03F_impro05_F008": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro05/Ses03F_impro05_F008.wav",
+    "length": 3.079875,
+    "val": "1.5000",
+    "aro": "4.5000"
+  },
+  "Ses01M_script03_2_F006": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script03_2/Ses01M_script03_2_F006.wav",
+    "length": 2.2929375,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses02M_impro03_M005": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro03/Ses02M_impro03_M005.wav",
+    "length": 3.2781875,
+    "val": "4.5000",
+    "aro": "4.5000"
+  },
+  "Ses01M_script01_1_F001": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_F001.wav",
+    "length": 2.2180625,
+    "val": "2.0000",
+    "aro": "2.6667"
+  },
+  "Ses01F_script03_2_F011": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script03_2/Ses01F_script03_2_F011.wav",
+    "length": 4.5099375,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses04M_impro07_F009": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro07/Ses04M_impro07_F009.wav",
+    "length": 3.2170625,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses01F_impro05_M033": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro05/Ses01F_impro05_M033.wav",
+    "length": 6.6699375,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses03F_impro02_F037": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro02/Ses03F_impro02_F037.wav",
+    "length": 7.5724375,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script01_3_F026": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_3/Ses02F_script01_3_F026.wav",
+    "length": 2.2599375,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses01M_script01_1_F003": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_F003.wav",
+    "length": 3.865125,
+    "val": "2.6667",
+    "aro": "2.6667"
+  },
+  "Ses02M_script02_1_F000": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script02_1/Ses02M_script02_1_F000.wav",
+    "length": 1.3899375,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script01_3_F018": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_3/Ses02F_script01_3_F018.wav",
+    "length": 6.5899375,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses02M_script02_2_M044": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script02_2/Ses02M_script02_2_M044.wav",
+    "length": 3.8,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses04M_impro08_F022": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro08/Ses04M_impro08_F022.wav",
+    "length": 2.17,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses01M_impro01_M032": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_M032.wav",
+    "length": 5.5099375,
+    "val": "1.5000",
+    "aro": "4.5000"
+  },
+  "Ses04M_impro07_M013": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro07/Ses04M_impro07_M013.wav",
+    "length": 5.7799375,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses03M_impro05a_M009": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05a/Ses03M_impro05a_M009.wav",
+    "length": 4.8274375,
+    "val": "1.5000",
+    "aro": "4.0000"
+  },
+  "Ses03M_script02_1_M009": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_M009.wav",
+    "length": 8.0831875,
+    "val": "2.5000",
+    "aro": "4.0000"
+  },
+  "Ses04F_impro04_F013": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro04/Ses04F_impro04_F013.wav",
+    "length": 7.0799375,
+    "val": "1.5000",
+    "aro": "4.5000"
+  },
+  "Ses03M_impro03_M002": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro03/Ses03M_impro03_M002.wav",
+    "length": 6.54675,
+    "val": "5.0000",
+    "aro": "4.5000"
+  },
+  "Ses03M_impro01_M025": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro01/Ses03M_impro01_M025.wav",
+    "length": 2.2021875,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses02M_script01_1_M016": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_1/Ses02M_script01_1_M016.wav",
+    "length": 3.8799375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro05b_M005": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05b/Ses03M_impro05b_M005.wav",
+    "length": 2.91,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses01F_script01_3_F012": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_3/Ses01F_script01_3_F012.wav",
+    "length": 5.1474375,
+    "val": "5.0000",
+    "aro": "4.3333"
+  },
+  "Ses04F_impro01_M008": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro01/Ses04F_impro01_M008.wav",
+    "length": 3.4,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses01M_script03_2_M030": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script03_2/Ses01M_script03_2_M030.wav",
+    "length": 12.4624375,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro03_F006": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro03/Ses03M_impro03_F006.wav",
+    "length": 5.773375,
+    "val": "3.5000",
+    "aro": "4.0000"
+  },
+  "Ses01M_impro01_F011": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_F011.wav",
+    "length": 2.1599375,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses04F_impro03_F012": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_F012.wav",
+    "length": 1.93,
+    "val": "3.5000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro03_M025": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_M025.wav",
+    "length": 1.3799375,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script02_2_M001": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_M001.wav",
+    "length": 2.4399375,
+    "val": "4.5000",
+    "aro": "2.5000"
+  },
+  "Ses01M_script02_2_M005": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_2/Ses01M_script02_2_M005.wav",
+    "length": 6.1099375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses04M_impro01_M010": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro01/Ses04M_impro01_M010.wav",
+    "length": 7.28,
+    "val": "1.5000",
+    "aro": "4.0000"
+  },
+  "Ses01F_impro01_F003": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro01/Ses01F_impro01_F003.wav",
+    "length": 1.4975,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses01M_impro03_M009": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro03/Ses01M_impro03_M009.wav",
+    "length": 1.3149375,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses05F_impro04_F043": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro04/Ses05F_impro04_F043.wav",
+    "length": 1.31,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses03F_impro01_F000": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro01/Ses03F_impro01_F000.wav",
+    "length": 6.5799375,
+    "val": "2.6667",
+    "aro": "3.6667"
+  },
+  "Ses04F_impro06_M006": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro06/Ses04F_impro06_M006.wav",
+    "length": 4.1599375,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses02M_impro05_F020": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro05/Ses02M_impro05_F020.wav",
+    "length": 2.7799375,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro01_M019": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro01/Ses04F_impro01_M019.wav",
+    "length": 2.5699375,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses01F_script02_1_M031": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script02_1/Ses01F_script02_1_M031.wav",
+    "length": 7.0099375,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script02_1_M024": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script02_1/Ses01F_script02_1_M024.wav",
+    "length": 12.86,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03M_impro05b_M028": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05b/Ses03M_impro05b_M028.wav",
+    "length": 6.2399375,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses05F_impro04_M041": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro04/Ses05F_impro04_M041.wav",
+    "length": 4.2545625,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses03F_script01_1_F008": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_F008.wav",
+    "length": 3.229625,
+    "val": "2.0000",
+    "aro": "3.3333"
+  },
+  "Ses04M_impro08_M006": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro08/Ses04M_impro08_M006.wav",
+    "length": 5.2586875,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses02M_impro08_F011": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro08/Ses02M_impro08_F011.wav",
+    "length": 6.224625,
+    "val": "2.6667",
+    "aro": "3.3333"
+  },
+  "Ses01F_impro05_F007": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro05/Ses01F_impro05_F007.wav",
+    "length": 1.31,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses04F_script02_2_M038": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_M038.wav",
+    "length": 2.2099375,
+    "val": "1.5000",
+    "aro": "3.0000"
+  },
+  "Ses02M_script01_2_F004": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_2/Ses02M_script01_2_F004.wav",
+    "length": 2.74,
+    "val": "3.0000",
+    "aro": "3.3333"
+  },
+  "Ses05F_impro03_M024": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_M024.wav",
+    "length": 1.27,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses03M_script03_1_M015": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_1/Ses03M_script03_1_M015.wav",
+    "length": 6.8299375,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses02F_script01_2_M007": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_2/Ses02F_script01_2_M007.wav",
+    "length": 1.9399375,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses03M_impro05b_M017": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05b/Ses03M_impro05b_M017.wav",
+    "length": 10.7225,
+    "val": "2.0000",
+    "aro": "2.0000"
+  },
+  "Ses04M_impro05_M040": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_M040.wav",
+    "length": 8.834,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses05F_impro03_M021": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_M021.wav",
+    "length": 3.05,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script02_2_M031": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_M031.wav",
+    "length": 2.399625,
+    "val": "2.3333",
+    "aro": "3.6667"
+  },
+  "Ses01F_impro04_M009": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_M009.wav",
+    "length": 2.6744375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script01_3_F034": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_F034.wav",
+    "length": 8.268625,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses03M_impro05a_M003": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05a/Ses03M_impro05a_M003.wav",
+    "length": 1.700625,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses02F_script03_2_M021": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_2/Ses02F_script03_2_M021.wav",
+    "length": 2.73,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro03_M008": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro03/Ses03M_impro03_M008.wav",
+    "length": 5.394625,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses02F_impro08_F025": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro08/Ses02F_impro08_F025.wav",
+    "length": 5.7369375,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses01M_script01_3_M033": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_3/Ses01M_script01_3_M033.wav",
+    "length": 9.455,
+    "val": "1.5000",
+    "aro": "2.0000"
+  },
+  "Ses02F_impro03_M000": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro03/Ses02F_impro03_M000.wav",
+    "length": 2.503,
+    "val": "4.2500",
+    "aro": "3.2500"
+  },
+  "Ses02M_impro07_F009": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro07/Ses02M_impro07_F009.wav",
+    "length": 1.4031875,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro05_F010": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro05/Ses04F_impro05_F010.wav",
+    "length": 4.36,
+    "val": "1.5000",
+    "aro": "4.5000"
+  },
+  "Ses03M_impro05b_F008": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05b/Ses03M_impro05b_F008.wav",
+    "length": 2.725,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses05F_impro03_F033": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F033.wav",
+    "length": 1.99,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses03M_script02_2_M045": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_M045.wav",
+    "length": 6.128125,
+    "val": "4.0000",
+    "aro": "2.6667"
+  },
+  "Ses01M_impro06_M022": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro06/Ses01M_impro06_M022.wav",
+    "length": 3.0523125,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses05F_impro03_F043": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F043.wav",
+    "length": 2.3,
+    "val": "4.5000",
+    "aro": "3.0000"
+  },
+  "Ses03M_script03_2_M017": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_2/Ses03M_script03_2_M017.wav",
+    "length": 2.3425,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script03_2_M032": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_2/Ses03F_script03_2_M032.wav",
+    "length": 3.2199375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script03_1_F023": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_1/Ses02F_script03_1_F023.wav",
+    "length": 4.7699375,
+    "val": "4.3333",
+    "aro": "3.3333"
+  },
+  "Ses04M_script01_3_M018": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_3/Ses04M_script01_3_M018.wav",
+    "length": 4.2014375,
+    "val": "3.5000",
+    "aro": "3.5000"
+  },
+  "Ses02F_impro07_F025": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro07/Ses02F_impro07_F025.wav",
+    "length": 7.6401875,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses05F_impro03_F022": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F022.wav",
+    "length": 1.85,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro05b_M020": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05b/Ses03M_impro05b_M020.wav",
+    "length": 3.97,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_script02_1_M025": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_1/Ses04F_script02_1_M025.wav",
+    "length": 3.1199375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses04M_impro03_M014": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro03/Ses04M_impro03_M014.wav",
+    "length": 5.55,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses02M_impro06_M018": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro06/Ses02M_impro06_M018.wav",
+    "length": 2.6109375,
+    "val": "1.5000",
+    "aro": "2.5000"
+  },
+  "Ses03M_script01_2_F005": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_2/Ses03M_script01_2_F005.wav",
+    "length": 2.341625,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses03F_impro07_M030": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro07/Ses03F_impro07_M030.wav",
+    "length": 4.586625,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses02F_impro01_F017": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro01/Ses02F_impro01_F017.wav",
+    "length": 5.155,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses04M_script02_2_M039": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script02_2/Ses04M_script02_2_M039.wav",
+    "length": 4.8263125,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro03_F013": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_F013.wav",
+    "length": 5.3,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses04M_impro02_F020": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro02/Ses04M_impro02_F020.wav",
+    "length": 2.4058125,
+    "val": "2.0000",
+    "aro": "1.5000"
+  },
+  "Ses04F_script03_2_M017": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script03_2/Ses04F_script03_2_M017.wav",
+    "length": 2.73,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses02M_impro03_M022": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro03/Ses02M_impro03_M022.wav",
+    "length": 7.8865,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses04M_script01_2_F005": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_2/Ses04M_script01_2_F005.wav",
+    "length": 2.4181875,
+    "val": "2.0000",
+    "aro": "2.6667"
+  },
+  "Ses01M_script03_1_F041": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script03_1/Ses01M_script03_1_F041.wav",
+    "length": 4.8411875,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses04F_script03_1_F018": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script03_1/Ses04F_script03_1_F018.wav",
+    "length": 2.4699375,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses03F_impro07_F011": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro07/Ses03F_impro07_F011.wav",
+    "length": 2.9559375,
+    "val": "3.5000",
+    "aro": "3.5000"
+  },
+  "Ses01F_impro04_M012": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_M012.wav",
+    "length": 2.346375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses02M_impro03_F007": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro03/Ses02M_impro03_F007.wav",
+    "length": 3.8646875,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses02M_script01_1_M011": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_1/Ses02M_script01_1_M011.wav",
+    "length": 12.07,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses02M_impro01_F003": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro01/Ses02M_impro01_F003.wav",
+    "length": 6.918625,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script02_2_M020": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_M020.wav",
+    "length": 5.7075625,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script01_3_F005": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_3/Ses02F_script01_3_F005.wav",
+    "length": 7.4399375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses02F_script02_1_M011": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_1/Ses02F_script02_1_M011.wav",
+    "length": 4.98,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses02M_impro04_M013": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro04/Ses02M_impro04_M013.wav",
+    "length": 6.6706875,
+    "val": "2.3333",
+    "aro": "3.0000"
+  },
+  "Ses02F_script01_1_M038": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_1/Ses02F_script01_1_M038.wav",
+    "length": 7.4699375,
+    "val": "1.5000",
+    "aro": "4.0000"
+  },
+  "Ses04F_script02_1_M028": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_1/Ses04F_script02_1_M028.wav",
+    "length": 1.86,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses04M_script01_3_M013": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_3/Ses04M_script01_3_M013.wav",
+    "length": 1.67,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro07_M017": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro07/Ses03M_impro07_M017.wav",
+    "length": 3.68,
+    "val": "5.0000",
+    "aro": "4.5000"
+  },
+  "Ses01M_script01_2_M001": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_2/Ses01M_script01_2_M001.wav",
+    "length": 7.17,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses03F_impro08_F004": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro08/Ses03F_impro08_F004.wav",
+    "length": 3.6499375,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses02M_impro06_F011": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro06/Ses02M_impro06_F011.wav",
+    "length": 1.8758125,
+    "val": "2.5000",
+    "aro": "1.5000"
+  },
+  "Ses01F_script01_3_F007": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_3/Ses01F_script01_3_F007.wav",
+    "length": 2.8843125,
+    "val": "2.6667",
+    "aro": "1.3333"
+  },
+  "Ses01F_impro02_M000": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro02/Ses01F_impro02_M000.wav",
+    "length": 3.026375,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script01_3_F010": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_3/Ses02F_script01_3_F010.wav",
+    "length": 4.4499375,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script01_2_F002": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_2/Ses03F_script01_2_F002.wav",
+    "length": 3.1258125,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses02F_impro06_M007": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro06/Ses02F_impro06_M007.wav",
+    "length": 9.3799375,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses02F_script03_2_F030": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_2/Ses02F_script03_2_F030.wav",
+    "length": 3.7799375,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses03M_script02_1_M042": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_M042.wav",
+    "length": 3.3081875,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_script02_2_F001": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_F001.wav",
+    "length": 2.23,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script03_1_M022": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_1/Ses03F_script03_1_M022.wav",
+    "length": 4.46,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro04_F016": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro04/Ses04F_impro04_F016.wav",
+    "length": 2.0599375,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses03M_script03_2_F008": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_2/Ses03M_script03_2_F008.wav",
+    "length": 4.9658125,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro02_M035": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro02/Ses03M_impro02_M035.wav",
+    "length": 2.5269375,
+    "val": "1.5000",
+    "aro": "2.5000"
+  },
+  "Ses01F_script01_2_F011": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_2/Ses01F_script01_2_F011.wav",
+    "length": 3.5,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses04M_impro06_F000": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro06/Ses04M_impro06_F000.wav",
+    "length": 3.1765,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses03F_script01_1_M013": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_M013.wav",
+    "length": 7.7183125,
+    "val": "2.0000",
+    "aro": "3.3333"
+  },
+  "Ses01M_script03_1_F030": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script03_1/Ses01M_script03_1_F030.wav",
+    "length": 3.15,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script02_1_F008": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_1/Ses02F_script02_1_F008.wav",
+    "length": 2.43,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses01F_script01_1_F039": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_F039.wav",
+    "length": 5.37,
+    "val": "2.3333",
+    "aro": "3.0000"
+  },
+  "Ses02M_script02_2_M027": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script02_2/Ses02M_script02_2_M027.wav",
+    "length": 1.14,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses04M_script01_2_F003": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_2/Ses04M_script01_2_F003.wav",
+    "length": 3.87,
+    "val": "2.3333",
+    "aro": "3.0000"
+  },
+  "Ses04M_impro06_F014": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro06/Ses04M_impro06_F014.wav",
+    "length": 5.43,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses03M_script03_2_F007": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_2/Ses03M_script03_2_F007.wav",
+    "length": 5.27675,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses03F_script03_2_F005": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_2/Ses03F_script03_2_F005.wav",
+    "length": 1.4749375,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses04M_script01_1_M037": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_1/Ses04M_script01_1_M037.wav",
+    "length": 3.81,
+    "val": "2.0000",
+    "aro": "4.5000"
+  },
+  "Ses01F_script01_2_F009": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_2/Ses01F_script01_2_F009.wav",
+    "length": 9.1599375,
+    "val": "1.5000",
+    "aro": "2.0000"
+  },
+  "Ses05F_impro03_M027": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_M027.wav",
+    "length": 4.0599375,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses03F_script01_1_F026": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_F026.wav",
+    "length": 7.855125,
+    "val": "2.3333",
+    "aro": "3.3333"
+  },
+  "Ses02M_script02_1_M039": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script02_1/Ses02M_script02_1_M039.wav",
+    "length": 18.8284375,
+    "val": "3.5000",
+    "aro": "3.5000"
+  },
+  "Ses04F_script02_1_M000": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_1/Ses04F_script02_1_M000.wav",
+    "length": 6.84825,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro04_F032": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_F032.wav",
+    "length": 2.37,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses03F_script02_1_M036": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_1/Ses03F_script02_1_M036.wav",
+    "length": 8.2795,
+    "val": "3.5000",
+    "aro": "4.0000"
+  },
+  "Ses03F_script01_1_M035": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_M035.wav",
+    "length": 2.8738125,
+    "val": "2.0000",
+    "aro": "2.6667"
+  },
+  "Ses01M_script02_1_F004": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_1/Ses01M_script02_1_F004.wav",
+    "length": 2.8,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses01F_script02_1_M002": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script02_1/Ses01F_script02_1_M002.wav",
+    "length": 3.0399375,
+    "val": "3.5000",
+    "aro": "4.5000"
+  },
+  "Ses03M_script03_2_M007": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_2/Ses03M_script03_2_M007.wav",
+    "length": 3.064,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses02M_impro05_F027": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro05/Ses02M_impro05_F027.wav",
+    "length": 1.6595,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_script01_1_F021": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script01_1/Ses04F_script01_1_F021.wav",
+    "length": 2.4306875,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses04F_impro07_F044": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro07/Ses04F_impro07_F044.wav",
+    "length": 1.4499375,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses03M_script03_1_M005": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_1/Ses03M_script03_1_M005.wav",
+    "length": 3.8999375,
+    "val": "2.5000",
+    "aro": "4.0000"
+  },
+  "Ses01F_script03_2_M009": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script03_2/Ses01F_script03_2_M009.wav",
+    "length": 6.9499375,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses02M_impro02_F008": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro02/Ses02M_impro02_F008.wav",
+    "length": 3.027,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses04M_impro04_F004": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro04/Ses04M_impro04_F004.wav",
+    "length": 2.5699375,
+    "val": "3.0000",
+    "aro": "2.6667"
+  },
+  "Ses03M_script02_1_F016": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_F016.wav",
+    "length": 2.27575,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script01_1_F027": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_F027.wav",
+    "length": 3.01025,
+    "val": "2.3333",
+    "aro": "2.3333"
+  },
+  "Ses01M_impro03_M011": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro03/Ses01M_impro03_M011.wav",
+    "length": 2.2899375,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses03F_script02_1_M026": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_1/Ses03F_script02_1_M026.wav",
+    "length": 4.4875,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro04_F017": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro04/Ses04F_impro04_F017.wav",
+    "length": 3.6399375,
+    "val": "1.5000",
+    "aro": "4.0000"
+  },
+  "Ses02M_impro03_F003": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro03/Ses02M_impro03_F003.wav",
+    "length": 2.3188125,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses01M_impro04_M002": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro04/Ses01M_impro04_M002.wav",
+    "length": 2.1335625,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses02F_script02_2_M026": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_2/Ses02F_script02_2_M026.wav",
+    "length": 2.46,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro07_F019": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro07/Ses04F_impro07_F019.wav",
+    "length": 1.0399375,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script01_2_M005": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_2/Ses03F_script01_2_M005.wav",
+    "length": 2.583,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses03M_script01_1_M009": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_1/Ses03M_script01_1_M009.wav",
+    "length": 8.78875,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses04F_script01_3_M010": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script01_3/Ses04F_script01_3_M010.wav",
+    "length": 7.71175,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script03_1_F005": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script03_1/Ses01F_script03_1_F005.wav",
+    "length": 6.4699375,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses04M_impro07_F021": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro07/Ses04M_impro07_F021.wav",
+    "length": 4.92,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses04M_script03_1_M029": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_1/Ses04M_script03_1_M029.wav",
+    "length": 2.1,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses01M_script01_1_M027": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_M027.wav",
+    "length": 2.0724375,
+    "val": "2.6667",
+    "aro": "3.0000"
+  },
+  "Ses01M_impro03_F004": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro03/Ses01M_impro03_F004.wav",
+    "length": 2.5975,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses04M_impro07_M001": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro07/Ses04M_impro07_M001.wav",
+    "length": 2.73,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_script02_1_M011": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_M011.wav",
+    "length": 6.3375625,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses02M_script01_1_F039": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_1/Ses02M_script01_1_F039.wav",
+    "length": 2.4699375,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script03_2_M017": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_2/Ses03F_script03_2_M017.wav",
+    "length": 2.23,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses04F_script02_1_M021": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_1/Ses04F_script02_1_M021.wav",
+    "length": 7.602875,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_script02_2_F031": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_F031.wav",
+    "length": 4.4195625,
+    "val": "2.0000",
+    "aro": "3.3333"
+  },
+  "Ses01F_script01_3_M028": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_3/Ses01F_script01_3_M028.wav",
+    "length": 11.062375,
+    "val": "1.6667",
+    "aro": "3.3333"
+  },
+  "Ses01M_impro01_F004": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_F004.wav",
+    "length": 3.0375,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses01F_script01_1_M032": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_M032.wav",
+    "length": 10.808875,
+    "val": "2.6667",
+    "aro": "3.6667"
+  },
+  "Ses02F_impro05_M007": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro05/Ses02F_impro05_M007.wav",
+    "length": 6.86,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script03_2_M014": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script03_2/Ses01F_script03_2_M014.wav",
+    "length": 2.25,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses03F_script03_1_M000": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_1/Ses03F_script03_1_M000.wav",
+    "length": 1.87,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03M_impro08b_M015": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro08b/Ses03M_impro08b_M015.wav",
+    "length": 2.68,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses02F_script01_1_F010": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_1/Ses02F_script01_1_F010.wav",
+    "length": 1.85,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses02F_script02_1_F020": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_1/Ses02F_script02_1_F020.wav",
+    "length": 1.56,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses04M_impro07_F024": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro07/Ses04M_impro07_F024.wav",
+    "length": 5.2899375,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses02F_impro02_M005": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro02/Ses02F_impro02_M005.wav",
+    "length": 8.785125,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses02M_impro04_F008": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro04/Ses02M_impro04_F008.wav",
+    "length": 6.588,
+    "val": "3.3333",
+    "aro": "2.3333"
+  },
+  "Ses04M_script03_2_M009": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_2/Ses04M_script03_2_M009.wav",
+    "length": 1.2750625,
+    "val": "2.5000",
+    "aro": "1.5000"
+  },
+  "Ses02M_impro05_M012": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro05/Ses02M_impro05_M012.wav",
+    "length": 0.8113125,
+    "val": "1.5000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro03_F007": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_F007.wav",
+    "length": 10.93,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses03M_impro08a_F018": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_F018.wav",
+    "length": 8.124,
+    "val": "1.0000",
+    "aro": "4.5000"
+  },
+  "Ses01F_impro06_M011": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro06/Ses01F_impro06_M011.wav",
+    "length": 3.31,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses04F_impro03_M011": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_M011.wav",
+    "length": 3.0599375,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses02F_impro07_F011": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro07/Ses02F_impro07_F011.wav",
+    "length": 8.1199375,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses03F_script03_1_F011": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_1/Ses03F_script03_1_F011.wav",
+    "length": 3.7099375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses04F_impro01_M004": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro01/Ses04F_impro01_M004.wav",
+    "length": 2.6299375,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses04F_impro01_F019": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro01/Ses04F_impro01_F019.wav",
+    "length": 2.0399375,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses01M_script03_1_M016": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script03_1/Ses01M_script03_1_M016.wav",
+    "length": 6.0526875,
+    "val": "4.5000",
+    "aro": "3.5000"
+  },
+  "Ses02F_script03_2_F034": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_2/Ses02F_script03_2_F034.wav",
+    "length": 2.27,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses04F_script01_1_F025": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script01_1/Ses04F_script01_1_F025.wav",
+    "length": 3.5299375,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses04F_script01_2_M015": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script01_2/Ses04F_script01_2_M015.wav",
+    "length": 2.8,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses02F_script03_2_M038": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_2/Ses02F_script03_2_M038.wav",
+    "length": 1.25,
+    "val": "1.5000",
+    "aro": "3.0000"
+  },
+  "Ses04M_impro06_F013": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro06/Ses04M_impro06_F013.wav",
+    "length": 2.97,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses02M_script02_2_F027": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script02_2/Ses02M_script02_2_F027.wav",
+    "length": 1.17,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses01F_script01_2_F005": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_2/Ses01F_script01_2_F005.wav",
+    "length": 3.75,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro01_M002": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro01/Ses04F_impro01_M002.wav",
+    "length": 7.7099375,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses02M_script01_2_M015": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_2/Ses02M_script01_2_M015.wav",
+    "length": 2.56,
+    "val": "2.0000",
+    "aro": "3.6667"
+  },
+  "Ses04M_impro03_M029": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro03/Ses04M_impro03_M029.wav",
+    "length": 5.66,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses04M_impro04_M015": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro04/Ses04M_impro04_M015.wav",
+    "length": 11.4399375,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses02F_impro03_M026": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro03/Ses02F_impro03_M026.wav",
+    "length": 2.7513125,
+    "val": "4.0000",
+    "aro": "2.7500"
+  },
+  "Ses03M_impro06_M004": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro06/Ses03M_impro06_M004.wav",
+    "length": 4.2346875,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses04F_script02_1_M033": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_1/Ses04F_script02_1_M033.wav",
+    "length": 8.0043125,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script03_1_M007": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_1/Ses02F_script03_1_M007.wav",
+    "length": 1.87,
+    "val": "3.6667",
+    "aro": "2.6667"
+  },
+  "Ses01F_impro04_M003": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_M003.wav",
+    "length": 1.8,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script02_1_M019": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_1/Ses02F_script02_1_M019.wav",
+    "length": 0.8899375,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses03F_impro03_M009": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro03/Ses03F_impro03_M009.wav",
+    "length": 1.5299375,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses04F_script03_1_M033": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script03_1/Ses04F_script03_1_M033.wav",
+    "length": 2.75,
+    "val": "3.0000",
+    "aro": "4.0000"
+  },
+  "Ses02F_impro05_F005": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro05/Ses02F_impro05_F005.wav",
+    "length": 15.7199375,
+    "val": "1.5000",
+    "aro": "4.0000"
+  },
+  "Ses02M_script03_1_M005": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script03_1/Ses02M_script03_1_M005.wav",
+    "length": 6.62025,
+    "val": "3.5000",
+    "aro": "3.5000"
+  },
+  "Ses02F_script01_3_F004": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_3/Ses02F_script01_3_F004.wav",
+    "length": 4.12375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro04_M030": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro04/Ses04F_impro04_M030.wav",
+    "length": 2.9499375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_impro06_M014": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro06/Ses01F_impro06_M014.wav",
+    "length": 1.3,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses04F_impro05_M011": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro05/Ses04F_impro05_M011.wav",
+    "length": 3.7799375,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses02M_script03_2_M010": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script03_2/Ses02M_script03_2_M010.wav",
+    "length": 2.3698125,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses02F_script01_1_M040": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_1/Ses02F_script01_1_M040.wav",
+    "length": 2.5099375,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses03F_impro07_M025": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro07/Ses03F_impro07_M025.wav",
+    "length": 3.1735625,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses01M_script01_1_M026": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_M026.wav",
+    "length": 4.46,
+    "val": "2.3333",
+    "aro": "3.0000"
+  },
+  "Ses03M_script01_1_M023": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_1/Ses03M_script01_1_M023.wav",
+    "length": 2.2675,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses01M_impro03_M004": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro03/Ses01M_impro03_M004.wav",
+    "length": 9.2599375,
+    "val": "3.5000",
+    "aro": "4.0000"
+  },
+  "Ses01M_impro05_F008": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro05/Ses01M_impro05_F008.wav",
+    "length": 1.99,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses04M_impro01_M007": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro01/Ses04M_impro01_M007.wav",
+    "length": 4.7911875,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script03_2_M027": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_2/Ses03F_script03_2_M027.wav",
+    "length": 4.7475,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses01F_impro04_M017": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_M017.wav",
+    "length": 2.81,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro07_F012": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro07/Ses03M_impro07_F012.wav",
+    "length": 1.6,
+    "val": "3.5000",
+    "aro": "3.5000"
+  },
+  "Ses02M_impro03_F005": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro03/Ses02M_impro03_F005.wav",
+    "length": 1.74925,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses02F_script03_1_M006": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_1/Ses02F_script03_1_M006.wav",
+    "length": 2.73,
+    "val": "3.0000",
+    "aro": "2.6667"
+  },
+  "Ses02F_script01_3_M006": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_3/Ses02F_script01_3_M006.wav",
+    "length": 7.563125,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_impro08_M015": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro08/Ses03F_impro08_M015.wav",
+    "length": 4.2199375,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses02F_impro05_M019": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro05/Ses02F_impro05_M019.wav",
+    "length": 14.5,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses03F_script02_2_F029": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_F029.wav",
+    "length": 2.399625,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro05_F003": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro05/Ses04F_impro05_F003.wav",
+    "length": 7.5,
+    "val": "2.0000",
+    "aro": "4.5000"
+  },
+  "Ses01M_script02_2_F027": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_2/Ses01M_script02_2_F027.wav",
+    "length": 1.8424375,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses03M_script03_2_F032": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_2/Ses03M_script03_2_F032.wav",
+    "length": 1.9024375,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script02_2_F045": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_F045.wav",
+    "length": 3.73275,
+    "val": "4.0000",
+    "aro": "2.3333"
+  },
+  "Ses01M_script01_3_M006": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_3/Ses01M_script01_3_M006.wav",
+    "length": 1.707125,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_impro03_M013": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro03/Ses03F_impro03_M013.wav",
+    "length": 2.0606875,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses02F_script02_2_F007": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_2/Ses02F_script02_2_F007.wav",
+    "length": 3.67,
+    "val": "1.5000",
+    "aro": "4.0000"
+  },
+  "Ses02F_impro01_F011": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro01/Ses02F_impro01_F011.wav",
+    "length": 1.6955625,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses04M_script01_1_M016": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_1/Ses04M_script01_1_M016.wav",
+    "length": 5.85,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro07_F049": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro07/Ses04F_impro07_F049.wav",
+    "length": 6.0399375,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses02F_script01_3_F017": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_3/Ses02F_script01_3_F017.wav",
+    "length": 1.62,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses01M_script03_1_M007": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script03_1/Ses01M_script03_1_M007.wav",
+    "length": 1.597125,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro08_F017": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro08/Ses04F_impro08_F017.wav",
+    "length": 3.68,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro04_F007": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro04/Ses04F_impro04_F007.wav",
+    "length": 3.4799375,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses02M_impro01_F020": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro01/Ses02M_impro01_F020.wav",
+    "length": 4.549875,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_impro04_M026": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_M026.wav",
+    "length": 2.4,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script01_3_F003": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_F003.wav",
+    "length": 3.834,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses02M_impro08_M003": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro08/Ses02M_impro08_M003.wav",
+    "length": 10.469625,
+    "val": "3.6667",
+    "aro": "3.3333"
+  },
+  "Ses03F_script03_2_F006": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_2/Ses03F_script03_2_F006.wav",
+    "length": 3.2524375,
+    "val": "2.5000",
+    "aro": "4.5000"
+  },
+  "Ses04M_impro08_F002": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro08/Ses04M_impro08_F002.wav",
+    "length": 5.6340625,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses04M_impro05_M035": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_M035.wav",
+    "length": 4.46,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses02M_impro05_F000": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro05/Ses02M_impro05_F000.wav",
+    "length": 1.2328125,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses03M_script03_1_F028": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_1/Ses03M_script03_1_F028.wav",
+    "length": 5.4825,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script03_1_M015": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script03_1/Ses01F_script03_1_M015.wav",
+    "length": 6.93,
+    "val": "3.5000",
+    "aro": "3.5000"
+  },
+  "Ses04M_script01_1_M027": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_1/Ses04M_script01_1_M027.wav",
+    "length": 12.0828125,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses02M_script01_3_M036": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_3/Ses02M_script01_3_M036.wav",
+    "length": 3.4671875,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses03F_impro05_F002": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro05/Ses03F_impro05_F002.wav",
+    "length": 3.464875,
+    "val": "2.0000",
+    "aro": "5.0000"
+  },
+  "Ses04F_script01_3_F004": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script01_3/Ses04F_script01_3_F004.wav",
+    "length": 3.781875,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses01F_script02_2_F036": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_F036.wav",
+    "length": 2.17,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses02M_script01_1_F038": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_1/Ses02M_script01_1_F038.wav",
+    "length": 8.8899375,
+    "val": "1.0000",
+    "aro": "4.0000"
+  },
+  "Ses03F_impro02_M027": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro02/Ses03F_impro02_M027.wav",
+    "length": 6.5274375,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses02M_impro08_M023": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro08/Ses02M_impro08_M023.wav",
+    "length": 1.9019375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses02M_script01_1_F007": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_1/Ses02M_script01_1_F007.wav",
+    "length": 5.46,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses01M_impro03_F020": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro03/Ses01M_impro03_F020.wav",
+    "length": 1.7799375,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro03_F031": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_F031.wav",
+    "length": 1.3199375,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses02F_impro08_F027": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro08/Ses02F_impro08_F027.wav",
+    "length": 1.436,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses04M_script03_2_M027": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_2/Ses04M_script03_2_M027.wav",
+    "length": 4.15,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses03M_script02_1_F002": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_F002.wav",
+    "length": 2.5649375,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_script03_2_M026": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_2/Ses03M_script03_2_M026.wav",
+    "length": 3.9998125,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses01F_script02_1_M014": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script02_1/Ses01F_script02_1_M014.wav",
+    "length": 10.4878125,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses01M_impro06_M016": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro06/Ses01M_impro06_M016.wav",
+    "length": 2.2624375,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses03F_script01_3_M043": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_M043.wav",
+    "length": 3.707875,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses04F_impro06_M001": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro06/Ses04F_impro06_M001.wav",
+    "length": 24.36,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses02M_impro01_M022": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro01/Ses02M_impro01_M022.wav",
+    "length": 1.7248125,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses02F_script01_2_M015": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_2/Ses02F_script01_2_M015.wav",
+    "length": 3.0599375,
+    "val": "2.6667",
+    "aro": "3.3333"
+  },
+  "Ses04F_impro07_F074": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro07/Ses04F_impro07_F074.wav",
+    "length": 10.18,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses04F_impro02_F013": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro02/Ses04F_impro02_F013.wav",
+    "length": 2.15,
+    "val": "1.5000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script03_2_F031": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_2/Ses03F_script03_2_F031.wav",
+    "length": 1.99,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses01F_script03_2_F000": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script03_2/Ses01F_script03_2_F000.wav",
+    "length": 5.25,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses04M_script03_1_M030": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_1/Ses04M_script03_1_M030.wav",
+    "length": 2.1299375,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses02F_impro08_M007": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro08/Ses02F_impro08_M007.wav",
+    "length": 9.1981875,
+    "val": "3.0000",
+    "aro": "4.0000"
+  },
+  "Ses03M_impro05a_M026": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05a/Ses03M_impro05a_M026.wav",
+    "length": 6.14,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses02M_impro01_F004": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro01/Ses02M_impro01_F004.wav",
+    "length": 1.6419375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03M_script02_1_M024": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_M024.wav",
+    "length": 12.153875,
+    "val": "2.5000",
+    "aro": "4.0000"
+  },
+  "Ses02M_impro03_M028": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro03/Ses02M_impro03_M028.wav",
+    "length": 1.7289375,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses05F_impro02_F024": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro02/Ses05F_impro02_F024.wav",
+    "length": 3.2199375,
+    "val": "1.5000",
+    "aro": "1.5000"
+  },
+  "Ses04F_script02_1_M027": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_1/Ses04F_script02_1_M027.wav",
+    "length": 4.49,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses04M_script01_3_F008": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_3/Ses04M_script01_3_F008.wav",
+    "length": 2.33,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses05F_impro05_M010": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro05/Ses05F_impro05_M010.wav",
+    "length": 4.4099375,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script03_1_M029": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_1/Ses02F_script03_1_M029.wav",
+    "length": 5.5299375,
+    "val": "3.6667",
+    "aro": "3.0000"
+  },
+  "Ses02M_impro05_F009": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro05/Ses02M_impro05_F009.wav",
+    "length": 0.7321875,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses03F_script01_1_F025": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_F025.wav",
+    "length": 5.6655625,
+    "val": "3.0000",
+    "aro": "3.3333"
+  },
+  "Ses05F_impro01_M008": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro01/Ses05F_impro01_M008.wav",
+    "length": 4.99,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses04M_impro07_F011": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro07/Ses04M_impro07_F011.wav",
+    "length": 2.6546875,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses03M_script01_2_F018": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_2/Ses03M_script01_2_F018.wav",
+    "length": 3.1485625,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro07_M068": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro07/Ses04F_impro07_M068.wav",
+    "length": 1.4199375,
+    "val": "4.5000",
+    "aro": "3.5000"
+  },
+  "Ses01M_script02_1_M002": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_1/Ses01M_script02_1_M002.wav",
+    "length": 4.9275,
+    "val": "4.5000",
+    "aro": "5.0000"
+  },
+  "Ses02M_impro08_F025": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro08/Ses02M_impro08_F025.wav",
+    "length": 1.43675,
+    "val": "3.6667",
+    "aro": "3.3333"
+  },
+  "Ses04M_impro05_M019": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_M019.wav",
+    "length": 3.67,
+    "val": "3.5000",
+    "aro": "3.5000"
+  },
+  "Ses02F_script02_2_F041": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_2/Ses02F_script02_2_F041.wav",
+    "length": 2.8899375,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses02F_impro07_M007": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro07/Ses02F_impro07_M007.wav",
+    "length": 1.2199375,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro03_F015": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_F015.wav",
+    "length": 5.1599375,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_impro04_M018": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_M018.wav",
+    "length": 6.0649375,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses02F_script03_2_F005": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_2/Ses02F_script03_2_F005.wav",
+    "length": 1.4399375,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses04M_script03_2_M004": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_2/Ses04M_script03_2_M004.wav",
+    "length": 3.27,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script02_1_F021": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_1/Ses03F_script02_1_F021.wav",
+    "length": 1.8865,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script02_1_M010": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_1/Ses03F_script02_1_M010.wav",
+    "length": 3.6756875,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses01M_script01_1_F005": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_F005.wav",
+    "length": 3.1135,
+    "val": "2.3333",
+    "aro": "1.6667"
+  },
+  "Ses03F_script03_1_M015": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_1/Ses03F_script03_1_M015.wav",
+    "length": 3.9075,
+    "val": "3.5000",
+    "aro": "2.0000"
+  },
+  "Ses02F_script03_2_M017": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_2/Ses02F_script03_2_M017.wav",
+    "length": 2.46,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses01M_script03_1_M038": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script03_1/Ses01M_script03_1_M038.wav",
+    "length": 2.4799375,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses02M_impro08_F024": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro08/Ses02M_impro08_F024.wav",
+    "length": 1.0016875,
+    "val": "3.0000",
+    "aro": "2.3333"
+  },
+  "Ses01F_impro04_F008": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_F008.wav",
+    "length": 1.3,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro04_F029": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_F029.wav",
+    "length": 3.0399375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses04F_impro03_M027": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_M027.wav",
+    "length": 2.7799375,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses01F_impro07_F008": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro07/Ses01F_impro07_F008.wav",
+    "length": 7.275,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses04M_impro03_M003": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro03/Ses04M_impro03_M003.wav",
+    "length": 6.2899375,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses03F_impro07_M033": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro07/Ses03F_impro07_M033.wav",
+    "length": 1.74075,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses02F_impro03_M006": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro03/Ses02F_impro03_M006.wav",
+    "length": 1.68,
+    "val": "4.2500",
+    "aro": "4.0000"
+  },
+  "Ses01M_impro02_M008": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro02/Ses01M_impro02_M008.wav",
+    "length": 4.0199375,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses03F_impro07_M005": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro07/Ses03F_impro07_M005.wav",
+    "length": 1.3685,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses01M_script02_2_F045": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_2/Ses01M_script02_2_F045.wav",
+    "length": 7.6309375,
+    "val": "4.0000",
+    "aro": "2.0000"
+  },
+  "Ses02M_script02_2_M042": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script02_2/Ses02M_script02_2_M042.wav",
+    "length": 2.1599375,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses01F_impro04_M025": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_M025.wav",
+    "length": 3.2,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro01_M001": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro01/Ses03M_impro01_M001.wav",
+    "length": 4.9335625,
+    "val": "2.5000",
+    "aro": "4.0000"
+  },
+  "Ses03M_impro04_M013": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_M013.wav",
+    "length": 2.2199375,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses03F_script02_2_F022": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_F022.wav",
+    "length": 5.987,
+    "val": "3.6667",
+    "aro": "2.3333"
+  },
+  "Ses02M_script02_2_M030": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script02_2/Ses02M_script02_2_M030.wav",
+    "length": 9.56,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro07_F057": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro07/Ses04F_impro07_F057.wav",
+    "length": 5.17,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses01F_impro06_F000": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro06/Ses01F_impro06_F000.wav",
+    "length": 3.376,
+    "val": "3.5000",
+    "aro": "2.0000"
+  },
+  "Ses01F_script03_2_M011": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script03_2/Ses01F_script03_2_M011.wav",
+    "length": 3.5364375,
+    "val": "2.5000",
+    "aro": "4.0000"
+  },
+  "Ses04F_script03_2_F001": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script03_2/Ses04F_script03_2_F001.wav",
+    "length": 2.7599375,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro07_F023": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro07/Ses03M_impro07_F023.wav",
+    "length": 3.2899375,
+    "val": "4.5000",
+    "aro": "4.5000"
+  },
+  "Ses04F_impro03_F003": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_F003.wav",
+    "length": 3.5299375,
+    "val": "5.0000",
+    "aro": "5.0000"
+  },
+  "Ses04M_impro08_F028": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro08/Ses04M_impro08_F028.wav",
+    "length": 4.2099375,
+    "val": "3.5000",
+    "aro": "2.0000"
+  },
+  "Ses03M_impro08b_F005": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro08b/Ses03M_impro08b_F005.wav",
+    "length": 2.36,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro04_M016": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_M016.wav",
+    "length": 6.0825,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses03M_script02_1_M036": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_M036.wav",
+    "length": 5.92,
+    "val": "3.0000",
+    "aro": "4.0000"
+  },
+  "Ses03F_script03_2_F011": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_2/Ses03F_script03_2_F011.wav",
+    "length": 3.3375,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses02M_script01_3_F012": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_3/Ses02M_script01_3_F012.wav",
+    "length": 3.7848125,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script01_1_M024": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_M024.wav",
+    "length": 9.7535,
+    "val": "2.6667",
+    "aro": "1.6667"
+  },
+  "Ses04F_impro03_M021": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_M021.wav",
+    "length": 2.79,
+    "val": "2.5000",
+    "aro": "4.0000"
+  },
+  "Ses03F_impro05_M004": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro05/Ses03F_impro05_M004.wav",
+    "length": 6.8845,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses01M_script03_2_F016": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script03_2/Ses01M_script03_2_F016.wav",
+    "length": 4.6584375,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses04M_script01_1_F040": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_1/Ses04M_script01_1_F040.wav",
+    "length": 9.2899375,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_script03_2_M035": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_2/Ses03M_script03_2_M035.wav",
+    "length": 3.6615,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses05F_impro03_F030": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F030.wav",
+    "length": 2.56,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses04M_impro07_M024": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro07/Ses04M_impro07_M024.wav",
+    "length": 6.5799375,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses04M_script01_1_M003": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_1/Ses04M_script01_1_M003.wav",
+    "length": 8.6075,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses02M_script01_1_F008": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_1/Ses02M_script01_1_F008.wav",
+    "length": 1.3899375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses04F_script01_3_M013": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script01_3/Ses04F_script01_3_M013.wav",
+    "length": 9.4199375,
+    "val": "2.5000",
+    "aro": "4.0000"
+  },
+  "Ses04F_script02_1_F010": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_1/Ses04F_script02_1_F010.wav",
+    "length": 2.34,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses02F_impro04_M017": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro04/Ses02F_impro04_M017.wav",
+    "length": 2.0299375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses04F_impro07_F017": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro07/Ses04F_impro07_F017.wav",
+    "length": 2.8399375,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro01_F005": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro01/Ses03M_impro01_F005.wav",
+    "length": 5.9563125,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses04M_script01_1_M038": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_1/Ses04M_script01_1_M038.wav",
+    "length": 7.689875,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses01M_impro07_M003": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro07/Ses01M_impro07_M003.wav",
+    "length": 13.46,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses01M_script03_1_M032": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script03_1/Ses01M_script03_1_M032.wav",
+    "length": 7.8999375,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses04M_impro08_F027": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro08/Ses04M_impro08_F027.wav",
+    "length": 1.619375,
+    "val": "3.5000",
+    "aro": "3.5000"
+  },
+  "Ses04F_script01_1_F026": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script01_1/Ses04F_script01_1_F026.wav",
+    "length": 2.721,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses02M_script02_2_F019": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script02_2/Ses02M_script02_2_F019.wav",
+    "length": 5.5799375,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses02M_impro06_M015": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro06/Ses02M_impro06_M015.wav",
+    "length": 7.46725,
+    "val": "2.0000",
+    "aro": "1.5000"
+  },
+  "Ses01M_script02_1_M034": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_1/Ses01M_script02_1_M034.wav",
+    "length": 3.1199375,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses02M_script01_2_F008": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_2/Ses02M_script01_2_F008.wav",
+    "length": 9.0,
+    "val": "2.6667",
+    "aro": "3.6667"
+  },
+  "Ses01F_script03_2_F017": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script03_2/Ses01F_script03_2_F017.wav",
+    "length": 1.7699375,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses05F_impro01_M000": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro01/Ses05F_impro01_M000.wav",
+    "length": 9.0,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script02_2_F044": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_2/Ses02F_script02_2_F044.wav",
+    "length": 2.33,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses04F_script02_2_F036": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_F036.wav",
+    "length": 10.827375,
+    "val": "1.0000",
+    "aro": "4.0000"
+  },
+  "Ses01M_script02_1_M038": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_1/Ses01M_script02_1_M038.wav",
+    "length": 4.67,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro03_F039": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro03/Ses03M_impro03_F039.wav",
+    "length": 5.71875,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses04M_script03_2_F003": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_2/Ses04M_script03_2_F003.wav",
+    "length": 2.2399375,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses03M_script02_2_M034": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_M034.wav",
+    "length": 3.121,
+    "val": "2.6667",
+    "aro": "3.0000"
+  },
+  "Ses01F_script02_2_M023": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_M023.wav",
+    "length": 2.9599375,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses02M_script03_2_F011": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script03_2/Ses02M_script03_2_F011.wav",
+    "length": 4.3598125,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro07_F055": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro07/Ses04F_impro07_F055.wav",
+    "length": 2.62,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses04F_impro01_F001": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro01/Ses04F_impro01_F001.wav",
+    "length": 5.92,
+    "val": "2.5000",
+    "aro": "4.0000"
+  },
+  "Ses03M_script03_2_M018": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_2/Ses03M_script03_2_M018.wav",
+    "length": 2.85875,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses01F_script02_2_F044": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_F044.wav",
+    "length": 2.1350625,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses04F_impro01_F022": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro01/Ses04F_impro01_F022.wav",
+    "length": 6.97,
+    "val": "1.5000",
+    "aro": "4.5000"
+  },
+  "Ses04F_impro03_M047": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_M047.wav",
+    "length": 5.98,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro05_M023": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro05/Ses04F_impro05_M023.wav",
+    "length": 2.9599375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses02F_impro07_F001": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro07/Ses02F_impro07_F001.wav",
+    "length": 2.275,
+    "val": "5.0000",
+    "aro": "4.0000"
+  },
+  "Ses01M_script01_1_F014": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_F014.wav",
+    "length": 6.2833125,
+    "val": "1.6667",
+    "aro": "3.3333"
+  },
+  "Ses04M_script01_1_F005": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_1/Ses04M_script01_1_F005.wav",
+    "length": 3.4571875,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses02M_impro01_F009": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro01/Ses02M_impro01_F009.wav",
+    "length": 1.4191875,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script02_2_M000": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_2/Ses02F_script02_2_M000.wav",
+    "length": 2.0930625,
+    "val": "3.5000",
+    "aro": "3.5000"
+  },
+  "Ses04M_impro07_F005": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro07/Ses04M_impro07_F005.wav",
+    "length": 1.9499375,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses03F_impro03_F001": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro03/Ses03F_impro03_F001.wav",
+    "length": 2.9504375,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses01M_script01_1_M028": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_M028.wav",
+    "length": 7.17,
+    "val": "3.0000",
+    "aro": "3.3333"
+  },
+  "Ses03F_script03_1_F024": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_1/Ses03F_script03_1_F024.wav",
+    "length": 4.4399375,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses01M_impro02_F013": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro02/Ses01M_impro02_F013.wav",
+    "length": 4.0599375,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses03F_impro02_F019": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro02/Ses03F_impro02_F019.wav",
+    "length": 4.135,
+    "val": "2.0000",
+    "aro": "2.0000"
+  },
+  "Ses03M_impro03_M000": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro03/Ses03M_impro03_M000.wav",
+    "length": 2.540375,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses05F_impro03_F019": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F019.wav",
+    "length": 2.2899375,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses02F_script01_1_M000": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_1/Ses02F_script01_1_M000.wav",
+    "length": 1.6399375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro08a_M018": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_M018.wav",
+    "length": 4.21975,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses04F_script01_1_F017": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script01_1/Ses04F_script01_1_F017.wav",
+    "length": 5.2329375,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses01M_impro03_F019": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro03/Ses01M_impro03_F019.wav",
+    "length": 3.61,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses03F_impro06_F016": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro06/Ses03F_impro06_F016.wav",
+    "length": 4.6503125,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script01_3_M011": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_3/Ses01F_script01_3_M011.wav",
+    "length": 10.5361875,
+    "val": "3.0000",
+    "aro": "3.3333"
+  },
+  "Ses02F_impro01_F023": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro01/Ses02F_impro01_F023.wav",
+    "length": 5.263875,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses01F_impro03_F017": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro03/Ses01F_impro03_F017.wav",
+    "length": 2.9825,
+    "val": "3.6667",
+    "aro": "2.6667"
+  },
+  "Ses05F_impro01_M002": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro01/Ses05F_impro01_M002.wav",
+    "length": 4.8299375,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script03_1_F019": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_1/Ses03F_script03_1_F019.wav",
+    "length": 8.6025,
+    "val": "3.5000",
+    "aro": "4.0000"
+  },
+  "Ses02F_script01_3_M011": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_3/Ses02F_script01_3_M011.wav",
+    "length": 2.5299375,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses04F_script02_2_M030": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_M030.wav",
+    "length": 4.5099375,
+    "val": "1.0000",
+    "aro": "4.0000"
+  },
+  "Ses02F_script03_1_F017": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_1/Ses02F_script03_1_F017.wav",
+    "length": 6.2199375,
+    "val": "2.6667",
+    "aro": "3.0000"
+  },
+  "Ses02F_script03_2_F027": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_2/Ses02F_script03_2_F027.wav",
+    "length": 2.36,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses05F_impro05_M013": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro05/Ses05F_impro05_M013.wav",
+    "length": 5.98,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script03_1_M015": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_1/Ses02F_script03_1_M015.wav",
+    "length": 2.7799375,
+    "val": "3.6667",
+    "aro": "2.6667"
+  },
+  "Ses03M_script01_3_M004": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_3/Ses03M_script01_3_M004.wav",
+    "length": 2.2679375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses01F_script02_2_M033": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_M033.wav",
+    "length": 3.0249375,
+    "val": "2.5000",
+    "aro": "1.5000"
+  },
+  "Ses04M_impro05_M015": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_M015.wav",
+    "length": 6.4,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses04M_impro08_M018": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro08/Ses04M_impro08_M018.wav",
+    "length": 6.855375,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses02M_impro05_F013": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro05/Ses02M_impro05_F013.wav",
+    "length": 6.172125,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script01_1_F029": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_F029.wav",
+    "length": 4.1899375,
+    "val": "2.3333",
+    "aro": "3.6667"
+  },
+  "Ses01M_impro05_F023": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro05/Ses01M_impro05_F023.wav",
+    "length": 1.6075,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses05F_impro03_M034": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_M034.wav",
+    "length": 8.6,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script01_1_M049": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_M049.wav",
+    "length": 3.777,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses02F_script01_3_M033": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_3/Ses02F_script01_3_M033.wav",
+    "length": 11.74,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses04M_impro06_M003": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro06/Ses04M_impro06_M003.wav",
+    "length": 1.5964375,
+    "val": "2.5000",
+    "aro": "1.5000"
+  },
+  "Ses04M_impro05_F019": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_F019.wav",
+    "length": 4.0099375,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses04M_impro01_F016": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro01/Ses04M_impro01_F016.wav",
+    "length": 1.4699375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro02_M023": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro02/Ses03M_impro02_M023.wav",
+    "length": 2.6545625,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses01M_script01_2_M011": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_2/Ses01M_script01_2_M011.wav",
+    "length": 1.049125,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses02F_impro05_F002": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro05/Ses02F_impro05_F002.wav",
+    "length": 2.62,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script02_2_M042": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_2/Ses02F_script02_2_M042.wav",
+    "length": 1.93,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses02F_script03_1_F030": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_1/Ses02F_script03_1_F030.wav",
+    "length": 2.67,
+    "val": "4.0000",
+    "aro": "2.3333"
+  },
+  "Ses03M_impro08a_M021": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_M021.wav",
+    "length": 7.3155625,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03M_impro04_M027": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_M027.wav",
+    "length": 4.3799375,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses04M_impro03_F012": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro03/Ses04M_impro03_F012.wav",
+    "length": 2.560375,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_script01_1_F010": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_1/Ses03M_script01_1_F010.wav",
+    "length": 1.8790625,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses04F_script01_1_M040": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script01_1/Ses04F_script01_1_M040.wav",
+    "length": 10.4635,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script01_1_F018": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_F018.wav",
+    "length": 3.09275,
+    "val": "2.3333",
+    "aro": "2.3333"
+  },
+  "Ses02M_script03_2_M047": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script03_2/Ses02M_script03_2_M047.wav",
+    "length": 9.75075,
+    "val": "1.5000",
+    "aro": "4.5000"
+  },
+  "Ses03M_impro08a_F019": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_F019.wav",
+    "length": 2.9774375,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses02F_script02_2_M033": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_2/Ses02F_script02_2_M033.wav",
+    "length": 1.2599375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses03F_script03_1_M031": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_1/Ses03F_script03_1_M031.wav",
+    "length": 5.3799375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses01F_script01_3_F011": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_3/Ses01F_script01_3_F011.wav",
+    "length": 2.7724375,
+    "val": "4.6667",
+    "aro": "4.0000"
+  },
+  "Ses04F_script01_1_M005": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script01_1/Ses04F_script01_1_M005.wav",
+    "length": 3.5323125,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses01M_impro07_F031": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro07/Ses01M_impro07_F031.wav",
+    "length": 3.4199375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses04F_impro03_F029": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_F029.wav",
+    "length": 5.6,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses01M_impro02_F007": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro02/Ses01M_impro02_F007.wav",
+    "length": 3.1299375,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses04M_script01_1_F018": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_1/Ses04M_script01_1_F018.wav",
+    "length": 3.0399375,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses04F_script01_2_M006": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script01_2/Ses04F_script01_2_M006.wav",
+    "length": 1.9599375,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses01F_impro02_F020": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro02/Ses01F_impro02_F020.wav",
+    "length": 4.5299375,
+    "val": "4.0000",
+    "aro": "2.0000"
+  },
+  "Ses01M_impro02_F006": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro02/Ses01M_impro02_F006.wav",
+    "length": 1.5,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro06_M018": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro06/Ses03M_impro06_M018.wav",
+    "length": 4.9405,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses03M_impro01_F023": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro01/Ses03M_impro01_F023.wav",
+    "length": 10.5625,
+    "val": "1.5000",
+    "aro": "4.5000"
+  },
+  "Ses04M_script01_3_M023": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_3/Ses04M_script01_3_M023.wav",
+    "length": 3.0299375,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses01F_impro06_F018": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro06/Ses01F_impro06_F018.wav",
+    "length": 7.2,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro06_F003": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro06/Ses04F_impro06_F003.wav",
+    "length": 1.9499375,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses02M_script01_3_M008": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_3/Ses02M_script01_3_M008.wav",
+    "length": 9.8723125,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses01F_impro03_F016": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro03/Ses01F_impro03_F016.wav",
+    "length": 2.0524375,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses02M_script01_2_F001": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_2/Ses02M_script01_2_F001.wav",
+    "length": 4.09,
+    "val": "2.0000",
+    "aro": "3.6667"
+  },
+  "Ses02F_impro02_M002": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro02/Ses02F_impro02_M002.wav",
+    "length": 9.939,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses03F_impro03_F020": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro03/Ses03F_impro03_F020.wav",
+    "length": 3.2600625,
+    "val": "3.0000",
+    "aro": "4.0000"
+  },
+  "Ses04M_script03_2_F021": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_2/Ses04M_script03_2_F021.wav",
+    "length": 5.0599375,
+    "val": "3.5000",
+    "aro": "2.0000"
+  },
+  "Ses04M_script03_2_F005": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_2/Ses04M_script03_2_F005.wav",
+    "length": 2.73,
+    "val": "2.5000",
+    "aro": "4.0000"
+  },
+  "Ses03F_script01_3_F007": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_F007.wav",
+    "length": 4.3090625,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses02F_script03_2_M046": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_2/Ses02F_script03_2_M046.wav",
+    "length": 2.85,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses01F_script01_1_M011": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_M011.wav",
+    "length": 10.28025,
+    "val": "2.3333",
+    "aro": "2.3333"
+  },
+  "Ses02F_impro02_F013": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro02/Ses02F_impro02_F013.wav",
+    "length": 13.1135625,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses01M_script01_1_M010": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_M010.wav",
+    "length": 10.3876875,
+    "val": "2.6667",
+    "aro": "3.3333"
+  },
+  "Ses01F_script02_2_F040": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script02_2/Ses01F_script02_2_F040.wav",
+    "length": 9.9895,
+    "val": "2.0000",
+    "aro": "1.5000"
+  },
+  "Ses02M_script02_1_M021": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script02_1/Ses02M_script02_1_M021.wav",
+    "length": 8.81,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses01F_impro01_M009": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro01/Ses01F_impro01_M009.wav",
+    "length": 7.49,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses02F_script01_2_F014": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_2/Ses02F_script01_2_F014.wav",
+    "length": 3.68,
+    "val": "1.3333",
+    "aro": "3.3333"
+  },
+  "Ses03F_script03_1_M029": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_1/Ses03F_script03_1_M029.wav",
+    "length": 4.81,
+    "val": "4.5000",
+    "aro": "4.5000"
+  },
+  "Ses01F_script01_1_F001": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_F001.wav",
+    "length": 3.5454375,
+    "val": "2.0000",
+    "aro": "2.3333"
+  },
+  "Ses03M_script02_1_M020": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_M020.wav",
+    "length": 8.1988125,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses03M_impro06_M002": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro06/Ses03M_impro06_M002.wav",
+    "length": 3.0421875,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses03F_impro06_F011": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro06/Ses03F_impro06_F011.wav",
+    "length": 4.5613125,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses05F_impro01_M009": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro01/Ses05F_impro01_M009.wav",
+    "length": 11.14,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro04_M018": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_M018.wav",
+    "length": 2.6899375,
+    "val": "2.0000",
+    "aro": "2.0000"
+  },
+  "Ses03M_impro05a_F007": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05a/Ses03M_impro05a_F007.wav",
+    "length": 4.49,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses03M_script03_2_F018": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_2/Ses03M_script03_2_F018.wav",
+    "length": 2.3696875,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses02M_impro04_M005": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro04/Ses02M_impro04_M005.wav",
+    "length": 6.337125,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses01M_impro06_M018": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro06/Ses01M_impro06_M018.wav",
+    "length": 3.8799375,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses03M_impro01_M009": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro01/Ses03M_impro01_M009.wav",
+    "length": 4.34725,
+    "val": "1.5000",
+    "aro": "4.0000"
+  },
+  "Ses03M_impro05a_F006": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05a/Ses03M_impro05a_F006.wav",
+    "length": 4.0949375,
+    "val": "3.5000",
+    "aro": "2.0000"
+  },
+  "Ses03M_script02_2_F030": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_F030.wav",
+    "length": 2.1641875,
+    "val": "1.6667",
+    "aro": "3.3333"
+  },
+  "Ses05F_impro05_M040": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro05/Ses05F_impro05_M040.wav",
+    "length": 1.46,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses04F_script02_2_F014": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_F014.wav",
+    "length": 2.8608125,
+    "val": "1.0000",
+    "aro": "4.5000"
+  },
+  "Ses01F_script01_1_F040": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_F040.wav",
+    "length": 3.3641875,
+    "val": "2.3333",
+    "aro": "2.6667"
+  },
+  "Ses03M_impro04_M024": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_M024.wav",
+    "length": 2.9599375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses01M_script03_2_F008": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script03_2/Ses01M_script03_2_F008.wav",
+    "length": 4.8256875,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses02F_script03_2_M000": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_2/Ses02F_script03_2_M000.wav",
+    "length": 3.66,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script01_3_M012": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_3/Ses02F_script01_3_M012.wav",
+    "length": 1.1903125,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses02M_script03_2_M025": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script03_2/Ses02M_script03_2_M025.wav",
+    "length": 3.8713125,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03M_impro08b_M007": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro08b/Ses03M_impro08b_M007.wav",
+    "length": 5.8299375,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses02M_script01_3_F023": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_3/Ses02M_script01_3_F023.wav",
+    "length": 3.0701875,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script01_2_F018": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_2/Ses03F_script01_2_F018.wav",
+    "length": 1.68,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses02M_script01_1_F022": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_1/Ses02M_script01_1_F022.wav",
+    "length": 7.6899375,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses01M_impro01_F026": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_F026.wav",
+    "length": 1.6524375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script03_2_M012": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_2/Ses03F_script03_2_M012.wav",
+    "length": 3.5325,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_script02_1_M041": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_M041.wav",
+    "length": 5.3725,
+    "val": "4.5000",
+    "aro": "4.5000"
+  },
+  "Ses04M_impro05_M016": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_M016.wav",
+    "length": 1.5394375,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses04F_impro07_M000": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro07/Ses04F_impro07_M000.wav",
+    "length": 2.87,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses02F_impro08_F011": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro08/Ses02F_impro08_F011.wav",
+    "length": 2.363875,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses03F_impro03_F002": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro03/Ses03F_impro03_F002.wav",
+    "length": 11.495,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses04M_impro05_M022": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_M022.wav",
+    "length": 4.3799375,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses01M_impro01_M023": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_M023.wav",
+    "length": 2.5299375,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses01F_script01_1_F005": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_F005.wav",
+    "length": 4.9488125,
+    "val": "2.0000",
+    "aro": "1.6667"
+  },
+  "Ses05F_impro03_F037": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F037.wav",
+    "length": 2.3899375,
+    "val": "4.5000",
+    "aro": "3.5000"
+  },
+  "Ses02M_impro08_F009": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro08/Ses02M_impro08_F009.wav",
+    "length": 5.181,
+    "val": "2.0000",
+    "aro": "3.6667"
+  },
+  "Ses04F_script02_2_F000": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_F000.wav",
+    "length": 1.25,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro08a_M008": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_M008.wav",
+    "length": 4.5746875,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses05F_impro02_M028": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro02/Ses05F_impro02_M028.wav",
+    "length": 11.9499375,
+    "val": "1.5000",
+    "aro": "4.0000"
+  },
+  "Ses03M_impro08a_M026": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_M026.wav",
+    "length": 2.662,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses04F_script01_3_M034": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script01_3/Ses04F_script01_3_M034.wav",
+    "length": 9.8199375,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses01F_impro06_M003": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro06/Ses01F_impro06_M003.wav",
+    "length": 6.05,
+    "val": "2.5000",
+    "aro": "2.0000"
+  },
+  "Ses01F_impro04_M031": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_M031.wav",
+    "length": 2.8616875,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses05F_impro04_M006": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro04/Ses05F_impro04_M006.wav",
+    "length": 1.27,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses03M_script02_1_F011": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_1/Ses03M_script02_1_F011.wav",
+    "length": 1.9574375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses02F_script03_1_F024": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_1/Ses02F_script03_1_F024.wav",
+    "length": 5.66,
+    "val": "4.0000",
+    "aro": "2.6667"
+  },
+  "Ses05F_impro03_F057": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F057.wav",
+    "length": 4.09,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses01M_impro01_F028": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_F028.wav",
+    "length": 4.36,
+    "val": "1.5000",
+    "aro": "3.0000"
+  },
+  "Ses02F_impro04_M004": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro04/Ses02F_impro04_M004.wav",
+    "length": 12.9600625,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses03M_script01_3_F004": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_3/Ses03M_script01_3_F004.wav",
+    "length": 6.1715625,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro01_F002": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro01/Ses03M_impro01_F002.wav",
+    "length": 3.77525,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses03F_impro03_M017": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro03/Ses03F_impro03_M017.wav",
+    "length": 1.9524375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script03_1_F018": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_1/Ses03F_script03_1_F018.wav",
+    "length": 3.3825,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses04M_impro05_F032": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_F032.wav",
+    "length": 4.3499375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses05F_impro05_M048": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro05/Ses05F_impro05_M048.wav",
+    "length": 1.3799375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_impro08_M020": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro08/Ses03F_impro08_M020.wav",
+    "length": 3.14,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses01M_impro01_F021": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_F021.wav",
+    "length": 4.9125,
+    "val": "1.0000",
+    "aro": "4.5000"
+  },
+  "Ses01M_impro04_M016": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro04/Ses01M_impro04_M016.wav",
+    "length": 5.6505,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses04M_script02_1_M028": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script02_1/Ses04M_script02_1_M028.wav",
+    "length": 14.315875,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses02F_script01_3_F024": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_3/Ses02F_script01_3_F024.wav",
+    "length": 1.6999375,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses02M_impro01_F019": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro01/Ses02M_impro01_F019.wav",
+    "length": 2.9911875,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses02F_impro07_M034": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro07/Ses02F_impro07_M034.wav",
+    "length": 2.8196875,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses03F_script01_3_M013": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_3/Ses03F_script01_3_M013.wav",
+    "length": 7.09925,
+    "val": "4.5000",
+    "aro": "3.5000"
+  },
+  "Ses05F_impro03_F031": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F031.wav",
+    "length": 1.3,
+    "val": "4.0000",
+    "aro": "2.0000"
+  },
+  "Ses04M_impro07_F006": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro07/Ses04M_impro07_F006.wav",
+    "length": 1.17,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses05F_impro02_F023": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro02/Ses05F_impro02_F023.wav",
+    "length": 5.8799375,
+    "val": "1.0000",
+    "aro": "3.5000"
+  },
+  "Ses01M_impro01_F006": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro01/Ses01M_impro01_F006.wav",
+    "length": 2.4499375,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses05F_impro02_M012": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro02/Ses05F_impro02_M012.wav",
+    "length": 2.49,
+    "val": "1.5000",
+    "aro": "3.0000"
+  },
+  "Ses03M_impro02_M016": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro02/Ses03M_impro02_M016.wav",
+    "length": 3.1636875,
+    "val": "1.5000",
+    "aro": "3.0000"
+  },
+  "Ses04M_script02_2_M005": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script02_2/Ses04M_script02_2_M005.wav",
+    "length": 7.0169375,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses01F_impro03_M024": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro03/Ses01F_impro03_M024.wav",
+    "length": 2.2199375,
+    "val": "3.6667",
+    "aro": "2.6667"
+  },
+  "Ses04F_script02_2_M014": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_M014.wav",
+    "length": 2.2763125,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses04M_impro05_F016": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_F016.wav",
+    "length": 1.92,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses01M_script01_3_F019": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_3/Ses01M_script01_3_F019.wav",
+    "length": 3.845,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses02M_impro03_F027": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro03/Ses02M_impro03_F027.wav",
+    "length": 1.7599375,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses04F_impro02_F023": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro02/Ses04F_impro02_F023.wav",
+    "length": 9.5,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro03_F005": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro03/Ses03M_impro03_F005.wav",
+    "length": 5.7674375,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses05F_impro05_M011": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro05/Ses05F_impro05_M011.wav",
+    "length": 2.2599375,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses03F_script01_1_M001": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_M001.wav",
+    "length": 2.1895625,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses02M_script02_1_M017": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script02_1/Ses02M_script02_1_M017.wav",
+    "length": 1.67,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses02M_script01_3_M029": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_3/Ses02M_script01_3_M029.wav",
+    "length": 10.1635,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses04M_impro07_F036": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro07/Ses04M_impro07_F036.wav",
+    "length": 1.81,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses04M_impro08_M024": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro08/Ses04M_impro08_M024.wav",
+    "length": 3.5799375,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script02_1_M037": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_1/Ses03F_script02_1_M037.wav",
+    "length": 12.706125,
+    "val": "3.0000",
+    "aro": "4.5000"
+  },
+  "Ses03F_script02_2_M033": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_M033.wav",
+    "length": 4.2418125,
+    "val": "2.3333",
+    "aro": "2.3333"
+  },
+  "Ses01M_impro02_F014": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro02/Ses01M_impro02_F014.wav",
+    "length": 2.6083125,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses01M_script02_1_M011": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_1/Ses01M_script02_1_M011.wav",
+    "length": 5.201125,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses02M_impro05_F003": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro05/Ses02M_impro05_F003.wav",
+    "length": 11.41275,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03M_script01_3_F032": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_3/Ses03M_script01_3_F032.wav",
+    "length": 6.7915625,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_script01_3_F020": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_3/Ses03M_script01_3_F020.wav",
+    "length": 6.5204375,
+    "val": "4.0000",
+    "aro": "4.5000"
+  },
+  "Ses04M_impro05_M026": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro05/Ses04M_impro05_M026.wav",
+    "length": 3.93,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses02M_impro03_M010": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro03/Ses02M_impro03_M010.wav",
+    "length": 7.557625,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro02_M007": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro02/Ses03M_impro02_M007.wav",
+    "length": 3.184875,
+    "val": "1.5000",
+    "aro": "2.0000"
+  },
+  "Ses03F_script03_2_M029": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_2/Ses03F_script03_2_M029.wav",
+    "length": 2.3824375,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses03F_script01_1_F003": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_F003.wav",
+    "length": 2.2808125,
+    "val": "2.0000",
+    "aro": "3.3333"
+  },
+  "Ses04M_impro01_F006": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro01/Ses04M_impro01_F006.wav",
+    "length": 2.46,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro03_F009": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_F009.wav",
+    "length": 3.18,
+    "val": "5.0000",
+    "aro": "4.0000"
+  },
+  "Ses03M_impro05b_M025": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05b/Ses03M_impro05b_M025.wav",
+    "length": 2.91,
+    "val": "1.5000",
+    "aro": "3.0000"
+  },
+  "Ses03F_impro06_M011": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro06/Ses03F_impro06_M011.wav",
+    "length": 5.629375,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses04M_script01_1_F032": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_1/Ses04M_script01_1_F032.wav",
+    "length": 2.68,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses02M_script01_3_M022": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_3/Ses02M_script01_3_M022.wav",
+    "length": 5.8228125,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses02M_impro06_F008": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro06/Ses02M_impro06_F008.wav",
+    "length": 5.1888125,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses03F_script02_2_F016": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_F016.wav",
+    "length": 5.138625,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses03F_impro07_M022": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro07/Ses03F_impro07_M022.wav",
+    "length": 3.711375,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro08a_M025": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro08a/Ses03M_impro08a_M025.wav",
+    "length": 3.667625,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses05F_impro03_F032": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F032.wav",
+    "length": 1.09,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro08_M031": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro08/Ses04F_impro08_M031.wav",
+    "length": 0.86,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses04F_impro03_M038": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro03/Ses04F_impro03_M038.wav",
+    "length": 3.31,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses03F_impro01_F007": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro01/Ses03F_impro01_F007.wav",
+    "length": 4.8149375,
+    "val": "2.0000",
+    "aro": "3.6667"
+  },
+  "Ses03F_script03_2_M044": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_2/Ses03F_script03_2_M044.wav",
+    "length": 11.0399375,
+    "val": "1.5000",
+    "aro": "4.5000"
+  },
+  "Ses02M_impro02_F000": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro02/Ses02M_impro02_F000.wav",
+    "length": 2.055375,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses04F_script02_1_F002": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_1/Ses04F_script02_1_F002.wav",
+    "length": 1.984,
+    "val": "2.0000",
+    "aro": "2.5000"
+  },
+  "Ses04F_script03_2_F042": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script03_2/Ses04F_script03_2_F042.wav",
+    "length": 2.8610625,
+    "val": "1.0000",
+    "aro": "4.0000"
+  },
+  "Ses01M_impro07_F024": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro07/Ses01M_impro07_F024.wav",
+    "length": 2.495,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses02F_impro08_F020": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro08/Ses02F_impro08_F020.wav",
+    "length": 2.3915,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro02_F006": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro02/Ses04F_impro02_F006.wav",
+    "length": 3.1299375,
+    "val": "1.5000",
+    "aro": "3.0000"
+  },
+  "Ses03F_impro02_M003": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro02/Ses03F_impro02_M003.wav",
+    "length": 2.7674375,
+    "val": "4.0000",
+    "aro": "2.0000"
+  },
+  "Ses02M_script02_1_F019": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script02_1/Ses02M_script02_1_F019.wav",
+    "length": 2.0099375,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro05b_F017": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05b/Ses03M_impro05b_F017.wav",
+    "length": 3.75,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses03M_script01_1_F034": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_1/Ses03M_script01_1_F034.wav",
+    "length": 12.0933125,
+    "val": "1.5000",
+    "aro": "4.5000"
+  },
+  "Ses01M_script02_2_F044": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_2/Ses01M_script02_2_F044.wav",
+    "length": 4.3325,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses01M_impro04_F008": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_impro04/Ses01M_impro04_F008.wav",
+    "length": 2.2805625,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro07_F018": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro07/Ses03M_impro07_F018.wav",
+    "length": 3.4,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses02F_script02_2_M013": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_2/Ses02F_script02_2_M013.wav",
+    "length": 3.2899375,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script02_1_M009": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_1/Ses03F_script02_1_M009.wav",
+    "length": 4.1424375,
+    "val": "3.0000",
+    "aro": "4.0000"
+  },
+  "Ses03F_script01_1_F052": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_F052.wav",
+    "length": 4.433875,
+    "val": "2.0000",
+    "aro": "2.6667"
+  },
+  "Ses03F_script03_1_M007": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_1/Ses03F_script03_1_M007.wav",
+    "length": 4.73,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses01F_script01_1_M000": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_M000.wav",
+    "length": 3.132625,
+    "val": "3.0000",
+    "aro": "1.6667"
+  },
+  "Ses01M_script02_1_F003": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script02_1/Ses01M_script02_1_F003.wav",
+    "length": 2.6499375,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses04M_script01_3_M037": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_3/Ses04M_script01_3_M037.wav",
+    "length": 3.56,
+    "val": "3.5000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro08b_M014": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro08b/Ses03M_impro08b_M014.wav",
+    "length": 7.28,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses03F_script01_1_M047": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_M047.wav",
+    "length": 3.0490625,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses02F_script01_1_M032": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_1/Ses02F_script01_1_M032.wav",
+    "length": 1.9499375,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses05F_impro04_M027": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro04/Ses05F_impro04_M027.wav",
+    "length": 4.0199375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses04F_script01_3_M039": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script01_3/Ses04F_script01_3_M039.wav",
+    "length": 4.3836875,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_impro07_F017": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro07/Ses03F_impro07_F017.wav",
+    "length": 2.0874375,
+    "val": "4.5000",
+    "aro": "2.5000"
+  },
+  "Ses01F_script02_1_M020": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script02_1/Ses01F_script02_1_M020.wav",
+    "length": 1.8899375,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script02_2_M012": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_2/Ses03F_script02_2_M012.wav",
+    "length": 5.696125,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses04M_impro06_F007": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro06/Ses04M_impro06_F007.wav",
+    "length": 5.5799375,
+    "val": "2.0000",
+    "aro": "2.0000"
+  },
+  "Ses03F_impro08_F013": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro08/Ses03F_impro08_F013.wav",
+    "length": 1.93,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses03M_script01_3_F024": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_3/Ses03M_script01_3_F024.wav",
+    "length": 2.8131875,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro02_F024": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro02/Ses04F_impro02_F024.wav",
+    "length": 1.5299375,
+    "val": "1.5000",
+    "aro": "3.0000"
+  },
+  "Ses02F_impro03_F013": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro03/Ses02F_impro03_F013.wav",
+    "length": 6.3349375,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses02F_impro04_M009": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro04/Ses02F_impro04_M009.wav",
+    "length": 5.7308125,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_script01_1_F039": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script01_1/Ses03F_script01_1_F039.wav",
+    "length": 11.1400625,
+    "val": "2.0000",
+    "aro": "4.3333"
+  },
+  "Ses05F_impro03_F042": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F042.wav",
+    "length": 1.8299375,
+    "val": "4.5000",
+    "aro": "3.0000"
+  },
+  "Ses04M_script03_2_F025": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_2/Ses04M_script03_2_F025.wav",
+    "length": 3.92,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro08_M013": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro08/Ses04F_impro08_M013.wav",
+    "length": 8.6399375,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses02F_script03_2_M042": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_2/Ses02F_script03_2_M042.wav",
+    "length": 1.99,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses03M_script02_2_M006": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_M006.wav",
+    "length": 12.484125,
+    "val": "2.3333",
+    "aro": "3.0000"
+  },
+  "Ses02M_script03_2_M005": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script03_2/Ses02M_script03_2_M005.wav",
+    "length": 2.65925,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses02F_impro07_F006": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_impro07/Ses02F_impro07_F006.wav",
+    "length": 1.9016875,
+    "val": "5.0000",
+    "aro": "4.0000"
+  },
+  "Ses04F_script01_3_M002": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script01_3/Ses04F_script01_3_M002.wav",
+    "length": 1.5699375,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses04F_impro05_F017": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro05/Ses04F_impro05_F017.wav",
+    "length": 5.56,
+    "val": "1.5000",
+    "aro": "4.5000"
+  },
+  "Ses01M_script01_1_M032": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_M032.wav",
+    "length": 4.9325,
+    "val": "3.0000",
+    "aro": "3.3333"
+  },
+  "Ses04M_impro07_F017": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro07/Ses04M_impro07_F017.wav",
+    "length": 2.3,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses04M_impro02_F000": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro02/Ses04M_impro02_F000.wav",
+    "length": 4.54,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses01F_impro01_F012": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro01/Ses01F_impro01_F012.wav",
+    "length": 2.75,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses04F_script02_2_F023": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_F023.wav",
+    "length": 3.8299375,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses01F_script01_1_M039": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_1/Ses01F_script01_1_M039.wav",
+    "length": 2.61,
+    "val": "3.0000",
+    "aro": "1.6667"
+  },
+  "Ses02F_script03_1_M022": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_1/Ses02F_script03_1_M022.wav",
+    "length": 13.9499375,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses04M_script01_2_F011": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_2/Ses04M_script01_2_F011.wav",
+    "length": 6.46,
+    "val": "2.0000",
+    "aro": "3.6667"
+  },
+  "Ses03F_impro02_F018": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro02/Ses03F_impro02_F018.wav",
+    "length": 3.7275,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses03F_impro07_M034": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_impro07/Ses03F_impro07_M034.wav",
+    "length": 1.9268125,
+    "val": "4.5000",
+    "aro": "3.5000"
+  },
+  "Ses03M_impro04_F026": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro04/Ses03M_impro04_F026.wav",
+    "length": 5.9599375,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses01M_script01_3_M020": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_3/Ses01M_script01_3_M020.wav",
+    "length": 3.9499375,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses05F_impro03_F047": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F047.wav",
+    "length": 2.93,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses03M_impro05a_F017": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05a/Ses03M_impro05a_F017.wav",
+    "length": 2.3,
+    "val": "4.0000",
+    "aro": "3.0000"
+  },
+  "Ses04M_impro06_M011": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_impro06/Ses04M_impro06_M011.wav",
+    "length": 7.0399375,
+    "val": "1.5000",
+    "aro": "2.0000"
+  },
+  "Ses04M_script03_1_F005": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_1/Ses04M_script03_1_F005.wav",
+    "length": 3.25,
+    "val": "4.0000",
+    "aro": "4.5000"
+  },
+  "Ses01F_script03_2_F026": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script03_2/Ses01F_script03_2_F026.wav",
+    "length": 5.85,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script01_1_F036": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_1/Ses02F_script01_1_F036.wav",
+    "length": 1.6899375,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses04F_impro08_M018": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro08/Ses04F_impro08_M018.wav",
+    "length": 2.8799375,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses04F_script03_2_F019": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script03_2/Ses04F_script03_2_F019.wav",
+    "length": 3.4699375,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_impro03_M009": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro03/Ses01F_impro03_M009.wav",
+    "length": 4.91,
+    "val": "3.6667",
+    "aro": "2.3333"
+  },
+  "Ses04F_script02_2_M009": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_2/Ses04F_script02_2_M009.wav",
+    "length": 8.7778125,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses05F_impro03_F059": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro03/Ses05F_impro03_F059.wav",
+    "length": 2.0199375,
+    "val": "3.5000",
+    "aro": "3.0000"
+  },
+  "Ses05F_impro04_F028": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro04/Ses05F_impro04_F028.wav",
+    "length": 5.2599375,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses02M_script03_1_F021": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script03_1/Ses02M_script03_1_F021.wav",
+    "length": 2.67325,
+    "val": "4.0000",
+    "aro": "2.5000"
+  },
+  "Ses04F_impro02_M007": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro02/Ses04F_impro02_M007.wav",
+    "length": 2.67,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses02M_script01_1_F004": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script01_1/Ses02M_script01_1_F004.wav",
+    "length": 1.75,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro03_M012": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro03/Ses03M_impro03_M012.wav",
+    "length": 2.4955,
+    "val": "4.0000",
+    "aro": "3.5000"
+  },
+  "Ses04M_script02_1_M001": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script02_1/Ses04M_script02_1_M001.wav",
+    "length": 6.3,
+    "val": "3.5000",
+    "aro": "2.5000"
+  },
+  "Ses02F_script03_1_M003": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script03_1/Ses02F_script03_1_M003.wav",
+    "length": 2.6899375,
+    "val": "3.3333",
+    "aro": "3.0000"
+  },
+  "Ses03M_script01_1_M017": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script01_1/Ses03M_script01_1_M017.wav",
+    "length": 3.75975,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script02_1_F011": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script02_1/Ses01F_script02_1_F011.wav",
+    "length": 2.1899375,
+    "val": "2.0000",
+    "aro": "2.0000"
+  },
+  "Ses01F_impro04_M008": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro04/Ses01F_impro04_M008.wav",
+    "length": 1.1199375,
+    "val": "3.0000",
+    "aro": "3.0000"
+  },
+  "Ses02F_script02_2_M004": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script02_2/Ses02F_script02_2_M004.wav",
+    "length": 2.2099375,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses01F_script01_3_M002": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_script01_3/Ses01F_script01_3_M002.wav",
+    "length": 2.367625,
+    "val": "2.6667",
+    "aro": "1.6667"
+  },
+  "Ses03F_script03_1_F006": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script03_1/Ses03F_script03_1_F006.wav",
+    "length": 5.1724375,
+    "val": "4.0000",
+    "aro": "4.0000"
+  },
+  "Ses02M_impro06_M022": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro06/Ses02M_impro06_M022.wav",
+    "length": 2.07825,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses01M_script01_1_M030": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01M_script01_1/Ses01M_script01_1_M030.wav",
+    "length": 7.15,
+    "val": "1.6667",
+    "aro": "3.3333"
+  },
+  "Ses04F_script02_1_M024": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_script02_1/Ses04F_script02_1_M024.wav",
+    "length": 1.4399375,
+    "val": "2.5000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro02_F012": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro02/Ses03M_impro02_F012.wav",
+    "length": 5.39225,
+    "val": "1.5000",
+    "aro": "3.0000"
+  },
+  "Ses03M_impro05b_F003": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro05b/Ses03M_impro05b_F003.wav",
+    "length": 2.25,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses03M_script03_2_F012": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script03_2/Ses03M_script03_2_F012.wav",
+    "length": 3.0941875,
+    "val": "3.0000",
+    "aro": "2.5000"
+  },
+  "Ses04M_script01_1_M009": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script01_1/Ses04M_script01_1_M009.wav",
+    "length": 6.1199375,
+    "val": "2.0000",
+    "aro": "4.0000"
+  },
+  "Ses04F_impro05_M012": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04F_impro05/Ses04F_impro05_M012.wav",
+    "length": 1.73,
+    "val": "3.0000",
+    "aro": "2.0000"
+  },
+  "Ses04M_script03_2_M039": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script03_2/Ses04M_script03_2_M039.wav",
+    "length": 5.75,
+    "val": "2.0000",
+    "aro": "3.0000"
+  },
+  "Ses02M_impro02_F002": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_impro02/Ses02M_impro02_F002.wav",
+    "length": 2.8360625,
+    "val": "1.5000",
+    "aro": "2.5000"
+  },
+  "Ses03M_impro06_M007": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_impro06/Ses03M_impro06_M007.wav",
+    "length": 2.8718125,
+    "val": "2.5000",
+    "aro": "3.0000"
+  },
+  "Ses03M_script02_2_M046": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03M_script02_2/Ses03M_script02_2_M046.wav",
+    "length": 2.73375,
+    "val": "3.6667",
+    "aro": "2.6667"
+  },
+  "Ses02M_script03_2_M041": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02M_script03_2/Ses02M_script03_2_M041.wav",
+    "length": 2.46025,
+    "val": "2.5000",
+    "aro": "3.5000"
+  },
+  "Ses02F_script01_1_F028": {
+    "wav": "/content/extracted_data/dataset/Session2/sentences/wav/Ses02F_script01_1/Ses02F_script01_1_F028.wav",
+    "length": 2.91,
+    "val": "2.0000",
+    "aro": "3.5000"
+  },
+  "Ses01F_impro07_F012": {
+    "wav": "/content/extracted_data/dataset/Session1/sentences/wav/Ses01F_impro07/Ses01F_impro07_F012.wav",
+    "length": 5.8799375,
+    "val": "4.5000",
+    "aro": "4.0000"
+  },
+  "Ses04M_script02_2_F009": {
+    "wav": "/content/extracted_data/dataset/Session4/sentences/wav/Ses04M_script02_2/Ses04M_script02_2_F009.wav",
+    "length": 3.419125,
+    "val": "1.5000",
+    "aro": "3.5000"
+  },
+  "Ses03F_script02_1_M012": {
+    "wav": "/content/extracted_data/dataset/Session3/sentences/wav/Ses03F_script02_1/Ses03F_script02_1_M012.wav",
+    "length": 3.467,
+    "val": "3.0000",
+    "aro": "3.5000"
+  },
+  "Ses05F_impro04_F006": {
+    "wav": "/content/extracted_data/dataset/Session5/sentences/wav/Ses05F_impro04/Ses05F_impro04_F006.wav",
+    "length": 4.18,
+    "val": "1.5000",
+    "aro": "3.5000"
+  }
+}

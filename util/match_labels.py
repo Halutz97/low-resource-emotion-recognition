@@ -1,12 +1,5 @@
-import librosa
-import numpy as np
 import pandas as pd
 import os
-from sklearn.preprocessing import LabelEncoder
-import torch
-import torch.nn as nn
-import torch.optim as optim
-from torch.utils.data import DataLoader, TensorDataset
 
 def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset="MELD", attributes=False):
     # Assuming you have a DataFrame with columns "filename" and "emotion"
@@ -224,15 +217,34 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         print("Number of entries in dataframe after removing files not in directory: " + str(len(data)))
 
     elif dataset == "IEMOCAP" and attributes == False:
-              # Drop all rows with oth, xxx, dis, and fea of the csv file
-        data = data[data['Emotion'] != 'oth']
-        data = data[data['Emotion'] != 'xxx']
-        data = data[data['Emotion'] != 'dis']
-        data = data[data['Emotion'] != 'fea']
+        # # Drop all rows with oth, xxx, dis, and fea of the csv file
+        # data = data[data['Emotion'] != 'oth']
+        # data = data[data['Emotion'] != 'xxx']
+        # data = data[data['Emotion'] != 'dis']
+        # data = data[data['Emotion'] != 'fea']
 
-        data = data[data['Emotion'] != 'sur']
-        data = data[data['Emotion'] != 'fru']
-        data = data[data['Emotion'] != 'exc']
+        # data = data[data['Emotion'] != 'sur']
+        # data = data[data['Emotion'] != 'fru']
+
+        data.loc[data['Emotion'] == 'exc', 'Emotion'] = 'hap'
+
+
+    if dataset == "IEMOCAP":
+
+        # Separete attributes and drop '[', ']', and ' '
+        # data['Attributes'] = data['Attributes'].str.replace('"', '')
+
+        data['Valence'] = data['Attributes'].apply(lambda x: x.split(',')[0])
+        data['Arousal'] = data['Attributes'].apply(lambda x: x.split(',')[1])
+        data['Dominance'] = data['Attributes'].apply(lambda x: x.split(',')[2])
+
+        data['Valence'] = data['Valence'].str.replace('[', '')
+        data['Arousal'] = data['Arousal'].str.replace(' ', '')
+        data['Dominance'] = data['Dominance'].str.replace(']', '')
+        data['Dominance'] = data['Dominance'].str.replace(' ', '')
+        data['Dominance'] = data['Dominance'].str.replace('"', '')
+
+
 
 
         print("Number of entries in dataframe after removing some emotions: " + str(len(data)))
@@ -254,21 +266,8 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
     
 
 
-
-    # Export dataframe to csv
-    # data.to_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_fine_tune_v1_train_data\export_csv.csv", index=False)
-
-    # Number of entries in dataframe:
-    # print(len(data))
-
-    # print(data.head())
-
-    # print(data.Emotion)
-
-    # Placeholder for features and labels
-    if attributes == False:
-        features = []
-        labels = []
+    # Placeholder for labels
+    labels = []
 
     if dataset == "MELD":
         my_encoding_dict = {'anger': 0, 'disgust': 1, 'fear': 2, 'joy': 3, 'neutral': 4, 'sadness': 5, 'surprise': 6}
@@ -281,88 +280,86 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         my_encoding_dict = {'W': 0, 'N': 1, 'F': 2, 'T': 3}
     elif dataset == "ShEMO":
         my_encoding_dict = {'A': 0, 'N': 1, 'H': 2, 'S': 3}
-    elif dataset == "IEMOCAP":
-        # my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6}
+    elif dataset == "IEMOCAP" and attributes == True:
+        my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6, 'oth': 7, 'xxx': 8, 'dis': 9, 'fea': 10}
+    elif dataset == "IEMOCAP" and attributes == False:
         my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3}
     
     
     labels = data['Emotion'].map(my_encoding_dict).values
 
-    if attributes == False:
-        print(labels)
-        print()
-        print(my_encoding_dict)
-        print()
 
-        # iterate through dataframe and check if encoding is correct
+    print(labels)
+    print()
+    print(my_encoding_dict)
+    print()
 
-        # length of dataframe
-        print("Length of dataframe (csv):")
-        print(len(data))
-        print()
+    # iterate through dataframe and check if encoding is correct
 
-        # length of labels
-        print("Length of labels:")
-        print(len(labels))
-        print()
+    # length of dataframe
+    print("Length of dataframe (csv):")
+    print(len(data))
+    print()
 
-        # reset index of dataframe
-        data.reset_index(drop=True, inplace=True)
+    # length of labels
+    print("Length of labels:")
+    print(len(labels))
+    print()
 
-        num_missmatches = 0
-        for index, row in data.iterrows():
-            if my_encoding_dict[row['Emotion']] != labels[index]:
-                    print("Label missmatch:")
-                    print(row['Emotion'])
-                    print("Encoding: " + str(labels[index]))
-                    print("Intended encoding: " + str(my_encoding_dict[row['Emotion']]))
-                    print()
-                    num_missmatches += 1
+    # reset index of dataframe
+    data.reset_index(drop=True, inplace=True)
 
-        print("Number of missmatches (label vs encoding): " + str(num_missmatches))
-        print()
+    num_missmatches = 0
+    for index, row in data.iterrows():
+        if my_encoding_dict[row['Emotion']] != labels[index]:
+                print("Label missmatch:")
+                print(row['Emotion'])
+                print("Encoding: " + str(labels[index]))
+                print("Intended encoding: " + str(my_encoding_dict[row['Emotion']]))
+                print()
+                num_missmatches += 1
 
-        # Add labels to dataframe
-        data['Label'] = labels
+    print("Number of missmatches (label vs encoding): " + str(num_missmatches))
+    print()
 
-        # ========================================================
-        # Export dataframe to csv
-        # data.to_csv(corrected_labels_file, index=False)
-        # ========================================================
-        # df_check = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_labels_corrected.csv")
-        # print()
-        # print("df_check:")
+    # Add labels to dataframe
+    data['Label'] = labels
 
-        # print(df_check.head())
+    # ========================================================
+    # Export dataframe to csv
+    # data.to_csv(corrected_labels_file, index=False)
+    # ========================================================
+    # df_check = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\MELD\MELD_dataset\train\train_labels_corrected.csv")
+    # print()
+    # print("df_check:")
 
-        # print()
+    # print(df_check.head())
 
-        # Drop columns Sr No., Utterance, Speaker, Sentiment, Dialogue_ID, Utterance_ID, Season, Episode, StartTime, EndTime, Expected filename, Match
-        # data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename', 'Match'], axis=1)
-        if dataset == "MELD":
-            data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename'], axis=1)
-        elif dataset == "CREMA-D":
-            data = data.drop(['Index', 'Speaker', 'Line', 'Intensity'], axis=1)
-        elif dataset == "CREMA-D-voted":
-            data = data.drop(['Level'], axis=1)
-        elif dataset == "EMO-DB":
-            data = data.drop(['Speaker', 'Line', 'Version'], axis=1)
-        elif dataset == "ShEMO":
-            data = data.drop(['Speaker', 'Gender', 'Number'], axis=1)
-        elif dataset == "IEMOCAP":
-            data = data.drop(['Time', 'Attributes'], axis=1)
+    # print()
 
-        # data.reset_index(drop=True, inplace=True)
+    # Drop columns Sr No., Utterance, Speaker, Sentiment, Dialogue_ID, Utterance_ID, Season, Episode, StartTime, EndTime, Expected filename, Match
+    # data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename', 'Match'], axis=1)
+    if dataset == "MELD":
+        data = data.drop(['Sr No.', 'Utterance', 'Speaker', 'Sentiment', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime', 'Expected filename'], axis=1)
+    elif dataset == "CREMA-D":
+        data = data.drop(['Index', 'Speaker', 'Line', 'Intensity'], axis=1)
+    elif dataset == "CREMA-D-voted":
+        data = data.drop(['Level'], axis=1)
+    elif dataset == "EMO-DB":
+        data = data.drop(['Speaker', 'Line', 'Version'], axis=1)
+    elif dataset == "ShEMO":
+        data = data.drop(['Speaker', 'Gender', 'Number'], axis=1)
+    elif dataset == "IEMOCAP":
+        data = data.drop(['Time'], axis=1)
 
-        # Change order of columns and drop unnecessary columns
+    # data.reset_index(drop=True, inplace=True)
+
+    # Change order of columns and drop unnecessary columns
+    if dataset == "IEMOCAP":
+        data = data[['filename', 'Emotion', 'Label', 'Valence', 'Arousal', 'Dominance']]
+    else:
         data = data[['filename', 'Emotion', 'Label']]
 
-    elif attributes == True:
-        data = data[(data['filename']+'.wav').isin(files)]
-        print("Number of entries in dataframe after removing files not in directory: " + str(len(data)))
-        
-        data = data.drop(['Time', 'Emotion'], axis=1)
-        data = data[['filename', 'Attributes']]
 
     data.to_csv(corrected_labels_file, index=False)
 

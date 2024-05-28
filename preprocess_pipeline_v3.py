@@ -4,12 +4,8 @@ from util import renaming_MELD_files
 from util import match_labels
 import os
 import shutil
-import librosa
-import numpy as np
 import pandas as pd
-import sklearn.metrics
-from sklearn.preprocessing import LabelEncoder
-import torch
+
 
 
 def handle_MELD(directory):
@@ -164,8 +160,8 @@ def switch_case(dataset, *args, **kwargs):
 
 def main():
     toggle_controls = [True, True, True, True]
-    dataset = "ShEMO"
-    attributes = False
+    dataset = "IEMOCAP"
+    attributes = True
     audio_directory = ""
     corrected_labels_path = ""
     labels_path = ""
@@ -286,6 +282,10 @@ def main():
             corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_attributes_corrected.csv")
 
 
+
+    if attributes == True and dataset != "IEMOCAP":
+        attributes = False
+        print("Attributes can only be extracted from the IEMOCAP dataset.")
 
     extract_audio_files_from_video = toggle_controls[0]
     rename_files = toggle_controls[1]
