@@ -5,4 +5,7 @@
 *.pth
 *.png
 *.pyc
+*.pkl
+*.h5
 EMO-AffectNetModel
+emo_env/
