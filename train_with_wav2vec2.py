@@ -3,8 +3,8 @@ import sys
 import torch
 
 from hyperpyyaml import load_hyperpyyaml
-
 import speechbrain as sb
+from sklearn.preprocessing import LabelEncoder
 
 
 class EmoIdBrain(sb.Brain):
@@ -19,15 +19,16 @@ class EmoIdBrain(sb.Brain):
         outputs = self.hparams.avg_pool(outputs, lens)
         outputs = outputs.view(outputs.shape[0], -1)
 
-        reg_predictions = self.modules.regressor(outputs)
-        class_predictions = self.modules.classifier(outputs)
+        # Separate outputs for regression and classification
+        reg_outputs = self.modules.regressor(outputs)
+        class_outputs = self.hparams.softmax(self.modules.classifier(outputs))
 
-        return reg_predictions, class_predictions
+        return reg_outputs, class_outputs
 
     def compute_objectives(self, predictions, batch, stage):
         """Computes the loss using valence and arousal as targets."""
         reg_predictions, class_predictions = predictions
-        val, aro = batch.val, batch.aro
+        val, aro, emo = batch.val, batch.aro, batch.emo_encoded
 
         val = [float(v) for v in val]  # Ensure conversion to floats
         aro = [float(a) for a in aro]
@@ -43,15 +44,14 @@ class EmoIdBrain(sb.Brain):
         reg_loss = self.hparams.compute_cost(reg_predictions, reg_targets)
 
         # Compute the classification loss (e.g., Cross-Entropy Loss)
-        class_labels = torch.tensor(class_labels, dtype=torch.long, device=self.device)
-        class_loss = self.hparams.compute_classification_cost(class_predictions, class_labels)
+        class_loss = self.hparams.compute_classification_cost(class_predictions, emo)
 
         # Combine the two losses with their respective weights
         combined_loss = (self.hparams.regression_weight * reg_loss) + (self.hparams.classification_weight * class_loss)
         
         if stage != sb.Stage.TRAIN:
             self.regression_stats.append(batch.id, reg_predictions, reg_targets)
-            self.classification_stats.append(batch.id, class_predictions, class_labels)
+            self.classification_stats.append(batch.id, class_predictions, emo)
 
         return combined_loss
 
@@ -68,13 +68,13 @@ class EmoIdBrain(sb.Brain):
 
         # Set up statistics trackers for this stage
         self.loss_metric = sb.utils.metric_stats.MetricStats(
-            metric=self.compute_objectives
+            metric=self.sb.nnet.losses.mse_loss  # Use MSE loss for tracking
         )
 
         # Set up evaluation-only statistics trackers
         if stage != sb.Stage.TRAIN:
-            self.regression_metrics = self.hparams.regression_stats()
-            self.classification_metrics = self.hparams.classification_stats()
+            self.regression_stats = self.hparams.regression_stats()
+            self.classification_stats = self.hparams.classification_stats()
 
     def on_stage_end(self, stage, stage_loss, epoch=None):
         """Gets called at the end of an epoch.
@@ -97,8 +97,8 @@ class EmoIdBrain(sb.Brain):
         else:
             stats = {
                 "loss": stage_loss,
-                "regression_mse": self.error_metrics.summarize("average"),
-                "classification_nll": self.classification_metrics.summarize("average"),
+                "mse": self.regression_stats.summarize("average"),
+                "nll": self.classification_stats.summarize("average"),
             }
 
         # At the end of validation...
@@ -179,13 +179,14 @@ def dataio_prep(hparams):
 
     # Define valence and arousal pipeline:
     @sb.utils.data_pipeline.takes("val", "aro", "emo")
-    @sb.utils.data_pipeline.provides("val", "aro", "emo")
+    @sb.utils.data_pipeline.provides("val", "aro", "emo_encoded")
     def continuous_pipeline(val, aro, emo):
         val = float(val) # Ensure conversion to floats
         aro = float(aro)
+        emo_encoded = hparams['label_encoder'].encode_label_torch(emo)
         yield val
         yield aro
-        yield emo
+        yield emo_encoded
 
     # Define datasets. We also connect the dataset with the data processing
     # functions defined above.
@@ -200,8 +201,9 @@ def dataio_prep(hparams):
             json_path=data_info[dataset],
             replacements={"data_root": hparams["data_folder"]},
             dynamic_items=[audio_pipeline, continuous_pipeline],
-            output_keys=["id", "sig", "val", "aro", "emo"],
+            output_keys=["id", "sig", "val", "aro", "label_encoded"],
         )
+
 
     return datasets
 

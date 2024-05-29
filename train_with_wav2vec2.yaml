@@ -91,13 +91,14 @@ epoch_counter: !new:speechbrain.utils.epoch_loop.EpochCounter
 
 modules:
     wav2vec2: !ref <wav2vec2>
-    regressor: !ref <output_mlp>
+    regressor: !ref <output_regressor>
     classifier: !ref <output_classifier>
 
 
 model: !new:torch.nn.ModuleList
-    - [!ref <output_regressor>]
-    - [!ref <output_classifier]
+    modules:
+        - !ref <output_regressor>
+        - !ref <output_classifier>
 
 log_softmax: !new:speechbrain.nnet.activations.Softmax
     apply_log: False
@@ -114,8 +115,8 @@ classification_stats: !name:speechbrain.utils.metric_stats.MetricStats
         reduction: batch
 
 # Weights for combining the losses
-regression_weight: 0.5
-classification_weight: 0.5
+regression_weight: 1
+classification_weight: 1
 
 opt_class: !name:torch.optim.Adam
     lr: !ref <lr>
