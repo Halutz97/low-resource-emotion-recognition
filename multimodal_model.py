@@ -6,7 +6,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import multiprocessing as mp
 from audio_model import classify_audio_file
-from visula_model import classify_visual_file
+from visual_model import VisualModel
+# from visual_model import classify_visual_file
 
 
 def get_dataset(dataset, directory):
@@ -93,7 +94,8 @@ def process_audio(audio_file):
     return out_prob, score, index, text_lab
 
 def process_video(video_file):
-    out_prob, score, index, text_lab = classify_visual_file(video_file)
+    video_classifier = VisualModel()
+    out_prob, score, index, text_lab = video_classifier.classify_video_file(video_file)
     return out_prob, score, index, text_lab
 
 
