@@ -5,6 +5,8 @@ import sklearn.metrics
 import seaborn as sns
 import matplotlib.pyplot as plt
 import multiprocessing as mp
+from audio_model import classify_audio_file
+from visula_model import classify_visual_file
 
 
 def get_dataset(dataset, directory):
@@ -27,6 +29,7 @@ def get_dataset(dataset, directory):
             files.append(file)
 
     return files, data, directory, my_encoding_dict_dataset
+
 
 # Debugging function to check only one file
 def get_single_file(file):
@@ -55,6 +58,19 @@ def get_label_keys(data, my_encoding_dict_dataset):
 
 
 # Separete the audio and the video of the file
+def separate_audio_video(files):
+    # Separate the audio and video files
+    audio_files = []
+    video_files = []
+    audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWav"
+    video_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\VideoFlash"
+    for file in files:
+        # Lood for audio file in AudioWav folder
+        audio_files.append(os.path.join(audio_directory, file)+'.wav')
+        # Look for video file in VideoFlash folder
+        video_files.append(os.path.join(video_directory, file)+'.flv')
+    return audio_files, video_files
+
 
 # Call both models to classify the audio and the video
 def save_results(results, name):
@@ -72,39 +88,38 @@ def combine_probabilities(audio_prob, video_prob):
     combined_prob = (audio_prob + video_prob) / 2  # Example logic
     return combined_prob
 
-def process_audio(audio_input):
-    # Load and run your audio model here
-    audio_model = load_audio_model()
-    audio_probabilities = audio_model.predict(audio_input)
-    return audio_probabilities
+def process_audio(audio_file):
+    out_prob, score, index, text_lab = classify_audio_file(audio_file)
+    return out_prob, score, index, text_lab
 
-def process_video(video_input):
-    # Load and run your video model here
-    video_model = load_video_model()
-    video_probabilities = video_model.predict(video_input)
-    return video_probabilities
+def process_video(video_file):
+    out_prob, score, index, text_lab = classify_visual_file(video_file)
+    return out_prob, score, index, text_lab
+
 
 # Call both models to classify the audio and the video
 if __name__ == '__main__':
 
-    # my_encoding_dict_model = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3} # Change this to include (or not) the extra classes of the visual model
-    # label_names = ['neu', 'ang', 'hap', 'sad'] # Same as above
+    my_encoding_dict_model = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3} # Change this to include (or not) the extra classes of the visual model
+    label_names = ['neu', 'ang', 'hap', 'sad'] # Same as above
 
     dataset = "CREMA-D" # Change this to the dataset you are using
     directory = "path_to_datasets" # Change this to the directory where you save the datasets
+    file = '1001_DFA_ANG_XX' # Change this to the file you want to classify
 
 
-    files, data, directory, my_encoding_dict_dataset = get_dataset(dataset, directory)
-    label_keys, true_labels = get_label_keys(data, my_encoding_dict_dataset)
-    audio_input = load_audio_from_video(files)
-    video_input = load_video_frames(files)
+    # files, data, directory, my_encoding_dict_dataset = get_dataset(dataset, directory)
+    # files, data, directory, my_encoding_dict_dataset = get_single_file(file)
+    # label_keys, true_labels = get_label_keys(data, my_encoding_dict_dataset)
+    audio_input, video_input = separate_audio_video(file)
+    audio_input = file
     
     with mp.Pool(2) as pool:
         audio_result = pool.apply_async(process_audio, (audio_input,))
         video_result = pool.apply_async(process_video, (video_input,))
         
         audio_probabilities, _, _, _ = audio_result.get()
-        video_probabilities = video_result.get()
+        video_probabilities, _, _, _ = video_result.get()
 
         # Save separate results for debugging
         save_results(audio_probabilities, 'audio_results')
@@ -115,7 +130,7 @@ if __name__ == '__main__':
         final_label = select_final_label(final_probabilities)
         
         print(f'Final Label: {final_label}', f'Final Probabilities: {final_probabilities}')
-        print(f'True Label: {true_labels}')
+        # print(f'True Label: {true_labels}')
 
 
 

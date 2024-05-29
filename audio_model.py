@@ -1,13 +1,7 @@
-import numpy as np
-import pandas as pd
-import os
-import sklearn.metrics
-import seaborn as sns
-import matplotlib.pyplot as plt
 from speechbrain.inference.interfaces import foreign_class
 
 
-def classify_file(self, file):
+def classify_audio_file(self, file):
     """Classify a file using the classifier
 
     Args:
