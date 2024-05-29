@@ -52,8 +52,8 @@ def pred_one_video(directory, video_file, backbone_model_path, LSTM_model_path):
     features = EE_model(np.stack((face_areas)))
     # Features are tensor of 512 elements for each frame
     print("Shape of features: ", features.shape)
-    step_size = 4
-    window_size = 5
+    step_size = 5
+    window_size = 10
     seq_paths, seq_features = sequences.sequences(name_frames, features, win=window_size, step=step_size)
     print("Step size: ", step_size)
     print("Window size: ", window_size)

@@ -21,7 +21,7 @@ def load_weights_EE(path):
     return EE_AN_model
      
 def LSTM():
-    input_lstm = tf.keras.Input(shape=(5, 512))
+    input_lstm = tf.keras.Input(shape=(10, 512))
     X = tf.keras.layers.Masking(mask_value=0.)(input_lstm)
     X = tf.keras.layers.LSTM(512, return_sequences=True, kernel_regularizer=tf.keras.regularizers.l2(1e-3))(X)
     X = tf.keras.layers.Dropout(rate=0.2)(X)
