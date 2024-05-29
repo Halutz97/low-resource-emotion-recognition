@@ -1,4 +1,4 @@
-from speechbrain.inference.interfaces import foreign_class
+# from speechbrain.inference.interfaces import foreign_class
 
 
 def classify_video_file(self, file):
