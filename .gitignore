@@ -5,4 +5,5 @@
 *.pth
 *.png
 *.pyc
+Ryumina-FER-model/models
 EMO-AffectNetModel
