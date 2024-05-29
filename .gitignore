@@ -5,6 +5,8 @@
 *.pth
 *.png
 *.pyc
+*.pkl
+*.h5
 Ryumina-FER-model/models
 EMO-AffectNetModel
 emo_env/

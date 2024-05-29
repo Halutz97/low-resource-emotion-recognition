@@ -120,8 +120,11 @@ if __name__ == "__main__":
     emotion_dict = {"NEU": "Neutral", "HAP": "Happiness", "SAD": "Sadness", "SUR": "Surprise", "FEA": "Fear", "DIS": "Disgust", "ANG": "Anger"}
     root_path = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\TEST\HI"
 
-    backbone_model_path = 'models/EmoAffectnet/weights_0_66_37_wo_gl.h5'
-    LSTM_model_path = 'models/LSTM/CREMA-D_with_config.h5'
+    backbone_model_path = 'Ryumina-FER-model/models-FER/EmoAffectnet/weights_0_66_37_wo_gl.h5'
+    LSTM_model_path = 'Ryumina-FER-model/models-FER/LSTM/CREMA-D_with_config.h5'
+
+    # print current working directory
+    print("Current working directory: ", os.getcwd())
 
     # pred_one_video(os.path.join(root_path, "1021_IEO_ANG_HI.mp4"),"Anger")
     video_files = select_video_subset(root_path,5)
