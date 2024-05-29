@@ -4,12 +4,8 @@ from util import renaming_MELD_files
 from util import match_labels
 import os
 import shutil
-import librosa
-import numpy as np
 import pandas as pd
-import sklearn.metrics
-from sklearn.preprocessing import LabelEncoder
-import torch
+
 
 
 def handle_MELD(directory):
@@ -34,6 +30,80 @@ def handle_CREMA_D(directory):
 
     # Creating a csv file with the extracted labels
     labels = pd.DataFrame(list(zip(index, filename, speaker, line, emotions, intensity)), columns = ["Index", "filename", "Speaker", "Line", "Emotion", "Intensity"])
+    labels.to_csv(os.path.join(os.path.dirname(directory), "labels.csv"), index=False)
+
+    return
+
+def handle_CREMA_D_v(directory, source_labels):
+    # Specify the columns you want to read
+    cols = ["FileName", "VoiceVote", "VoiceLevel"]
+    # Uncomment the version you need (Voice / Face)
+    # cols = ["FileName", "FaceVote", "FaceLevel"]
+
+    # Read the specified columns from the source CSV file
+    labels = pd.read_csv(source_labels, usecols=cols)
+
+    # Rename the columns
+    labels = labels.rename(columns={
+        "FileName": "filename",
+        "VoiceVote": "Emotion",
+        "VoiceLevel": "Level"
+    })
+    # Uncomment the version you need (Voice / Face)
+    # labels = labels.rename(columns={
+    #     "FileName": "filename",
+    #     "FaceVote": "Emotion",
+    #     "FaceLevel": "Level"
+    # })
+
+     # Filter rows where 'Emotion' has more than one letter
+    labels = labels[labels['Emotion'].str.len() == 1]
+
+    # Creating a csv file with the extracted labels
+    labels.to_csv(os.path.join(os.path.dirname(directory), "voted_voice_labels.csv"), index=False)
+    # Uncomment the version you need (Voice / Face)
+    # labels.to_csv(os.path.join(os.path.dirname(directory), "voted_face_labels.csv"), index=False)
+
+    return
+
+def handle_EmoDB(directory):
+    # Extracting the labels from the file names
+    filename = []
+    speaker = []
+    line = []
+    emotions = []
+    version = []
+
+    for file in os.listdir(directory):
+        filename.append(file)
+        speaker.append(file[0:2])
+        line.append(file[2:5])
+        emotions.append(file[5])
+        version.append(file[6])
+
+    # Creating a csv file with the extracted labels
+    labels = pd.DataFrame(list(zip(filename, speaker, line, emotions, version)), columns = ["filename", "Speaker", "Line", "Emotion", "Version"])
+    labels.to_csv(os.path.join(os.path.dirname(directory), "labels.csv"), index=False)
+
+    return
+
+def handle_ShEMO(directory):
+    # Extracting the labels from the file names
+    filename = []
+    gender = []
+    speaker = []
+    emotions = []
+    number = []
+
+    for file in os.listdir(directory):
+        filename.append(file)
+        gender.append(file[0])
+        speaker.append(file[0:3])
+        emotions.append(file[3])
+        number.append(file[4:6])
+
+    # Creating a csv file with the extracted labels
+    labels = pd.DataFrame(list(zip(filename, speaker, gender, emotions, number)), columns = ["filename", "Speaker", "Gender", "Emotion", "Number"])
     labels.to_csv(os.path.join(os.path.dirname(directory), "labels.csv"), index=False)
 
     return
@@ -101,6 +171,7 @@ def switch_case(dataset, *args, **kwargs):
 def main():
     toggle_controls = [True, True, True, True]
     dataset = "IEMOCAP"
+    attributes = True
     audio_directory = ""
     corrected_labels_path = ""
     labels_path = ""
@@ -134,12 +205,54 @@ def main():
         if not os.path.exists(labels_path):
             handle_CREMA_D(audio_directory)
 
-        toggle_controls = [False, False, True, True]
+        toggle_controls = [False, False, False, True]
+        corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
+
+    elif dataset == "CREMA-D-voted":
+        old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
+        audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio"
+        source_labels = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\processedResults\summaryTable.csv"
+        labels_path = os.path.join(os.path.dirname(audio_directory), "voted_labels.csv")
+
+        # Create the destination directory if it doesn't exist
+        if not os.path.exists(audio_directory):
+            os.makedirs(audio_directory, exist_ok=True)
+
+            # Copy all files from the source to the destination directory
+            for filename in os.listdir(old_audio_directory):
+                source_path = os.path.join(old_audio_directory, filename)
+                destination_path = os.path.join(audio_directory, filename)
+                shutil.copy2(source_path, destination_path)
+
+        if not os.path.exists(labels_path):
+            handle_CREMA_D_v(audio_directory,source_labels)
+
+        toggle_controls = [False, False, False, True]
         corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
 
 
+    elif dataset == "EMO-DB":
+        audio_directory = r"C:\Users\DANIEL\Desktop\thesis\EmoDB\audio"
+        labels_path = os.path.join(os.path.dirname(audio_directory), "labels.csv")
+
+        if not os.path.exists(labels_path):
+            handle_EmoDB(audio_directory)
+
+        toggle_controls = [False, False, False, True]
+        corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
+    
+    elif dataset == "ShEMO":
+        audio_directory = r"C:\Users\DANIEL\Desktop\thesis\ShEMO\audio"
+        labels_path = os.path.join(os.path.dirname(audio_directory), "labels.csv")
+
+        if not os.path.exists(labels_path):
+            handle_ShEMO(audio_directory)
+
+        toggle_controls = [False, False, False, True]
+        corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
+     
+
     elif dataset == "IEMOCAP":
-        attributes = False
 
         # old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
         source_directories = [os.path.join(r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release", f"Session{i}") for i in range(1, 7)]
@@ -179,6 +292,10 @@ def main():
             corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_attributes_corrected.csv")
 
 
+
+    if attributes == True and dataset != "IEMOCAP":
+        attributes = False
+        print("Attributes can only be extracted from the IEMOCAP dataset.")
 
     extract_audio_files_from_video = toggle_controls[0]
     rename_files = toggle_controls[1]

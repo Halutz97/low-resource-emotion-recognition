@@ -8,15 +8,31 @@ import csv
 attributes = False
 print('Attributes:', attributes)
 
-# Set the source and destination directories
-source_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\audio"
-dest_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\audio_testing"
-train_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\audio_training"
-train_dir_att = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\audio_training_att"
-dest_dir_att = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\audio_testing_att"
-
 # Set the number of files to cut
-num_files = 200
+num_files = 300
+
+dataset = "CREMA-D-voted"
+
+# Set the source and destination directories
+if dataset == "IEMOCAP":
+    source_dir = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio'
+    dest_dir = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing'
+    train_dir = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_training'
+
+elif dataset == "CREMA-D":
+    source_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio'
+    dest_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_testing'
+    train_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_training'
+
+elif dataset == "CREMA-D-voted":
+    source_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio'
+    dest_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_v_testing'
+    train_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_v_training'
+
+
+train_dir_att = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_training_att'
+dest_dir_att = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing_att'
+
 
 if attributes == False:
 
@@ -41,9 +57,20 @@ if attributes == False:
     print('Done')
 
     # Creating a csv file with the data of the transferred wav files from the source csv file
-    source_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\labels_corrected.csv"
-    dest_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\labels_testing.csv"
-    train_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\labels_training.csv"
+    if dataset == "IEMOCAP":
+        source_csv = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_corrected.csv'
+        dest_csv = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_testing.csv'
+        train_csv = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_training.csv'
+
+    elif dataset == "CREMA-D":
+        source_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_corrected.csv'
+        dest_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_testing.csv'
+        train_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_training.csv'
+
+    elif dataset == "CREMA-D-voted":
+        source_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\voted_labels_corrected.csv'
+        dest_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_v_testing.csv'
+        train_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_v_training.csv'
 
     # Open the source CSV file
     with open(source_csv, 'r') as source:
@@ -58,11 +85,18 @@ if attributes == False:
             writer.writerow(header)
 
             # For each row in the source CSV file
-            for row in reader:
-                # If the filename (assuming it's in the first column) is in the list of transferred files
-                if (row[0]+".wav") in selected_files:
-                    # Write the row to the destination CSV file
-                    writer.writerow(row)
+            if dataset == "IEMOCAP" or dataset == "CREMA-D-voted":
+                for row in reader:
+                    # If the filename (assuming it's in the first column) is in the list of transferred files
+                    if (row[0]+".wav") in selected_files:
+                        # Write the row to the destination CSV file
+                        writer.writerow(row)
+            elif dataset == "CREMA-D":
+                for row in reader:
+                    # If the filename (assuming it's in the first column) is in the list of transferred files
+                    if (row[0]) in selected_files:
+                        # Write the row to the destination CSV file
+                        writer.writerow(row)
 
     print('CSV file created')
 
@@ -152,11 +186,18 @@ if attributes == False:
             writer.writerow(header)
 
             # For each row in the source CSV file
-            for row in reader:
-                # If the filename (assuming it's in the first column) is in the list of transferred files
-                if (row[0]+".wav") not in selected_files:
-                    # Write the row to the destination CSV file
-                    writer.writerow(row)
+            if dataset == "IEMOCAP" or dataset == "CREMA-D-voted":
+                for row in reader:
+                    # If the filename (assuming it's in the first column) is in the list of transferred files
+                    if (row[0]+".wav") not in selected_files:
+                        # Write the row to the destination CSV file
+                        writer.writerow(row)
+            elif dataset == "CREMA-D":
+                for row in reader:
+                    # If the filename (assuming it's in the first column) is in the list of transferred files
+                    if (row[0]) not in selected_files:
+                        # Write the row to the destination CSV file
+                        writer.writerow(row)
 
     print('CSV for training created')
 
