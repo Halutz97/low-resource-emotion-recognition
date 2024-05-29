@@ -255,8 +255,8 @@ def main():
     elif dataset == "IEMOCAP":
 
         # old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
-        source_directories = [os.path.join(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release", f"Session{i}") for i in range(1, 7)]
-        audio_directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio"
+        source_directories = [os.path.join(r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release", f"Session{i}") for i in range(1, 7)]
+        audio_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\audio"
         labels_path = os.path.join(os.path.dirname(audio_directory), "labels.csv")
 
         # Create the destination directory if it doesn't exist
