@@ -7,3 +7,4 @@
 *.pyc
 Ryumina-FER-model/models
 EMO-AffectNetModel
+emo_env/
