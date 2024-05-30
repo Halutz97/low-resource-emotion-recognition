@@ -7,5 +7,10 @@
 *.pyc
 *.pkl
 *.h5
+*.json
+*.ckpt
+*.yaml
+pretrained_models/
+wav2vec2_checkpoints/
 EMO-AffectNetModel
 emo_env/
