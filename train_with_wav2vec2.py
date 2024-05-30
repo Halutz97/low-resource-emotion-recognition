@@ -4,7 +4,6 @@ import torch
 
 from hyperpyyaml import load_hyperpyyaml
 import speechbrain as sb
-from sklearn.preprocessing import LabelEncoder
 
 
 class EmoIdBrain(sb.Brain):
@@ -26,7 +25,6 @@ class EmoIdBrain(sb.Brain):
         return reg_outputs, class_outputs
 
     def compute_objectives(self, predictions, batch, stage):
-        """Computes the loss using valence and arousal as targets."""
         reg_predictions, class_predictions = predictions
         val, aro, emo = batch.val, batch.aro, batch.emo_encoded
 
@@ -40,18 +38,21 @@ class EmoIdBrain(sb.Brain):
         # Stack valence and arousal to create a target tensor
         reg_targets = torch.cat((val, aro), dim=1)
 
+        # Convert the PaddedData object to a tensor and reshape to 1D
+        emo_tensor = emo.data.to(self.device).view(-1)
+
         # Compute the regression loss (e.g., Mean Squared Error)
-        reg_loss = self.hparams.compute_cost(reg_predictions, reg_targets)
+        reg_loss = self.hparams.compute_regression_cost(reg_predictions, reg_targets)
 
         # Compute the classification loss (e.g., Cross-Entropy Loss)
-        class_loss = self.hparams.compute_classification_cost(class_predictions, emo)
+        class_loss = self.hparams.compute_classification_cost(class_predictions, emo_tensor.long())
 
         # Combine the two losses with their respective weights
         combined_loss = (self.hparams.regression_weight * reg_loss) + (self.hparams.classification_weight * class_loss)
         
         if stage != sb.Stage.TRAIN:
             self.regression_stats.append(batch.id, reg_predictions, reg_targets)
-            self.classification_stats.append(batch.id, class_predictions, emo)
+            self.classification_stats.append(batch.id, class_predictions, emo_tensor)
 
         return combined_loss
 
@@ -68,7 +69,7 @@ class EmoIdBrain(sb.Brain):
 
         # Set up statistics trackers for this stage
         self.loss_metric = sb.utils.metric_stats.MetricStats(
-            metric=self.sb.nnet.losses.mse_loss  # Use MSE loss for tracking
+            metric=sb.nnet.losses.mse_loss  # Use MSE loss for tracking
         )
 
         # Set up evaluation-only statistics trackers
@@ -201,8 +202,12 @@ def dataio_prep(hparams):
             json_path=data_info[dataset],
             replacements={"data_root": hparams["data_folder"]},
             dynamic_items=[audio_pipeline, continuous_pipeline],
-            output_keys=["id", "sig", "val", "aro", "label_encoded"],
+            output_keys=["id", "sig", "val", "aro", "emo_encoded"],
         )
+
+    label_encoder = sb.dataio.encoder.CategoricalEncoder()
+    label_encoder.update_from_didataset(datasets["train"], "emo")
+    hparams["label_encoder"] = label_encoder
 
 
     return datasets

@@ -94,11 +94,11 @@ modules:
     regressor: !ref <output_regressor>
     classifier: !ref <output_classifier>
 
-
 model: !new:torch.nn.ModuleList
-    modules:
-        - !ref <output_regressor>
-        - !ref <output_classifier>
+    modules: [
+        !ref <output_regressor>,
+        !ref <output_classifier>
+    ]
 
 log_softmax: !new:speechbrain.nnet.activations.Softmax
     apply_log: False

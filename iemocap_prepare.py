@@ -19,7 +19,7 @@ from speechbrain.dataio.dataio import read_audio
 
 logger = logging.getLogger(__name__)
 SAMPLERATE = 16000
-NUMBER_UTT = 8273
+NUMBER_UTT = 4507
 
 
 def prepare_data(
