@@ -13,13 +13,13 @@ from visual_model import VisualModel
 def get_dataset(dataset, directory):
     # Define the dataset and the directory
     if dataset == "CREMA-D":
-        data = pd.read_csv(os.path.join(directory,"CREMA-D\labels_testing.csv"))
-        directory = os.path.join(directory,"CREMA-D\audio_testing")
+        data = pd.read_csv(os.path.join(directory,r"CREMA-D\labels_testing.csv"))
+        directory = os.path.join(directory,r"CREMA-D\audio_testing")
         my_encoding_dict_dataset = {'NEU': 0, 'ANG': 1, 'HAP': 2, 'SAD': 3}
 
     elif dataset == "CREMA-D-voted":
-        data = pd.read_csv(os.path.join(directory,"CREMA-D\labels_v_testing.csv"))
-        directory = os.path.join(directory,"CREMA-D\audio_v_testing")
+        data = pd.read_csv(os.path.join(directory,r"CREMA-D\labels_v_testing.csv"))
+        directory = os.path.join(directory,r"CREMA-D\audio_v_testing")
         my_encoding_dict_dataset = {'N': 0, 'A': 1, 'H': 2, 'S': 3}
 
     files = []
@@ -59,17 +59,18 @@ def get_label_keys(data, my_encoding_dict_dataset):
 
 
 # Separete the audio and the video of the file
-def separate_audio_video(files):
+def separate_audio_video(file):
     # Separate the audio and video files
-    audio_files = []
-    video_files = []
+
     audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWav"
     video_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\VideoFlash"
-    for file in files:
-        # Lood for audio file in AudioWav folder
-        audio_files.append(os.path.join(audio_directory, file)+'.wav')
-        # Look for video file in VideoFlash folder
-        video_files.append(os.path.join(video_directory, file)+'.flv')
+
+    # Lood for audio file in AudioWav folder
+    audio_files = (os.path.join(audio_directory, file)+'.wav')
+
+    # Look for video file in VideoFlash folder
+    video_files = (os.path.join(video_directory, file)+'.flv')
+
     return audio_files, video_files
 
 
@@ -115,8 +116,8 @@ if __name__ == '__main__':
     # files, data, directory, my_encoding_dict_dataset = get_single_file(file)
     # label_keys, true_labels = get_label_keys(data, my_encoding_dict_dataset)
     audio_input, video_input = separate_audio_video(file)
-    audio_input = file
-    
+    # audio_input = file
+    print(f'Audio Input: {audio_input}', f'Video Input: {video_input}')
     with mp.Pool(2) as pool:
         audio_result = pool.apply_async(process_audio, (audio_input,))
         video_result = pool.apply_async(process_video, (video_input,))
