@@ -8,10 +8,10 @@ import matplotlib.pyplot as plt
 import sklearn.metrics
 
 # Load CSV file with the true labels
-data1 = pd.read_csv(r'save_results\run_5_predicted_checkpoint_1150.csv')
-data2 = pd.read_csv(r'save_results\run_5_predicted_checkpoint_2150.csv')
-data3 = pd.read_csv(r'save_results\run_5_predicted_checkpoint_6150.csv')
-data4 = pd.read_csv(r'save_results\run_5_predicted_checkpoint_7442.csv')
+data1 = pd.read_csv(r'ryumina_fer_model\save_results\run_5_predicted_checkpoint_1150.csv')
+data2 = pd.read_csv(r'ryumina_fer_model\save_results\run_5_predicted_checkpoint_2150.csv')
+data3 = pd.read_csv(r'ryumina_fer_model\save_results\run_5_predicted_checkpoint_6150.csv')
+data4 = pd.read_csv(r'ryumina_fer_model\save_results\run_5_predicted_checkpoint_7442.csv')
 
 # Concatenate vertically
 data = pd.concat([data1, data2, data3, data4], axis=0)
