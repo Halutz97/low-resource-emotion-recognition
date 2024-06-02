@@ -49,11 +49,17 @@ def handle_CREMA_D_v(directory, source_labels):
         "VoiceVote": "Emotion",
         "VoiceLevel": "Level"
     })
-    # Uncomment the version you need (Voice / Face)
+    # Uncomment the version you need (Voice / Face / Combined)
     # labels = labels.rename(columns={
     #     "FileName": "filename",
     #     "FaceVote": "Emotion",
     #     "FaceLevel": "Level"
+    # })
+    # Uncomment the version you need (Voice / Face / Combined)
+    # labels = labels.rename(columns={
+    #     "FileName": "filename",
+    #     "MultiModalVote": "Emotion",
+    #     "MultiModalLevel": "Level"
     # })
 
      # Filter rows where 'Emotion' has more than one letter
@@ -61,8 +67,10 @@ def handle_CREMA_D_v(directory, source_labels):
 
     # Creating a csv file with the extracted labels
     labels.to_csv(os.path.join(os.path.dirname(directory), "voted_voice_labels.csv"), index=False)
-    # Uncomment the version you need (Voice / Face)
+    # Uncomment the version you need (Voice / Face / Combined)
     # labels.to_csv(os.path.join(os.path.dirname(directory), "voted_face_labels.csv"), index=False)
+    # Uncomment the version you need (Voice / Face / Combined)
+    # labels.to_csv(os.path.join(os.path.dirname(directory), "voted_combined_labels.csv"), index=False)
 
     return
 
