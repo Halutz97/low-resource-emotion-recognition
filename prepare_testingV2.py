@@ -6,14 +6,16 @@ attributes = False
 print('Attributes:', attributes)
 
 # Set the dataset and the number of files to cut
-dataset = "ShEMO"
-num_files_per_class = 10000
+dataset = "IEMOCAP"
+num_files_per_class = 400
 
 
 # Set the source and destination directories
 if dataset == "IEMOCAP":
-    source_dir = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio'
-    dest_dir = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing'
+    # source_dir = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio'
+    # dest_dir = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing'
+    source_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\audio"
+    dest_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\audio_testing"
 
 elif dataset == "CREMA-D":
     source_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio'
@@ -40,8 +42,11 @@ if attributes == False:
 
     # Creating a csv file with the data of the transferred wav files from the source csv file
     if dataset == "IEMOCAP":
-        source_csv = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_corrected.csv'
-        dest_csv = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_testing.csv'
+        # source_csv = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_corrected.csv'
+        # dest_csv = r'C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_testing.csv'
+        source_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\labels_corrected.csv"
+        dest_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\IEMOCAP\IEMOCAP_full_release\labels_testing.csv"
+        
 
     elif dataset == "CREMA-D":
         source_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_corrected.csv'
