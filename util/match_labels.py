@@ -218,13 +218,13 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
 
     elif dataset == "IEMOCAP" and attributes == False:
         # # Drop all rows with oth, xxx, dis, and fea of the csv file
-        # data = data[data['Emotion'] != 'oth']
-        # data = data[data['Emotion'] != 'xxx']
-        # data = data[data['Emotion'] != 'dis']
-        # data = data[data['Emotion'] != 'fea']
+        data = data[data['Emotion'] != 'oth']
+        data = data[data['Emotion'] != 'xxx']
+        data = data[data['Emotion'] != 'dis']
+        data = data[data['Emotion'] != 'fea']
 
-        # data = data[data['Emotion'] != 'sur']
-        # data = data[data['Emotion'] != 'fru']
+        data = data[data['Emotion'] != 'sur']
+        data = data[data['Emotion'] != 'fru']
 
         data.loc[data['Emotion'] == 'exc', 'Emotion'] = 'hap'
 
@@ -281,9 +281,9 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
     elif dataset == "ShEMO":
         my_encoding_dict = {'A': 0, 'N': 1, 'H': 2, 'S': 3}
     elif dataset == "IEMOCAP" and attributes == True:
-        my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6, 'oth': 7, 'xxx': 8, 'dis': 9, 'fea': 10}
+        my_encoding_dict = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3, 'sur': 4, 'fru': 5, 'exc': 6, 'oth': 7, 'xxx': 8, 'dis': 9, 'fea': 10}
     elif dataset == "IEMOCAP" and attributes == False:
-        my_encoding_dict = {'ang': 0, 'hap': 1, 'neu': 2, 'sad': 3}
+        my_encoding_dict = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3}
     
     
     labels = data['Emotion'].map(my_encoding_dict).values
