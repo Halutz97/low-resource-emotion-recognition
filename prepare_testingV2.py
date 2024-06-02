@@ -6,8 +6,8 @@ attributes = False
 print('Attributes:', attributes)
 
 # Set the dataset and the number of files to cut
-dataset = "IEMOCAP"
-num_files_per_class = 400
+dataset = "CREMA-D-voted"
+num_files_per_class = 20
 
 
 # Set the source and destination directories
@@ -22,8 +22,12 @@ elif dataset == "CREMA-D":
     dest_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_testing'
 
 elif dataset == "CREMA-D-voted":
-    source_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio'
-    dest_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_v_testing'
+    # source_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio'
+    # dest_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_v_testing'
+    audio_source_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAV"
+    video_source_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\VideoMP4"
+    audio_dest_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAV_testing"
+    video_dest_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\VideoMP4_testing"
 
 elif dataset == "EMO-DB":
     source_dir = r'C:\Users\DANIEL\Desktop\thesis\EmoDB\audio'
@@ -53,8 +57,10 @@ if attributes == False:
         dest_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_testing.csv'
 
     elif dataset == "CREMA-D-voted":
-        source_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\voted_labels_corrected.csv'
-        dest_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_v_testing.csv'
+        # source_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\voted_labels_corrected.csv'
+        # dest_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_v_testing.csv'
+        source_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\voted_combined_labels.csv"
+        dest_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\voted_combined_labels_testing.csv"
 
     elif dataset == "EMO-DB":
         source_csv = r'C:\Users\DANIEL\Desktop\thesis\EmoDB\labels_corrected.csv'
@@ -66,7 +72,7 @@ if attributes == False:
 
 
     # Get the list of files in the source directory
-    files = os.listdir(source_dir)
+    # files = os.listdir(source_dir)
 
     # Read the source CSV file into a DataFrame
     df = pd.read_csv(source_csv)
@@ -93,25 +99,43 @@ if attributes == False:
     selected_files = selected_df['filename'].tolist()
 
     # Create the destination directory if it doesn't exist
-    if not os.path.exists(dest_dir):
-        os.makedirs(dest_dir, exist_ok=True)
-        print('Destination directory created')
+    if dataset == "CREMA-D-voted":
+        if not os.path.exists(audio_dest_dir):
+            os.makedirs(audio_dest_dir, exist_ok=True)
+            print('Audio destination directory created')
+        if not os.path.exists(video_dest_dir):
+            os.makedirs(video_dest_dir, exist_ok=True)
+            print('Video destination directory created')
+    else:
+        if not os.path.exists(dest_dir):
+            os.makedirs(dest_dir, exist_ok=True)
+            print('Destination directory created')
 
     # Check if the destination directory is empty
-    if os.listdir(dest_dir):
-        print('Warning: Destination directory is not empty')
-
+    if dataset == "CREMA-D-voted":
+        if os.listdir(audio_dest_dir) or os.listdir(video_dest_dir):
+            print('Warning: Destination directory is not empty')
+        else:
+            for file in selected_files:
+                shutil.copy(os.path.join(audio_source_dir, file + '.wav'), audio_dest_dir)
+                shutil.copy(os.path.join(video_source_dir, file + '.mp4'), video_dest_dir)
     else:
-        for file in selected_files:
-            if file[-4:] != '.wav':
-                file = file + '.wav'
-            shutil.copy(os.path.join(source_dir, file), dest_dir)
+        if os.listdir(dest_dir):
+            print('Warning: Destination directory is not empty')
+        else:
+            for file in selected_files:
+                if file[-4:] != '.wav':
+                    file = file + '.wav'
+                shutil.copy(os.path.join(source_dir, file), dest_dir)
 
     print("Copied files: ", len(selected_files))
 
 
     # Check if the order of the rows on the CSV file match the order of the files in the destination directory
-    final_files = os.listdir(dest_dir)
+    if dataset == "CREMA-D-voted":
+        final_files = os.listdir(audio_dest_dir)
+    else:
+        final_files = os.listdir(dest_dir)
     exception = False
     for i, file in enumerate(final_files):
         filename = selected_files[i].split('.')[0]
