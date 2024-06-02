@@ -180,8 +180,8 @@ def switch_case(dataset, *args, **kwargs):
 
 def main():
     toggle_controls = [True, True, True, True]
-    dataset = "CREMA-D-voted"
-    attributes = True
+    dataset = "IEMOCAP"
+    attributes = False
     audio_directory = ""
     corrected_labels_path = ""
     labels_path = ""
