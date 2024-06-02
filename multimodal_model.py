@@ -31,6 +31,31 @@ def get_dataset(dataset, directory):
 
     return files, data, directory, my_encoding_dict_dataset
 
+def get_crema_d_dataset(audio_directory, video_directory, labels_file, voted=True):
+    # Define the dataset and the directory
+    if voted:
+        # data = pd.read_csv(os.path.join(directory, labels_file))
+        # directory = os.path.join(directory,r"CREMA-D\audio_testing")
+        my_encoding_dict_dataset = {'N': 0, 'A': 1, 'H': 2, 'S': 3}
+    else:
+        # data = pd.read_csv(os.path.join(directory,r"CREMA-D\labels_v_testing.csv"))
+        # directory = os.path.join(directory,r"CREMA-D\audio_v_testing")
+        my_encoding_dict_dataset = {'NEU': 0, 'ANG': 1, 'HAP': 2, 'SAD': 3}
+
+    audio_files = []
+    video_files = []
+
+    # Get a list of all files in the directory (audio files, change for video files)
+    for file in os.listdir(audio_directory):
+        if file.endswith('.wav'):
+            audio_files.append(file)
+    
+    for file in os.listdir(video_directory):
+        if file.endswith('.mp4'):
+            video_files.append(file)
+
+    return audio_files, video_files, my_encoding_dict_dataset
+
 
 # Debugging function to check only one file
 def get_single_file(file):
@@ -78,7 +103,11 @@ def separate_audio_video(file):
 def save_results(results, name):
     # Save the results for debugging as a csv file
     results_df = pd.DataFrame(results)
-    results_df.to_csv(f'{name}.csv', index=False)
+    # Get current directory
+    current_dir = os.getcwd()
+    results_save_path = os.path.join(current_dir, 'multimodal_results')
+    results_df.to_csv(os.path.join(results_save_path, f'{name}.csv'), index=False)
+    # results_df.to_csv(f'{name}.csv', index=False)
 
 def select_final_label(final_probabilities):
     # Select the final label based on the combined probabilities
@@ -104,6 +133,7 @@ def process_video(video_file):
 # Call both models to classify the audio and the video
 if __name__ == '__main__':
 
+    # label_model = ['Neutral', 'Happiness', 'Sadness', 'Surprise', 'Fear', 'Disgust', 'Anger']
     my_encoding_dict_model = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3} # Change this to include (or not) the extra classes of the visual model
     label_names = ['neu', 'ang', 'hap', 'sad'] # Same as above
 
@@ -111,11 +141,16 @@ if __name__ == '__main__':
     directory = "path_to_datasets" # Change this to the directory where you save the datasets
     file = '1001_DFA_ANG_XX' # Change this to the file you want to classify
 
+    audio_folder = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAV"
+    video_folder = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\VideoMP4"
+
 
     # files, data, directory, my_encoding_dict_dataset = get_dataset(dataset, directory)
     # files, data, directory, my_encoding_dict_dataset = get_single_file(file)
     # label_keys, true_labels = get_label_keys(data, my_encoding_dict_dataset)
-    audio_input, video_input = separate_audio_video(file)
+    # audio_input, video_input = separate_audio_video(file)
+    audio_input = os.path.join(audio_folder, file + '.wav')
+    video_input = os.path.join(video_folder, file + '.mp4')
     # audio_input = file
     print(f'Audio Input: {audio_input}', f'Video Input: {video_input}')
     with mp.Pool(2) as pool:
@@ -128,12 +163,40 @@ if __name__ == '__main__':
         # Save separate results for debugging
         save_results(audio_probabilities, 'audio_results')
         save_results(video_probabilities, 'video_results')
-        
+
+        # Let's investigate the results
+        # First audio_probabilities: Type, shape, values
+        print("Audio Probabilities")
+        print(type(audio_probabilities))
+        print(audio_probabilities.shape)
+        print(audio_probabilities)
+
+        # Second video_probabilities: Type, shape, values
+        print("Video Probabilities")
+        print(type(video_probabilities))
+        print(video_probabilities.shape)
+        print(video_probabilities)
+
+        # Convert audio_probabilities (tensor) to a numpy array of dimensions (1,4)
+        audio_probabilities = audio_probabilities.numpy()
+        print(audio_probabilities.shape)
+        print(audio_probabilities)
+
+        # Convert video_probabilities to a numpy array of dimensions (1,7)
+        video_probabilities = video_probabilities.reshape(1,7)
+        print(video_probabilities.shape)
+        print(video_probabilities)
+
+
+
+
+
+
         # Combine results and determine final label
-        final_probabilities = combine_probabilities(audio_probabilities, video_probabilities)
-        final_label = select_final_label(final_probabilities)
+        # final_probabilities = combine_probabilities(audio_probabilities, video_probabilities)
+        # final_label = select_final_label(final_probabilities)
         
-        print(f'Final Label: {final_label}', f'Final Probabilities: {final_probabilities}')
+        # print(f'Final Label: {final_label}', f'Final Probabilities: {final_probabilities}')
         # print(f'True Label: {true_labels}')
 
 
