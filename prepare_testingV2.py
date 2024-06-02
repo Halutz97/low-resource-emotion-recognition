@@ -59,8 +59,8 @@ if attributes == False:
     elif dataset == "CREMA-D-voted":
         # source_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\voted_labels_corrected.csv'
         # dest_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_v_testing.csv'
-        source_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\voted_combined_labels.csv"
-        dest_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\voted_combined_labels_testing.csv"
+        source_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\voted_combined_labels_corrected.csv"
+        dest_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\voted_combined_labels_corrected_testing.csv"
 
     elif dataset == "EMO-DB":
         source_csv = r'C:\Users\DANIEL\Desktop\thesis\EmoDB\labels_corrected.csv'
