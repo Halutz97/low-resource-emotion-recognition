@@ -114,20 +114,60 @@ def select_final_label(final_probabilities):
     final_label = np.argmax(final_probabilities)
     return final_label
 
-def combine_probabilities(audio_prob, video_prob):
+def combine_probabilities(audio_prob, video_prob, audio_weight=0.4, video_weight=0.6):
     # Implement your logic to combine probabilities from both models
-    combined_prob = (audio_prob + video_prob) / 2  # Example logic
+    print()
+    print()
+    print("-----------------Combining Probabilities-----------------")
+    print()
+    print("Audio Probabilities: ", audio_prob)
+    audio_weighted = audio_prob*audio_weight
+    print("Audio Prob. weighted: ", audio_weighted)
+    print()
+    print("Video Probabilities: ", video_prob)
+    video_weighted = video_prob*video_weight
+    print("Video Prob. weighted: ", video_weighted)
+    combined_prob = audio_weighted + video_weighted
+    print()
+    print("Combined Probabilities: ", combined_prob)
     return combined_prob
 
 def process_audio(audio_file):
     audio_classifier = AudioModel()
     out_prob, score, index, text_lab = audio_classifier.classify_audio_file(audio_file)
+    out_prob = out_prob.numpy()
+    # Add three zeros to match the dimensions of the visual model
+    out_prob = np.append(out_prob, [0, 0, 0]).reshape(1,7)
     return out_prob, score, index, text_lab
 
 def process_video(video_file):
     video_classifier = VisualModel()
     out_prob, score, index, text_lab = video_classifier.classify_video_file(video_file)
+    out_prob = reorder_video_probabilities(out_prob)
     return out_prob, score, index, text_lab
+
+def reorder_video_probabilities(video_probabilities):
+    # Reorder the video_probabilities to match the audio_probabilities
+    # Order = ['neu', 'ang', 'hap', 'sad']
+    # video_model = ['Neutral', 'Happiness', 'Sadness', 'Surprise', 'Fear', 'Disgust', 'Anger']
+    video_model_dict = {'neu' : 0, 'hap' : 1, 'sad' : 2, 'sur' : 3, 'fea' : 4, 'dis' : 5, 'ang' : 6}
+
+    new_probabilities = np.array([video_probabilities[video_model_dict['neu']],
+                                  video_probabilities[video_model_dict['ang']],
+                                  video_probabilities[video_model_dict['hap']],
+                                  video_probabilities[video_model_dict['sad']],
+                                  video_probabilities[video_model_dict['sur']],
+                                  video_probabilities[video_model_dict['fea']],
+                                  video_probabilities[video_model_dict['dis']]])
+    
+    new_probabilities = new_probabilities.reshape(1,7)
+    # compare old and new probabilities
+    print("Old Probabilities: ")
+    print(video_probabilities)
+    print("New Probabilities: ")
+    print(new_probabilities)
+    return new_probabilities
+
 
 
 # Call both models to classify the audio and the video
@@ -136,6 +176,8 @@ if __name__ == '__main__':
     # label_model = ['Neutral', 'Happiness', 'Sadness', 'Surprise', 'Fear', 'Disgust', 'Anger']
     my_encoding_dict_model = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3} # Change this to include (or not) the extra classes of the visual model
     label_names = ['neu', 'ang', 'hap', 'sad'] # Same as above
+
+    label_model_decoder = {0: 'Neutral', 1: 'Anger', 2: 'Happiness', 3: 'Sadness', 4: 'Surprise', 5: 'Fear', 6: 'Disgust'}
 
     dataset = "CREMA-D" # Change this to the dataset you are using
     directory = "path_to_datasets" # Change this to the directory where you save the datasets
@@ -166,24 +208,28 @@ if __name__ == '__main__':
 
         # Let's investigate the results
         # First audio_probabilities: Type, shape, values
-        print("Audio Probabilities")
-        print(type(audio_probabilities))
-        print(audio_probabilities.shape)
-        print(audio_probabilities)
+        # print("Audio Probabilities")
+        # print(type(audio_probabilities))
+        # print(audio_probabilities.shape)
+        # print(audio_probabilities)
 
         # Second video_probabilities: Type, shape, values
-        print("Video Probabilities")
-        print(type(video_probabilities))
-        print(video_probabilities.shape)
-        print(video_probabilities)
+        # print("Video Probabilities")
+        # print(type(video_probabilities))
+        # print(video_probabilities.shape)
+        # print(video_probabilities)
 
-        # Convert audio_probabilities (tensor) to a numpy array of dimensions (1,4)
-        audio_probabilities = audio_probabilities.numpy()
-        print(audio_probabilities.shape)
-        print(audio_probabilities)
+        # # Convert audio_probabilities (tensor) to a numpy array of dimensions (1,4)
+        # audio_probabilities = audio_probabilities.numpy()
+        # # Add three zeros to match the dimensions of the visual model
+        # audio_probabilities = np.append(audio_probabilities, [0, 0, 0]).reshape(1,7)
+        # print(audio_probabilities.shape)
+        # print(audio_probabilities)
 
         # Convert video_probabilities to a numpy array of dimensions (1,7)
-        video_probabilities = video_probabilities.reshape(1,7)
+        # video_probabilities = video_probabilities.reshape(1,7)
+        # video_probabilities = reorder_video_probabilities(video_probabilities)
+        print("We have now reordered the video probabilities")
         print(video_probabilities.shape)
         print(video_probabilities)
 
@@ -193,10 +239,12 @@ if __name__ == '__main__':
 
 
         # Combine results and determine final label
-        # final_probabilities = combine_probabilities(audio_probabilities, video_probabilities)
-        # final_label = select_final_label(final_probabilities)
+        final_probabilities = combine_probabilities(audio_probabilities, video_probabilities, audio_weight=0.5, video_weight=0.5)
+        final_label = select_final_label(final_probabilities)
+        final_label_name = label_model_decoder[final_label]
         
-        # print(f'Final Label: {final_label}', f'Final Probabilities: {final_probabilities}')
+        print(f'Final Label: {final_label}', f'Final Probabilities: {final_probabilities}')
+        print(f'Final Label Name: {final_label_name}')
         # print(f'True Label: {true_labels}')
 
 
