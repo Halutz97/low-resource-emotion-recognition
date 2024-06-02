@@ -36,19 +36,21 @@ def handle_CREMA_D(directory):
 
 def handle_CREMA_D_v(directory, source_labels):
     # Specify the columns you want to read
-    cols = ["FileName", "VoiceVote", "VoiceLevel"]
-    # Uncomment the version you need (Voice / Face)
+    # cols = ["FileName", "VoiceVote", "VoiceLevel"]
+    # Uncomment the version you need (Voice / Face / Combined)
     # cols = ["FileName", "FaceVote", "FaceLevel"]
+    # Uncomment the version you need (Voice / Face / Combined)
+    cols = ["FileName", "MultiModalVote", "MultiModalLevel"]
 
     # Read the specified columns from the source CSV file
     labels = pd.read_csv(source_labels, usecols=cols)
 
     # Rename the columns
-    labels = labels.rename(columns={
-        "FileName": "filename",
-        "VoiceVote": "Emotion",
-        "VoiceLevel": "Level"
-    })
+    # labels = labels.rename(columns={
+    #     "FileName": "filename",
+    #     "VoiceVote": "Emotion",
+    #     "VoiceLevel": "Level"
+    # })
     # Uncomment the version you need (Voice / Face / Combined)
     # labels = labels.rename(columns={
     #     "FileName": "filename",
@@ -56,21 +58,21 @@ def handle_CREMA_D_v(directory, source_labels):
     #     "FaceLevel": "Level"
     # })
     # Uncomment the version you need (Voice / Face / Combined)
-    # labels = labels.rename(columns={
-    #     "FileName": "filename",
-    #     "MultiModalVote": "Emotion",
-    #     "MultiModalLevel": "Level"
-    # })
+    labels = labels.rename(columns={
+        "FileName": "filename",
+        "MultiModalVote": "Emotion",
+        "MultiModalLevel": "Level"
+    })
 
      # Filter rows where 'Emotion' has more than one letter
     labels = labels[labels['Emotion'].str.len() == 1]
 
     # Creating a csv file with the extracted labels
-    labels.to_csv(os.path.join(os.path.dirname(directory), "voted_voice_labels.csv"), index=False)
+    # labels.to_csv(os.path.join(os.path.dirname(directory), "voted_voice_labels.csv"), index=False)
     # Uncomment the version you need (Voice / Face / Combined)
     # labels.to_csv(os.path.join(os.path.dirname(directory), "voted_face_labels.csv"), index=False)
     # Uncomment the version you need (Voice / Face / Combined)
-    # labels.to_csv(os.path.join(os.path.dirname(directory), "voted_combined_labels.csv"), index=False)
+    labels.to_csv(os.path.join(os.path.dirname(directory), "voted_combined_labels.csv"), index=False)
 
     return
 
@@ -178,7 +180,7 @@ def switch_case(dataset, *args, **kwargs):
 
 def main():
     toggle_controls = [True, True, True, True]
-    dataset = "IEMOCAP"
+    dataset = "CREMA-D-voted"
     attributes = True
     audio_directory = ""
     corrected_labels_path = ""
@@ -217,25 +219,25 @@ def main():
         corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
 
     elif dataset == "CREMA-D-voted":
-        old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
-        audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio"
-        source_labels = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\processedResults\summaryTable.csv"
-        labels_path = os.path.join(os.path.dirname(audio_directory), "voted_labels.csv")
+        # old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
+        audio_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAV"
+        source_labels = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\processedResults\summaryTable.csv"
+        # labels_path = os.path.join(os.path.dirname(audio_directory), "voted_labels.csv")
 
         # Create the destination directory if it doesn't exist
-        if not os.path.exists(audio_directory):
-            os.makedirs(audio_directory, exist_ok=True)
+        # if not os.path.exists(audio_directory):
+        #     os.makedirs(audio_directory, exist_ok=True)
 
-            # Copy all files from the source to the destination directory
-            for filename in os.listdir(old_audio_directory):
-                source_path = os.path.join(old_audio_directory, filename)
-                destination_path = os.path.join(audio_directory, filename)
-                shutil.copy2(source_path, destination_path)
+        #     # Copy all files from the source to the destination directory
+        #     for filename in os.listdir(old_audio_directory):
+        #         source_path = os.path.join(old_audio_directory, filename)
+        #         destination_path = os.path.join(audio_directory, filename)
+        #         shutil.copy2(source_path, destination_path)
 
         if not os.path.exists(labels_path):
             handle_CREMA_D_v(audio_directory,source_labels)
 
-        toggle_controls = [False, False, False, True]
+        toggle_controls = [False, False, False, False]
         corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
 
 
