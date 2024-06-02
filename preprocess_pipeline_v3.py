@@ -180,7 +180,7 @@ def switch_case(dataset, *args, **kwargs):
 
 def main():
     toggle_controls = [True, True, True, True]
-    dataset = "IEMOCAP"
+    dataset = "CREMA-D-voted"
     attributes = False
     audio_directory = ""
     corrected_labels_path = ""
@@ -222,7 +222,7 @@ def main():
         # old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
         audio_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAV"
         source_labels = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\processedResults\summaryTable.csv"
-        # labels_path = os.path.join(os.path.dirname(audio_directory), "voted_labels.csv")
+        labels_path = os.path.join(os.path.dirname(audio_directory), "voted_combined_labels.csv")
 
         # Create the destination directory if it doesn't exist
         # if not os.path.exists(audio_directory):
@@ -237,7 +237,7 @@ def main():
         if not os.path.exists(labels_path):
             handle_CREMA_D_v(audio_directory,source_labels)
 
-        toggle_controls = [False, False, False, False]
+        toggle_controls = [False, False, False, True]
         corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
 
 
