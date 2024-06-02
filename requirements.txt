@@ -11,9 +11,9 @@ datasets
 scikit-learn
 pandas
 scipy
-tensorflow==2.14.0
+tensorflow
 opencv-python
-keras==2.14.0
+keras
 keras_vggface
 keras_applications
 batch_face

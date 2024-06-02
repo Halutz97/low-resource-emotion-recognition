@@ -14,3 +14,4 @@ pretrained_models/
 wav2vec2_checkpoints/
 EMO-AffectNetModel
 emo_env/
+home_emo_env/

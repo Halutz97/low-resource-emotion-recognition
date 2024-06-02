@@ -182,10 +182,13 @@ if __name__ == '__main__':
 
     dataset = "CREMA-D" # Change this to the dataset you are using
     directory = "path_to_datasets" # Change this to the directory where you save the datasets
-    file = '1001_DFA_ANG_XX' # Change this to the file you want to classify
+    # file = '1001_DFA_ANG_XX' # Change this to the file you want to classify
+    file = '1001_IEO_SAD_MD'
 
-    audio_folder = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAV"
-    video_folder = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\VideoMP4"
+    # audio_folder = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAV"
+    audio_folder = r"C:\_HomeDocs\Ari\DTU\00-MSc\Thesis\Data\AudioWAV_testing"
+    # video_folder = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\VideoMP4"
+    video_folder = r"C:\_HomeDocs\Ari\DTU\00-MSc\Thesis\Data\VideoMP4_testing"
 
 
     # files, data, directory, my_encoding_dict_dataset = get_dataset(dataset, directory)
