@@ -195,8 +195,11 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
 
     elif dataset == "CREMA-D-voted":
         # Drop all rows with oth, xxx, dis, and fea of the csv file
-        data = data[data['Emotion'] != 'D']
-        data = data[data['Emotion'] != 'F']
+        # data = data[data['Emotion'] != 'D']
+        # data = data[data['Emotion'] != 'F']
+
+        emotion_name_dict = {'A': 'ang', 'D': 'dis', 'F': 'fea', 'H': 'hap', 'N': 'neu', 'S': 'sad'}
+        data['Emotion'] = data['Emotion'].map(emotion_name_dict)
 
 
         print("Number of entries in dataframe after removing some emotions: " + str(len(data)))
@@ -207,8 +210,8 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
             if file not in (data['filename'].values+'.wav'):
                 print("File not in data: " + file)
                 num_deleted_files += 1
-                os.remove(os.path.join(directory, file))
-
+                # os.remove(os.path.join(directory, file))
+        print("Didn't REALLY delete any files")
         print("Number of deleted files: " + str(num_deleted_files))
         print("Number of files in directory after deletion: " + str(len(os.listdir(directory))))
 
@@ -275,7 +278,8 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         # my_encoding_dict = {'ANG': 0, 'DIS': 1, 'FEA': 2, 'HAP': 3, 'NEU': 4, 'SAD': 5}
         my_encoding_dict = {'ANG': 0, 'NEU': 1, 'HAP': 2, 'SAD': 3}
     elif dataset == "CREMA-D-voted":
-        my_encoding_dict = {'A': 0, 'N': 1, 'H': 2, 'S': 3}
+        # my_encoding_dict = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3}
+        my_encoding_dict = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3, 'sur': 4, 'fea': 5, 'dis': 6}
     elif dataset == "EMO-DB":
         my_encoding_dict = {'W': 0, 'N': 1, 'F': 2, 'T': 3}
     elif dataset == "ShEMO":
