@@ -14,11 +14,14 @@ def argmax_str_to_array(argmax_str):
     argmax = [int(i) for i in argmax_str]
     return argmax
 
-def create_confusion_matrix(data, show_confusion_matrix=True):
+def create_confusion_matrix(data, use_voted_labels=True, show_confusion_matrix=True):
     label_model = ['Neutral', 'Happiness', 'Sadness', 'Surprise', 'Fear', 'Disgust', 'Anger']
     encoding_dict_dataset = {'Neutral': 0, 'Happiness': 1, 'Sadness': 2, 'Surprise': 3, 'Fear': 4, 'Disgust': 5, 'Anger': 6}
     label_names = label_model
-    true_labels = data['emotion']
+    if use_voted_labels:
+        true_labels = data['emotion_label_voted']
+    else:
+        true_labels = data['emotion_label_self_reported']
 
     label_keys = [encoding_dict_dataset[label] for label in true_labels]
 
@@ -76,12 +79,69 @@ def create_confusion_matrix(data, show_confusion_matrix=True):
         plt.ylabel('Actual')
         plt.show()
 
+def generate_voted_labels(original_dataframe, voted_labels_path):
+    print("------------------------------------------------------------")
+    print("-----------------generate_voted_labels_data-----------------")
+    print("------------------------------------------------------------")
+    voted_labels = pd.read_csv(voted_labels_path)
+    voted_labels['filename'] = voted_labels['filename'] + '.mp4'
+    print()
+    print("Voted labels: ")
+    print()
+    print(voted_labels.head(10))
+    voted_labels_files = voted_labels['filename'].tolist()
+    filtered_data = original_dataframe[original_dataframe['filename'].isin(voted_labels_files)].copy()
+    filtered_data_files = filtered_data['filename'].tolist()
+    voted_labels = voted_labels[voted_labels['filename'].isin(filtered_data_files)]
+    voted_labels_files = voted_labels['filename'].tolist() # update it
+    voted_emotion_dict = {'N': 'Neutral', 'H': 'Happiness', 'S': 'Sadness', 'F': 'Fear', 'D': 'Disgust', 'A': 'Anger'}
+    voted_labels = voted_labels.drop(columns=['Level'])
+    voted_labels['emotion_label_voted'] = voted_labels['Emotion'].apply(lambda x: voted_emotion_dict[x])
+    voted_labels = voted_labels.drop(columns=['Emotion'])
+    voted_labels = voted_labels.rename(columns={'filename': 'filename_voted'}) # rename column filename to filename_voted
+    filtered_data = filtered_data.rename(columns={'emotion': 'emotion_label_self_reported'}) # rename column filename to filename_voted
+
+    filtered_data_files.sort()
+    voted_labels_files.sort()
+    if filtered_data_files == voted_labels_files:
+        print()
+        print("Files filtered successfully.")
+        print()
+    else:
+        print()
+        print("Files not filtered successfully.")
+        print()
+        return None
+    # print("Voted labels after processing: ")
+    # print()
+    # print(voted_labels.head(10))
+    # print()
+    # print("Original data filtered: ")
+    # print()
+    # print(filtered_data.head(10))
+    filtered_data = filtered_data.sort_values(by='filename').reset_index(drop=True)
+    voted_labels = voted_labels.sort_values(by='filename_voted').reset_index(drop=True)
+    predictions_voted_labels = pd.concat([filtered_data, voted_labels], axis=1) # concatenate horizontally
+    # print()
+    # print("Predictions with self-reported labels and voted labels concatenated:")
+    # print()
+    # print(predictions_voted_labels.head(10))
+    predictions_voted_labels = predictions_voted_labels.drop(columns=['filename_voted'])
+    predictions_voted_labels = predictions_voted_labels[['filename', 'emotion_label_self_reported', 'emotion_label_voted', 'predicted', 'argmax']]
+    # predictions_voted_labels = predictions_voted_labels.drop(columns=['emotion_self_reported_label'])
+    # predictions_voted_labels = predictions_voted_labels.rename(columns={'emotion_label': 'emotion'}) # rename column emotion_label to emotion
+    print()
+    print("Final dataframe with self reported and voted labels:")
+    print()
+    print(predictions_voted_labels.head(10))
+    return predictions_voted_labels
+
 def main():
     # Load CSV file(s) with true and predicted labels
-    data1 = pd.read_csv(r'save_results\run_5_predicted_checkpoint_1150.csv')
-    data2 = pd.read_csv(r'save_results\run_5_predicted_checkpoint_2150.csv')
-    data3 = pd.read_csv(r'save_results\run_5_predicted_checkpoint_6150.csv')
-    data4 = pd.read_csv(r'save_results\run_5_predicted_checkpoint_7442.csv')
+    data1 = pd.read_csv(r'ryumina_fer_model\save_results\run_5_predicted_checkpoint_1150.csv')
+    data2 = pd.read_csv(r'ryumina_fer_model\save_results\run_5_predicted_checkpoint_2150.csv')
+    data3 = pd.read_csv(r'ryumina_fer_model\save_results\run_5_predicted_checkpoint_6150.csv')
+    data4 = pd.read_csv(r'ryumina_fer_model\save_results\run_5_predicted_checkpoint_7442.csv')
 
     # data1 = pd.read_csv(r'save_results\run_4_predicted_checkpoint_1000.csv')
     # data2 = pd.read_csv(r'save_results\run_4_predicted_checkpoint_4400.csv')
@@ -107,83 +167,12 @@ def main():
 
     # print(data.head(10))
 
-
-
-    # create_confusion_matrix(data, show_confusion_matrix=True)
-
-    voted_data = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\voted_face_labels.csv")
-
-    voted_data['filename'] = voted_data['filename'] + '.mp4'
-
-    # print(voted_data.head(10))
-
-    voted_data_files = voted_data['filename'].tolist()
-
-    filtered_data = data[data['filename'].isin(voted_data_files)]
-    filtered_data_files = filtered_data['filename'].tolist()
-
-    # print("filtered_data.shape:")
-    # print(filtered_data.shape)
-
-    voted_data = voted_data[voted_data['filename'].isin(filtered_data_files)]
-    voted_data_files = voted_data['filename'].tolist() # update it
-
-    # print("voted_data.shape:")
-    # print(voted_data.shape)
-
-    voted_emotion_dict = {'N': 'Neutral', 'H': 'Happiness', 'S': 'Sadness', 'F': 'Fear', 'D': 'Disgust', 'A': 'Anger'}
-
-    # drop the column "level"
-    voted_data = voted_data.drop(columns=['Level'])
-
-    # Create a new column "emotion_label" with the emotion labels
-    voted_data['emotion_label'] = voted_data['Emotion'].apply(lambda x: voted_emotion_dict[x])
-
-    # drop the column "Emotion"
-    voted_data = voted_data.drop(columns=['Emotion'])
-
-    # Rename columns filename to filename_voted
-    voted_data = voted_data.rename(columns={'filename': 'filename_voted'})
-
+    voted_labels_path = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\voted_face_labels.csv"
+    full_data = generate_voted_labels(data, voted_labels_path)
+    # create_confusion_matrix(full_data, use_voted_labels=False, show_confusion_matrix=True)
+    create_confusion_matrix(full_data, use_voted_labels=True, show_confusion_matrix=True)
 
     
-
-    # Check if filtered_data_files is equal to voted_data_files
-    filtered_data_files.sort()
-    voted_data_files.sort()
-    # print("filtered_data_files == voted_data_files:")
-    # print(filtered_data_files == voted_data_files)
-    print("voted_data:")
-    print(voted_data.head(10))
-    print("filtered_data:")
-    print(filtered_data.head(10))
-
-    # print("shape of filtered_data:")
-    # print(filtered_data.shape)
-    # print("shape of voted_data:")
-    # print(voted_data.shape)
-
-    # reset index
-    # filtered_data = filtered_data.reset_index(drop=True)
-    # voted_data = voted_data.reset_index(drop=True)
-
-    filtered_data = filtered_data.sort_values(by='filename').reset_index(drop=True)
-    voted_data = voted_data.sort_values(by='filename_voted').reset_index(drop=True)
-
-    # Concatenate the two dataframes horizontally
-    data_full = pd.concat([filtered_data, voted_data], axis=1)
-
-    print(data_full.head(10))
-
-    # print("Columns of data_full:")
-    # print(data_full.columns)
-
-    # drop column emotion
-    data_full = data_full.drop(columns=['emotion'])
-    # Rename column emotion_label to emotion
-    data_full = data_full.rename(columns={'emotion_label': 'emotion'})
-
-    create_confusion_matrix(data_full, show_confusion_matrix=True)
 
 
     # ## Investigate if we only take files ending with "HI.mp4"
