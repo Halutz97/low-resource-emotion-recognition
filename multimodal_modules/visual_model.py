@@ -1,13 +1,13 @@
-from ryumina_fer_model.functions import get_face_areas
-from ryumina_fer_model.functions.get_models import load_weights_EE, load_weights_LSTM
-from ryumina_fer_model.functions import sequences
+import get_face_areas
+from get_models import load_weights_EE, load_weights_LSTM
+import sequences
 import os
 import time
 import pickle
 import numpy as np
 from scipy import stats
 import pandas as pd
-from ryumina_fer_model.select_video_subset import select_video_subset
+# from ryumina_fer_model.select_video_subset import select_video_subset
 
 # define class
 class VisualModel:
