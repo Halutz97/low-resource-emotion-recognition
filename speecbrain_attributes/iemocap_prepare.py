@@ -19,7 +19,7 @@ from speechbrain.dataio.dataio import read_audio
 
 logger = logging.getLogger(__name__)
 SAMPLERATE = 16000
-NUMBER_UTT = 4507
+NUMBER_UTT = 8273
 
 
 def prepare_data(
@@ -119,9 +119,8 @@ def create_json(wav_list, json_file):
     print("json file prepared")
     for obj in wav_list:
         wav_file = obj[0]
-        emo = obj[1]
-        val = obj[2]
-        aro = obj[3]
+        val = obj[1]
+        aro = obj[2]
         # Check if the file exists
         if not os.path.isfile(wav_file):
             continue
@@ -135,7 +134,6 @@ def create_json(wav_list, json_file):
         json_dict[uttid] = {
             "wav": wav_file,
             "length": duration,
-            "emo": emo,
             "val": val,
             "aro": aro,
         }
@@ -337,39 +335,32 @@ def load_session(pathSession):
         if os.path.isfile(os.path.join(pathEmo, f))
     ]:
         for utterance in load_utterInfo(pathEmo + emoFile):
-            if (
-                (utterance[3] == "neu")
-                or (utterance[3] == "hap")
-                or (utterance[3] == "sad")
-                or (utterance[3] == "ang")
-                or (utterance[3] == "exc")
-            ):
-                path = (
-                    pathWavFolder
-                    + utterance[2][:-5]
-                    + "/"
-                    + utterance[2]
-                    + ".wav"
+            path = (
+                pathWavFolder
+                + utterance[2][:-5]
+                + "/"
+                + utterance[2]
+                + ".wav"
+            )
+            
+            if not os.path.isfile(path):
+                continue
+
+            valence = utterance[4]
+            arousal = utterance[5]
+
+            label = utterance[3]
+            if label == "exc":
+                label = "hap"
+
+            if emoFile[7] != "i" and utterance[2][7] == "s":
+                improvisedUtteranceList.append(
+                    [path, valence, arousal, utterance[2][18]]
                 )
-                
-                if not os.path.isfile(path):
-                    continue
-
-                valence = utterance[4]
-                arousal = utterance[5]
-
-                label = utterance[3]
-                if label == "exc":
-                    label = "hap"
-
-                if emoFile[7] != "i" and utterance[2][7] == "s":
-                    improvisedUtteranceList.append(
-                        [path, label, valence, arousal, utterance[2][18]]
-                    )
-                else:
-                    improvisedUtteranceList.append(
-                        [path, label, valence, arousal, utterance[2][15]]
-                    )
+            else:
+                improvisedUtteranceList.append(
+                    [path, valence, arousal, utterance[2][15]]
+                )
 
     return improvisedUtteranceList
 

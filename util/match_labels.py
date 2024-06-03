@@ -217,14 +217,14 @@ def match_emotion_labels(labels_file, corrected_labels_file, directory, dataset=
         print("Number of entries in dataframe after removing files not in directory: " + str(len(data)))
 
     elif dataset == "IEMOCAP" and attributes == False:
-        # # Drop all rows with oth, xxx, dis, and fea of the csv file
-        # data = data[data['Emotion'] != 'oth']
-        # data = data[data['Emotion'] != 'xxx']
-        # data = data[data['Emotion'] != 'dis']
-        # data = data[data['Emotion'] != 'fea']
+        # Drop all rows with oth, xxx, dis, and fea of the csv file
+        data = data[data['Emotion'] != 'oth']
+        data = data[data['Emotion'] != 'xxx']
+        data = data[data['Emotion'] != 'dis']
+        data = data[data['Emotion'] != 'fea']
 
-        # data = data[data['Emotion'] != 'sur']
-        # data = data[data['Emotion'] != 'fru']
+        data = data[data['Emotion'] != 'sur']
+        data = data[data['Emotion'] != 'fru']
 
         data.loc[data['Emotion'] == 'exc', 'Emotion'] = 'hap'
 

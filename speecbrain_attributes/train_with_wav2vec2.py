@@ -1,8 +1,22 @@
+#!/usr/bin/env python3
+"""Recipe for training an emotion recognition system from speech data only using IEMOCAP.
+The system classifies 4 emotions ( anger, happiness, sadness, neutrality) with wav2vec2.
+
+To run this recipe, do the following:
+> python train_with_wav2vec2.py hparams/train_with_wav2vec2.yaml --data_folder /path/to/IEMOCAP_full_release
+
+For more wav2vec2/HuBERT results, please see https://arxiv.org/pdf/2111.02735.pdf
+
+Authors
+ * Yingzhi WANG 2021
+"""
+
 import os
 import sys
 import torch
 
 from hyperpyyaml import load_hyperpyyaml
+
 import speechbrain as sb
 
 
@@ -18,16 +32,12 @@ class EmoIdBrain(sb.Brain):
         outputs = self.hparams.avg_pool(outputs, lens)
         outputs = outputs.view(outputs.shape[0], -1)
 
-        # Separate outputs for regression and classification
-        reg_outputs = self.modules.regressor(outputs)
-        class_outputs = self.hparams.softmax(self.modules.classifier(outputs))
-
-        return reg_outputs, class_outputs
+        outputs = self.modules.output_mlp(outputs)
+        return outputs
 
     def compute_objectives(self, predictions, batch, stage):
-        reg_predictions, class_predictions = predictions
-        val, aro, emo = batch.val, batch.aro, batch.emo_encoded
-
+        """Computes the loss using valence and arousal as targets."""
+        val, aro = batch.val, batch.aro
         val = [float(v) for v in val]  # Ensure conversion to floats
         aro = [float(a) for a in aro]
 
@@ -36,25 +46,15 @@ class EmoIdBrain(sb.Brain):
         aro = torch.tensor(aro, dtype=torch.float32, device=self.device).unsqueeze(1)
 
         # Stack valence and arousal to create a target tensor
-        reg_targets = torch.cat((val, aro), dim=1)
-
-        # Convert the PaddedData object to a tensor and reshape to 1D
-        emo_tensor = emo.data.to(self.device).view(-1)
+        targets = torch.cat((val, aro), dim=1)
 
         # Compute the regression loss (e.g., Mean Squared Error)
-        reg_loss = self.hparams.compute_regression_cost(reg_predictions, reg_targets)
+        loss = self.hparams.compute_cost(predictions, targets)
 
-        # Compute the classification loss (e.g., Cross-Entropy Loss)
-        class_loss = self.hparams.compute_classification_cost(class_predictions, emo_tensor.long())
-
-        # Combine the two losses with their respective weights
-        combined_loss = (self.hparams.regression_weight * reg_loss) + (self.hparams.classification_weight * class_loss)
-        
         if stage != sb.Stage.TRAIN:
-            self.regression_stats.append(batch.id, reg_predictions, reg_targets)
-            self.classification_stats.append(batch.id, class_predictions, emo_tensor)
+            self.error_metrics.append(batch.id, predictions, targets)
 
-        return combined_loss
+        return loss
 
     def on_stage_start(self, stage, epoch=None):
         """Gets called at the beginning of each epoch.
@@ -69,13 +69,12 @@ class EmoIdBrain(sb.Brain):
 
         # Set up statistics trackers for this stage
         self.loss_metric = sb.utils.metric_stats.MetricStats(
-            metric=sb.nnet.losses.mse_loss  # Use MSE loss for tracking
+            metric=sb.nnet.losses.mse_loss # Use MSE loss for tracking
         )
 
         # Set up evaluation-only statistics trackers
         if stage != sb.Stage.TRAIN:
-            self.regression_stats = self.hparams.regression_stats()
-            self.classification_stats = self.hparams.classification_stats()
+            self.error_metrics = self.hparams.error_stats()
 
     def on_stage_end(self, stage, stage_loss, epoch=None):
         """Gets called at the end of an epoch.
@@ -98,19 +97,18 @@ class EmoIdBrain(sb.Brain):
         else:
             stats = {
                 "loss": stage_loss,
-                "mse": self.regression_stats.summarize("average"),
-                "nll": self.classification_stats.summarize("average"),
+                "mse": self.error_metrics.summarize("average"),
             }
 
         # At the end of validation...
         if stage == sb.Stage.VALID:
-            old_lr, new_lr = self.hparams.lr_annealing(stats["loss"])
+            old_lr, new_lr = self.hparams.lr_annealing(stats["mse"])
             sb.nnet.schedulers.update_learning_rate(self.optimizer, new_lr)
 
             (
                 old_lr_wav2vec2,
                 new_lr_wav2vec2,
-            ) = self.hparams.lr_annealing_wav2vec2(stats["loss"])
+            ) = self.hparams.lr_annealing_wav2vec2(stats["mse"])
             sb.nnet.schedulers.update_learning_rate(
                 self.wav2vec2_optimizer, new_lr_wav2vec2
             )
@@ -124,7 +122,7 @@ class EmoIdBrain(sb.Brain):
 
             # Save the current checkpoint and delete previous checkpoints,
             self.checkpointer.save_and_keep_only(
-                meta=stats, min_keys=["loss"]
+                meta=stats, min_keys=["mse"]
             )
 
         # We also write statistics about test data to stdout and to logfile.
@@ -179,15 +177,13 @@ def dataio_prep(hparams):
         return sig
 
     # Define valence and arousal pipeline:
-    @sb.utils.data_pipeline.takes("val", "aro", "emo")
-    @sb.utils.data_pipeline.provides("val", "aro", "emo_encoded")
-    def continuous_pipeline(val, aro, emo):
+    @sb.utils.data_pipeline.takes("val", "aro")
+    @sb.utils.data_pipeline.provides("val", "aro")
+    def continuous_pipeline(val, aro):
         val = float(val) # Ensure conversion to floats
         aro = float(aro)
-        emo_encoded = hparams['label_encoder'].encode_label_torch(emo)
         yield val
         yield aro
-        yield emo_encoded
 
     # Define datasets. We also connect the dataset with the data processing
     # functions defined above.
@@ -202,13 +198,8 @@ def dataio_prep(hparams):
             json_path=data_info[dataset],
             replacements={"data_root": hparams["data_folder"]},
             dynamic_items=[audio_pipeline, continuous_pipeline],
-            output_keys=["id", "sig", "val", "aro", "emo_encoded"],
+            output_keys=["id", "sig", "val", "aro"],
         )
-
-    label_encoder = sb.dataio.encoder.CategoricalEncoder()
-    label_encoder.update_from_didataset(datasets["train"], "emo")
-    hparams["label_encoder"] = label_encoder
-
 
     return datasets
 

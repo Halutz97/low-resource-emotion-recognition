@@ -6,7 +6,7 @@ attributes = False
 print('Attributes:', attributes)
 
 # Set the dataset and the number of files to cut
-dataset = "ShEMO"
+dataset = "IEMOCAP"
 num_files_per_class = 10000
 
 

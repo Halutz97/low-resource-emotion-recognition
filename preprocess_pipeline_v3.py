@@ -161,7 +161,7 @@ def switch_case(dataset, *args, **kwargs):
 def main():
     toggle_controls = [True, True, True, True]
     dataset = "IEMOCAP"
-    attributes = True
+    attributes = False
     audio_directory = ""
     corrected_labels_path = ""
     labels_path = ""
