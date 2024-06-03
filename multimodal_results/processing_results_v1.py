@@ -5,6 +5,7 @@
 import os
 import numpy as np
 import pandas as pd
+from scipy.optimize import minimize
 
 def convert_strings_to_arrays(list_of_strings):
     """
@@ -40,17 +41,20 @@ def evaluate(w_a, w_v, a, v, true_labels):
     # print(f"Accuracy: {accuracy}")
     return accuracy
 
-def evaluate_vector(w_a, w_v, a, v, true_labels):
-    # Evaluates the weights where w_a and w_v are vectors
-    print("Shape of a: ", a.shape)
-    print("Shape of v: ", v.shape)
-    print("Shape of w_a: ", w_a.shape)
-    print("Shape of w_v: ", w_v.shape)
-    combined_prob = np.dot(w_a, a) + np.dot(w_v, v)
-    predictions = np.argmax(combined_prob, axis=1)
-    true_classes = np.argmax(true_labels, axis=1)
-    accuracy = np.mean(predictions == true_classes)
-    return accuracy
+def loss_function(weights, *args):
+    # Unpack arguments
+    audio_probs, video_probs, true_labels = args
+
+    # Assuming we are optimizing the first four weights for each modality
+    w_a = np.concatenate([weights[:4], [0, 0, 0]])  # Last three weights for audio are zero
+    w_v = np.concatenate([weights[4:], [1, 1, 1]])  # Last three weights for video are one
+
+    # Calculate the combined probabilities
+    combined_probs = w_a * audio_probs + w_v * video_probs
+
+    # Example: Mean Squared Error
+    mse = np.mean((combined_probs - true_labels) ** 2)
+    return mse
 
 def get_single_modality_accuracy(predictions, true_labels):
     predictions = np.argmax(predictions, axis=1)
@@ -159,5 +163,35 @@ for w_a0 in weight_values:
 print("Best weights:", best_weights)
 print("Best score:", best_accuracy)
 print(f"Number of times ran: {num_times_ran}")
+
+# Now use a more sophisticated optimization algorithm
+# Initial weights for the first four categories (8 weights total)
+initial_weights = np.ones(8) * 0.5
+
+# Bounds for these weights
+bounds = [(0, 1)] * 8
+
+# Optimize
+result = minimize(loss_function, initial_weights, args=(all_audio_probs, all_video_probs, one_hot_encoded), bounds=bounds)
+
+print("Optimized weights for audio:", np.concatenate([result.x[:4], [0, 0, 0]]))
+print("Optimized weights for video:", np.concatenate([result.x[4:], [1, 1, 1]]))
+print("Minimum loss:", result.fun)
+
+best_w_a = np.concatenate([result.x[:4], [0, 0, 0]])
+best_w_v = np.concatenate([result.x[4:], [1, 1, 1]])
+print("best_w_a_shape: ", best_w_a.shape)
+# Type
+print(type(best_w_a))
+print("best_w_a: ", best_w_a)
+print("best_w_v_shape: ", best_w_v.shape)
+# Type
+print(type(best_w_v))
+print("best_w_v: ", best_w_v)
+best_w_a = best_w_a.reshape(1,7)
+best_w_v = best_w_v.reshape(1,7)
+
+best_accuracy = evaluate(best_w_a, best_w_v, all_audio_probs, all_video_probs, one_hot_encoded)
+print("Best accuracy: ", best_accuracy)
 
 
