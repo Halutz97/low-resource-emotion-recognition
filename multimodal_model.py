@@ -221,7 +221,7 @@ if __name__ == '__main__':
     with mp.Pool(2) as pool:
         debug_counter = 0
         for file in filenames:
-            if debug_counter>=4:
+            if debug_counter>=2:
                 break
             audio_input = os.path.join(audio_folder, file + '.wav')
             video_input = os.path.join(video_folder, file + '.mp4')
@@ -290,16 +290,15 @@ if __name__ == '__main__':
     # save predictions_df to a csv file
     # get cwd
     predictions_df.to_csv(os.path.join(os.getcwd(), 'multimodal_results', 'multimodal_predictions.csv'), index=False)
-    # print("Now inspect that the probabilites have been stored correctly in the df")
-    # print()
-    # list_of_probabilities = predictions_df['audio_prob']
-    # for prob in list_of_probabilities:
-    #     if prob is not None:
-    #         print("Probabilities:")
-    #         print(prob)
-    #         print(f"Type: {type(prob)}")
-    #         print(f"Shape: {prob.shape}")
-    #         print()
-
-
-
+    print("Now inspect that the probabilites have been stored correctly in the df")
+    print()
+    list_of_probabilities = predictions_df['audio_prob']
+    for prob in list_of_probabilities:
+        if prob is not None:
+            print("Probabilities:")
+            print(prob)
+            print(f"Type: {type(prob)}")
+            print(f"Shape: {prob.shape}")
+            print()
+            print(prob[0][0])
+            print(f"Type: {type(prob[0])}")
