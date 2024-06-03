@@ -174,16 +174,16 @@ def reorder_video_probabilities(video_probabilities):
 if __name__ == '__main__':
 
     # label_model = ['Neutral', 'Happiness', 'Sadness', 'Surprise', 'Fear', 'Disgust', 'Anger']
-    my_encoding_dict_model = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3} # Change this to include (or not) the extra classes of the visual model
+    # my_encoding_dict_model = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3} # Change this to include (or not) the extra classes of the visual model
     my_encoding_dict_model = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3, 'sur': 4, 'fea': 5, 'dis': 6}
     label_names = ['neu', 'ang', 'hap', 'sad'] # Same as above
 
     label_model_decoder = {0: 'Neutral', 1: 'Anger', 2: 'Happiness', 3: 'Sadness', 4: 'Surprise', 5: 'Fear', 6: 'Disgust'}
 
-    dataset = "CREMA-D" # Change this to the dataset you are using
-    directory = "path_to_datasets" # Change this to the directory where you save the datasets
+    # dataset = "CREMA-D" # Change this to the dataset you are using
+    # directory = "path_to_datasets" # Change this to the directory where you save the datasets
     # file = '1001_DFA_ANG_XX' # Change this to the file you want to classify
-    file = '1001_IEO_SAD_MD'
+    # file = '1001_IEO_SAD_MD'
 
     # audio_folder = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAV"
     audio_folder = r"C:\_HomeDocs\Ari\DTU\00-MSc\Thesis\Data\AudioWAV_testing"
@@ -192,64 +192,74 @@ if __name__ == '__main__':
 
 
     # files, data, directory, my_encoding_dict_dataset = get_dataset(dataset, directory)
+    labels = pd.read_csv(r"C:\_HomeDocs\Ari\DTU\00-MSc\Thesis\Data\voted_combined_labels_corrected_testing.csv")
+    filenames = labels['filename'].tolist()
+    predictions_df = labels.copy()
+    predictions_df['audio_prob'] = None
+    predictions_df['video_prob'] = None
+
     # files, data, directory, my_encoding_dict_dataset = get_single_file(file)
     # label_keys, true_labels = get_label_keys(data, my_encoding_dict_dataset)
     # audio_input, video_input = separate_audio_video(file)
-    audio_input = os.path.join(audio_folder, file + '.wav')
-    video_input = os.path.join(video_folder, file + '.mp4')
-    # audio_input = file
-    print(f'Audio Input: {audio_input}', f'Video Input: {video_input}')
-    with mp.Pool(2) as pool:
-        audio_result = pool.apply_async(process_audio, (audio_input,))
-        video_result = pool.apply_async(process_video, (video_input,))
-        
-        audio_probabilities, _, _, _ = audio_result.get()
-        video_probabilities, _, _, _ = video_result.get()
+    debug_counter = 0
+    audio_probs_list = []
+    audio_probs_list = []
+    for file in filenames:
+        if debug_counter>=5:
+            break
+        audio_input = os.path.join(audio_folder, file + '.wav')
+        video_input = os.path.join(video_folder, file + '.mp4')
+        # audio_input = file
+        print(f'Audio Input: {audio_input}', f'Video Input: {video_input}')
+        with mp.Pool(2) as pool:
+            audio_result = pool.apply_async(process_audio, (audio_input,))
+            video_result = pool.apply_async(process_video, (video_input,))
+            
+            audio_probabilities, _, _, _ = audio_result.get()
+            video_probabilities, _, _, _ = video_result.get()
 
-        # Save separate results for debugging
-        save_results(audio_probabilities, 'audio_results')
-        save_results(video_probabilities, 'video_results')
+            # Save separate results for debugging
+            save_results(audio_probabilities, 'audio_results')
+            save_results(video_probabilities, 'video_results')
 
-        # Let's investigate the results
-        # First audio_probabilities: Type, shape, values
-        # print("Audio Probabilities")
-        # print(type(audio_probabilities))
-        # print(audio_probabilities.shape)
-        # print(audio_probabilities)
+            # Let's investigate the results
+            # First audio_probabilities: Type, shape, values
+            # print("Audio Probabilities")
+            # print(type(audio_probabilities))
+            # print(audio_probabilities.shape)
+            # print(audio_probabilities)
 
-        # Second video_probabilities: Type, shape, values
-        # print("Video Probabilities")
-        # print(type(video_probabilities))
-        # print(video_probabilities.shape)
-        # print(video_probabilities)
+            # Second video_probabilities: Type, shape, values
+            # print("Video Probabilities")
+            # print(type(video_probabilities))
+            # print(video_probabilities.shape)
+            # print(video_probabilities)
 
-        # # Convert audio_probabilities (tensor) to a numpy array of dimensions (1,4)
-        # audio_probabilities = audio_probabilities.numpy()
-        # # Add three zeros to match the dimensions of the visual model
-        # audio_probabilities = np.append(audio_probabilities, [0, 0, 0]).reshape(1,7)
-        # print(audio_probabilities.shape)
-        # print(audio_probabilities)
+            # # Convert audio_probabilities (tensor) to a numpy array of dimensions (1,4)
+            # audio_probabilities = audio_probabilities.numpy()
+            # # Add three zeros to match the dimensions of the visual model
+            # audio_probabilities = np.append(audio_probabilities, [0, 0, 0]).reshape(1,7)
+            # print(audio_probabilities.shape)
+            # print(audio_probabilities)
 
-        # Convert video_probabilities to a numpy array of dimensions (1,7)
-        # video_probabilities = video_probabilities.reshape(1,7)
-        # video_probabilities = reorder_video_probabilities(video_probabilities)
-        print("We have now reordered the video probabilities")
-        print(video_probabilities.shape)
-        print(video_probabilities)
+            # Convert video_probabilities to a numpy array of dimensions (1,7)
+            # video_probabilities = video_probabilities.reshape(1,7)
+            # video_probabilities = reorder_video_probabilities(video_probabilities)
+            print("We have now reordered the video probabilities")
+            print(video_probabilities.shape)
+            print(video_probabilities)
 
-
-
-
-
-
-        # Combine results and determine final label
-        final_probabilities = combine_probabilities(audio_probabilities, video_probabilities, audio_weight=0.5, video_weight=0.5)
-        final_label = select_final_label(final_probabilities)
-        final_label_name = label_model_decoder[final_label]
-        
-        print(f'Final Label: {final_label}', f'Final Probabilities: {final_probabilities}')
-        print(f'Final Label Name: {final_label_name}')
-        # print(f'True Label: {true_labels}')
+            # Combine results and determine final label
+            final_probabilities = combine_probabilities(audio_probabilities, video_probabilities, audio_weight=0.5, video_weight=0.5)
+            final_label = select_final_label(final_probabilities)
+            final_label_name = label_model_decoder[final_label]
+            
+            print(f'Final Label: {final_label}', f'Final Probabilities: {final_probabilities}')
+            print(f'Final Label Name: {final_label_name}')
+            # print(f'True Label: {true_labels}')
+            audio_probs_list.append
+            video_probs_list            
+            debug_counter += 1
 
 
 
