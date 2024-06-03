@@ -140,9 +140,9 @@ def process_audio(audio_file):
     out_prob = np.append(out_prob, [0, 0, 0]).reshape(1,7)
     return out_prob, score, index, text_lab
 
-def process_video(video_file):
+def process_video(video_file, backbone_model_path, LSTM_model_path):
     video_classifier = VisualModel()
-    out_prob, score, index, text_lab = video_classifier.classify_video_file(video_file)
+    out_prob, score, index, text_lab = video_classifier.classify_video_file(video_file, backbone_model_path, LSTM_model_path)
     out_prob = reorder_video_probabilities(out_prob)
     return out_prob, score, index, text_lab
 
@@ -180,23 +180,37 @@ if __name__ == '__main__':
 
     label_model_decoder = {0: 'Neutral', 1: 'Anger', 2: 'Happiness', 3: 'Sadness', 4: 'Surprise', 5: 'Fear', 6: 'Disgust'}
 
+    backbone_model_path = 'ryumina_fer_model/models_fer/EmoAffectnet/weights_0_66_37_wo_gl.h5'
+    LSTM_model_path = 'ryumina_fer_model/models_fer/LSTM/CREMA-D_with_config.h5'
+
     # dataset = "CREMA-D" # Change this to the dataset you are using
     # directory = "path_to_datasets" # Change this to the directory where you save the datasets
     # file = '1001_DFA_ANG_XX' # Change this to the file you want to classify
     # file = '1001_IEO_SAD_MD'
 
-    # audio_folder = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAV"
-    audio_folder = r"C:\_HomeDocs\Ari\DTU\00-MSc\Thesis\Data\AudioWAV_testing"
-    # video_folder = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\VideoMP4"
-    video_folder = r"C:\_HomeDocs\Ari\DTU\00-MSc\Thesis\Data\VideoMP4_testing"
+    audio_folder = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAV_testing"
+    # audio_folder = r"C:\_HomeDocs\Ari\DTU\00-MSc\Thesis\Data\AudioWAV_testing"
+    video_folder = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\VideoMP4_testing"
+    # video_folder = r"C:\_HomeDocs\Ari\DTU\00-MSc\Thesis\Data\VideoMP4_testing"
 
 
     # files, data, directory, my_encoding_dict_dataset = get_dataset(dataset, directory)
-    labels = pd.read_csv(r"C:\_HomeDocs\Ari\DTU\00-MSc\Thesis\Data\voted_combined_labels_corrected_testing.csv")
-    filenames = labels['filename'].tolist()
-    predictions_df = labels.copy()
-    predictions_df['audio_prob'] = None
-    predictions_df['video_prob'] = None
+    # labels = pd.read_csv(r"C:\_HomeDocs\Ari\DTU\00-MSc\Thesis\Data\voted_combined_labels_corrected_testing.csv")
+    # filenames = labels['filename'].tolist()
+    # predictions_df = labels.copy()
+    # predictions_df['audio_prob'] = None
+    # predictions_df['video_prob'] = None
+
+    labels_data = pd.read_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\voted_combined_labels_corrected_testing.csv")
+    filenames = labels_data['filename'].tolist()
+    emotions_list = labels_data['Emotion'].tolist()
+    labels_list = labels_data['Label'].tolist()
+    total_data_length = len(filenames)
+
+    predictions_df = pd.DataFrame(columns=['filename', 'Emotion', 'Label', 'audio_prob', 'video_prob', 'checkpoint'])
+    predictions_df['filename'] = filenames
+    predictions_df['Emotion'] = emotions_list
+    predictions_df['Label'] = labels_list
 
     # files, data, directory, my_encoding_dict_dataset = get_single_file(file)
     # label_keys, true_labels = get_label_keys(data, my_encoding_dict_dataset)
@@ -213,7 +227,7 @@ if __name__ == '__main__':
         print(f'Audio Input: {audio_input}', f'Video Input: {video_input}')
         with mp.Pool(2) as pool:
             audio_result = pool.apply_async(process_audio, (audio_input,))
-            video_result = pool.apply_async(process_video, (video_input,))
+            video_result = pool.apply_async(process_video, (video_input, backbone_model_path, LSTM_model_path))
             
             audio_probabilities, _, _, _ = audio_result.get()
             video_probabilities, _, _, _ = video_result.get()
@@ -271,16 +285,19 @@ if __name__ == '__main__':
     print()
     print()
     print("------------------------------------------------------------------------------")
-    print("Now inspect that the probabilites have been stored correctly in the df")
-    print()
-    list_of_probabilities = predictions_df['audio_prob']
-    for prob in list_of_probabilities:
-        if prob is not None:
-            print("Probabilities:")
-            print(prob)
-            print(f"Type: {type(prob)}")
-            print(f"Shape: {prob.shape}")
-            print()
+    # save predictions_df to a csv file
+    # get cwd
+    predictions_df.to_csv(os.path.join(os.getcwd(), 'multimodal_results', 'multimodal_predictions.csv'), index=False)
+    # print("Now inspect that the probabilites have been stored correctly in the df")
+    # print()
+    # list_of_probabilities = predictions_df['audio_prob']
+    # for prob in list_of_probabilities:
+    #     if prob is not None:
+    #         print("Probabilities:")
+    #         print(prob)
+    #         print(f"Type: {type(prob)}")
+    #         print(f"Shape: {prob.shape}")
+    #         print()
 
 
 
