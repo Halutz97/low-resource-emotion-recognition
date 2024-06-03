@@ -12,7 +12,7 @@ from ryumina_fer_model.select_video_subset import select_video_subset
 # define class
 class VisualModel:
     
-    def classify_video_file(self, file):
+    def classify_video_file(self, file, backbone_model_path, LSTM_model_path):
         """Classify a file using the classifier
 
         Args:
@@ -31,8 +31,8 @@ class VisualModel:
 
         # Initialize parameters
         conf_d = 0.7
-        backbone_model_path = 'ryumina_fer_model/models_fer/EmoAffectnet/weights_0_66_37_wo_gl.h5'
-        LSTM_model_path = 'ryumina_fer_model/models_fer/LSTM/CREMA-D_with_config.h5'
+        # backbone_model_path = 'ryumina_fer_model/models_fer/EmoAffectnet/weights_0_66_37_wo_gl.h5'
+        # LSTM_model_path = 'ryumina_fer_model/models_fer/LSTM/CREMA-D_with_config.h5'
         emotion_dict = {"NEU": "Neutral", "HAP": "Happiness", "SAD": "Sadness", "SUR": "Surprise", "FEA": "Fear", "DIS": "Disgust", "ANG": "Anger"}
         # true_label = emotion_dict[video_file.split("_")[2]]
 
