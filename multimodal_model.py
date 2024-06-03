@@ -215,17 +215,19 @@ if __name__ == '__main__':
     # files, data, directory, my_encoding_dict_dataset = get_single_file(file)
     # label_keys, true_labels = get_label_keys(data, my_encoding_dict_dataset)
     # audio_input, video_input = separate_audio_video(file)
-    debug_counter = 0
+    
     # audio_probs_list = []
     # audio_probs_list = []
-    for file in filenames:
-        if debug_counter>=4:
-            break
-        audio_input = os.path.join(audio_folder, file + '.wav')
-        video_input = os.path.join(video_folder, file + '.mp4')
-        # audio_input = file
-        print(f'Audio Input: {audio_input}', f'Video Input: {video_input}')
-        with mp.Pool(2) as pool:
+    with mp.Pool(2) as pool:
+        debug_counter = 0
+        for file in filenames:
+            if debug_counter>=4:
+                break
+            audio_input = os.path.join(audio_folder, file + '.wav')
+            video_input = os.path.join(video_folder, file + '.mp4')
+            # audio_input = file
+            print(f'Audio Input: {audio_input}', f'Video Input: {video_input}')
+            # with mp.Pool(2) as pool:
             audio_result = pool.apply_async(process_audio, (audio_input,))
             video_result = pool.apply_async(process_video, (video_input, backbone_model_path, LSTM_model_path))
             
