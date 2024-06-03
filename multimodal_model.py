@@ -202,10 +202,10 @@ if __name__ == '__main__':
     # label_keys, true_labels = get_label_keys(data, my_encoding_dict_dataset)
     # audio_input, video_input = separate_audio_video(file)
     debug_counter = 0
-    audio_probs_list = []
-    audio_probs_list = []
+    # audio_probs_list = []
+    # audio_probs_list = []
     for file in filenames:
-        if debug_counter>=5:
+        if debug_counter>=4:
             break
         audio_input = os.path.join(audio_folder, file + '.wav')
         video_input = os.path.join(video_folder, file + '.mp4')
@@ -257,9 +257,30 @@ if __name__ == '__main__':
             print(f'Final Label: {final_label}', f'Final Probabilities: {final_probabilities}')
             print(f'Final Label Name: {final_label_name}')
             # print(f'True Label: {true_labels}')
-            audio_probs_list.append
-            video_probs_list            
+            # audio_probs_list.append
+            # video_probs_list       
+            # predictions_df.loc[predictions_df['filename'] == file, 'audio_prob'] = audio_probabilities
+            # predictions_df.loc[predictions_df['filename'] == file, 'video_prob'] = video_probabilities
+            predictions_df.at[predictions_df[predictions_df['filename'] == file].index[0], 'audio_prob'] = audio_probabilities
+            predictions_df.at[predictions_df[predictions_df['filename'] == file].index[0], 'video_prob'] = video_probabilities
+     
             debug_counter += 1
+    
+    print(predictions_df.head())
+
+    print()
+    print()
+    print("------------------------------------------------------------------------------")
+    print("Now inspect that the probabilites have been stored correctly in the df")
+    print()
+    list_of_probabilities = predictions_df['audio_prob']
+    for prob in list_of_probabilities:
+        if prob is not None:
+            print("Probabilities:")
+            print(prob)
+            print(f"Type: {type(prob)}")
+            print(f"Shape: {prob.shape}")
+            print()
 
 
 
