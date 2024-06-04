@@ -7,7 +7,7 @@ print('Attributes:', attributes)
 
 # Set the dataset and the number of files to cut
 dataset = "CREMA-D-voted"
-num_files_per_class = 20
+num_files_per_class = 300
 
 
 # Set the source and destination directories
@@ -26,8 +26,8 @@ elif dataset == "CREMA-D-voted":
     # dest_dir = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_v_testing'
     audio_source_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAV"
     video_source_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\VideoMP4"
-    audio_dest_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAV_testing"
-    video_dest_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\VideoMP4_testing"
+    audio_dest_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAV_multimodal"
+    video_dest_dir = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\VideoMP4_multimodal"
 
 elif dataset == "EMO-DB":
     source_dir = r'C:\Users\DANIEL\Desktop\thesis\EmoDB\audio'
@@ -60,7 +60,7 @@ if attributes == False:
         # source_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\voted_labels_corrected.csv'
         # dest_csv = r'C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_v_testing.csv'
         source_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\voted_combined_labels_corrected.csv"
-        dest_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\voted_combined_labels_corrected_testing.csv"
+        dest_csv = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\voted_combined_labels_corrected_multimodal.csv"
 
     elif dataset == "EMO-DB":
         source_csv = r'C:\Users\DANIEL\Desktop\thesis\EmoDB\labels_corrected.csv'
