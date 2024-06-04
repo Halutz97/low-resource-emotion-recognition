@@ -54,3 +54,6 @@ print(labels.shape)
 # Get emotion distribution
 emotion_distribution = labels['Emotion'].value_counts()
 print(emotion_distribution)
+
+# save labels as new csv file
+labels.to_csv(r"C:\MyDocs\DTU\MSc\Thesis\Data\CH-SIMS-RAW\label_corrected.csv", index=False)
