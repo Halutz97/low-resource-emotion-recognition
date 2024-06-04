@@ -33,7 +33,7 @@ class VisualModel:
         conf_d = 0.7
         # backbone_model_path = 'ryumina_fer_model/models_fer/EmoAffectnet/weights_0_66_37_wo_gl.h5'
         # LSTM_model_path = 'ryumina_fer_model/models_fer/LSTM/CREMA-D_with_config.h5'
-        emotion_dict = {"NEU": "Neutral", "HAP": "Happiness", "SAD": "Sadness", "SUR": "Surprise", "FEA": "Fear", "DIS": "Disgust", "ANG": "Anger"}
+        # emotion_dict = {"NEU": "Neutral", "HAP": "Happiness", "SAD": "Sadness", "SUR": "Surprise", "FEA": "Fear", "DIS": "Disgust", "ANG": "Anger"}
         # true_label = emotion_dict[video_file.split("_")[2]]
 
         # start_time = time.time()
@@ -94,10 +94,17 @@ class VisualModel:
         return out_prob, score, index, text_lab
 
 if __name__ == "__main__":
-    root_path = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\TEST\HI"
-    video_file = select_video_subset(root_path,1)
-    video_path = os.path.join(root_path, video_file[0])
+    # root_path = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\TEST\HI"
+    # video_file = select_video_subset(root_path,1)
+    # video_path = os.path.join(root_path, video_file[0])
+    video_path = r"C:\MyDocs\DTU\MSc\Thesis\Data\CH-SIMS-RAW\VideoMP4\video_0045_0029.mp4"
+    backbone_model_path = 'ryumina_fer_model/models_fer/EmoAffectnet/weights_0_66_37_wo_gl.h5'
+    LSTM_model_path = 'ryumina_fer_model/models_fer/LSTM/CREMA-D_with_config.h5'
     my_classifier = VisualModel()
-    my_classifier.classify_video_file(video_path)
+    result = my_classifier.classify_video_file(video_path, backbone_model_path, LSTM_model_path)
+    probs = result[0]
+    classified_emotion = result[3]
+    print(f"Probabilities: {probs}")
+    print(f"Classified emotion: {classified_emotion}")
 
 
