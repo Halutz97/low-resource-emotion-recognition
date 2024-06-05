@@ -47,8 +47,9 @@ def loss_function(weights, *args):
     audio_probs, video_probs, true_labels = args
 
     # Assuming we are optimizing the first four weights for each modality
-    w_a = np.concatenate([weights[:4], [0, 0, 0]])  # Last three weights for audio are zero
-    w_v = np.concatenate([weights[4:], [1, 1, 1]])  # Last three weights for video are one
+    w_a = np.concatenate([weights, [0, 0, 0]])  # Last three weights for audio are zero
+    # determine w_v as the element-wise difference between 1 and w_a
+    w_v = 1 - w_a
 
     # Calculate the combined probabilities
     combined_probs = w_a * audio_probs + w_v * video_probs
@@ -56,6 +57,74 @@ def loss_function(weights, *args):
     # Example: Mean Squared Error
     mse = np.mean((combined_probs - true_labels) ** 2)
     return mse
+
+def loss_function_CE(weights, *args):
+    # Unpack arguments
+    audio_probs, video_probs, true_labels = args
+
+    # Assuming we are optimizing the first four weights for each modality
+    w_a = np.concatenate([weights, [0, 0, 0]])  # Last three weights for audio are zero
+    # determine w_v as the element-wise difference between 1 and w_a
+    w_v = 1 - w_a
+
+    # Calculate the combined probabilities
+    combined_probs = w_a * audio_probs + w_v * video_probs
+
+    # Ensure numerical stability and avoid log(0) by clipping probabilities
+    combined_probs = np.clip(combined_probs, 1e-15, 1 - 1e-15)
+
+    # Cross-entropy loss calculation
+    cross_entropy_loss = -np.sum(true_labels * np.log(combined_probs))
+
+    return cross_entropy_loss
+
+def categorical_hinge_loss(weights, *args):
+    audio_probs, video_probs, true_labels = args
+
+    w_a = np.concatenate([weights, [0, 0, 0]])
+    w_v = 1 - w_a
+
+    combined_probs = w_a * audio_probs + w_v * video_probs
+
+    # Find the maximum predicted probability of incorrect classes
+    true_class_probs = np.sum(combined_probs * true_labels, axis=1)
+    max_incorrect_class_probs = np.max(combined_probs * (1 - true_labels), axis=1)
+    
+    # Categorical hinge loss
+    loss = np.mean(np.maximum(0, 1 + max_incorrect_class_probs - true_class_probs))
+    return loss
+
+def focal_loss(weights, *args, gamma=2):
+    audio_probs, video_probs, true_labels = args
+
+    w_a = np.concatenate([weights, [0, 0, 0]])
+    w_v = 1 - w_a
+
+    combined_probs = w_a * audio_probs + w_v * video_probs
+
+    # Avoid log(0)
+    combined_probs = np.clip(combined_probs, 1e-8, 1 - 1e-8)
+    
+    # Focal loss calculation
+    loss = -np.sum(true_labels * (1 - combined_probs)**gamma * np.log(combined_probs))
+    return np.mean(loss)
+
+def kl_divergence_loss(weights, *args):
+    audio_probs, video_probs, true_labels = args
+
+    w_a = np.concatenate([weights, [0, 0, 0]])
+    w_v = 1 - w_a
+
+    combined_probs = w_a * audio_probs + w_v * video_probs
+
+    # Ensure numerical stability
+    combined_probs = np.clip(combined_probs, 1e-15, 1 - 1e-15)
+    true_labels = np.clip(true_labels, 1e-15, 1 - 1e-15)
+
+    # KL Divergence
+    loss = np.sum(true_labels * np.log(true_labels / combined_probs))
+    return np.mean(loss)
+
 
 def get_single_modality_accuracy(predictions, true_labels):
     predictions = np.argmax(predictions, axis=1)
@@ -206,24 +275,73 @@ print("-------------------------------------------------")
 
 
 print("-------------------------------------------------")
-print("One weight for each emotion - optimization")
+print("One weight for each emotion - optimization MSE")
 print("-------------------------------------------------")
 # Now use a more sophisticated optimization algorithm
 # Initial weights for the first four categories (8 weights total)
-initial_weights = np.ones(8) * 0.5
+initial_weights = np.ones(4) * 0.5
 
 # Bounds for these weights
-bounds = [(0, 1)] * 8
+bounds = [(0, 1)] * 4
 
 # Optimize
-result = minimize(loss_function, initial_weights, args=(all_audio_probs, all_video_probs, one_hot_encoded), bounds=bounds)
+result = minimize(loss_function, initial_weights, args=(all_audio_probs, all_video_probs, one_hot_encoded), bounds=bounds, method='L-BFGS-B')
 
-print("Optimized weights for audio:", np.concatenate([result.x[:4], [0, 0, 0]]))
-print("Optimized weights for video:", np.concatenate([result.x[4:], [1, 1, 1]]))
+weights_audio = np.concatenate([result.x, [0, 0, 0]])
+weights_video = 1 - weights_audio
+
+print("Optimized weights for audio:", weights_audio)
+print("Optimized weights for video:", weights_video)
 print("Minimum loss:", result.fun)
 
-best_w_a = np.concatenate([result.x[:4], [0, 0, 0]])
-best_w_v = np.concatenate([result.x[4:], [1, 1, 1]])
+best_w_a = weights_audio
+best_w_v = weights_video
+print("best_w_a_shape: ", best_w_a.shape)
+# Type
+print(type(best_w_a))
+print("best_w_a: ", best_w_a)
+print("best_w_v_shape: ", best_w_v.shape)
+# Type
+print(type(best_w_v))
+print("best_w_v: ", best_w_v)
+best_w_a = best_w_a.reshape(1,7)
+best_w_v = best_w_v.reshape(1,7)
+
+# Save best weights to pickle file
+
+# with open('best_weights.pkl', 'wb') as f:
+    # pickle.dump([best_w_a, best_w_v], f)
+
+# Load weights from pickle file
+# with open('best_weights.pkl', 'rb') as f:
+    # best_w_a, best_w_v = pickle.load(f)
+
+best_accuracy = evaluate(best_w_a, best_w_v, all_audio_probs, all_video_probs, one_hot_encoded)
+print("Best accuracy: ", best_accuracy)
+print("-------------------------------------------------")
+
+print("-------------------------------------------------")
+print("One weight for each emotion - optimization Cross ENTROPY")
+print("-------------------------------------------------")
+# Now use a more sophisticated optimization algorithm
+# Initial weights for the first four categories (8 weights total)
+initial_weights = np.ones(4) * 0.5
+
+# Bounds for these weights
+bounds = [(0, 1)] * 4
+
+# Optimize
+result = minimize(kl_divergence_loss, initial_weights, args=(all_audio_probs, all_video_probs, one_hot_encoded), bounds=bounds, method='L-BFGS-B')
+
+weights_audio = np.concatenate([result.x, [0, 0, 0]])
+weights_video = 1 - weights_audio
+
+print("Optimized weights for audio:", weights_audio)
+print("Optimized weights for video:", weights_video)
+print("Minimum loss:", result.fun)
+
+best_w_a = weights_audio
+best_w_v = weights_video
 print("best_w_a_shape: ", best_w_a.shape)
 # Type
 print(type(best_w_a))
