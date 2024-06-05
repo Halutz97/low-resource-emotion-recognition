@@ -363,3 +363,4 @@ def load_session(pathSession):
                 )
 
     return improvisedUtteranceList
+
