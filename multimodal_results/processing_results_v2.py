@@ -6,6 +6,7 @@ import os
 import numpy as np
 import pandas as pd
 from scipy.optimize import minimize
+import pickle
 
 def convert_strings_to_arrays(list_of_strings):
     """
@@ -63,7 +64,7 @@ def get_single_modality_accuracy(predictions, true_labels):
     return accuracy
 
 # Read the results
-results = pd.read_csv('multimodal_results/run_2_predicted_checkpoint_900.csv')
+results = pd.read_csv('multimodal_results/run_2_predicted.csv')
 
 print(results.head())
 
@@ -218,6 +219,11 @@ print(type(best_w_v))
 print("best_w_v: ", best_w_v)
 best_w_a = best_w_a.reshape(1,7)
 best_w_v = best_w_v.reshape(1,7)
+
+# Save best weights to pickle file
+
+with open('best_weights.pkl', 'wb') as f:
+    pickle.dump([best_w_a, best_w_v], f)
 
 best_accuracy = evaluate(best_w_a, best_w_v, all_audio_probs, all_video_probs, one_hot_encoded)
 print("Best accuracy: ", best_accuracy)
