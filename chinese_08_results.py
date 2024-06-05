@@ -6,6 +6,7 @@ import os
 import numpy as np
 import pandas as pd
 from scipy.optimize import minimize
+import pickle
 
 def convert_strings_to_arrays(list_of_strings):
     """
@@ -40,6 +41,11 @@ def evaluate(w_a, w_v, a, v, true_labels):
     accuracy = np.mean(predictions == true_classes)
     # print(f"Accuracy: {accuracy}")
     return accuracy
+
+def compute_weighted_predictions(w_a, w_v, a, v):
+    combined_prob = w_a * a + w_v * v
+    predictions = np.argmax(combined_prob, axis=1)
+    return predictions
 
 def loss_function(weights, *args):
     # Unpack arguments
@@ -92,6 +98,115 @@ print(all_audio_probs[0].shape)
 print(all_audio_probs[0])
 print(audio_probs[0])
 print()
+
+# Load weights from pickle file
+with open('best_weights.pkl', 'rb') as f:
+    w_a, w_v = pickle.load(f)
+
+print("Best weights from pickle file")
+print(f"w_a={w_a}")
+print(f"w_v={w_v}")
+
+label_model_decoder = {0: 'neu', 1: 'ang', 2: 'hap', 3: 'sad', 4: 'sur', 5: 'fea', 6: 'dis'}
+# label_model_encoder = {v: k for k, v in label_model_decoder.items()}
+chinese_label_transformation = {'neu': 'neu', 'sur': 'neu', 'ang': 'neg', 'sad': 'neg', 'fea': 'neg', 'dis': 'neg', 'hap': 'pos'}
+# Chinese label encoder: neg -> 0, neu -> 1, pos -> 2
+chinese_label_encoder = {'neg': 0, 'neu': 1, 'pos': 2}
+chinese_true_label_encoder = {'Negative': 0, 'Neutral': 1, 'Positive': 2}
+
+weighted_predictions = compute_weighted_predictions(w_a, w_v, all_audio_probs, all_video_probs).tolist()
+
+print()
+print("Inspect weighted predictions (shape, type, values)")
+# print(weighted_predictions.shape)
+print(type(weighted_predictions))
+print(weighted_predictions)
+
+results['categorical_predictions'] = weighted_predictions
+
+results['categorical_labels_predicted'] = results['categorical_predictions'].map(label_model_decoder)
+results['chinese_predicted_labels'] = results['categorical_labels_predicted'].map(chinese_label_transformation)
+results['chinese_predicted'] = results['chinese_predicted_labels'].map(chinese_label_encoder)
+results['chinese_true_encoded'] = results['Emotion'].map(chinese_true_label_encoder)
+
+print(results.head(20))
+
+chinese_predictions = np.array(results['chinese_predicted'])
+chinese_true_classes = np.array(results['chinese_true_encoded'])
+
+accuracy = np.mean(chinese_predictions == chinese_true_classes)
+
+print("=================================================")
+print("Multimodal accuracy")
+print("=================================================")
+print()
+print(f"Accuracy: {accuracy}")
+print()
+print("=================================================")
+
+print("=================================================")
+print("Single modality accuracies (Audio)")
+print("=================================================")
+print()
+# Compute single modality accuracies without weights
+audio_predictions = np.argmax(all_audio_probs, axis=1)
+print()
+print()
+print(audio_predictions)
+# Apply the label model decoder
+audio_predictions = [label_model_decoder[x] for x in audio_predictions]
+print()
+print()
+print(audio_predictions)
+# Apply the chinese label transformation
+audio_predictions = [chinese_label_transformation[x] for x in audio_predictions]
+print()
+print()
+print(audio_predictions)
+# Apply the chinese label encoder
+audio_predictions = [chinese_label_encoder[x] for x in audio_predictions]
+print()
+print()
+print(audio_predictions)
+# Convert to numpy array
+audio_predictions = np.array(audio_predictions)
+audio_accuracy = np.mean(audio_predictions == chinese_true_classes)
+print(f"Accuracy: {audio_accuracy}")
+print()
+print("=================================================")
+
+print("=================================================")
+print("Single modality accuracies (Video)")
+print("=================================================")
+print()
+# Compute single modality accuracies without weights
+video_predictions = np.argmax(all_video_probs, axis=1)
+print()
+print()
+print(video_predictions)
+# Apply the label model decoder
+video_predictions = [label_model_decoder[x] for x in video_predictions]
+print()
+print()
+print(video_predictions)
+# Apply the chinese label transformation
+video_predictions = [chinese_label_transformation[x] for x in video_predictions]
+print()
+print()
+print(video_predictions)
+# Apply the chinese label encoder
+video_predictions = [chinese_label_encoder[x] for x in video_predictions]
+print()
+print()
+print(video_predictions)
+# Convert to numpy array
+video_predictions = np.array(video_predictions)
+video_accuracy = np.mean(video_predictions == chinese_true_classes)
+print(f"Accuracy: {video_accuracy}")
+print()
+print("=================================================")
+
+
 
 # One hot encoding of the true labels
 # Define your list of emotion labels (as an example)
