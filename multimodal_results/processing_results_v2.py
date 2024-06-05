@@ -63,8 +63,23 @@ def get_single_modality_accuracy(predictions, true_labels):
     accuracy = np.mean(predictions == true_classes)
     return accuracy
 
-# Read the results
-results = pd.read_csv('multimodal_results/run_2_predicted.csv')
+## ================ Combine results ========================================
+# # Read the results
+# data1 = pd.read_csv('multimodal_results/run_2_predicted_checkpoint_1440.csv')
+# data2 = pd.read_csv('multimodal_results/run_2_predicted.csv')
+
+# # remove all rows from data2 where 'audio_prob' is empty
+# data2 = data2.dropna(subset=['audio_prob'])
+# data2['checkpoint'] = data2['checkpoint'].astype(int)
+
+# # Concatenate data1 and data2 vertically
+# results = pd.concat([data1, data2], axis=0)
+
+# # save complete results to csv
+# results.to_csv('multimodal_results/run_2_complete_results.csv', index=False)
+## ============================================================================
+
+results = pd.read_csv('multimodal_results/run_2_complete_results.csv')
 
 print(results.head())
 
@@ -224,6 +239,10 @@ best_w_v = best_w_v.reshape(1,7)
 
 with open('best_weights.pkl', 'wb') as f:
     pickle.dump([best_w_a, best_w_v], f)
+
+# Load weights from pickle file
+# with open('best_weights.pkl', 'rb') as f:
+    # best_w_a, best_w_v = pickle.load(f)
 
 best_accuracy = evaluate(best_w_a, best_w_v, all_audio_probs, all_video_probs, one_hot_encoded)
 print("Best accuracy: ", best_accuracy)
