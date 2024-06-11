@@ -10,247 +10,248 @@ import torchaudio
 from speechbrain.inference.interfaces import Pretrained
 from hyperpyyaml import load_hyperpyyaml
 
-# class EmotionRecognition(Pretrained):
-#     HPARAMS_NEEDED = ["modules", "pretrainer"]
-#     MODULES_NEEDED = ["encoder", "pooling", "regressor", "classifier"]
+class EmotionRecognition(Pretrained):
+    HPARAMS_NEEDED = ["modules", "pretrainer"]
+    MODULES_NEEDED = ["encoder", "pooling", "regressor", "classifier"]
 
-#     def __init__(self, modules=None, hparams=None, run_opts=None, freeze_params=True):
-#         super().__init__(modules, hparams, run_opts, freeze_params)
+    def __init__(self, modules=None, hparams=None, run_opts=None, freeze_params=True):
+        super().__init__(modules, hparams, run_opts, freeze_params)
         
-#     def forward(self, wavs):
-#         """Forward pass for inference."""
-#         wavs, wav_lens = wavs.to(self.device), torch.tensor([1.0]).to(self.device)
-#         features = self.mods.encoder(wavs, wav_lens)
-#         pooled_features = self.hparams.avg_pool(features, wav_lens)  # Ensure pooling is included
-#         pooled_features = pooled_features.view(pooled_features.shape[0], -1)
-#         regressor_predictions = self.mods.regressor(pooled_features)
-#         classifier_predictions = self.mods.classifier(pooled_features)
-#         return regressor_predictions, classifier_predictions
+    def forward(self, wavs):
+        """Forward pass for inference."""
+        wavs, wav_lens = wavs.to(self.device), torch.tensor([1.0]).to(self.device)
+        features = self.mods.encoder(wavs, wav_lens)
+        pooled_features = self.hparams.avg_pool(features, wav_lens)  # Ensure pooling is included
+        pooled_features = pooled_features.view(pooled_features.shape[0], -1)
+        regressor_predictions = self.mods.regressor(pooled_features)
+        classifier_predictions = self.mods.classifier(pooled_features)
+        return regressor_predictions, classifier_predictions
 
-#     def predict_file(self, wav_path):
-#         """Predict emotion from an audio file."""
-#         wavs = self.load_audio(wav_path)
-#         wavs = wavs.squeeze(0) # Remove batch dimension if present
-#         wavs = torch.tensor(wavs).unsqueeze(0)
-#         regression_predictions, classifier_predictions = self.forward(wavs)
-#         classifier_predictions = torch.log_softmax(classifier_predictions, dim=-1)
-#         return regression_predictions.squeeze().cpu().numpy(), classifier_predictions.squeeze().cpu().numpy()
+    def predict_file(self, wav_path):
+        """Predict emotion from an audio file."""
+        wavs = self.load_audio(wav_path)
+        wavs = wavs.squeeze(0) # Remove batch dimension if present
+        wavs = torch.tensor(wavs).unsqueeze(0)
+        regression_predictions, classifier_predictions = self.forward(wavs)
+        classifier_predictions = torch.log_softmax(classifier_predictions, dim=-1)
+        return regression_predictions.squeeze().cpu().numpy(), classifier_predictions.squeeze().cpu().numpy()
 
-#     @staticmethod
-#     def load_audio(wav_path, sample_rate=16000):
-#         """Load an audio file and resample if needed."""
-#         print(wav_path)
-#         sig, fs = torchaudio.load(wav_path)
-#         if fs != sample_rate:
-#             sig = torchaudio.transforms.Resample(fs, sample_rate)(sig)
-#         return sig
+    @staticmethod
+    def load_audio(wav_path, sample_rate=16000):
+        """Load an audio file and resample if needed."""
+        print(wav_path)
+        sig, fs = torchaudio.load(wav_path)
+        if fs != sample_rate:
+            sig = torchaudio.transforms.Resample(fs, sample_rate)(sig)
+        return sig
     
-# def load_checkpoint_with_renamed_keys(checkpoint_path, model, device):
-#     checkpoint = torch.load(checkpoint_path, map_location=device)
-#     renamed_checkpoint = {}
+def load_checkpoint_with_renamed_keys(checkpoint_path, model, device):
+    checkpoint = torch.load(checkpoint_path, map_location=device)
+    renamed_checkpoint = {}
 
-#     # Rename keys according to the expected names in the model's state_dict
-#     for key, value in checkpoint.items():
-#         new_key = key.replace('0.w.', 'w.')  # Adjust this based on your specific needs
-#         renamed_checkpoint[new_key] = value
+    # Rename keys according to the expected names in the model's state_dict
+    for key, value in checkpoint.items():
+        new_key = key.replace('0.w.', 'w.')  # Adjust this based on your specific needs
+        renamed_checkpoint[new_key] = value
 
-#     # Load the state_dict with the renamed keys
-#     model.load_state_dict(renamed_checkpoint, strict=False)
-#     return model
+    # Load the state_dict with the renamed keys
+    model.load_state_dict(renamed_checkpoint, strict=False)
+    return model
 
 
-# def load_local_model(model_dir, hparams_file):
-#     with open(hparams_file) as fin:
-#         hparams = load_hyperpyyaml(fin)
+def load_local_model(model_dir, hparams_file):
+    with open(hparams_file) as fin:
+        hparams = load_hyperpyyaml(fin)
 
-#     # Set the device
-#     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-#     hparams["device"] = device
+    # Set the device
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    hparams["device"] = device
 
-#     modules = hparams["modules"]
+    modules = hparams["modules"]
 
-#     # Instantiate the model
-#     model = EmotionRecognition(modules, hparams)
+    # Instantiate the model
+    model = EmotionRecognition(modules, hparams)
 
-#     # Load checkpoint of the heads
-#     checkpoint_path = os.path.join(model_dir, 'model.ckpt')
-#     checkpoint_heads = torch.load(checkpoint_path, map_location=device)
+    # Load checkpoint of the heads
+    checkpoint_path = os.path.join(model_dir, 'model.ckpt')
+    checkpoint_heads = torch.load(checkpoint_path, map_location=device)
     
-#     # Prepare a new state dictionary for the regressor and classifier
-#     new_state_dict = {}
-#     for key, param in checkpoint_heads.items():
-#         if key.startswith('0.'):  # Weights for the regressor
-#             new_key = key.replace('0.', '')  # Remove the '0.' prefix
-#             new_state_dict['mods.regressor.' + new_key] = param
-#         elif key.startswith('1.'):  # Weights for the classifier
-#             new_key = key.replace('1.', '')  # Remove the '1.' prefix
-#             new_state_dict['mods.classifier.' + new_key] = param
+    # Prepare a new state dictionary for the regressor and classifier
+    new_state_dict = {}
+    for key, param in checkpoint_heads.items():
+        if key.startswith('0.'):  # Weights for the regressor
+            new_key = key.replace('0.', '')  # Remove the '0.' prefix
+            new_state_dict['mods.regressor.' + new_key] = param
+        elif key.startswith('1.'):  # Weights for the classifier
+            new_key = key.replace('1.', '')  # Remove the '1.' prefix
+            new_state_dict['mods.classifier.' + new_key] = param
 
-#     # Load the new state dict into the model
-#     model.load_state_dict(new_state_dict, strict=False)
+    # Load the new state dict into the model
+    model.load_state_dict(new_state_dict, strict=False)
 
-#     # Load checkpoint of the encoder
-#     checkpoint_path = os.path.join(model_dir, 'wav2vec2.ckpt')
-#     checkpoint_encoder = torch.load(checkpoint_path, map_location=device)
+    # Load checkpoint of the encoder
+    checkpoint_path = os.path.join(model_dir, 'wav2vec2.ckpt')
+    checkpoint_encoder = torch.load(checkpoint_path, map_location=device)
 
-#     # Load the encoder state dict
-#     model.mods.encoder.load_state_dict(checkpoint_encoder, strict=False)
+    # Load the encoder state dict
+    model.mods.encoder.load_state_dict(checkpoint_encoder, strict=False)
 
-#     missing_keys, unexpected_keys = model.mods.encoder.load_state_dict(checkpoint_encoder, strict=False)
-#     print("Missing keys:", missing_keys)
-#     print("Unexpected keys:", unexpected_keys)
+    missing_keys, unexpected_keys = model.mods.encoder.load_state_dict(checkpoint_encoder, strict=False)
+    print("Missing keys:", missing_keys)
+    print("Unexpected keys:", unexpected_keys)
 
-#     print()
-#     for name, param in model.named_parameters():
-#         print(name)
-
-
-#     return model
+    print()
+    for name, param in model.named_parameters():
+        print(name)
 
 
-
-# # Main code
-# # Define the dataset
-# dataset = "CREMA-D"
-
-# # Variables
-# my_encoding_dict_model = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3}
-# label_names = ['neu', 'ang', 'hap', 'sad']
-# label_names_model = ['ang', 'hap', 'neu', 'sad']
-
-# # Load the data
-# if dataset != "IEMOCAP-test" and dataset != "IEMOCAP":
-#     dimensions = False
-
-#     if dataset == "CREMA-D":
-#         data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_testing.csv")
-#         directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_testing"
-#         my_encoding_dict_dataset = {'NEU': 0, 'ANG': 1, 'HAP': 2, 'SAD': 3}
-
-#     elif dataset == "CREMA-D-voted":
-#         data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_v_testing.csv")
-#         directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_v_testing"
-#         my_encoding_dict_dataset = {'N': 0, 'A': 1, 'H': 2, 'S': 3}
-
-#     elif dataset == "EMO-DB":
-#         data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\EmoDB\labels_testing.csv")
-#         directory = r"C:\Users\DANIEL\Desktop\thesis\EmoDB\audio_testing"
-#         my_encoding_dict_dataset = {'N': 0, 'W': 1, 'F': 2, 'T': 3}
-
-#     elif dataset == "ShEMO":
-#         data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\ShEMO\labels_testing.csv")
-#         directory = r"C:\Users\DANIEL\Desktop\thesis\ShEMO\audio_testing"
-#         my_encoding_dict_dataset = {'N': 0, 'A': 1, 'H': 2, 'S': 3}
-
-#     else:
-#         raise ValueError("Invalid dataset")
-
-
-#     # Get a list of all files in the directory
-#     files = []
-#     for file in os.listdir(directory):
-#         if file.endswith('.wav'):
-#             files.append(os.path.join(directory,file))
-
-#     true_labels = data['Emotion']
-#     true_valence = np.zeros(len(true_labels))
-#     true_arousal = np.zeros(len(true_labels))
-#     emotion_keys = true_labels.map(my_encoding_dict_dataset).values
-
-# elif dataset == "IEMOCAP":
-#     dimensions = True
-#     data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_testing.csv")
-#     directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing"
-#     my_encoding_dict_dataset = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3}
-
-#     # Get a list of all files in the directory
-#     files = []
-#     for file in os.listdir(directory):
-#         if file.endswith('.wav'):
-#             files.append(os.path.join(directory,file))
-
-#     true_labels = data['Emotion']
-#     true_valence = data['Valence']
-#     true_arousal = data['Arousal']
-#     emotion_keys = true_labels.map(my_encoding_dict_dataset).values
-
-# else:
-#     dimensions = True
-#     with open(r'C:\Users\DANIEL\Desktop\thesis\low-resource-emotion-recognition\speechbrain_model\multiobjectif\test.json') as f:
-#         test_data = json.load(f)
-#     directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio"
-#     my_encoding_dict_dataset = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3}
-
-#     # Get a list of all files in the directory
-#     files = []
-#     true_valence = []
-#     true_arousal = []
-#     true_labels = []
-#     emotion_keys = []
-#     for utt_id, utt_data in test_data.items():
-#         old_wav_path = utt_data['wav']
-#         files.append(os.path.join(directory, os.path.basename(old_wav_path)))
-#         true_valence.append(float(utt_data['val']))
-#         true_arousal.append(float(utt_data['aro']))
-#         true_labels.append(utt_data['emo'])
-#         emotion_keys.append(my_encoding_dict_model[utt_data['emo']])
+    return model
 
 
 
-# # Define the paths for the pretrained model and hparams file
-# model_dir = r'C:\Users\DANIEL\Desktop\thesis\low-resource-emotion-recognition\speechbrain_model\multiobjectif'
-# hparams_file = r'C:\Users\DANIEL\Desktop\thesis\low-resource-emotion-recognition\speechbrain_model\hparams_inference.yaml'
+# Main code
+# Define the dataset
+dataset = "CREMA-D"
 
-# # Load the model using the custom function
-# emotion_model = load_local_model(model_dir, hparams_file)
+# Variables
+my_encoding_dict_model = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3}
+label_names = ['neu', 'ang', 'hap', 'sad']
+label_names_model = ['ang', 'hap', 'neu', 'sad']
+
+# Load the data
+if dataset != "IEMOCAP-test" and dataset != "IEMOCAP":
+    dimensions = False
+
+    if dataset == "CREMA-D":
+        data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_testing.csv")
+        directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_testing"
+        my_encoding_dict_dataset = {'NEU': 0, 'ANG': 1, 'HAP': 2, 'SAD': 3}
+
+    elif dataset == "CREMA-D-voted":
+        data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\labels_v_testing.csv")
+        directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio_v_testing"
+        my_encoding_dict_dataset = {'N': 0, 'A': 1, 'H': 2, 'S': 3}
+
+    elif dataset == "EMO-DB":
+        data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\EmoDB\labels_testing.csv")
+        directory = r"C:\Users\DANIEL\Desktop\thesis\EmoDB\audio_testing"
+        my_encoding_dict_dataset = {'N': 0, 'W': 1, 'F': 2, 'T': 3}
+
+    elif dataset == "ShEMO":
+        data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\ShEMO\labels_testing.csv")
+        directory = r"C:\Users\DANIEL\Desktop\thesis\ShEMO\audio_testing"
+        my_encoding_dict_dataset = {'N': 0, 'A': 1, 'H': 2, 'S': 3}
+
+    else:
+        raise ValueError("Invalid dataset")
 
 
-# # Set the model to evaluation mode
-# emotion_model.mods.encoder.eval()
-# emotion_model.mods.pooling.eval()
-# emotion_model.mods.regressor.eval()
-# emotion_model.mods.classifier.eval()
+    # Get a list of all files in the directory
+    files = []
+    for file in os.listdir(directory):
+        if file.endswith('.wav'):
+            files.append(os.path.join(directory,file))
+
+    true_labels = data['Emotion']
+    true_valence = np.zeros(len(true_labels))
+    true_arousal = np.zeros(len(true_labels))
+    emotion_keys = true_labels.map(my_encoding_dict_dataset).values
+
+elif dataset == "IEMOCAP":
+    dimensions = True
+    data = pd.read_csv(r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\labels_testing.csv")
+    directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio_testing"
+    my_encoding_dict_dataset = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3}
+
+    # Get a list of all files in the directory
+    files = []
+    for file in os.listdir(directory):
+        if file.endswith('.wav'):
+            files.append(os.path.join(directory,file))
+
+    true_labels = data['Emotion']
+    true_valence = data['Valence']
+    true_arousal = data['Arousal']
+    emotion_keys = true_labels.map(my_encoding_dict_dataset).values
+
+else:
+    dimensions = True
+    with open(r'C:\Users\DANIEL\Desktop\thesis\low-resource-emotion-recognition\speechbrain_model\multiobjectif\test.json') as f:
+        test_data = json.load(f)
+    directory = r"C:\Users\DANIEL\Desktop\thesis\IEMOCAP_full_release\audio"
+    my_encoding_dict_dataset = {'neu': 0, 'ang': 1, 'hap': 2, 'sad': 3}
+
+    # Get a list of all files in the directory
+    files = []
+    true_valence = []
+    true_arousal = []
+    true_labels = []
+    emotion_keys = []
+    for utt_id, utt_data in test_data.items():
+        old_wav_path = utt_data['wav']
+        files.append(os.path.join(directory, os.path.basename(old_wav_path)))
+        true_valence.append(float(utt_data['val']))
+        true_arousal.append(float(utt_data['aro']))
+        true_labels.append(utt_data['emo'])
+        emotion_keys.append(my_encoding_dict_model[utt_data['emo']])
 
 
-# predicted_valence = []
-# predicted_arousal = []
-# predicted_emotions = []
-# score_emotions = []
 
-# # Iterate through the test data
-# for index, file in enumerate(files):
+# Define the paths for the pretrained model and hparams file
+model_dir = r'C:\Users\DANIEL\Desktop\thesis\low-resource-emotion-recognition\speechbrain_model\multiobjectif'
+hparams_file = r'C:\Users\DANIEL\Desktop\thesis\low-resource-emotion-recognition\speechbrain_model\hparams_inference.yaml'
 
-#     # Predict the emotions
-#     regression_predictions, classifier_predictions = emotion_model.predict_file(file)
-#     predicted_valence.append(regression_predictions[0])
-#     predicted_arousal.append(regression_predictions[1])
+# Load the model using the custom function
+emotion_model = load_local_model(model_dir, hparams_file)
 
-#     # Get the predicted emotion label
-#     predicted_emotion = classifier_predictions.argmax()
+
+# Set the model to evaluation mode
+emotion_model.mods.encoder.eval()
+emotion_model.mods.pooling.eval()
+emotion_model.mods.regressor.eval()
+emotion_model.mods.classifier.eval()
+
+
+predicted_valence = []
+predicted_arousal = []
+predicted_emotions = []
+predicted_probabilites = []
+score_emotions = []
+
+# Iterate through the test data
+for index, file in enumerate(files):
+
+    # Predict the emotions
+    regression_predictions, classifier_predictions = emotion_model.predict_file(file)
+    predicted_valence.append(regression_predictions[0])
+    predicted_arousal.append(regression_predictions[1])
+
+    # Get the predicted emotion label
+    predicted_emotion = classifier_predictions.argmax()
     
-#     # map the predicted emotion to the correct label
-#     predicted_emotion = label_names_model[predicted_emotion]
-#     predicted_emotion = my_encoding_dict_model[predicted_emotion]
+    # map the predicted emotion to the correct label
+    predicted_emotion = label_names_model[predicted_emotion]
+    predicted_emotion = my_encoding_dict_model[predicted_emotion]
 
-#     score_emotions.append(classifier_predictions)
-#     predicted_emotions.append(predicted_emotion)
+    score_emotions.append(classifier_predictions)
+    predicted_emotions.append(predicted_emotion)
 
-#     print(f"Utterance: {index}")
-#     print(f"Predicted Valence: {regression_predictions[0]}, True Valence: {true_valence[index]}")
-#     print(f"Predicted Arousal: {regression_predictions[1]}, True Arousal: {true_arousal[index]}")
-#     print(f"Predicted Emotion: {predicted_emotion}, True Emotion: {emotion_keys[index]}")
+    print(f"Utterance: {index}")
+    print(f"Predicted Valence: {regression_predictions[0]}, True Valence: {true_valence[index]}")
+    print(f"Predicted Arousal: {regression_predictions[1]}, True Arousal: {true_arousal[index]}")
+    print(f"Predicted Emotion: {predicted_emotion}, True Emotion: {emotion_keys[index]}")
 
-# # Save the results
-# results = pd.DataFrame({'Predicted Valence': predicted_valence, 
-#                         'True Valence': true_valence,
-#                         'Predicted Arousal': predicted_arousal, 
-#                         'True Arousal': true_arousal,
-#                         'Predicted Emotion': predicted_emotions,
-#                         'True Emotion': true_labels,
-#                         'Emotion Labels': emotion_keys,
-#                         'Score Emotions': score_emotions,
-#                         })
-# results.to_csv(r'C:\Users\DANIEL\Desktop\thesis\low-resource-emotion-recognition\speechbrain_model\results_multi_' + dataset +'csv', index=False)
+# Save the results
+results = pd.DataFrame({'Predicted Valence': predicted_valence, 
+                        'True Valence': true_valence,
+                        'Predicted Arousal': predicted_arousal, 
+                        'True Arousal': true_arousal,
+                        'Predicted Emotion': predicted_emotions,
+                        'True Emotion': true_labels,
+                        'Emotion Labels': emotion_keys,
+                        'Score Emotions': score_emotions,
+                        })
+results.to_csv(r'C:\Users\DANIEL\Desktop\thesis\low-resource-emotion-recognition\speechbrain_model\results_multi_' + dataset +'csv', index=False)
 
 
 
