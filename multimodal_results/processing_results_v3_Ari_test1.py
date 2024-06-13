@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 from scipy.optimize import minimize
 import pickle
+from scipy.optimize import basinhopping
 
 def convert_strings_to_arrays(list_of_strings):
     """
@@ -42,6 +43,29 @@ def evaluate(w_a, w_v, a, v, true_labels):
     # print(f"Accuracy: {accuracy}")
     return accuracy
 
+def optimize_accuracy(weights, *args):
+    # Unpack arguments
+    audio_probs, video_probs, true_labels = args
+
+    # Assuming we are optimizing the first four weights for each modality
+    w_a = np.concatenate([weights, [0, 0, 0]])  # Last three weights for audio are zero
+    # determine w_v as the element-wise difference between 1 and w_a
+    w_v = 1 - w_a
+
+    # Calculate the combined probabilities
+    combined_probs = w_a * audio_probs + w_v * video_probs
+
+    predictions = np.argmax(combined_probs, axis=1)
+    # print("Predictions shape: ", predictions.shape)
+    true_classes = np.argmax(true_labels, axis=1)
+    # print("True classes shape: ", true_classes.shape)
+    # print("predictions == true_classes")
+    # print(predictions == true_classes)
+    accuracy = np.mean(predictions == true_classes)
+    neg_accuracy = -accuracy
+    # print(f"Accuracy: {accuracy}")
+    return neg_accuracy
+
 def loss_function(weights, *args):
     # Unpack arguments
     audio_probs, video_probs, true_labels = args
@@ -59,8 +83,26 @@ def loss_function(weights, *args):
     return mse
 
 def loss_function_CE(weights, *args):
+    # print()
+    # print("-------------------------------------------------")
+    # print("----- INSIDE LOSS FUNCTION CROSS ENTROPY --------")
+    # print("-------------------------------------------------")
+    # print()
+    
     # Unpack arguments
     audio_probs, video_probs, true_labels = args
+
+    # print shapes of all
+    # print("audio_probs shape: ", audio_probs.shape)
+    # print("video_probs shape: ", video_probs.shape)
+    # print("true_labels shape: ", true_labels.shape)
+    # print()
+
+    # Print first element of each, rounded to 2 decimal places
+    # print("audio_probs first element: ", np.round(audio_probs[0], 2))
+    # print("video_probs first element: ", np.round(video_probs[0], 2))
+    # print("true_labels first element: ", np.round(true_labels[0], 2))
+    # print()
 
     # Assuming we are optimizing the first four weights for each modality
     w_a = np.concatenate([weights, [0, 0, 0]])  # Last three weights for audio are zero
@@ -75,6 +117,12 @@ def loss_function_CE(weights, *args):
 
     # Cross-entropy loss calculation
     cross_entropy_loss = -np.sum(true_labels * np.log(combined_probs))
+
+    # print()
+    # print("-------------------------------------------------")
+    # print("----- CROSS ENTROPY LOSS EXITING-----------------")
+    # print("-------------------------------------------------")
+    # print()
 
     return cross_entropy_loss
 
@@ -213,89 +261,47 @@ print(f"Only video accuracy: {only_video_accuracy}")
 print(f"Only audio accuracy: {only_audio_accuracy}")
 print()
 
-print("-------------------------------------------------")
-print("One weight per modality - grid search")
-print("-------------------------------------------------")
-
-best_accuracy = 0
-best_weights = (0, 0)
-
-# Grid search
-num_times_ran = 0
-for w_a in np.arange(0, 1.0005, 0.0005):
-    w_v = 1 - w_a
-    accuracy = evaluate(w_a, w_v, all_audio_probs, all_video_probs, one_hot_encoded)
-    if accuracy > best_accuracy:
-        best_accuracy = accuracy
-        best_weights = (w_a, w_v)
-    num_times_ran += 1
-
-print(f"Number of times ran: {num_times_ran}")
-print(f"Best Weights:")
-print(f"w_a={best_weights[0]}")
-print(f"w_v={best_weights[1]}")
-print(f"Accuracy: {best_accuracy}")
-print("-------------------------------------------------")
-
-
-print("-------------------------------------------------")
-print("One weight for each emotion - grid search")
-print("-------------------------------------------------")
-# Now use separate weights for each emotion
-# Define a range of possible weight values (for simplicity, consider only a few steps)
-weight_values = np.arange(0, 1.1, 0.1)  # 5 steps from 0 to 1
-
-# Initialize the best score and corresponding weights
-best_accuracy = 0
-best_weights = (0, 0)
-
-# Loop over all possible combinations of weights for audio and video
-num_times_ran = 0
-for w_a0 in weight_values:
-    for w_a1 in weight_values:
-        for w_a2 in weight_values:
-            for w_a3 in weight_values:
-                # for w_a4 in weight_values:
-                # for w_a5 in weight_values:
-                # for w_a6 in weight_values:
-                w_a = np.array([w_a0, w_a1, w_a2, w_a3, 0, 0, 0])
-                w_v = 1 - w_a
-                accuracy = evaluate(w_a, w_v, all_audio_probs, all_video_probs, one_hot_encoded)
-                if accuracy > best_accuracy:
-                    best_accuracy = accuracy
-                    best_weights = (w_a, w_v)
-                num_times_ran += 1
-
-print("Best weights:")
-print(f"w_a={best_weights[0]}")
-print(f"w_v={best_weights[1]}")
-print("Accuracy:", best_accuracy)
-print(f"Number of times ran: {num_times_ran}")
-print("-------------------------------------------------")
-
-
-print("-------------------------------------------------")
-print("One weight for each emotion - optimization MSE")
-print("-------------------------------------------------")
+print("-----------------------------------------------------------")
+print("One weight for each emotion - optimization CROSS ENTROPY")
+print("-----------------------------------------------------------")
 # Now use a more sophisticated optimization algorithm
 # Initial weights for the first four categories (8 weights total)
-initial_weights = np.ones(4) * 0.5
+# initial_weights = np.ones(4) * 1
+initial_weights = np.array([0.4, 0.6, 0.0, 0.3])
+
+print("Initial weights: ", str(initial_weights))
+ 
+initial_evaluate_weights = np.concatenate([initial_weights, [0, 0, 0]])
+initial_accuracy = evaluate(initial_evaluate_weights, 1 - initial_evaluate_weights, all_audio_probs, all_video_probs, one_hot_encoded)
+print("Initial accuracy: ", np.round(initial_accuracy,3))
 
 # Bounds for these weights
 bounds = [(0, 1)] * 4
 
+minimizer_kwargs = {
+    "method": "Powell",
+    "bounds": bounds,
+    "args": (all_audio_probs, all_video_probs, one_hot_encoded),
+}
+
+# Call basinhopping
+result = basinhopping(loss_function_CE, initial_weights, minimizer_kwargs=minimizer_kwargs, niter=1)
+
 # Optimize
-result = minimize(loss_function, initial_weights, args=(all_audio_probs, all_video_probs, one_hot_encoded), bounds=bounds, method='L-BFGS-B')
+# result = minimize(loss_function_CE, initial_weights, args=(all_audio_probs, all_video_probs, one_hot_encoded), bounds=bounds, method='Basinhopping')
 
 weights_audio = np.concatenate([result.x, [0, 0, 0]])
 weights_video = 1 - weights_audio
 
-print("Optimized weights for audio:", weights_audio)
-print("Optimized weights for video:", weights_video)
-print("Minimum loss:", result.fun)
+# print("Optimized weights for audio:", weights_audio)
+# print("Optimized weights for video:", weights_video)
+# print("Minimum loss:", result.fun)
 
 best_w_a = weights_audio
 best_w_v = weights_video
+# round weights to 3 decimal places
+best_w_a = np.round(best_w_a, 3)
+best_w_v = np.round(best_w_v, 3)
 print("best_w_a_shape: ", best_w_a.shape)
 # Type
 print(type(best_w_a))
@@ -317,51 +323,5 @@ best_w_v = best_w_v.reshape(1,7)
     # best_w_a, best_w_v = pickle.load(f)
 
 best_accuracy = evaluate(best_w_a, best_w_v, all_audio_probs, all_video_probs, one_hot_encoded)
-print("Best accuracy: ", best_accuracy)
-print("-------------------------------------------------")
-
-print("-------------------------------------------------")
-print("One weight for each emotion - optimization Cross ENTROPY")
-print("-------------------------------------------------")
-# Now use a more sophisticated optimization algorithm
-# Initial weights for the first four categories (8 weights total)
-initial_weights = np.ones(4) * 0.5
-
-# Bounds for these weights
-bounds = [(0, 1)] * 4
-
-# Optimize
-result = minimize(kl_divergence_loss, initial_weights, args=(all_audio_probs, all_video_probs, one_hot_encoded), bounds=bounds, method='L-BFGS-B')
-
-weights_audio = np.concatenate([result.x, [0, 0, 0]])
-weights_video = 1 - weights_audio
-
-print("Optimized weights for audio:", weights_audio)
-print("Optimized weights for video:", weights_video)
-print("Minimum loss:", result.fun)
-
-best_w_a = weights_audio
-best_w_v = weights_video
-print("best_w_a_shape: ", best_w_a.shape)
-# Type
-print(type(best_w_a))
-print("best_w_a: ", best_w_a)
-print("best_w_v_shape: ", best_w_v.shape)
-# Type
-print(type(best_w_v))
-print("best_w_v: ", best_w_v)
-best_w_a = best_w_a.reshape(1,7)
-best_w_v = best_w_v.reshape(1,7)
-
-# Save best weights to pickle file
-
-with open('best_weights.pkl', 'wb') as f:
-    pickle.dump([best_w_a, best_w_v], f)
-
-# Load weights from pickle file
-# with open('best_weights.pkl', 'rb') as f:
-    # best_w_a, best_w_v = pickle.load(f)
-
-best_accuracy = evaluate(best_w_a, best_w_v, all_audio_probs, all_video_probs, one_hot_encoded)
-print("Best accuracy: ", best_accuracy)
+print("Best accuracy: ", np.round(best_accuracy,3))
 print("-------------------------------------------------")
