@@ -61,23 +61,58 @@ def create_confusion_matrix(data, use_voted_labels=True, show_confusion_matrix=T
     # # Create a DataFrame for the confusion matrix
     confusion_matrix_df = pd.DataFrame(confusion_matrix_full, index=label_names, columns=label_names)
 
+    # Normalize each row by its sum to get the percentage
+    confusion_matrix_percent = confusion_matrix_df.div(confusion_matrix_df.sum(axis=1), axis=0) * 100
+
+    # Print the shape of confusion_matrix_percent
+    print("Shape of confusion_matrix_percent:")
+    print(confusion_matrix_percent.shape)
+
+    # What data type are the elements in confusion_matrix_percent?
+    print("Data type of elements in confusion_matrix_percent:")
+    print(confusion_matrix_percent.dtypes)
+
+    # Round the numbers in confusion_matrix_percent to one decimal
+    confusion_matrix_percent = confusion_matrix_percent.round(1)
+
+    # If an element is NaN, replace it with 0
+    confusion_matrix_percent = confusion_matrix_percent.fillna(0)
+
+    # Create a DataFrame for the normalized confusion matrix
+    confusion_matrix_df_percent = pd.DataFrame(confusion_matrix_percent, index=label_names, columns=label_names)
+
     # # Add a row and column for the total counts
     confusion_matrix_df['Total'] = confusion_matrix_df.sum(axis=1)
     confusion_matrix_df.loc['Total'] = confusion_matrix_df.sum()
 
     print("Confusion Matrix:")
-    print(confusion_matrix_df)
+    # print(confusion_matrix_df)
+    print(confusion_matrix_df_percent)
 
     # # Calculate the maximum value for the heatmap color scale
-    max_value = confusion_matrix_df.iloc[:-1,:].values.max()
+    # max_value = confusion_matrix_df.iloc[:-1,:].values.max()
+    max_value = 100
+    # if show_confusion_matrix:
+    #     plt.figure(figsize=(8, 8))
+    #     # sns.heatmap(confusion_matrix_df.iloc[:-1, :-1], annot=True, fmt='d', cmap='Blues', xticklabels=label_names, yticklabels=label_names, vmin=0, vmax=max_value)
+    #     sns.heatmap(confusion_matrix_df_percent, annot=True, fmt='.1f', cmap='Blues', xticklabels=label_names, yticklabels=label_names, vmin=0, vmax=max_value)
+    #     plt.title('Confusion Matrix')
+    #     plt.xlabel('Predicted')
+    #     plt.ylabel('Actual')
+    #     plt.show()
 
-    if show_confusion_matrix:
-        plt.figure(figsize=(5, 4))
-        sns.heatmap(confusion_matrix_df.iloc[:-1, :-1], annot=True, fmt='d', cmap='Blues', xticklabels=label_names, yticklabels=label_names, vmin=0, vmax=max_value)
-        plt.title('Confusion Matrix')
-        plt.xlabel('Predicted')
-        plt.ylabel('Actual')
-        plt.show()
+    # Plotting the confusion matrix
+    plt.figure(figsize=(10, 8))  # Adjust figsize to fit your thesis layout
+    ax = sns.heatmap(confusion_matrix_df_percent, annot=True, fmt='.1f', cmap='Blues',
+                    xticklabels=label_names, yticklabels=label_names,
+                    vmin=0, vmax=max_value, cbar_kws={'shrink': 0.8})  # Control the size of the color bar
+    plt.title('Confusion Matrix (%)', fontsize=16)  # Title with fontsize
+    plt.xlabel('Predicted Label', fontsize=14)  # X-axis label with fontsize
+    plt.ylabel('Actual Label', fontsize=14)  # Y-axis label with fontsize
+    plt.xticks(rotation=45)  # Rotate x labels for better fit
+    plt.yticks(rotation=0)  # Keep y labels horizontal for readability
+    plt.tight_layout()  # Adjust layout to not cut-off labels
+    plt.show()
 
 def generate_voted_labels(original_dataframe, voted_labels_path):
     print("------------------------------------------------------------")
@@ -170,7 +205,7 @@ def main():
     voted_labels_path = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\voted_face_labels.csv"
     full_data = generate_voted_labels(data, voted_labels_path)
     # create_confusion_matrix(full_data, use_voted_labels=False, show_confusion_matrix=True)
-    create_confusion_matrix(full_data, use_voted_labels=True, show_confusion_matrix=True)
+    create_confusion_matrix(full_data, use_voted_labels=False, show_confusion_matrix=True)
 
     
 
