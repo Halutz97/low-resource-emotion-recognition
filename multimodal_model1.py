@@ -1,7 +1,10 @@
 import numpy as np
 import pandas as pd
 import os
+import ast
 import sklearn.metrics
+import torch
+import torch.nn as nn
 import seaborn as sns
 import matplotlib.pyplot as plt
 import multiprocessing as mp
@@ -133,9 +136,7 @@ def combine_probabilities(audio_prob, video_prob, audio_weight=0.4, video_weight
     print("Combined Probabilities: ", combined_prob)
     return combined_prob
 
-def process_audio(audio_file, audio_model_class, audio_model_state_dict, audio_task):
-    audio_model = audio_model_class()  # Reinitialize the model
-    audio_model.load_state_dict(audio_model_state_dict)  # Load the state dict
+def process_audio(audio_file, audio_model, audio_task):
 
     if audio_task == "classifier":
         out_prob, score, index, text_lab = audio_model.classify_audio_file(audio_file)
@@ -147,7 +148,7 @@ def process_audio(audio_file, audio_model_class, audio_model_state_dict, audio_t
         index = None
         text_lab = None
         
-    out_prob = out_prob.numpy()
+    out_prob = np.array(out_prob)
 
     return out_prob, score, index, text_lab
 
@@ -158,14 +159,33 @@ def process_video(video_file, backbone_model_path, LSTM_model_path, video_model)
     return out_prob, score, index, text_lab
 
 def apply_linearlayer(audio_probabilities, video_probabilities, true_labels):
+    # Parse audio probabilities from strings to lists of floats
+    audio_probabilities = [ast.literal_eval(item) for item in audio_probabilities]
+    
+    # Parse video probabilities from strings to lists of floats
+    video_probabilities = [ast.literal_eval(item) for item in video_probabilities]
+    
     # Prepare the combined probabilities for the linear layer
-    combined_probabilities = [(np.array(audio_probabilities[:,1]), np.array(audio_probabilities[:,0]), np.array(video_probabilities), np.array(true_labels))]
-    # Call the fuse_score function with the dataset
-    fused_score = fuse_score(combined_probabilities)
-    # Apply a softmax function to the fused_score
-    fused_model = np.exp(fused_score) / np.sum(np.exp(fused_score), axis=1)
+    valence = [arr[0] for arr in audio_probabilities]
+    arousal = [arr[1] for arr in audio_probabilities]
 
-    return fused_model
+    combined_probabilities = []
+    for i in range(len(true_labels)):
+        combined_probabilities.append((np.array([valence[i]]), np.array([arousal[i]]), np.array(video_probabilities[i]), true_labels[i]))
+
+    # Call the fuse_score function with the dataset
+    fused_model, features = fuse_score(combined_probabilities)
+    
+    # Perform a forward pass to get the logits
+    fused_model.eval()  # Set the model to evaluation mode
+    with torch.no_grad():
+        logits = fused_model(features)
+
+    # Apply the softmax function to the logits
+    softmax = nn.Softmax(dim=1)
+    probabilities = softmax(logits)
+
+    return probabilities
 
 def reorder_video_probabilities(video_probabilities):
     # Reorder the video_probabilities to match the audio_probabilities
@@ -247,111 +267,145 @@ if __name__ == '__main__':
     
     video_model = VisualModel()
 
-    audio_model_state_dict = audio_model.state_dict()
-
     # files, data, directory, my_encoding_dict_dataset = get_single_file(file)
     # label_keys, true_labels = get_label_keys(data, my_encoding_dict_dataset)
     # audio_input, video_input = separate_audio_video(file)
     
     audio_prob_list = []
     video_prob_list = []
-    with mp.Pool(2) as pool:
-        debug_counter = 0
-        for file in filenames:
-            if debug_counter>=2:
-                break
-            audio_input = os.path.join(audio_folder, file + '.wav')
-            video_input = os.path.join(video_folder, file + '.mp4')
-            # audio_input = file
-            print(f'Audio Input: {audio_input}', f'Video Input: {video_input}')
-            # with mp.Pool(2) as pool:
-            audio_result = pool.apply_async(process_audio, (audio_input, audio_model, audio_model_state_dict, audio_task,))
-            video_result = pool.apply_async(process_video, (video_input, backbone_model_path, LSTM_model_path, video_model,))
+    # with mp.Pool(2) as pool:
+    #     debug_counter = 0
+    for file in filenames:
+        # if debug_counter>=2:
+        #     break
+        audio_input = os.path.join(audio_folder, file + '.wav')
+        video_input = os.path.join(video_folder, file + '.mp4')
+        # audio_input = file
+        print(f'Audio Input: {audio_input}', f'Video Input: {video_input}')
+        # with mp.Pool(2) as pool:
+        audio_result = process_audio(audio_input, audio_model, audio_task,)
+        video_result = process_video(video_input, backbone_model_path, LSTM_model_path, video_model,)
+        
+        audio_probabilities, _, _, _ = audio_result
+        video_probabilities, _, _, _ = video_result
+
+        # Save separate results for debugging
+        save_results(audio_probabilities, 'audio_results')
+        save_results(video_probabilities, 'video_results')
+
+        # Let's investigate the results
+        # First audio_probabilities: Type, shape, values
+        # print("Audio Probabilities")
+        # print(type(audio_probabilities))
+        # print(audio_probabilities.shape)
+        # print(audio_probabilities)
+
+        # Second video_probabilities: Type, shape, values
+        # print("Video Probabilities")
+        # print(type(video_probabilities))
+        # print(video_probabilities.shape)
+        # print(video_probabilities)
+
+        # # Convert audio_probabilities (tensor) to a numpy array of dimensions (1,4)
+        # audio_probabilities = audio_probabilities.numpy()
+        # # Add three zeros to match the dimensions of the visual model
+        # audio_probabilities = np.append(audio_probabilities, [0, 0, 0]).reshape(1,7)
+        # print(audio_probabilities.shape)
+        # print(audio_probabilities)
+
+        # Convert video_probabilities to a numpy array of dimensions (1,7)
+        # video_probabilities = video_probabilities.reshape(1,7)
+        # video_probabilities = reorder_video_probabilities(video_probabilities)
+        print("We have now reordered the video probabilities")
+        print(video_probabilities.shape)
+        print(video_probabilities)
+
+        audio_prob_list.append(audio_probabilities)
+        video_prob_list.append(video_probabilities)
+
+        # Combine results and determine final label
+        if audio_task == "classifier":
+            final_probabilities = combine_probabilities(audio_probabilities, video_probabilities, audio_weight=0.5, video_weight=0.5)
             
-            audio_probabilities, _, _, _ = audio_result.get()
-            video_probabilities, _, _, _ = video_result.get()
-
-            # Save separate results for debugging
-            save_results(audio_probabilities, 'audio_results')
-            save_results(video_probabilities, 'video_results')
-
-            # Let's investigate the results
-            # First audio_probabilities: Type, shape, values
-            # print("Audio Probabilities")
-            # print(type(audio_probabilities))
-            # print(audio_probabilities.shape)
-            # print(audio_probabilities)
-
-            # Second video_probabilities: Type, shape, values
-            # print("Video Probabilities")
-            # print(type(video_probabilities))
-            # print(video_probabilities.shape)
-            # print(video_probabilities)
-
-            # # Convert audio_probabilities (tensor) to a numpy array of dimensions (1,4)
-            # audio_probabilities = audio_probabilities.numpy()
-            # # Add three zeros to match the dimensions of the visual model
-            # audio_probabilities = np.append(audio_probabilities, [0, 0, 0]).reshape(1,7)
-            # print(audio_probabilities.shape)
-            # print(audio_probabilities)
-
-            # Convert video_probabilities to a numpy array of dimensions (1,7)
-            # video_probabilities = video_probabilities.reshape(1,7)
-            # video_probabilities = reorder_video_probabilities(video_probabilities)
-            print("We have now reordered the video probabilities")
-            print(video_probabilities.shape)
-            print(video_probabilities)
-
-            audio_prob_list.append(audio_probabilities)
-            video_prob_list.append(video_probabilities)
-
-            # Combine results and determine final label
-            if audio_task == "classifier":
-                final_probabilities = combine_probabilities(audio_probabilities, video_probabilities, audio_weight=0.5, video_weight=0.5)
-                
-                final_label = select_final_label(final_probabilities)
-                final_label_name = label_model_decoder[final_label]
-                
-                print(f'Final Label: {final_label}', f'Final Probabilities: {final_probabilities}')
-                print(f'Final Label Name: {final_label_name}')
-
-            # print(f'True Label: {true_labels}')
-            # audio_probs_list.append
-            # video_probs_list       
-            # predictions_df.loc[predictions_df['filename'] == file, 'audio_prob'] = audio_probabilities
-            # predictions_df.loc[predictions_df['filename'] == file, 'video_prob'] = video_probabilities
-            predictions_df.at[predictions_df[predictions_df['filename'] == file].index[0], 'audio_prob'] = audio_probabilities
-            predictions_df.at[predictions_df[predictions_df['filename'] == file].index[0], 'video_prob'] = video_probabilities
-     
-            debug_counter += 1
-    
-    if audio_task == "regressor":
-        # Apply linear layer to the probabilities
-        fused_model = apply_linearlayer(audio_prob_list, video_prob_list, predictions_df['Emotion'])
-        print(fused_model)
-        for i, prob in enumerate(fused_model):
-            final_label = select_final_label(prob)
+            final_label = select_final_label(final_probabilities)
             final_label_name = label_model_decoder[final_label]
-            print(f'Final Label: {final_label}', f'Final Probabilities: {prob}')
+            
+            print(f'Final Label: {final_label}', f'Final Probabilities: {final_probabilities}')
             print(f'Final Label Name: {final_label_name}')
 
-    print(predictions_df.head())
+        # print(f'True Label: {true_labels}')
+        # audio_probs_list.append
+        # video_probs_list       
+        # predictions_df.loc[predictions_df['filename'] == file, 'audio_prob'] = audio_probabilities
+        # predictions_df.loc[predictions_df['filename'] == file, 'video_prob'] = video_probabilities
+        predictions_df.at[predictions_df[predictions_df['filename'] == file].index[0], 'audio_prob'] = audio_probabilities
+        predictions_df.at[predictions_df[predictions_df['filename'] == file].index[0], 'video_prob'] = video_probabilities
+    
+        # debug_counter += 1
+    true_labels = predictions_df['Emotion']
+    true_labels = true_labels.map(my_encoding_dict_model).values
+    audio_prob_list = np.array(audio_prob_list)
+    video_prob_list = np.array(video_prob_list)
 
-    print()
-    print()
-    print("------------------------------------------------------------------------------")
-    # save predictions_df to a csv file
-    # get cwd
-    predictions_df.to_csv(os.path.join(os.getcwd(), 'multimodal_results', 'multimodal_predictions.csv'), index=False)
-    print("Now inspect that the probabilites have been stored correctly in the df")
-    print()
-    list_of_probabilities = predictions_df['audio_prob']
-    for prob in list_of_probabilities:
-        if prob is not None:
-            print("Probabilities:")
-            print(prob)
-            print(f"Type: {type(prob)}")
-            print(f"Shape: {prob.shape}")
-            print()
-            print(prob[0][0])
-            print(f"Type: {type(prob[0])}")
+    # Save variables in a csv file
+    # Flatten the video_prob_list to match the required format
+    flattened_video_prob_list = [v[0] for v in video_prob_list]
+
+    # Create the DataFrame
+    results = pd.DataFrame({
+        'True Labels': true_labels,
+        'Audio Probability List': [list(a) for a in audio_prob_list],
+        'Video Probability List': [list(v) for v in flattened_video_prob_list],
+    })
+    results.to_csv(r'C:\Users\DANIEL\Desktop\thesis\low-resource-emotion-recognition\littel_test.csv', index=False)
+    print("Results saved")
+
+    # Load the results
+    audio_task = "regressor"
+    label_model_decoder = {0: 'Neutral', 1: 'Anger', 2: 'Happiness', 3: 'Sadness', 4: 'Surprise', 5: 'Fear', 6: 'Disgust'}
+
+    results = pd.read_csv(r'C:\Users\DANIEL\Desktop\thesis\low-resource-emotion-recognition\littel_test.csv')
+    true_labels = results['True Labels'].tolist()
+    audio_prob_list = results['Audio Probability List'].tolist()
+    video_prob_list = results['Video Probability List'].tolist()
+
+
+
+    if audio_task == "regressor":
+        # Apply linear layer to the probabilities
+        probabilities = apply_linearlayer(audio_prob_list, video_prob_list, true_labels)
+        print(probabilities)
+        correct = 0
+        for i, prob in enumerate(probabilities):
+            final_label = select_final_label(prob)
+            final_label = int(final_label)
+            print(f'Final Label: {final_label}', f'Final Probabilities: {prob}')
+            final_label_name = label_model_decoder[final_label]
+            if final_label == true_labels[i]:
+                correct += 1
+            print(f'Final Label Name: {final_label_name}')
+        print(f'There are {correct} correct predictions out of {len(true_labels)}')
+        print(f'Accuracy: {correct/len(true_labels)}')
+
+
+
+    # print(predictions_df.head())
+
+    # print()
+    # print()
+    # print("------------------------------------------------------------------------------")
+    # # save predictions_df to a csv file
+    # # get cwd
+    # predictions_df.to_csv(os.path.join(os.getcwd(), 'multimodal_results', 'multimodal_predictions.csv'), index=False)
+    # print("Now inspect that the probabilites have been stored correctly in the df")
+    # print()
+    # list_of_probabilities = predictions_df['audio_prob']
+    # for prob in list_of_probabilities:
+    #     if prob is not None:
+    #         print("Probabilities:")
+    #         print(prob)
+    #         print(f"Type: {type(prob)}")
+    #         print(f"Shape: {prob.shape}")
+    #         print()
+    #         print(prob[0][0])
+    #         print(f"Type: {type(prob[0])}")

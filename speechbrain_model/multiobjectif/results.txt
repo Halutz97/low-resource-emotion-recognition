@@ -1,0 +1,147 @@
+IEMOCAP (tested version)
+
+MSE Valence: 0.4443463660669457
+MSE Arousal: 0.30542498676485114
+Total MSE: 0.37488567641589843
+C:\Users\DANIEL\anaconda3\envs\venv\Lib\site-packages\sklearn\metrics\_classification.py:2981: UserWarning: The y_pred values do not sum to one. Starting from 1.5 thiswill result in an error.
+  warnings.warn(
+Accuracy: 0.25
+NLL: 1.3862943611198906
+
+Max Error Valence: 3.2874299999999996
+Max Error Arousal: 2.2233415
+
+Probability of getting an error of less than 0.1 for valence: 0.14823008849557523
+Probability of getting an error of less than 0.1 for arousal: 0.16150442477876106
+
+Probability of getting an error of less than 0.5 for valence: 0.6150442477876106
+Probability of getting an error of less than 0.5 for arousal: 0.6415929203539823
+
+Mean Valence Error: -0.03058150088495575
+Standard Deviation Valence Error: 0.6658912357664495
+Mean Arousal Error: -0.03597389601769912
+Standard Deviation Arousal Error: 0.5514806121434904
+
+Correlation between true and predicted valence: 0.7005390339311016
+Correlation between true and predicted arousal: 0.7125947664469642
+
+Accuracy: 0.75
+F1 Score (Micro): 0.75
+F1 Score (Macro): 0.7533072295450193
+F1 Score (Weighted): 0.7493319672638759
+Confusion Matrix:
+           neu        ang        hap        sad
+neu  76.433121   5.095541  10.191083   8.280255
+ang   9.473684  74.736842  13.684211   2.105263
+hap  19.658120   6.837607  67.521368   5.982906
+sad  12.048193   2.409639   2.409639  83.132530
+
+
+
+#####################################################
+IEMOCAP (kinda full, with 3520 utterances)
+
+MSE Valence: 0.10070022494748769
+MSE Arousal: 0.07833357932172053
+Total MSE: 0.08951690213460411
+C:\Users\DANIEL\anaconda3\envs\venv\Lib\site-packages\sklearn\metrics\_classification.py:2981: UserWarning: The y_pred values do not sum to one. Starting from 1.5 thiswill result in an error.
+  warnings.warn(
+NLL: 1.3862943611198908
+
+Max Error Valence: 3.2874283999999996
+Max Error Arousal: 1.9686604
+
+Probability of getting an error of less than 0.1 for valence: 0.46988636363636366
+Probability of getting an error of less than 0.1 for arousal: 0.4732954545454545
+
+Probability of getting an error of less than 0.5 for valence: 0.9224431818181819
+Probability of getting an error of less than 0.5 for arousal: 0.9261363636363636
+
+Mean Valence Error: -0.0035636865142045448
+Standard Deviation Valence Error: 0.3173129765482593
+Mean Arousal Error: -0.023896444034090903
+Standard Deviation Arousal Error: 0.2788593539479106
+
+Correlation between true and predicted valence: 0.9466769476955389
+Correlation between true and predicted arousal: 0.9373309231168863
+
+
+
+Accuracy: 0.9488636363636364
+F1 Score (Micro): 0.9488636363636364
+F1 Score (Macro): 0.9489595983621253
+F1 Score (Weighted): 0.9489595983621253
+Confusion Matrix:
+           neu        ang        hap        sad
+neu  94.545455   1.250000   1.931818   2.272727
+ang   1.818182  95.227273   2.386364   0.568182
+hap   4.204545   1.250000  93.409091   1.136364
+sad   2.840909   0.227273   0.568182  96.363636
+
+
+
+#####################################################
+CREMA-D (self-reported)
+
+Accuracy: 0.5153884964682139
+F1 Score (Micro): 0.5153884964682139    
+F1 Score (Macro): 0.4572295694075667    
+F1 Score (Weighted): 0.45722956940756676
+Confusion Matrix:
+           neu        ang       hap        sad
+neu  72.653885  20.686176  0.100908   6.559031
+ang   7.971746  91.523713  0.201816   0.302725
+hap  50.151362  39.858729  7.467205   2.522704
+sad  59.233098   5.549950  0.706357  34.510595
+
+
+
+#####################################################
+CREMA-D (voted)
+
+Accuracy: 0.5375354107648725
+F1 Score (Micro): 0.5375354107648725
+F1 Score (Macro): 0.5006354647703332
+F1 Score (Weighted): 0.5006354647703332
+Confusion Matrix:
+           neu        ang        hap        sad
+neu  61.189802  24.929178   0.283286  13.597734
+ang   5.382436  93.484419   0.566572   0.566572
+hap  30.878187  49.575071  16.997167   2.549575
+sad  41.926346  11.898017   2.832861  43.342776
+
+
+#####################################################
+EMO-DB
+
+Accuracy: 0.6169354838709677
+F1 Score (Micro): 0.6169354838709677
+F1 Score (Macro): 0.5347172347172346
+F1 Score (Weighted): 0.5347172347172348
+Confusion Matrix:
+           neu        ang        hap  sad
+neu  98.387097   1.612903   0.000000  0.0
+ang   0.000000  70.967742  29.032258  0.0
+hap   9.677419  12.903226  77.419355  0.0
+sad  90.322581   3.225806   6.451613  0.0
+
+
+
+#####################################################
+ShEMO
+
+Accuracy: 0.5609452736318408
+F1 Score (Micro): 0.5609452736318408
+F1 Score (Macro): 0.4859635895153952
+F1 Score (Weighted): 0.4859635895153952
+Confusion Matrix:
+           neu        ang        hap  sad
+neu  83.582090   6.965174   9.452736  0.0
+ang   7.960199  74.129353  17.910448  0.0
+hap  24.875622   8.457711  66.666667  0.0
+sad  39.303483   8.457711  52.238806  0.0
+#####################################################
+
+
+
+

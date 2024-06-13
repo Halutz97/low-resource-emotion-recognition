@@ -219,20 +219,22 @@ def main():
         corrected_labels_path = os.path.join(os.path.dirname(labels_path), os.path.basename(labels_path)[:-4] + "_corrected.csv")
 
     elif dataset == "CREMA-D-voted":
-        # old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
-        audio_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAV"
-        source_labels = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\processedResults\summaryTable.csv"
+        old_audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\AudioWAV"
+        audio_directory = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\audio"
+        source_labels = r"C:\Users\DANIEL\Desktop\thesis\CREMA-D\processedResults\summaryTable.csv"
+        # audio_directory = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\AudioWAV"
+        # source_labels = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\processedResults\summaryTable.csv"
         labels_path = os.path.join(os.path.dirname(audio_directory), "voted_combined_labels.csv")
 
         # Create the destination directory if it doesn't exist
-        # if not os.path.exists(audio_directory):
-        #     os.makedirs(audio_directory, exist_ok=True)
+        if not os.path.exists(audio_directory):
+            os.makedirs(audio_directory, exist_ok=True)
 
-        #     # Copy all files from the source to the destination directory
-        #     for filename in os.listdir(old_audio_directory):
-        #         source_path = os.path.join(old_audio_directory, filename)
-        #         destination_path = os.path.join(audio_directory, filename)
-        #         shutil.copy2(source_path, destination_path)
+            # Copy all files from the source to the destination directory
+            for filename in os.listdir(old_audio_directory):
+                source_path = os.path.join(old_audio_directory, filename)
+                destination_path = os.path.join(audio_directory, filename)
+                shutil.copy2(source_path, destination_path)
 
         if not os.path.exists(labels_path):
             handle_CREMA_D_v(audio_directory,source_labels)
