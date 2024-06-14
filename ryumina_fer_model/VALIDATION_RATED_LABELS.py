@@ -49,9 +49,6 @@ def create_confusion_matrix(data, use_voted_labels=True, show_confusion_matrix=T
     f1_weighted = sklearn.metrics.f1_score(label_keys, predicted_keys, average='weighted')
     print("F1 Score (Weighted):", f1_weighted)
 
-    uar = sklearn.metrics.recall_score(label_keys, predicted_keys, average='macro')
-    print("Unweighted Average Recall (UAR):", uar)
-
     # # Generate confusion matrix
     confusion_matrix = sklearn.metrics.confusion_matrix(label_keys, predicted_keys)
 
@@ -115,7 +112,7 @@ def create_confusion_matrix(data, use_voted_labels=True, show_confusion_matrix=T
     plt.xticks(rotation=45)  # Rotate x labels for better fit
     plt.yticks(rotation=0)  # Keep y labels horizontal for readability
     plt.tight_layout()  # Adjust layout to not cut-off labels
-    # plt.savefig('Ari_figures/confusion_matrix_FER_validation_voted.png', dpi=300, bbox_inches='tight')
+    plt.savefig('Ari_figures/confusion_matrix_FER_validation_voted.png', dpi=300, bbox_inches='tight')
     plt.show()
     # Save figure as png
     
