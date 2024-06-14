@@ -1,0 +1,63 @@
+-------------------------------------------------
+One weight per modality - grid search
+-------------------------------------------------
+Number of times ran: 2001
+Best Weights:
+w_a=0.0035
+w_v=0.9965
+Accuracy: 0.5226984126984127 (train)
+-------------------------------------------------
+
+ACCURACY ON TEST SET
+
+Accuracy: 0.42083333333333334
+F1 Score (Micro): 0.42083333333333334
+F1 Score (Macro): 0.40403536046416755
+F1 Score (Weighted): 0.40403536046416755
+Confusion Matrix:
+           Neutral  Anger  Happiness  Sadness  Fear  Disgust
+Neutral       97.5    0.8        0.8      0.8   0.0      0.0
+Anger         84.2   13.3        0.8      0.8   0.8      0.0
+Happiness     25.0    0.0       75.0      0.0   0.0      0.0
+Sadness       71.7    2.5        0.0     22.5   0.0      3.3
+Fear          75.8    1.7        0.8      5.8  10.8      5.0
+Disgust       49.2    3.3        1.7     12.5   0.0     33.3
+-------------------------------------------------
+Single modality accuracies (test set)
+-------------------------------------------------
+Only video accuracy: 0.41944444444444445
+Only audio accuracy: 0.3388888888888889
+
+
+-------------------------------------------------
+One weight for each emotion - optimization Cross ENTROPY
+-------------------------------------------------
+Optimized weights for audio: [0.25174853 0.89016713 0.         0.22387704 0.         0.        ]
+Optimized weights for video: [0.74825147 0.10983287 1.         0.77612296 1.         1.        ]
+Minimum loss: 7696.6013470129765
+
+best_w_a:  [0.25174853 0.89016713 0.         0.22387704 0.         0.        ]
+best_w_v:  [0.74825147 0.10983287 1.         0.77612296 1.         1.        ]
+Best accuracy:  0.5425396825396825 (train)
+
+----------------------------------------------------------------
+
+ACCURACY ON TEST SET
+
+Accuracy: 0.4652777777777778
+F1 Score (Micro): 0.4652777777777778
+F1 Score (Macro): 0.4196745121530832
+F1 Score (Weighted): 0.41967451215308316
+Confusion Matrix:
+           Neutral  Anger  Happiness  Sadness  Fear  Disgust
+Neutral       93.3    5.0        0.8      0.8   0.0      0.0
+Anger         12.5   86.7        0.8      0.0   0.0      0.0
+Happiness     21.7   28.3       50.0      0.0   0.0      0.0
+Sadness       72.5    6.7        0.0     18.3   0.8      1.7
+Fear          68.3   19.2        0.0      4.2   3.3      5.0
+Disgust       47.5   20.8        0.8      3.3   0.0     27.5
+-------------------------------------------------
+Single modality accuracies (test set)
+-------------------------------------------------
+Only video accuracy: 0.41944444444444445
+Only audio accuracy: 0.3388888888888889

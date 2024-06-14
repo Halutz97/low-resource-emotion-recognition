@@ -106,13 +106,16 @@ def create_confusion_matrix(data, use_voted_labels=True, show_confusion_matrix=T
     ax = sns.heatmap(confusion_matrix_df_percent, annot=True, fmt='.1f', cmap='Blues',
                     xticklabels=label_names, yticklabels=label_names,
                     vmin=0, vmax=max_value, cbar_kws={'shrink': 0.8})  # Control the size of the color bar
-    plt.title('Confusion Matrix (%)', fontsize=16)  # Title with fontsize
-    plt.xlabel('Predicted Label', fontsize=14)  # X-axis label with fontsize
-    plt.ylabel('Actual Label', fontsize=14)  # Y-axis label with fontsize
+    # plt.title('Confusion Matrix (%)', fontsize=16)  # Title with fontsize
+    plt.xlabel('Predicted label', fontsize=14)  # X-axis label with fontsize
+    plt.ylabel('Actual label', fontsize=14)  # Y-axis label with fontsize
     plt.xticks(rotation=45)  # Rotate x labels for better fit
     plt.yticks(rotation=0)  # Keep y labels horizontal for readability
     plt.tight_layout()  # Adjust layout to not cut-off labels
+    plt.savefig('Ari_figures/confusion_matrix_FER_validation_voted.png', dpi=300, bbox_inches='tight')
     plt.show()
+    # Save figure as png
+    
 
 def generate_voted_labels(original_dataframe, voted_labels_path):
     print("------------------------------------------------------------")
@@ -205,7 +208,7 @@ def main():
     voted_labels_path = r"C:\MyDocs\DTU\MSc\Thesis\Data\CREMA-D\CREMA-D\voted_face_labels.csv"
     full_data = generate_voted_labels(data, voted_labels_path)
     # create_confusion_matrix(full_data, use_voted_labels=False, show_confusion_matrix=True)
-    create_confusion_matrix(full_data, use_voted_labels=False, show_confusion_matrix=True)
+    create_confusion_matrix(full_data, use_voted_labels=True, show_confusion_matrix=True)
 
     
 
