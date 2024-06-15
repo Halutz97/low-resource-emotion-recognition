@@ -544,8 +544,8 @@ wv = wv.reshape(1,6)
 
 # Save best weights to pickle file
 
-# with open('best_weights.pkl', 'wb') as f:
-#     pickle.dump([best_w_a, best_w_v], f)
+with open('multimodal_results/best_weights_baseline.pkl', 'wb') as f:
+    pickle.dump([wa, wv], f)
 
 # # Load weights from pickle file
 # # with open('best_weights.pkl', 'rb') as f:
