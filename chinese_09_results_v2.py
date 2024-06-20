@@ -81,14 +81,15 @@ def create_confusion_matrix(data):
     plt.figure(figsize=(10, 8))  # Adjust figsize to fit your thesis layout
     ax = sns.heatmap(confusion_matrix_df_percent, annot=True, fmt='.1f', cmap='Blues',
                     xticklabels=label_names, yticklabels=label_names,
-                    vmin=0, vmax=max_value, cbar_kws={'shrink': 0.8})  # Control the size of the color bar
+                    vmin=0, vmax=max_value, cbar_kws={'shrink': 0.8}, annot_kws={'size': 26})  # Control the size of the color bar
     # plt.title('Confusion Matrix (%)', fontsize=16)  # Title with fontsize
-    plt.xlabel('Predicted label', fontsize=14)  # X-axis label with fontsize
-    plt.ylabel('Actual label', fontsize=14)  # Y-axis label with fontsize
+    ax.tick_params(axis='both', which='major', labelsize=18)
+    plt.xlabel('Predicted label', fontsize=18)  # X-axis label with fontsize
+    plt.ylabel('Actual label', fontsize=18)  # Y-axis label with fontsize
     plt.xticks(rotation=0)  # Rotate x labels for better fit
     plt.yticks(rotation=0)  # Keep y labels horizontal for readability
     plt.tight_layout()  # Adjust layout to not cut-off labels
-    plt.savefig('Ari_figures/multimodal_baseline_chinese.png', dpi=300, bbox_inches='tight')
+    plt.savefig('DEFENSE_SCRIPTS/CHINESE_BASELINE.png', dpi=300, bbox_inches='tight')
     plt.show()
     # Save figure as png
 
